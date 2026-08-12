@@ -32,6 +32,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.112.3",
     "@vitejs/plugin-react": "latest",
     "cheerio": "latest",
     "postgres": "^3.4.9",

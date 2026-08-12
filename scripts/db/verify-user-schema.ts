@@ -23,6 +23,18 @@ try {
     throw new Error("showings.publication_status is missing.");
   }
 
+  const [usernameColumn] = await sql<{ exists: boolean }[]>`
+    select exists (
+      select 1 from information_schema.columns
+      where table_schema = 'public'
+        and table_name = 'profiles'
+        and column_name = 'username'
+    ) as exists
+  `;
+  if (!usernameColumn.exists) {
+    throw new Error("profiles.username is missing.");
+  }
+
   const rlsRows = await sql<{ relname: string; relrowsecurity: boolean }[]>`
     select relname, relrowsecurity
     from pg_class
@@ -67,7 +79,19 @@ try {
     throw new Error("watch_marks does not reference one exact showing.");
   }
 
-  console.log("Verified profiles, showing-level watch marks, stable references, and RLS policies.");
+  const [signupTrigger] = await sql<{ exists: boolean }[]>`
+    select exists (
+      select 1 from pg_trigger
+      where tgrelid = 'auth.users'::regclass
+        and tgname = 'auth_user_create_profile'
+        and not tgisinternal
+    ) as exists
+  `;
+  if (!signupTrigger.exists) {
+    throw new Error("The private-email signup profile trigger is missing.");
+  }
+
+  console.log("Verified private-email profiles, showing-level watch marks, stable references, and RLS policies.");
 } finally {
   await sql.end();
 }

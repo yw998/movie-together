@@ -510,7 +510,6 @@ Recommended delivery order:
 
 Open decisions to confirm before implementation reaches each boundary:
 
-- login methods for v1 (email magic link, email/password, Google, or a subset);
 - whether invitations use email, a revocable invite link, or both;
 - whether channels need owner/admin roles beyond ordinary membership;
 - what happens to shared visibility when a user leaves a channel;
@@ -525,7 +524,15 @@ unique marks per user/showing, and a restrictive composite foreign key to
 marking missing records as `removed` and upserting current records as `active`;
 the public export includes only active records. Account UI, authentication
 method selection, channels, invitations, sharing, and user-created events are
-not implemented yet.
+  not implemented yet.
+
+Authentication decision confirmed 2026-08-11: v1 uses a unique public username
+plus a private email-and-password Supabase Auth identity. Email is used only for
+authentication, verification, and account recovery; it is never exposed in
+profiles or channel views. The application does not collect real name, phone,
+birthday, contacts, or address. Passwords require at least eight characters and
+are hashed and verified by Supabase Auth. Channel invitations will use revocable
+links so members do not need to disclose email addresses to one another.
 
 ## 11. 第一轮 Codex 任务清单
 
@@ -555,12 +562,12 @@ not implemented yet.
 4. 产品需要用户账号、私人想看标记、受邀请成员可见的共享频道，以及可选择共享的用户自建活动。
 5. 分享只授予频道成员查看权；其他成员不能编辑标记或活动，默认状态始终为私人。
 6. “想看”标记针对一个具体官方场次；同一电影的不同时间或影院分别标记。
+7. 首版账号对外仅显示唯一 username；邮箱只用于 Supabase 登录、验证和找回，密码至少 8 位，不收集其他个人资料。
 
 尚未确定、需要向用户确认：
 
 1. 下一批扩展影院的优先顺序是什么？
-2. 账号首版采用哪些登录方式，以及邀请采用邮件、可撤销链接或两者兼有？
-3. 频道是否需要 owner/admin/member 角色，以及退出频道后的共享记录如何处理？
+2. 频道是否需要 owner/admin/member 角色，以及退出频道后的共享记录如何处理？
 
 ## 13. 非目标
 

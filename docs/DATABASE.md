@@ -47,6 +47,13 @@ tables are:
 - `user_events`
 - `channel_mark_shares`, `channel_event_shares`
 
+Authentication v1 uses a unique lowercase username plus a private Supabase
+email/password identity. Email remains in the protected Auth schema and is not
+copied into `profiles`; profiles expose only `username`. Passwords require at
+least eight characters. No real name, phone, birthday, contacts, or address is
+requested. Channel invitations will use revocable links rather than exposing
+member email addresses.
+
 Official films/showings and user-created events must remain separate. A user
 event is never official source evidence and must be visibly labeled as
 user-created in the UI.
@@ -88,6 +95,17 @@ Apply pending migrations:
 ```text
 npm run db:migrate
 ```
+
+The frontend account control requires these browser-safe Vite variables locally
+and in Vercel:
+
+```env
+VITE_SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_YOUR_KEY
+```
+
+The publishable key is intentionally public and gains no access by itself; RLS
+enforces user ownership. Never substitute the Supabase secret/service-role key.
 
 Verify the account/watch-mark schema without reading user content:
 

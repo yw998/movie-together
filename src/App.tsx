@@ -9,6 +9,7 @@ import {
 import type { Showing } from "./types/schedule";
 import { formatWindowYears, formatWindowZh } from "./lib/date-display";
 import { availabilityLabel } from "./lib/showing-labels";
+import { AccountControl } from "./auth/AccountControl";
 
 const timeClusters: TimeCluster[] = ["上午", "下午", "晚间", "深夜"];
 
@@ -79,6 +80,7 @@ export default function App() {
   return (
     <main>
       <header className="hero">
+        <AccountControl />
         <div className="eyebrow">
           NEW YORK · {formatWindowYears(metadata.windowStart, metadata.windowEnd)}
         </div>

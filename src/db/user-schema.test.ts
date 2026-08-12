@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
 
 const migrationPath = new URL("../../db/migrations/003_accounts_and_watch_marks.sql", import.meta.url);
+const authMigrationPath = new URL("../../db/migrations/004_private_email_username_auth.sql", import.meta.url);
 const importPath = new URL("../../scripts/db/import-approved.ts", import.meta.url);
 const exportPath = new URL("../../scripts/db/export-published.ts", import.meta.url);
 
@@ -14,6 +15,17 @@ describe("showing-level watch mark persistence", () => {
     expect(migration).toContain("alter table watch_marks enable row level security");
     expect(migration).toContain("with check ((select auth.uid()) = user_id)");
     expect(migration).not.toMatch(/grant\s+.+watch_marks\s+to\s+anon/i);
+  });
+
+  it("stores a unique public username without copying private email into profiles", async () => {
+    const migration = await readFile(authMigrationPath, "utf8");
+
+    expect(migration).toContain("profiles rename column display_name to username");
+    expect(migration).toContain("unique (username)");
+    expect(migration).toContain("new.raw_user_meta_data ->> 'username'");
+    expect(migration).toContain("after insert on auth.users");
+    expect(migration).not.toMatch(/profiles\s*\([^)]*email/i);
+    expect(migration).toContain("auth.jwt() ->> 'is_anonymous'");
   });
 
   it("preserves old showing rows while exporting only the active publication", async () => {
