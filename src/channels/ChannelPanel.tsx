@@ -207,17 +207,26 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
     await load();
   }
 
-  async function removeChannelIdentityMember(identityId: string) {
+  async function removeChannelMember(member: Member) {
     if (!selected || !owner || busy) return;
-    if (!window.confirm("确定移除这个 Channel-only 成员吗？其身份和全部标记都会永久删除。")) return;
+    const memberName = member.profiles?.username ?? "member";
+    const warning = member.kind === "channel_only"
+      ? `确定移除「${memberName}」吗？其 Channel-only 身份和全部标记都会永久删除。`
+      : `确定移除 @${memberName} 吗？其在这个 Channel 的分享会被移除，个人想看仍会保留。`;
+    if (!window.confirm(warning)) return;
     setBusy(true);
-    const { error } = await client!.rpc("remove_channel_identity_as_account", {
-      target_channel_id: selected,
-      target_identity_id: identityId,
-    });
+    const { error } = member.kind === "channel_only"
+      ? await client!.rpc("remove_channel_identity_as_account", {
+        target_channel_id: selected,
+        target_identity_id: member.user_id,
+      })
+      : await client!.rpc("remove_channel_member", {
+        target_channel_id: selected,
+        target_user_id: member.user_id,
+      });
     setBusy(false);
     if (error) return setMessage("无法移除这个成员。");
-    setMembers((current) => current.filter((member) => member.user_id !== identityId));
+    setMembers((current) => current.filter((currentMember) => currentMember.user_id !== member.user_id));
     window.dispatchEvent(new Event("movie-together:watch-marks-changed"));
   }
 
@@ -392,7 +401,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
                     <strong>{member.kind === "channel_only" ? memberName : `@${memberName}`}</strong>
                     {member.kind === "channel_only" && <small>GUEST</small>}
                     {member.role === "owner" && <small>OWNER</small>}
-                    {owner && member.kind === "channel_only" && member.role === "member" && <button disabled={busy} onClick={() => void removeChannelIdentityMember(member.user_id)} type="button">移除</button>}
+                    {owner && member.role === "member" && <button aria-label={`移除 ${memberName}`} disabled={busy} onClick={() => void removeChannelMember(member)} type="button">移除</button>}
                   </div>;
                 })}
               </div>
