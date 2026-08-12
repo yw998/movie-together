@@ -338,8 +338,10 @@ result and blocks publication.
 The pre-publication review report compares serialized ingestion bundles by
 stable showing ID. It lists new, removed, and factually changed records, and
 places publication on hold for failed/partial feeds, parser warnings, duplicate
-IDs, unverified records, missing or empty cinemas, and showing-count drops over
-25%. The threshold is a review trigger, not an automatic factual judgment.
+IDs, unverified records, missing or empty cinemas, and upcoming-showing-count
+drops over 25%. Already-finished screenings remain listed as removals but do not
+trigger the volume alarm when an official site stops returning past events. The
+threshold is a review trigger, not an automatic factual judgment.
 
 The public header derives its year, cinema count, and localized date range from
 schedule metadata. Newly generated bundles use the confirmed Monday–Sunday

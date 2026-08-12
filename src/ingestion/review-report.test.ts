@@ -50,6 +50,22 @@ describe("ingestion review report", () => {
     expect(report.cinemas[0].concerns.join(" ")).toMatch(/partial.*Parser warning.*Duplicate.*25%/);
   });
 
+  it("does not treat already-finished showings disappearing as an upcoming feed drop", () => {
+    const finished = ["1", "2", "3", "4"].map((id) =>
+      showing(id, { startsAt: `2026-08-10T1${id}:00:00-04:00`, localDate: "2026-08-10" }),
+    );
+    const future = [showing("5"), showing("6")];
+    const report = createReviewReport(
+      bundle(adapter([...finished, ...future])),
+      bundle(adapter(future)),
+      "e".repeat(64),
+    );
+
+    expect(report.summary.removed).toBe(4);
+    expect(report.cinemas[0].concerns).toEqual([]);
+    expect(report.publishable).toBe(true);
+  });
+
   it("accepts validated manual records but blocks needs-review records", () => {
     const previous = bundle(adapter([]));
     const manual = createReviewReport(

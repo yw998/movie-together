@@ -49,8 +49,9 @@ five cinemas. The recovered prototype remains separately archived in
 The review command expects each JSON file to contain `generatedAt` and an
 `adapters` array of serialized adapter results. It exits non-zero when a feed
 failed or became partial, unresolved parser warnings exist, IDs are duplicated,
-records still need review, a cinema disappears, a feed becomes empty, or its showing count
-falls by more than 25%. Additions, removals, and factual changes are always
+records still need review, a cinema disappears, a feed becomes empty, or its upcoming
+showing count falls by more than 25%. Finished events that disappear remain listed
+as removals but do not trigger the volume alarm. Additions, removals, and factual changes are always
 listed for human review.
 
 Schedule windows are Monday through Sunday. A concern-free report is only

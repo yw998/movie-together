@@ -52,6 +52,7 @@ export function createReviewReport(
   candidateDigest: string,
 ): ReviewReport {
   if (!/^[a-f0-9]{64}$/.test(candidateDigest)) throw new Error("Candidate digest must be a SHA-256 value.");
+  const reviewInstant = new Date(current.generatedAt).getTime();
   const previousAdapters = adapterMap(previous);
   const currentAdapters = adapterMap(current);
   const cinemaIds = [...new Set([...previousAdapters.keys(), ...currentAdapters.keys()])].sort();
@@ -83,8 +84,14 @@ export function createReviewReport(
       if (duplicates.length > 0) concerns.push(`Duplicate showing IDs: ${duplicates.join(", ")}`);
       const unverified = currentShowings.filter((showing) => showing.extractionStatus === "needs_review").length;
       if (unverified > 0) concerns.push(`${unverified} current showing(s) still need source review.`);
-      if (previousShowings.length > 0 && currentShowings.length < previousShowings.length * 0.75) {
-        concerns.push(`Showing count fell by more than 25% (${previousShowings.length} to ${currentShowings.length}).`);
+      const upcoming = (showing: Showing) => {
+        const startsAt = new Date(showing.startsAt).getTime();
+        return Number.isNaN(reviewInstant) || Number.isNaN(startsAt) || startsAt >= reviewInstant;
+      };
+      const previousUpcomingCount = previousShowings.filter(upcoming).length;
+      const currentUpcomingCount = currentShowings.filter(upcoming).length;
+      if (previousUpcomingCount > 0 && currentUpcomingCount < previousUpcomingCount * 0.75) {
+        concerns.push(`Upcoming showing count fell by more than 25% (${previousUpcomingCount} to ${currentUpcomingCount}).`);
       }
       if (currentShowings.length === 0) concerns.push("Current feed has no publishable showings.");
     }
