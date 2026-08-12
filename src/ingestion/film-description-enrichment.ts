@@ -7,6 +7,12 @@ type DescriptionEntry = {
 };
 
 const supplementalDescriptions: Record<string, DescriptionEntry> = {
+  buddy: {
+    text: "一档九十年代风格的儿童节目在魅力主持人突然施暴后，坠入血腥失控的噩梦。",
+  },
+  cam: {
+    text: "网络主播发现自己的虚拟身份被神秘替身夺走，随即踏上危险的控制权争夺。",
+  },
   "54-the-director-s-cut-q-a-this-is-cine-matographe": {
     text: "泽西城少年踏入 1979 年 Studio 54 的炫目与代价，映后主创问答。",
   },
@@ -26,17 +32,47 @@ const supplementalDescriptions: Record<string, DescriptionEntry> = {
   "freefall-a-reckoning-for-boeing-open-captioning": {
     text: "Rory Kennedy 延续对波音危机、吹哨者与企业责任的调查；本场配开放字幕。",
   },
+  "goody-goody": {
+    text: "一场被暴雪困住的居家分娩接连出现诡异并发症，产前焦虑逐渐化为恐怖。",
+  },
+  "henry-portrait-serial-killer": {
+    text: "一个四处漂泊的前科犯展开连环杀戮，冷酷人物研究直视暴力与人性深渊。",
+  },
   "la-collectionneuse": {
     text: "两名男子与年轻女子共住蔚蓝海岸别墅，欲望与自我辩护化作心理游戏。",
   },
   "millionaires-express": {
     text: "洪金宝集结群星，让豪华列车、落魄小镇与各路匪徒撞成动作喜剧。",
   },
+  "never-after-dark": {
+    text: "温和的灵媒受邀前往偏僻旅馆驱邪，却被一股敌意深重的超自然力量步步逼近。",
+  },
+  "sudden-fury": {
+    text: "丈夫在车祸后抛下妻子等死，企图夺取遗产的算计迅速滑向残酷失控。",
+  },
+  superbuhei: {
+    text: "戒酒中的超市酒吧侍者怀疑自己正被邪恶双胞胎跟踪，日常由此变得诡异。",
+  },
+  "the-peril-at-pincer-point": {
+    text: "录音师登上雾锁孤岛采集声音，却卷入失踪案与幽灵船长的海上传说。",
+  },
+  "the-piano": {
+    text: "失语钢琴家带着女儿来到殖民时期的新西兰，在包办婚姻、欲望与自由之间挣扎。",
+  },
   "the-razor-s-edge-lebanese-hostage-of-their-city": {
     text: "围城中的贝鲁特见证艺术家与难民少年的友谊，并以前导短片凝视战火城市。",
   },
+  "the-trek": {
+    text: "穿越卡拉哈里沙漠的殖民拓荒之旅被古老民间传说缠上，化作阴魂不散的西部恐怖。",
+  },
+  "the-weed-eaters": {
+    text: "四名朋友在偏僻度假屋发现一批奇异大麻，意外死亡随即引爆混乱与食人危机。",
+  },
   "toute-une-nuit": {
     text: "阿克曼以布鲁塞尔一夜的相遇、拥抱与别离，拼成潮湿而孤独的城市交响。",
+  },
+  veins: {
+    text: "年轻女子久别返家，却发现父亲已死三天、母亲异常冷漠，家庭秘密随之浮现。",
   },
 };
 

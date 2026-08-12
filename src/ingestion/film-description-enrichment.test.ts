@@ -53,6 +53,44 @@ describe("film description enrichment", () => {
     });
   });
 
+  it("covers the new Film at Lincoln Center catalog with official provenance", () => {
+    const ids = [
+      "buddy",
+      "cam",
+      "goody-goody",
+      "henry-portrait-serial-killer",
+      "never-after-dark",
+      "sudden-fury",
+      "superbuhei",
+      "the-peril-at-pincer-point",
+      "the-piano",
+      "the-trek",
+      "the-weed-eaters",
+      "veins",
+    ];
+    const films = ids.map((id) =>
+      film({ id, canonicalTitle: id, displayTitle: id }),
+    );
+    const showings = ids.map(
+      (id) =>
+        ({
+          ...showing,
+          filmId: id,
+          detailUrl: `https://www.filmlinc.org/films/${id}/`,
+        }) as Showing,
+    );
+
+    const enriched = enrichFilmDescriptions(films, showings);
+    expect(enriched.every((item) => item.descriptionZh)).toBe(true);
+    expect(
+      enriched.every(
+        (item) =>
+          item.descriptionSource ===
+          `https://www.filmlinc.org/films/${item.id}/`,
+      ),
+    ).toBe(true);
+  });
+
   it("covers every film in the current publication", () => {
     const enriched = enrichFilmDescriptions(
       publishedSchedule.films as Film[],
