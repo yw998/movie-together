@@ -118,8 +118,10 @@ channel-scoped and must be enforced by a server endpoint rather than treating
 the guest as a normal Supabase authenticated user. Code attempts are
 rate-limited, and removing the guest immediately invalidates access.
 
-Recommended v1 behavior is read-only guest access. If guests later own marks or
-events, those records need a separate guest-owner model plus an explicit atomic
+Confirmed v1 behavior is read-only guest access. Invite links expire seven days
+after creation, allow at most 20 successful joins, and can be revoked early by
+the channel owner. If guests later own marks or events, those records need a
+separate guest-owner model plus an explicit atomic
 conversion process on registration; this must not be approximated by sharing a
 normal user ID or weakening existing RLS.
 
@@ -211,3 +213,6 @@ Always run `npm test` and `npm run build` after exporting public data.
 - Database round-trip verification: passed
 - Account foundation, frontend authentication, password management, and private
   exact-showing watch marks are enabled
+- Channel, membership, direct-invitation, link-invitation, Friend ID, and guest
+  credential tables/functions are deployed; the production UI remains disabled
+  until multi-user RLS tests and trusted email/guest endpoints are complete

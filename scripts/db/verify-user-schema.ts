@@ -91,7 +91,57 @@ try {
     throw new Error("The private-email signup profile trigger is missing.");
   }
 
-  console.log("Verified private-email profiles, showing-level watch marks, stable references, and RLS policies.");
+  const channelTables = await sql<{ table_name: string }[]>`
+    select table_name
+    from information_schema.tables
+    where table_schema = 'public'
+      and table_name in (
+        'channels',
+        'channel_members',
+        'channel_invitations',
+        'channel_invite_links',
+        'channel_guests'
+      )
+  `;
+  if (channelTables.length !== 5) {
+    throw new Error("Expected channel and invitation tables are missing.");
+  }
+
+  const channelRls = await sql<{ relname: string; relrowsecurity: boolean }[]>`
+    select relname, relrowsecurity
+    from pg_class
+    where oid in (
+      'public.channels'::regclass,
+      'public.channel_members'::regclass,
+      'public.channel_invitations'::regclass,
+      'public.channel_invite_links'::regclass,
+      'public.channel_guests'::regclass
+    )
+  `;
+  if (channelRls.length !== 5 || channelRls.some((row) => !row.relrowsecurity)) {
+    throw new Error("RLS is not enabled on every channel table.");
+  }
+
+  const [inviteDefaults] = await sql<{ seven_days: boolean; twenty_uses: boolean }[]>`
+    select
+      column_default like '%7 days%' as seven_days,
+      (
+        select column_default like '20%'
+        from information_schema.columns
+        where table_schema = 'public'
+          and table_name = 'channel_invite_links'
+          and column_name = 'max_uses'
+      ) as twenty_uses
+    from information_schema.columns
+    where table_schema = 'public'
+      and table_name = 'channel_invite_links'
+      and column_name = 'expires_at'
+  `;
+  if (!inviteDefaults?.seven_days || !inviteDefaults.twenty_uses) {
+    throw new Error("Invite links do not use the confirmed seven-day/20-use defaults.");
+  }
+
+  console.log("Verified accounts, watch marks, channel invitations, defaults, and RLS policies.");
 } finally {
   await sql.end();
 }

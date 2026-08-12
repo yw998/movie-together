@@ -535,11 +535,14 @@ appear in analytics or application logs. A guest code cannot query profiles,
 discover channels, reuse normal authenticated RLS access, or enter any channel
 other than the one encoded in its server-validated guest record.
 
-Recommended v1 guest boundary (awaiting confirmation): guests are read-only.
+Confirmed v1 guest boundary: guests are read-only.
 They can view the channel member names and shared items, but cannot create watch
 marks, share content, create user events, invite others, or modify the channel.
 Registering converts their place in that channel into a normal `member` without
 making the guest code a general account credential.
+
+Invitation links expire seven days after creation and allow at most 20
+successful joins. The channel owner can revoke a link before either limit.
 
 Recommended delivery order:
 
@@ -552,20 +555,22 @@ Recommended delivery order:
 
 Open decisions to confirm before implementation reaches each boundary:
 
-- whether v1 guests are read-only as recommended or may own editable marks/events;
-- default expiry and maximum uses for invitation links;
 - whether user-created events may omit an end time, location, or external URL;
 - whether channel members can react/comment, which is outside the confirmed
   read-only sharing requirement.
 
-Implementation note (2026-08-11): the account foundation now has a database
+Implementation note (2026-08-12): the account foundation now has a database
 migration for owner-scoped `profiles` and exact-showing `watch_marks`, with RLS,
 unique marks per user/showing, and a restrictive composite foreign key to
 `showings(window_start, id)`. Weekly imports preserve stable showing rows by
 marking missing records as `removed` and upserting current records as `active`;
 the public export includes only active records. Account UI, authentication, and
-private showing-level marks are implemented; channels, invitations, sharing,
-and user-created events are not implemented yet.
+private showing-level marks are implemented. The channel database foundation is
+also deployed: random Friend IDs, owner/member membership, direct username or
+Friend-ID invitations, hashed seven-day/20-use links, and hashed channel-scoped
+guest credentials all use deny-by-default RLS and controlled functions. Channel
+UI, trusted email/guest endpoints, sharing, and user-created events are not yet
+enabled; multi-user authorization tests are required before the UI is exposed.
 
 Authentication decision confirmed 2026-08-11: v1 uses a unique public username
 plus a private email-and-password Supabase Auth identity. Email is used only for
@@ -616,11 +621,11 @@ showing. No mark is shared to a channel in this phase.
 7. 首版账号对外仅显示唯一 username；邮箱只用于 Supabase 登录、验证和找回，密码至少 8 位，不收集其他个人资料。
 8. Channel 首版只有 owner/member；支持通过 username、私密邮箱、随机 Friend ID 直接邀请，也支持可撤销链接。
 9. 未登录访客可选择注册，或用临时名字成为仅限该 Channel 的 guest，并获得只访问该 Channel 的独立代码。
+10. Guest 首版只读；邀请链接默认 7 天后过期，最多允许 20 人成功加入，owner 可随时提前撤销。
 
 尚未确定、需要向用户确认：
 
 1. 下一批扩展影院的优先顺序是什么？
-2. Guest 首版是否按建议设为只读？邀请链接默认多久过期、可使用多少次？
 
 ## 13. 非目标
 
