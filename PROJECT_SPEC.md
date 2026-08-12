@@ -207,7 +207,7 @@ Adapter 只负责从该影院官方来源提取候选数据。共享逻辑负责
 - Schema 验证
 - 来源与抓取状态记录
 
-当前实现状态（2026-08-11）：Film Forum 已使用官方 `my.filmforum.org` 日历 JSON 接口实现首个 adapter。该接口提供带纽约 UTC offset 的明确时间、稳定 performance ID、售票状态和直接购票链接。IFC Center adapter 使用官网服务端 HTML 中的明确 AM/PM、影片详情页和 ticket event ID；特别活动只有在日期、片名和时间唯一匹配时才并入场次。Roxy Cinema adapter 使用官网 Now Showing 卡片的 offset 时间和 Veezi purchase ID，保留片名中的胶片格式，并仅把带明确日期的 introduction 应用于相同日期。Metrograph adapter 使用官网电影卡片、Vista session ID 和格式 metadata；无年份日期只在请求窗口内唯一匹配时采用，sold-out 场次保留但不虚构 ticket URL。任一页面结构变化或零记录异常都会返回 `failed`／`partial`，不会静默发布。
+当前实现状态（2026-08-11）：Film Forum 已使用官方 `my.filmforum.org` 日历 JSON 接口实现首个 adapter。该接口提供带纽约 UTC offset 的明确时间、稳定 performance ID、售票状态和直接购票链接。IFC Center adapter 使用官网服务端 HTML 中的明确 AM/PM、影片详情页和 ticket event ID；特别活动只有在日期、片名和时间唯一匹配时才并入场次。Roxy Cinema adapter 使用官网 Now Showing 卡片的 offset 时间和 Veezi purchase ID，保留片名中的胶片格式，并仅把带明确日期的 introduction 应用于相同日期。Metrograph adapter 使用官网电影卡片、Vista session ID 和格式 metadata；无年份日期只在请求窗口内唯一匹配时采用，sold-out 场次保留但不虚构 ticket URL。2026-08-12 已确认其裸 `/film/` 地址可能返回结构正常但缺少部分日期的缓存 HTML，因此抓取请求使用按 UTC 小时稳定变化的刷新参数，并继续用场次数量骤降检查作为第二层保护。任一页面结构变化或零记录异常都会返回 `failed`／`partial`，不会静默发布。
 
 ### 6.2 获取策略优先级
 

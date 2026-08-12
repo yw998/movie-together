@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseMetrographHtml } from "./metrograph";
+import { metrographRequestUrl, parseMetrographHtml } from "./metrograph";
 
 const options = {
   fetchedAt: "2026-08-11T22:30:00.000Z",
@@ -25,7 +25,7 @@ describe("Metrograph official film-page adapter", () => {
     const result = parseMetrographHtml(fixture, options);
     expect(result.snapshot).toMatchObject({
       result: "success",
-      parserVersion: "metrograph-film-html-v1",
+      parserVersion: "metrograph-film-html-v2",
     });
     expect(result.showings).toEqual([
       expect.objectContaining({
@@ -64,5 +64,14 @@ describe("Metrograph official film-page adapter", () => {
       result: "failed",
       error: "In-theater film cards were not found.",
     });
+  });
+
+  it("uses an hourly refresh key to avoid Metrograph's incomplete bare-URL cache", () => {
+    expect(metrographRequestUrl("2026-08-12T15:42:10.000Z")).toBe(
+      "https://metrograph.com/film/?schedule_refresh=2026-08-12T15",
+    );
+    expect(metrographRequestUrl("2026-08-12T15:59:59.000Z")).toBe(
+      "https://metrograph.com/film/?schedule_refresh=2026-08-12T15",
+    );
   });
 });

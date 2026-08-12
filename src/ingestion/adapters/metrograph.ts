@@ -5,7 +5,7 @@ import type { Film, Showing } from "../../types/schedule";
 import type { AdapterResult, SourceSnapshot } from "../types";
 
 export const METROGRAPH_SOURCE_URL = "https://metrograph.com/film/";
-export const METROGRAPH_PARSER_VERSION = "metrograph-film-html-v1";
+export const METROGRAPH_PARSER_VERSION = "metrograph-film-html-v2";
 
 type ParseOptions = {
   fetchedAt: string;
@@ -246,6 +246,17 @@ async function sha256(value: string): Promise<string> {
     .join("");
 }
 
+export function metrographRequestUrl(fetchedAt: string): string {
+  const instant = new Date(fetchedAt);
+  if (Number.isNaN(instant.getTime())) throw new Error(`Invalid fetch instant: ${fetchedAt}`);
+  const url = new URL(METROGRAPH_SOURCE_URL);
+  // The bare /film/ URL can serve structurally valid but incomplete cached
+  // HTML. One stable cache key per UTC hour refreshes the official page
+  // without producing a unique cache entry for every request.
+  url.searchParams.set("schedule_refresh", instant.toISOString().slice(0, 13));
+  return url.toString();
+}
+
 export async function fetchMetrographSchedule(
   windowStart: string,
   windowEnd: string,
@@ -253,7 +264,7 @@ export async function fetchMetrographSchedule(
   const fetchedAt = new Date().toISOString();
   const baseOptions = { fetchedAt, contentHash: "", windowStart, windowEnd };
   try {
-    const response = await fetch(METROGRAPH_SOURCE_URL, {
+    const response = await fetch(metrographRequestUrl(fetchedAt), {
       headers: {
         Accept: "text/html",
         "User-Agent":
