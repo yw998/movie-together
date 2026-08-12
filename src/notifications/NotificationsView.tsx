@@ -5,6 +5,7 @@ import { supabase } from "../auth/supabase";
 import { scheduleData } from "../data/schedule";
 import { formatDisplayTime } from "../lib/time";
 import type { ChannelInvitation, ChannelNotification } from "../channels/channel-api";
+import { notifyChannelsChanged } from "../channels/channel-api";
 import { useTransientMessage } from "../lib/useTransientMessage";
 
 type NotificationsViewProps = {
@@ -19,6 +20,7 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
   const [activities, setActivities] = useState<ChannelNotification[]>([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [shareExistingInvitations, setShareExistingInvitations] = useState<Set<string>>(new Set());
   const [message, setMessage] = useTransientMessage();
 
   const showingById = useMemo(() => new Map(scheduleData.showings.map((showing) => [showing.id, showing])), []);
@@ -53,11 +55,13 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
     setBusy(true);
     const { error } = await client.rpc("accept_channel_invitation", {
       target_invitation_id: invitation.invitation_id,
+      share_existing_marks: shareExistingInvitations.has(invitation.invitation_id),
     });
     setBusy(false);
     if (error) return setMessage("邀请已失效或 Channel 人数已满。");
     setMessage(`已加入「${invitation.channel_name}」。`);
     await load();
+    notifyChannelsChanged();
     onNotificationsChanged();
   }
 
@@ -106,8 +110,24 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
           const { invitation } = reminder;
           return <article className="notification-row invitation-row unread" key={invitation.invitation_id}>
             <span className="notification-dot" aria-label="待处理" />
-            <div><p><b>@{invitation.inviter_username}</b> 邀请你加入</p><strong>「{invitation.channel_name}」</strong><small>有效期至 {formatDateTime(invitation.expires_at)}</small></div>
-            <button disabled={busy} onClick={() => void acceptInvitation(invitation)} type="button">接受邀请</button>
+            <div className="notification-copy"><p><b>@{invitation.inviter_username}</b> 邀请你加入</p><strong>「{invitation.channel_name}」</strong><small>有效期至 {formatDateTime(invitation.expires_at)}</small></div>
+            <div className="invitation-actions">
+              <label>
+                <input
+                  checked={shareExistingInvitations.has(invitation.invitation_id)}
+                  onChange={(event) => setShareExistingInvitations((current) => {
+                    const next = new Set(current);
+                    if (event.target.checked) next.add(invitation.invitation_id);
+                    else next.delete(invitation.invitation_id);
+                    return next;
+                  })}
+                  type="checkbox"
+                />
+                同步现有个人标记
+              </label>
+              <small>也可以加入后手动分享</small>
+              <button disabled={busy} onClick={() => void acceptInvitation(invitation)} type="button">接受邀请</button>
+            </div>
           </article>;
         }
         const { activity } = reminder;

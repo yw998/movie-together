@@ -1,108 +1,303 @@
-# NYC Repertory Cinema Week — 项目需求与路线图
+# NYC Repertory Cinema Week — Project Specification
 
-**状态：** 长期项目规划稿  
-**产品语言：** 中文优先，电影原名保留  
-**时区：** `America/New_York`  
-**当前网站：** https://nyc-rep-cinema-week.wyzmanto.chatgpt.site
+## 0. Document purpose
 
-## 1. 项目目的
+This document defines the **current product requirements, system boundaries, data rules, and accepted product decisions** for NYC Repertory Cinema Week.
 
-这是一个纽约艺术影院与 repertory cinema 的每周排片聚合网站。它要帮助用户快速回答三个问题：
+It describes what the product **should be**, not a chronological history of how it was implemented.
 
-1. 这周有什么值得看的电影？
-2. 哪家影院、哪一天、几点放映？
-3. 我在哪里查看官方信息或购票？
+Implementation progress belongs in `docs/STATUS.md`.
 
-它不是覆盖所有商业院线的通用搜索引擎。产品价值来自：精选影院范围、清晰的时间组织、可靠数据、简洁中文简介，以及对特别场次的准确标记。
+Historical or superseded product decisions belong in `docs/DECISIONS.md`.
 
-## 2. 当前范围
+When implementation and this specification disagree:
 
-### 2.1 首批影院
+1. Do not silently rewrite working behavior.
+2. Determine whether the implementation or specification is outdated.
+3. Surface the discrepancy when it materially affects the requested task.
+4. Update this specification only when the accepted product behavior or architecture changes.
 
-| 影院 | 官方入口 | 初步抓取判断 |
-| --- | --- | --- |
-| Metrograph | https://metrograph.com/film/ | 页面结构复杂；可能需要详情页跟进或浏览器渲染 |
-| Film Forum | https://filmforum.org/ | 服务端 HTML 相对稳定，适合直接解析 |
-| IFC Center | https://www.ifccenter.com/ | 官方主页含按日排片表，适合直接解析 |
-| Roxy Cinema New York | https://www.roxycinemanewyork.com/now-showing/ | 官方 Now Showing 页面含场次、简介与票务链接 |
-| Paris Theater | https://www.paristheaternyc.com/ | 动态日期选择器；需要解析页面数据或保留人工复核 |
-| Film at Lincoln Center | https://www.filmlinc.org/ | ... |
-| Syndicated Bar Theater Kitchen | https://syndicatedbk.com/ | ... |
+---
 
+# 1. Product overview
 
-未来可以扩展到 BAM、Museum of the Moving Image、Anthology Film Archives、Quad Cinema 等，但不属于第一阶段完成标准。
+## 1.1 Product goal
 
-### 2.2 当前原型已有功能
+NYC Repertory Cinema Week is a public website that aggregates schedules from selected New York City repertory and arthouse cinemas.
 
-- 七天排片页面
-- 日期标签切换
-- 影院多选筛选
-- 电影名与影院搜索
-- 按上午、下午、晚间、深夜聚类
-- 中文简短电影简介
-- 官方详情／购票链接
-- 手机与桌面响应式布局
-- 公开分享链接
+The primary user question is:
 
-### 2.3 当前原型的主要限制
+> **“What should I see over the next seven days, where, and at what time?”**
 
-- 2026-08-11 原型排片已从 UI 组件分离到独立数据文件，并通过 TypeScript 标准化层渲染；这些恢复自线上 bundle 的旧记录仍未逐条完成官方来源验证。
-- 不能自动进入下一周。
-- 数据已有统一类型和验证状态，但旧记录缺少可靠的逐条抓取时间，统一标记为 `needs_review` 且 `fetchedAt: null`。
-- 没有抓取失败报告或发布前 diff。
-- 简介和场次数据尚未完全分层。
-- 没有历史排片档案。
+The product should allow a user to quickly determine:
 
-## 3. 核心用户体验
+1. What films are showing.
+2. Which cinema is showing them.
+3. On which date and at what time.
+4. Whether a screening has a meaningful format or special event.
+5. Where to view the official cinema page or purchase a ticket.
 
-### 3.1 首页
+The site is **not** intended to be a comprehensive commercial multiplex search engine.
 
-首页默认显示当前有效的七天窗口，并提供：
+Its value comes from:
 
-- 日期切换
-- 影院筛选
-- 搜索
-- 时间段聚类
-- 当天总场次数
-- 每张卡片的时间、影院、片名、简短简介、格式／特别活动标签和官方链接
-- 数据最后更新时间
+* a curated cinema scope;
+* reliable official-source schedules;
+* clear chronological organization;
+* concise Chinese descriptions;
+* preservation of meaningful screening distinctions;
+* lightweight planning and sharing features.
 
-### 3.2 时间段定义
+---
 
-建议默认值如下，并保留为配置项：
+## 1.2 Product language
 
-| 时间段 | 本地开场时间 |
-| --- | --- |
-| 上午 | 12:00 AM–11:59 AM |
-| 下午 | 12:00 PM–4:59 PM |
-| 晚间 | 5:00 PM–8:59 PM |
-| 深夜 | 9:00 PM–11:59 PM |
+Primary interface language:
 
-### 3.3 电影与场次
+**Chinese**
 
-同一电影可以有多个场次。以下差异不能被错误合并：
+Film titles may retain their original-language titles.
 
-- 不同影院
-- 不同日期或时间
-- 不同放映格式（35mm、70mm、DCP 等）
-- 普通场与 Q&A／intro／members-only／open-caption 场
-- 不同官方票务链接
+Technical identifiers, source metadata, and internal application data do not need to be translated.
 
-## 4. 数据可信度原则
+---
 
-这是项目最高优先级。
+## 1.3 Timezone
 
-1. **官方来源优先。** 场次必须来自影院官方页面或影院官方票务页面。
-2. **禁止猜测。** 不能根据电影档期、相邻日期或搜索摘要补出看似合理的时间。
-3. **每条场次可追溯。** 必须保存来源链接和抓取时间。
-4. **解析不确定时不发布。** 将记录标为需要人工确认。
-5. **简介与排片事实分离。** AI 可以压缩简介，但不得修改时间、日期、影院或活动属性。
-6. **保留官方特殊信息。** Q&A、嘉宾、胶片格式、字幕与会员限制会影响用户选择。
-7. **显示新鲜度。** 页面明确写明最近更新时间；过期数据不能继续伪装为本周数据。
+All schedule logic uses:
 
-## 5. 建议数据模型
+```text
+America/New_York
+```
 
-### 5.1 `Cinema`
+User-visible calendar dates must always correspond to the New York local date of the screening.
+
+---
+
+# 2. Cinema scope
+
+## 2.1 Current supported cinemas
+
+The current official cinema scope is:
+
+1. Metrograph
+2. Film Forum
+3. IFC Center
+4. Roxy Cinema New York
+5. Paris Theater
+6. Film at Lincoln Center
+7. Syndicated Bar Theater Kitchen
+
+Each cinema should have an independent ingestion adapter so that one cinema can change or fail without requiring the shared pipeline to be rewritten.
+
+---
+
+## 2.2 Potential future cinemas
+
+Possible future additions include:
+
+* BAM
+* Museum of the Moving Image
+* Anthology Film Archives
+* Quad Cinema
+
+These are not part of the current completion criteria unless explicitly promoted into scope.
+
+---
+
+# 3. Public schedule experience
+
+## 3.1 Homepage date window
+
+The public homepage displays a **rolling seven-day window**:
+
+```text
+New York today → New York today + 6 days
+```
+
+Example:
+
+```text
+Wednesday Aug 12 → Tuesday Aug 18
+```
+
+There is no public calendar-week switching interface in the current product.
+
+Internally, schedule ingestion and durable storage may continue to use Monday–Sunday calendar-week bundles where useful for stable identity, approval, and archival purposes.
+
+The public export combines whatever approved internal weeks are necessary to produce the rolling seven-day window.
+
+---
+
+## 3.2 Homepage capabilities
+
+The public schedule should provide:
+
+* seven-day schedule display;
+* date navigation;
+* cinema multi-select filtering;
+* film and cinema search;
+* chronological ordering;
+* time-of-day grouping;
+* screening count where useful;
+* short Chinese film descriptions;
+* screening format and meaningful special-event information;
+* official detail or ticket links;
+* visible data refresh information;
+* responsive desktop and mobile layouts.
+
+---
+
+## 3.3 Time-of-day groups
+
+Default groups are:
+
+| Group | Local start time |
+| ----- | ---------------- |
+| 上午    | 00:00–11:59      |
+| 下午    | 12:00–16:59      |
+| 晚间    | 17:00–20:59      |
+| 深夜    | 21:00–23:59      |
+
+These boundaries should remain configurable rather than being duplicated throughout the UI.
+
+---
+
+# 4. Film and showing semantics
+
+## 4.1 Film versus showing
+
+A `Film` represents the reusable film identity and descriptive metadata.
+
+A `Showing` represents one specific screening of that film.
+
+The same film may therefore have many showings.
+
+---
+
+## 4.2 Showing distinctions
+
+Two screenings must not be incorrectly merged when they differ in any meaningful way, including:
+
+* cinema;
+* local date;
+* start time;
+* screening format;
+* special event;
+* access restriction;
+* official performance identity;
+* materially different ticket destination.
+
+Examples of meaningful format or event distinctions include:
+
+* 16mm
+* 35mm
+* 70mm
+* DCP
+* 4K DCP
+* Q&A
+* introduction
+* members only
+* open captions
+
+---
+
+# 5. Data trust model
+
+Schedule accuracy is the highest-priority system requirement.
+
+## 5.1 Official-source requirement
+
+Published screening facts must come from:
+
+1. an official cinema website;
+2. an official cinema API;
+3. an official cinema ticketing system linked to that cinema.
+
+Non-official aggregators must not silently replace an official source when extraction fails.
+
+---
+
+## 5.2 No inference rule
+
+Never invent or infer:
+
+* film titles;
+* screening dates;
+* screening times;
+* formats;
+* event labels;
+* guest appearances;
+* ticket URLs;
+* availability.
+
+Do not infer one date from adjacent dates or fill missing values because they appear plausible.
+
+Unknown information should remain unknown.
+
+---
+
+## 5.3 Provenance
+
+Every published showing must be traceable to source evidence.
+
+At minimum retain:
+
+* `sourceUrl`
+* `fetchedAt`
+* extraction status
+* stable showing identity where available
+
+---
+
+## 5.4 Uncertain extraction
+
+If parsing is uncertain:
+
+* do not silently publish the questionable fact;
+* mark the record or cinema feed for review;
+* preserve the previous approved public dataset when necessary.
+
+A failed parser must never turn into:
+
+```text
+0 showings
+```
+
+unless the official source provides sufficient evidence that zero showings is correct.
+
+---
+
+## 5.5 Descriptions
+
+Chinese film descriptions are separate from schedule facts.
+
+AI-assisted descriptions are allowed when grounded in:
+
+* official cinema copy; or
+* another trusted film source.
+
+Every non-empty generated description must retain its evidence URL.
+
+Description generation must never modify:
+
+* cinema;
+* date;
+* time;
+* format;
+* event metadata;
+* availability;
+* ticket URL.
+
+Approved descriptions should be cached and reused rather than regenerated every schedule refresh.
+
+---
+
+# 6. Core data model
+
+Exact TypeScript implementation may evolve, but the domain model should preserve the following concepts.
+
+## 6.1 Cinema
 
 ```ts
 type Cinema = {
@@ -115,7 +310,9 @@ type Cinema = {
 };
 ```
 
-### 5.2 `Film`
+---
+
+## 6.2 Film
 
 ```ts
 type Film = {
@@ -125,647 +322,1065 @@ type Film = {
   year: number | null;
   director: string | null;
   runtimeMinutes: number | null;
+
   descriptionZh: string | null;
   descriptionSource: string | null;
 };
 ```
 
-### 5.3 `Showing`
+---
+
+## 6.3 Showing
 
 ```ts
 type Showing = {
   id: string;
+
   cinemaId: string;
   filmId: string;
-  startsAt: string;              // ISO 8601 with New York offset
-  localDate: string;             // YYYY-MM-DD in America/New_York
-  localTime: string;             // HH:mm
-  format: "35mm" | "70mm" | "16mm" | "DCP" | "4K DCP" | null;
-  eventType: "standard" | "qa" | "intro" | "members_only" | "open_caption" | "other";
+
+  startsAt: string;
+  localDate: string;
+  localTime: string;
+
+  format:
+    | "16mm"
+    | "35mm"
+    | "70mm"
+    | "DCP"
+    | "4K DCP"
+    | null;
+
+  eventType:
+    | "standard"
+    | "qa"
+    | "intro"
+    | "members_only"
+    | "open_caption"
+    | "other";
+
   eventNote: string | null;
+
   detailUrl: string;
   ticketUrl: string | null;
-  availability: "available" | "sold_out" | "unknown";
+
+  availability:
+    | "available"
+    | "sold_out"
+    | "unknown";
+
   sourceUrl: string;
   fetchedAt: string;
-  extractionStatus: "verified" | "needs_review" | "manual";
+
+  extractionStatus:
+    | "verified"
+    | "needs_review"
+    | "manual";
 };
 ```
 
-### 5.4 原始证据
+---
 
-每次更新应保留最少的审计信息：
+## 6.4 Source snapshot
+
+Each ingestion run should retain enough evidence to diagnose changes.
 
 ```ts
 type SourceSnapshot = {
   cinemaId: string;
   fetchedAt: string;
   sourceUrl: string;
+
   contentHash: string;
   parserVersion: string;
-  result: "success" | "partial" | "failed";
+
+  result:
+    | "success"
+    | "partial"
+    | "failed";
+
   error: string | null;
 };
 ```
 
-原始 HTML 可以短期保存在构建产物之外，用于调试；不要直接公开，也不要无限期无治理地积累。
+Raw HTML may be retained temporarily outside public build artifacts for debugging.
 
-## 6. 系统结构
+It should not be exposed publicly or accumulated indefinitely without a retention policy.
 
-```mermaid
-flowchart TD
-    A[影院官方页面] --> B[影院独立适配器]
-    B --> C[标准化数据]
-    C --> D[Schema 与业务验证]
-    D --> E[发布前变更报告]
-    E --> F{人工确认或自动规则}
-    F --> G[公开排片 JSON]
-    G --> H[网站]
-    G --> I[历史档案]
-```
+---
 
-### 6.1 抓取层
+# 7. System architecture
 
-每家影院拥有独立 adapter，例如：
+The intended data flow is:
 
 ```text
-src/ingestion/adapters/
-  film-forum.ts
-  ifc-center.ts
-  roxy-cinema.ts
-  metrograph.ts
-  paris-theater.ts
+Official cinema sources
+        ↓
+Cinema-specific adapters
+        ↓
+Normalized candidate data
+        ↓
+Schema + business validation
+        ↓
+Review / anomaly detection
+        ↓
+Approval decision
+        ↓
+Durable database storage
+        ↓
+Validated public static export
+        ↓
+Frontend
 ```
 
-Adapter 只负责从该影院官方来源提取候选数据。共享逻辑负责：
+The ingestion system and public frontend must remain separated.
 
-- 日期和时间标准化
-- 时区处理
-- 电影名清洗
-- 去重
-- 活动与格式标签解析
-- Schema 验证
-- 来源与抓取状态记录
+---
 
-当前实现状态（2026-08-11）：Film Forum 已使用官方 `my.filmforum.org` 日历 JSON 接口实现首个 adapter。该接口提供带纽约 UTC offset 的明确时间、稳定 performance ID、售票状态和直接购票链接。IFC Center adapter 使用官网服务端 HTML 中的明确 AM/PM、影片详情页和 ticket event ID；特别活动只有在日期、片名和时间唯一匹配时才并入场次。Roxy Cinema adapter 使用官网 Now Showing 卡片的 offset 时间和 Veezi purchase ID，保留片名中的胶片格式，并仅把带明确日期的 introduction 应用于相同日期。Metrograph adapter 使用官网电影卡片、Vista session ID 和格式 metadata；无年份日期只在请求窗口内唯一匹配时采用，sold-out 场次保留但不虚构 ticket URL。2026-08-12 已确认其裸 `/film/` 地址可能返回结构正常但缺少部分日期的缓存 HTML，因此抓取请求使用按 UTC 小时稳定变化的刷新参数，并继续用场次数量骤降检查作为第二层保护。任一页面结构变化或零记录异常都会返回 `failed`／`partial`，不会静默发布。
+# 8. Cinema adapters
 
-### 6.2 获取策略优先级
+## 8.1 Adapter responsibility
 
-1. 官方公开 JSON／页面内结构化数据
-2. 官方服务端渲染 HTML + HTML parser
-3. 官方详情页跟进
-4. 浏览器渲染
-5. 人工 override
+Each cinema adapter should extract candidate facts from that cinema's official sources.
 
-不要因为一种策略失败就改用非官方聚合数据并静默发布。
+Adapters should not independently implement shared business rules.
 
-### 6.3 人工覆盖
+Shared infrastructure handles:
 
-建议提供受版本控制的人工修正文件：
+* timezone normalization;
+* date parsing;
+* title normalization;
+* deduplication;
+* schema validation;
+* format normalization;
+* event classification;
+* provenance;
+* extraction status.
+
+---
+
+## 8.2 Source strategy priority
+
+Prefer sources in this order:
+
+1. official JSON/API or embedded structured data;
+2. official server-rendered HTML;
+3. official detail-page follow-up;
+4. browser-rendered extraction;
+5. version-controlled manual override.
+
+Do not move to an unofficial aggregator simply because an official extraction strategy becomes inconvenient.
+
+---
+
+## 8.3 Failure isolation
+
+One cinema's failure must not corrupt another cinema's data.
+
+Every cinema ingestion result should independently resolve to:
+
+```text
+success
+partial
+failed
+```
+
+A `partial` or `failed` source should be visible in the review process.
+
+---
+
+# 9. Manual overrides
+
+Manual corrections are permitted for:
+
+* special events;
+* temporary parser failures;
+* unusual official-page structures.
+
+Recommended location:
 
 ```text
 data/manual-overrides/YYYY-MM-DD.json
 ```
 
-每条人工记录也必须包含官方 `sourceUrl`、录入原因和录入时间。下周不应自动继承旧 override。
+Each override must include:
 
-## 7. 每周更新流程
+* cinema;
+* affected showing or film;
+* official source URL;
+* reason;
+* creation timestamp.
 
-### 推荐的第一版：自动整理，人工确认
+Overrides are temporary evidence-backed corrections.
 
-1. 按固定时间运行抓取。
-2. 输出本周候选数据和影院级状态。
-3. 与当前线上数据比较。
-4. 生成 review report：新增、删除、时间变化、链接变化、解析失败、异常数量波动。
-5. 用户或维护者确认。
-6. 生成公开 JSON 并部署。
-7. 保存上周数据到 archive。
+They must not automatically roll forward indefinitely.
 
-完全自动发布应在每家影院连续稳定运行数周后再启用。
+---
 
-### 更新频率建议
+# 10. Validation rules
 
-- 每周主更新：一次
-- 周末前增量检查：一次（可选）
-- 单影院失败：继续保留其他影院更新，但页面必须显示该影院数据状态，不能把旧数据当作最新数据
+At minimum, automated validation should verify:
 
-## 8. 验证规则
+* `localDate` is inside the candidate publication window;
+* `startsAt`, `localDate`, and `localTime` agree;
+* the cinema exists in configuration;
+* source URLs belong to allowed official domains;
+* film titles are non-empty;
+* placeholder titles are rejected;
+* duplicate showing IDs are rejected;
+* obvious duplicate facts are identified;
+* legitimate format/event variants survive deduplication;
+* zero-result parser failures are not interpreted as empty schedules;
+* stale data is detected;
+* suspicious cinema-level volume changes trigger review.
 
-至少实现以下自动检查：
+Volume anomaly thresholds are **review signals**, not factual conclusions.
 
-- `localDate` 位于当前发布窗口内
-- `startsAt` 与 `localDate`/`localTime` 一致
-- `cinemaId` 存在于配置中
-- `sourceUrl` 属于对应影院的允许域名
-- 电影名非空且不为 placeholder
-- 同一影院、同一电影、同一时间的重复场次被识别
-- 相同时间但不同格式／活动标签的场次不被误删
-- 每家影院记录量相对上一周异常下降时报警
-- 官方页面抓取失败时禁止把空数组解释为“本周无排片”
-- 数据超过规定新鲜度时阻止发布或显示醒目警告
+---
 
-## 9. 发布前报告
+# 11. Review and publication workflow
 
-Review report 至少包含：
+## 11.1 Daily ingestion
 
-```text
-IFC Center: success, 126 showings, +14 / -9
-Film Forum: success, 73 showings, +6 / -12
-Roxy Cinema: partial, 18 showings, 2 need review
-Metrograph: failed, selector not found
-Paris Theater: manual review required
-```
-
-并列出：
-
-- 新电影／新场次
-- 被删除的场次
-- 时间或票务链接变化
-- 特别活动变化
-- 所有 `needs_review` 记录
-
-## 10. 分阶段路线图
-
-### Phase 0 — 接管现有项目
-
-- 检查当前 repository 结构和部署方式
-- 确认原型源码与线上版本一致
-- 记录现有硬编码数据的位置
-- 补充运行、构建和测试说明
-- 确认“本周”的日期定义
-
-### Phase 1 — 数据与 UI 解耦
-
-- 建立 TypeScript schema
-- 把硬编码排片移到独立 JSON／TS 数据文件
-- 保持当前 UI 行为和视觉不变
-- 添加时间排序、去重和时区测试
-- 页面显示最后更新时间
-
-**完成标准：** 替换一个数据文件即可更新整周网站，不必修改页面组件。
-
-### Phase 2 — 可验证的抓取
-
-- Film Forum adapter
-- IFC Center adapter
-- Roxy Cinema adapter
-- Metrograph adapter
-- Paris Theater adapter
-- 统一验证和 provenance
-- 人工 override
-- review report
-
-**完成标准：** 五家影院均能输出已验证数据，失败时不会发布虚假或空白结果。
-
-Implementation note (2026-08-11): the first six official-source adapters are
-now implemented. Paris Theater showtimes come from its official digital API
-and are joined to its official CMS by Vista film ID. The adapter discovers the
-current public client configuration from the theater's own layout bundle at
-runtime and never persists or logs those values. Special-event copy is joined
-only when the CMS ticket link contains the exact showtime ID; failed joins are
-excluded or flagged for review rather than inferred from a shared date.
-
-Film at Lincoln Center uses its official `api.filmlinc.org/showtimes` feed for
-offset-bearing New York datetimes, performance and production IDs, venues,
-ticket URLs, accessibility, and ticket status. Each in-window film is joined by
-official slug to its WordPress GraphQL record for director, year, runtime,
-presentation format, synopsis evidence, and performance-ID-scoped Q&A/intro
-metadata. Standby-only screenings remain visible, but the public UI does not
-display availability labels; exact event notes remain available when material.
-Synthetic pass products are excluded. A missing detail
-join, inconsistent ID/time/link, or empty feed becomes a visible partial/failed
-result and blocks publication.
-
-The pre-publication review report compares serialized ingestion bundles by
-stable showing ID. It lists new, removed, and factually changed records, and
-places publication on hold for failed/partial feeds, parser warnings, duplicate
-IDs, unverified records, missing or empty cinemas, and upcoming-showing-count
-drops over 25%. Already-finished screenings remain listed as removals but do not
-trigger the volume alarm when an official site stops returning past events. The
-threshold is a review trigger, not an automatic factual judgment.
-
-The public header derives its year, cinema count, and localized date range from
-schedule metadata. Source bundles and database identities retain Monday–Sunday
-calendar weeks; the public export combines the approved weeks and exposes the
-New York today-plus-six-days rolling window. The homepage headline remains the
-short editorial label `这周看什么？`; it does not redefine the rolling date
-window shown directly below it.
-
-Automation alerting note (2026-08-12): a failed or ambiguous publication keeps
-the previous public data active. If a `schedule-review` issue is already open,
-later failures append their run details to that issue instead of creating
-duplicate alerts. The alert embeds an actionable report excerpt grouped by
-cinema, including added/removed/changed films, local date and time, format or
-event details, stable showing ID, and official detail/source links. Complete
-JSON and Markdown reports remain available in the private workflow artifact.
-
-Product decisions confirmed 2026-08-11:
-
-- Historical decision: “This week” was originally the New York calendar week.
-  It was superseded on 2026-08-12 by the rolling seven-day homepage decision.
-- A successful review report requires explicit named human approval before any
-  publication step. There is no automatic publication.
-- Sold-out events remain visible, while availability labels are hidden from the
-  public UI because the update frequency cannot guarantee current ticket status.
-
-The recovered August 11–17 prototype bundle predates the calendar-week decision
-and remains unchanged as historical evidence. Newly generated bundles must use
-the Monday–Sunday rule.
-
-The calendar-week candidate command accepts any New York local anchor date, computes
-its Monday–Sunday window, runs all six implemented official adapters, and
-writes a new file without overwriting an existing candidate. It does not review,
-approve, or publish; those remain explicit subsequent stages.
-
-Implementation note (2026-08-11): the compiler now merges adapter results and
-week-scoped manual overrides into normalized public JSON, validates and
-deduplicates all facts, and projects the compiled result into a review bundle.
-Review reports contain a SHA-256 candidate digest. Promotion recompiles the
-candidate and refuses to write public data unless a named approval contains the
-same digest. The first August 10–16 report contains 342 showings and zero
-concerns. Yuzhen Wang approved its digest, and the guarded local promotion
-completed after separate publication authorization. The normalized frontend
-data now contains that approved schedule; tests and the production build pass.
-
-Storage decision confirmed 2026-08-11: Supabase PostgreSQL is the durable system
-of record. Normalized cinema, film, showing, weekly publication, ingestion,
-source snapshot, override, review, and approval records are relational. Exact
-workflow JSON is retained separately in `workflow_artifacts`. The public site
-does not connect to PostgreSQL; it uses a validated static JSON export of the
-current approved week. Database import is transactional and digest-verified.
-All server-managed tables have RLS enabled with no browser policy, and privileges
-are revoked from Supabase anonymous and authenticated API roles.
-
-Automation decision updated 2026-08-11: clean weekly runs with zero review
-concerns may receive a distinct `auto_approved` decision and continue through
-database import, static export, tests, build, and Vercel deployment. Any failed
-feed, unresolved warning, questionable change, validation error, database
-failure, round-trip mismatch, test failure, or build failure stops the workflow,
-keeps the previous site active, uploads private review artifacts, and creates a
-GitHub Issue for manual investigation. This replaces mandatory human approval
-for every clean week; manual approval remains available for reviewed exceptions.
-
-Schedule decision updated 2026-08-12: the public homepage is a rolling seven-day
-window starting on the current New York date. Automation runs daily at 05:00,
-reviews the one or two complete calendar weeks touched by that window, and
-publishes only after every involved source is clean. This supersedes the former
-Sunday-end weekly schedule while retaining calendar-week storage internally.
-
-Chinese-description decision confirmed 2026-08-11: concise AI-assisted Chinese
-copy may be used when it is grounded in an official cinema detail page or a
-trusted film source. Approved copy is cached by film and reused across weekly
-runs; every non-empty `descriptionZh` must carry a valid HTTPS
-`descriptionSource`. Description enrichment is separate from showtime facts and
-cannot modify dates, times, formats, events, availability, or ticket links.
-
-Description automation implemented 2026-08-11: the weekly workflow first reuses
-approved PostgreSQL or curated descriptions. Only uncached films are sent to the
-OpenAI Responses API, together with text extracted from their official cinema
-detail pages. Structured output must either return one bounded Chinese sentence
-or explicitly request review. Insufficient official evidence, an API failure,
-model refusal, missing results, or invalid copy blocks publication and opens the
-existing manual-review Issue path. Generated copy is persisted by the approved
-database import and is not regenerated on later weeks.
-
-### Phase 3 — 每周工作流
-
-- 设置每周定时执行
-- 保存抓取日志与报告
-- 选择人工批准或自动发布
-- 部署成功检查
-- 失败通知
-
-**完成标准：** 连续四周不需要修改前端代码即可更新排片。
-
-### Phase 4 — 长期产品能力
-
-- 上周／下周与历史档案
-- 电影详情页
-- 新增场次区块
-- 地图和影院信息
-- 35mm／70mm／Q&A 等标签筛选
-- 一键加入 Google／Apple Calendar
-- 收藏和隐藏影院（本地存储即可起步）
-- “本周值得看”的编辑推荐
-
-### Phase 5 — 账号、个人计划与共享频道
-
-Product scope confirmed 2026-08-11:
-
-1. Users can create an account and sign in. Anonymous visitors can continue to
-   browse the public official schedule without an account.
-2. A signed-in user can privately mark one specific official showing they want
-   to attend. Marking another time or cinema for the same film creates a separate
-   mark. Private is the default; creating a mark must never publish it implicitly.
-3. A user can create a channel and invite friends. A channel member can see
-   marks that another member explicitly shared into that channel, but cannot
-   edit or delete another user's mark.
-4. When creating a new mark, the owner may leave it private or share it into one
-   or more channels they belong to. The owner can also change the sharing choice
-   later without changing the underlying official film or showing.
-5. If an event is missing from the official cinema catalog, a signed-in user can
-   create a user event with manually entered title/content and New York date and
-   time. It can remain private or be shared into channels under the same rules.
-6. The personal main view contains every mark owned by the signed-in user. Each
-   card shows how many channels currently receive that mark. It spans the whole
-   published week and groups marks by date rather than inheriting one active date tab.
-7. Creating a mark always saves it privately first, then opens a channel-sharing
-   non-modal popover beside the clicked control. It has no backdrop and does not
-   block scrolling or interaction with any other component. Ignoring or dismissing
-   the popover keeps the personal mark. The user can select
-   channels individually; membership-level auto-share defaults are preselected
-   and applied immediately, but can be changed for that mark in the dialog.
-8. Each channel has a member-visible activity view of shared marks. A showing
-   card groups all members who marked it using stable colored username initials;
-   no profile photo or additional personal information is required.
-9. Clicking the share-count control on an existing personal card reopens its
-   per-Channel selection. Leaving or being removed from a Channel deletes that
-   user's shares in the Channel but never deletes the underlying personal mark.
-
-The initial collaboration model is intentionally closer to a shared drive than
-to a public social network: channel membership grants visibility to explicitly
-shared items, not ownership. Only the creator can edit the underlying mark or
-user event. Channel members must not be able to edit another member's content.
-
-#### Data and trust boundaries
-
-- Official `Film` and `Showing` records remain read-only products of the
-  evidence-backed ingestion and approval workflow.
-- User-created events live in a separate table and must display a clear
-  “用户创建” label. They must never receive `verified` extraction status or be
-  merged into the official schedule dataset.
-- Personal marks, user events, memberships, invitations, and shares are dynamic
-  application data stored in Supabase PostgreSQL; they are not exported into the
-  public weekly JSON.
-- The browser may use the Supabase authenticated client only for user-scoped
-  data protected by Row Level Security. `DATABASE_URL` and service-role secrets
-  remain server-only.
-- Every personal item is private unless the owner creates an explicit share
-  record for a channel. Removing a share must not delete the underlying item.
-
-Proposed relational shape (names may be refined during implementation):
+The schedule workflow runs daily at:
 
 ```text
-profiles                one application profile per auth.users identity
-channels                channel metadata and creator
-channel_members         membership and role per channel/user
-channel_invitations     expiring invitation state
-watch_marks             user-owned mark referencing one exact official showing
-user_events             user-owned manually entered event
-channel_mark_shares     explicit channel visibility for a watch mark
-channel_event_shares    explicit channel visibility for a user event
-channel_invite_links    revocable link tokens stored only as hashes
-channel_guests          channel-scoped guest name and hashed access code
+05:00 America/New_York
 ```
 
-Required authorization invariants:
+It gathers whatever internal calendar-week data is necessary to cover the public rolling seven-day window.
 
-- users can create, read, update, and delete only their own marks and user events;
-- channel members can read an item only while it is explicitly shared to a
-  channel in which they have active membership;
-- shared visibility never grants update/delete rights to the viewer;
-- users can share only their own item and only to a channel they belong to;
-- accepting an invitation must bind the authenticated identity, not merely trust
-  a client-supplied user ID;
-- deleting a channel or membership must revoke channel-derived visibility;
-- a schedule refresh must preserve the stable showing reference used by an
-  existing mark, even if that showing is later removed or cancelled upstream;
-- RLS policies and database constraints are tested before enabling the feature.
+---
 
-#### Channel roles and invitation paths
+## 11.2 Review report
 
-Channel roles confirmed 2026-08-12:
+Before publication, generate a report containing at minimum:
 
-- `owner` can rename/delete the channel, create or revoke invitations, and remove
-  members or guests;
-- `member` can view channel content, share or unshare only their own items, and
-  leave voluntarily;
-- there is no admin role in v1;
-- leaving immediately revokes the user's channel access and removes that user's
-  shares from the channel without deleting their private marks or events.
+* cinema ingestion status;
+* number of showings;
+* added showings;
+* removed showings;
+* changed factual fields;
+* parser warnings;
+* failed feeds;
+* `needs_review` records;
+* suspicious volume changes.
 
-Two invitation paths are required:
-
-1. **Direct account invitation.** The owner can target an existing account only
-   by private email or a random unique Friend ID. Username is not an invitation
-   identifier. Email matching happens only in trusted
-   server code and must not reveal registered email addresses or allow account
-   enumeration. A Friend ID is independent from username, contains no personal
-   information, and can be regenerated to invalidate the old value.
-2. **Revocable invitation link.** An authenticated visitor accepts the invite
-   into their existing account. An unauthenticated visitor is offered account
-   registration or guest access. Registration resumes the pending invitation
-   after authentication. Guest access asks for a channel-visible temporary name,
-   creates a guest scoped to that one channel, and displays a separate access
-   code that can reopen only that channel.
-
-Invitation-link tokens and guest access codes are bearer credentials. They must
-be generated with cryptographic randomness, shown only when necessary, stored
-only as hashes, rate-limited on verification, expire or be revocable, and never
-appear in analytics or application logs. A guest code cannot query profiles,
-discover channels, reuse normal authenticated RLS access, or enter any channel
-other than the one encoded in its server-validated guest record.
-
-Confirmed v1 guest boundary: guests are read-only.
-They can view the channel member names and shared items, but cannot create watch
-marks, share content, create user events, invite others, or modify the channel.
-Registering converts their place in that channel into a normal `member` without
-making the guest code a general account credential.
-
-Invitation links expire seven days after creation and allow at most 20
-successful joins. The channel owner can revoke a link before either limit.
-
-Recommended delivery order:
-
-1. Supabase Auth, profile creation, session handling, and protected account UI.
-2. Private watch marks for exact official showings.
-3. Channels, membership, and invitations.
-4. Explicit mark sharing and a read-only channel activity view.
-5. Private user-created events, then explicit channel sharing.
-6. Notifications and convenience features only after authorization tests pass.
-
-Open decisions to confirm before implementation reaches each boundary:
-
-- whether user-created events may omit an end time, location, or external URL;
-- whether channel members can react/comment, which is outside the confirmed
-  read-only sharing requirement.
-
-Implementation note (2026-08-12): the account foundation now has a database
-migration for owner-scoped `profiles` and exact-showing `watch_marks`, with RLS,
-unique marks per user/showing, and a restrictive composite foreign key to
-`showings(window_start, id)`. Weekly imports preserve stable showing rows by
-marking missing records as `removed` and upserting current records as `active`;
-the public export includes only active records. Account UI, authentication, and
-private showing-level marks are implemented. The channel database foundation is
-also deployed: random Friend IDs, owner/member membership, Friend-ID or private
-email invitations, hashed seven-day/20-use links, and hashed channel-scoped
-guest credentials all use deny-by-default RLS and controlled functions. Channel
-guest/email database endpoints and database-backed attempt limits are deployed,
-and the matching Edge Function source is ready for deployment. Owner/outsider
-and service-role authorization tests pass with all test data rolled back.
-The Edge Function is deployed and the first Channel UI is implemented: signed-in
-users can create channels, see their Friend ID, invite by Friend ID/email,
-create link invitations, and accept pending invitations. Link visitors can join
-an account or create a read-only guest, save the one-time guest credential, and
-later reopen only that channel. Personal mark sharing, membership auto-share
-defaults, week-wide personal view, per-card share counts, Channel activity cards,
-and colored username initials are implemented. Members can leave a Channel while
-retaining their personal marks; their shares to that Channel are removed. Owners
-delete rather than leave their Channel. Operation feedback across account,
-Channel, notification, sharing, and watch-mark controls clears after three
-seconds. User-created events are not yet
-implemented; a second registered test identity is still required for a complete
-two-account acceptance test.
-
-Channel navigation uses a Discord-like two-level left rail. The product title is
-“一起看”. The far-left rail starts with the personal home page, lists every joined
-Channel below it, and keeps the create-Channel entry at the bottom. Selecting home
-shows the normal personal schedule and collapses the contextual second rail so only
-the narrow primary rail remains. Selecting a Channel replaces the main content
-with that Channel's members and shared watchlist and opens the second rail. The
-second rail holds contextual Channel settings. On narrow screens both rails become a button-triggered drawer
-with a backdrop, preserving the full width of film cards. The signed-in account's
-Friend ID is pinned to the bottom-left account area in every personal or Channel
-view, with an adjacent clipboard button and explicit copied or permission-failure
-feedback.
-The create entry no longer expands the contextual rail. It opens a centered,
-independent modal over a dimmed backdrop, keeps validation and progress feedback
-inside that modal, and closes before navigating to the newly created Channel.
-Successful creation does not add a redundant confirmation banner to the Channel
-settings rail; arriving in the new Channel is the success feedback.
-After an owner copies a Channel invitation link, its success notice appears
-directly below the copy button, stays readable for roughly two seconds, fades
-during the final second, and is removed after three seconds. Repeated copying
-restarts the notice timer and animation; clipboard failures use error feedback.
-Friend-ID and email invitation results, link-generation failures, and clipboard
-failures use this same notice position and three-second lifecycle instead of
-appearing in the scrollable Channel settings area.
-Inside a Channel, members are shown as individual rows in the contextual rail,
-while owner invitation controls are pinned above the persistent account/Friend-ID
-area at the bottom. The shared watchlist is grouped by local date and sorted by
-local showing time, matching the personal schedule's chronological reading order.
-A member may click “想看” on another member's shared official showing; this creates
-the member's own personal mark and explicitly shares that mark to the current
-Channel, without modifying the original member's mark.
-The member who created their own mark can click its marked control inside a
-Channel to open a non-modal choice: remove only that Channel share while keeping
-the personal mark, or delete the personal mark and consequently remove all of
-its Channel shares. The UI must state the wider effect before personal deletion.
-On personal-home showing cards, the UI displays a small count of distinct other
-users in shared Channels who explicitly shared the same showing. The current user
-is excluded, the same person is counted once across multiple common Channels, and
-private/unshared marks are never included or exposed.
-Channel creation gives immediate progress/success/error feedback and rejects
-case-insensitive duplicate names owned by the same user, including concurrent
-double submissions. Existing duplicates are never deleted automatically; owners
-can remove a channel through an explicit confirmed delete action.
-After a successful deletion, confirmation appears as a non-interactive centered
-toast, fades during its final 300 ms, and is removed after one second; it does not
-occupy the contextual Channel rail.
-Async Channel forms retain their form element before awaiting Supabase so a
-successful write always proceeds to local reset, refresh, selection, and visible
-confirmation without requiring a page reload.
-
-Every signed-in page shows the account controls in the top-right. They contain a
-bell-only reminder entry with a combined unread badge; it is not part of the
-Channel rail. Its full-width page shows pending direct Channel invitations and
-the last 30 days
-of watch marks newly shared by other members in Channels the user currently belongs
-to. Invitation acceptance remains explicit. Watch-mark activity includes only the
-public username, Channel, and official showing identity; account email is never
-returned or displayed. Per-Channel read cursors are private under RLS, default to
-the membership join time, and advance only when the user chooses “全部标为已读”.
-Removing a membership cascades its read cursor. Reminder rows link to the relevant
-Channel, and events outside the current rolling schedule use a non-factual fallback
-instead of inventing title or time details.
-Invitation and watch-mark reminders share one reverse-chronological vertical card
-list; the page does not divide them into separate reminder-type sections.
-
-Authentication decision confirmed 2026-08-11: v1 uses a unique public username
-plus a private email-and-password Supabase Auth identity. Email is used only for
-authentication, verification, and account recovery; it is never exposed in
-profiles or channel views. The application does not collect real name, phone,
-birthday, contacts, or address. Passwords require at least eight characters and
-are hashed and verified by Supabase Auth. Channel invitations will use revocable
-links so members do not need to disclose email addresses to one another.
-Signed-in users can change their password by providing the current password and
-a distinct confirmed new password of at least eight characters. Password values
-are sent only to Supabase Auth and are never stored in application tables.
-
-Watch-mark implementation note (2026-08-12): each public showing card now has a
-private “想看” toggle. A signed-in user's exact-showing marks are loaded from
-Supabase for the published week, persist across browser sessions, and can be
-removed only by their owner under RLS. The UI reports the user's marked-showing
-count and opens the account dialog when an anonymous visitor attempts to mark a
-showing. Marks can now be explicitly shared to selected Channels or copied by a
-member's per-Channel auto-share preference; the underlying personal mark remains
-the source.
-
-## 11. 第一轮 Codex 任务清单
-
-将下面内容作为新 agent 的第一个执行队列：
+Example:
 
 ```text
-1. Read AGENTS.md and docs/PROJECT_SPEC.md completely.
-2. Inspect the repository without editing it.
-3. Report the current architecture, commands, hard-coded data locations,
-   deployment setup, test coverage, and any differences from the spec.
-4. Propose the smallest implementation for Phase 1.
-5. After approval, move schedule data out of the UI component and add a typed
-   schema without changing visible behavior.
-6. Add tests for New York time parsing, chronological sorting, noon/midnight,
-   deduplication, and preservation of special-event variants.
-7. Run the existing build and tests, then summarize changed files and remaining
-   risks.
+IFC Center
+status: success
+showings: 126
+added: 14
+removed: 9
+
+Film Forum
+status: success
+showings: 73
+added: 6
+removed: 12
+
+Roxy Cinema
+status: partial
+showings: 18
+needs review: 2
+
+Metrograph
+status: failed
+reason: expected schedule structure not found
 ```
 
-## 12. 产品决定
+---
 
-已确认：
+## 11.3 Publication safety
 
-1. 主页完全使用纽约“今天起连续七天”的滚动窗口，不保留自然周切换入口。底层
-   仍按周一至周日保存和审核场次，以维持稳定场次身份与想看标记；跨周主页合并
-   当前周和下一周的已批准数据。此决定于 2026-08-12 取代此前自然周主页决定。
-2. 每周更新必须先生成 review report，再由具名用户明确批准；不自动发布。
-3. 已售罄场次继续显示，但前端不展示售罄标签；数据库继续保留抓取时的状态用于审计。
-4. 产品需要用户账号、私人想看标记、受邀请成员可见的共享频道，以及可选择共享的用户自建活动。
-5. 分享只授予频道成员查看权；其他成员不能编辑标记或活动，默认状态始终为私人。
-6. “想看”标记针对一个具体官方场次；同一电影的不同时间或影院分别标记。
-7. 首版账号对外仅显示唯一 username；邮箱只用于 Supabase 登录、验证和找回，密码至少 8 位，不收集其他个人资料。
-8. Channel 首版只有 owner/member；只支持通过私密邮箱或随机 Friend ID 直接邀请，也支持可撤销链接。
-9. 未登录访客可选择注册，或用临时名字成为仅限该 Channel 的 guest，并获得只访问该 Channel 的独立代码。
-10. Guest 首版只读；邀请链接默认 7 天后过期，最多允许 20 人成功加入，owner 可随时提前撤销。
-11. 账号内部邀请只允许 Friend ID 或私密邮箱；邀请保持 pending，必须由被邀请者明确接受后才加入 Channel。
-12. 账号旁的右上角铃铛进入提醒页，显示待处理 Channel 邀请和共同 Channel 中其他成员新分享的想看场次；用户明确标为已读后才推进私有已读状态。
+The currently published schedule remains active until a replacement candidate successfully passes the publication workflow.
 
-尚未确定、需要向用户确认：
+A new dataset must not replace the public dataset when any blocking condition remains, including:
 
-1. 下一批扩展影院的优先顺序是什么？
+* failed cinema feed;
+* unresolved partial feed;
+* schema validation failure;
+* questionable showing;
+* duplicate stable ID;
+* database import failure;
+* round-trip verification failure;
+* required test failure;
+* production build failure.
 
-## 13. 非目标
+For clean runs with no blocking concerns, the workflow may use the approved automatic publication path.
 
-在核心每周更新稳定前，不做以下扩张：
+Any exception requiring judgment must stop and enter manual review.
 
-- 覆盖所有 NYC 商业影院
-- 超出已确认频道共享范围的复杂社交功能，例如公开动态流、私信、评论和关注关系
-- 用户评论系统
-- 付费或订阅体系
-- 为了“看起来完整”而接入来源不明的排片聚合数据
-- 在没有实际需求前提前建设复杂数据库和后台管理系统
+---
 
-## 14. 成功标准
+## 11.4 Failure notification
 
-这个项目成功，不是因为页面收录的电影最多，而是因为：
+A failed or ambiguous workflow should create or update one actionable review issue rather than generating duplicate alerts.
 
-- 用户能在一分钟内找到合适的场次；
-- 每条排片都能回到官方来源；
-- 每周更新不需要改前端代码；
-- 单家影院抓取失败不会污染其他数据；
-- 维护者能快速看懂变化并安全发布；
-- 网站连续运行数月后仍然清晰、准确、可扩展。
+The alert should identify:
 
-## 15.当前任务
+* affected cinema;
+* failure type;
+* relevant showing changes;
+* local date/time;
+* stable showing ID where available;
+* official source or detail URL.
 
-- 加入syndicate kitchen
-- 手机端界面修改
-- 修改guest功能
+Detailed JSON and Markdown review artifacts may remain private workflow artifacts.
+
+---
+
+# 12. Storage architecture
+
+Supabase PostgreSQL is the durable system of record.
+
+Durable relational data includes:
+
+* cinemas;
+* films;
+* showings;
+* publication windows;
+* ingestion runs;
+* source snapshots;
+* overrides;
+* reviews;
+* approvals.
+
+Exact workflow artifacts may be retained separately.
+
+---
+
+## 12.1 Public-site boundary
+
+The public website does **not** query PostgreSQL directly for official weekly schedule data.
+
+Instead:
+
+```text
+approved database data
+        ↓
+validated static JSON export
+        ↓
+public frontend
+```
+
+This keeps the official schedule frontend simple and prevents incomplete ingestion data from becoming public.
+
+---
+
+## 12.2 Stable showing identity
+
+Schedule refreshes must preserve stable showing records whenever possible.
+
+If a previously known showing disappears upstream:
+
+* do not delete the durable identity when user data references it;
+* mark it appropriately as removed or inactive;
+* exclude inactive records from the current public schedule.
+
+This prevents existing user marks from breaking when official cinema schedules change.
+
+---
+
+# 13. Authentication and privacy
+
+## 13.1 Authentication model
+
+Formal accounts use Supabase Auth with:
+
+* unique public username;
+* private email;
+* password.
+
+Email is used only for:
+
+* authentication;
+* verification;
+* account recovery;
+* private account invitation lookup where explicitly required.
+
+Email must never be displayed publicly or in Channel member views.
+
+People who do not want a formal account may use a Channel-only identity. A
+Channel-only identity is not a Supabase Auth user, has no email address, and is
+authorized for exactly one Channel. It uses a separate server-validated session
+and must never receive access to normal account APIs.
+
+People without either identity type may browse, search, and filter the public
+schedule, but they cannot create watch marks. The application does not maintain
+anonymous local watch marks.
+
+---
+
+## 13.2 Password requirements
+
+Formal-account passwords require at least:
+
+```text
+8 characters
+```
+
+Passwords are managed only through Supabase Auth and must not be stored in application tables.
+
+---
+
+## 13.3 Data minimization
+
+The application does not require:
+
+* real name;
+* phone number;
+* birthday;
+* address;
+* contact list;
+* profile photo.
+
+---
+
+# 14. Personal watch marks
+
+A signed-in user can mark one exact official showing as:
+
+```text
+想看
+```
+
+A mark belongs exclusively to its creator.
+
+Different times or cinemas for the same film are separate marks.
+
+---
+
+## 14.1 Privacy default
+
+Every newly created formal-account mark is private by default.
+
+Creating a mark must never automatically make it public to unrelated users.
+
+---
+
+## 14.2 Showing removal
+
+If the official showing later disappears from the active schedule:
+
+* the mark remains attached to the stable showing identity;
+* the application must not invent missing current film/time information.
+
+---
+
+# 15. Channels
+
+Channels provide private small-group sharing.
+
+The collaboration model is closer to a shared private space than a public social network.
+
+---
+
+## 15.1 Roles
+
+V1 roles:
+
+```text
+owner
+member
+```
+
+There is no separate administrator role.
+
+### Owner
+
+Can:
+
+* rename the Channel;
+* delete the Channel;
+* create or revoke invitations;
+* remove members;
+* remove Channel-only identities.
+
+A Channel-only owner has the same management authority within its one Channel,
+except that it may invite only through revocable invitation links. It cannot use
+email or Friend ID invitations, join another Channel, or create a second Channel.
+
+### Member
+
+Can:
+
+* view Channel content;
+* share their own marks;
+* remove their own shares;
+* leave the Channel.
+
+Members cannot edit or delete another user's underlying content.
+
+A Channel-only member has the same read and self-management boundary within its
+one Channel, but cannot make marks private, share them elsewhere, or discover
+another Channel.
+
+---
+
+## 15.2 Shared marks
+
+A user's underlying watch mark remains personal.
+
+Channel visibility is represented separately.
+
+Conceptually:
+
+```text
+watch_mark
+    +
+channel_mark_share
+```
+
+Removing a Channel share must not delete the personal mark.
+
+Deleting the personal mark removes all shares derived from it.
+
+Channel-only marks are different: they have no separate private record or share
+row. Creating one makes it immediately visible in the identity's Channel, and
+deleting it removes it from that Channel.
+
+---
+
+## 15.3 Auto-share preference
+
+A formal-account user may maintain per-Channel sharing defaults.
+
+These defaults may preselect sharing when a new mark is created.
+
+The user must still be able to override the sharing choice for an individual mark.
+
+This privacy and sharing model applies to formal accounts. Channel-only marks
+follow Section 17 and are always part of their single Channel.
+
+---
+
+# 16. Channel invitations
+
+## 16.1 Direct invitation
+
+Existing account users may be invited through:
+
+* private email; or
+* random Friend ID.
+
+Username must not function as an invitation identifier.
+
+---
+
+## 16.2 Friend ID
+
+Friend IDs:
+
+* are distinct from username;
+* contain no personal information;
+* are randomly generated;
+* may be regenerated to invalidate the previous value.
+
+---
+
+## 16.3 Email lookup
+
+Email invitation matching must occur only in trusted server-side code.
+
+The interface must not reveal whether arbitrary email addresses correspond to registered users.
+
+---
+
+## 16.4 Invitation links
+
+Owners may create revocable Channel invitation links.
+
+Default behavior:
+
+```text
+expiration: 7 days
+maximum successful joins: 20
+```
+
+The owner may revoke the link earlier.
+
+A valid invitation link may create either a formal-account membership or a new
+Channel-only member identity. Only a successful join consumes one use. Preview,
+failed verification, and repeated submissions must not consume uses.
+
+Invitation tokens must:
+
+* use cryptographically secure randomness;
+* be stored only as hashes;
+* not appear in analytics or application logs;
+* be rate-limited when verified.
+
+---
+
+# 17. Channel-only identities
+
+A person who does not want to register a formal email account may create or join
+a Channel with a persistent Channel-only identity. This replaces the former
+read-only guest model.
+
+A Channel-only identity:
+
+* belongs to exactly one Channel;
+* is either that Channel's `owner` or a `member`;
+* has no email address and cannot recover access through email;
+* has one immutable display name that is unique within the Channel without
+  regard to case;
+* is visibly labelled `GUEST` in member-facing interfaces;
+* cannot discover, join, or operate on another Channel;
+* cannot query normal account profiles or use normal authenticated-account APIs.
+
+One person may hold separate Channel-only credentials for multiple Channels, but
+each identity and session remains isolated. The interface must not provide a
+cross-Channel identity list or switcher; the person must log out before entering
+another Channel-only identity.
+
+## 17.1 Creating a Channel-only owner
+
+An unauthenticated visitor may create a Channel by providing only:
+
+* a Channel name; and
+* an immutable display name.
+
+The operation must atomically create the Channel and its Channel-only owner. A
+Channel-only owner may own only that one Channel. It may manage the Channel,
+create or revoke invitation links, remove members, and delete the Channel. It may
+not use email or Friend ID invitations.
+
+The application assigns every Channel a separate immutable, globally unique,
+human-readable public ID, for example:
+
+```text
+CH-7KDM4QPX
+```
+
+The internal Channel UUID remains the database key. The public Channel ID is a
+login locator and is not a secret.
+
+## 17.2 Joining through an invitation link
+
+Only a valid, unexpired, unrevoked invitation link may create a Channel-only
+member. The standard invitation-link expiration and use limit apply. Identity
+creation must be rate-limited, but legitimate shared-device use must not be
+blocked merely because another identity was created in the same browser.
+
+## 17.3 Access code and sessions
+
+Identity creation returns the public Channel ID and a random eight-character,
+human-readable alphanumeric access code, for example:
+
+```text
+7KDM-4QPX
+```
+
+Ambiguous characters such as `0/O` and `1/I` should be excluded. Codes must be
+unique within their Channel and stored by the service only as slow, salted
+hashes. Login failures must not reveal whether the Channel, identity, or code was
+incorrect. Basic request throttling applies; the default is no more than 20
+login attempts per IP address per minute. Failed attempts do not automatically
+lock or revoke an identity.
+
+The application may store the original code locally on a device so the signed-in
+person can reveal it in their identity view. The server must not retain a
+reversibly encrypted or plaintext copy. A new device can display the code only
+after the person supplies it and chooses to save it on that device.
+
+A Channel-only session:
+
+* is scoped to exactly one identity and one Channel;
+* lasts 30 days by default and renews with valid activity;
+* stores no plaintext access code in its server token;
+* can be ended explicitly by the person;
+* is revoked when the identity is removed, merged, or rotates its code.
+
+An already signed-in identity may rotate its code. Rotation displays the new
+code once, invalidates the old code and other device sessions, and keeps the
+current device signed in. Without a valid session or the code, access cannot be
+recovered. The owner cannot view or reset another identity's code.
+
+## 17.4 Channel-only permissions and marks
+
+A Channel-only identity may:
+
+* view its Channel's members and shared marks;
+* create and delete its own marks for current published official showings;
+* view and rotate its own access code;
+* merge itself into a formal account.
+
+It may not:
+
+* maintain a private mark;
+* remove a share while retaining a private copy;
+* share into another Channel;
+* create user events;
+* access a global notification view;
+* modify content owned by another identity.
+
+Every Channel-only mark is directly and exclusively part of the identity's
+Channel. When a marked showing leaves the public schedule window, retain its
+stable record but do not invent or display missing current schedule facts.
+
+## 17.5 Leaving, removal, and inactivity
+
+A Channel-only member may leave. The owner may remove it. Either action
+permanently deletes the identity's marks, revokes its code and sessions, and
+deletes the identity. Rejoining requires a new invitation link and identity.
+
+A Channel-only owner cannot leave. It must delete the Channel or merge into a
+formal account. If a Channel still has a Channel-only owner after 180 consecutive
+days without valid activity, permanently delete the Channel, all Channel-only
+identities, their sessions, and their marks without a recovery period. Formal-
+account-owned Channels do not expire this way.
+
+Valid activity for this lifetime includes:
+
+* a successful Channel-only login;
+* creating or deleting a mark;
+* creating, revoking, or successfully using an invitation link;
+* a member joining, leaving, or being removed;
+* an owner management operation.
+
+Public schedule browsing and failed login attempts do not extend the lifetime.
+
+## 17.6 Merging into a formal account
+
+A signed-in formal account may claim any number of Channel-only identities, one
+at a time, by supplying each public Channel ID and access code. The same flow is
+available after starting registration from the Channel-only identity view.
+Before confirmation, show the Channel, role, and number of marks that will move.
+
+The merge is irreversible and must be one atomic server-side transaction:
+
+1. verify the formal account and Channel-only credential;
+2. add or reconcile the formal account's Channel membership;
+3. transfer all marks and preserve their Channel visibility;
+4. deduplicate marks for the same exact showing;
+5. transfer full Channel ownership when the old identity was the owner;
+6. replace product-facing attribution with the formal account username;
+7. revoke the old code and every Channel-only session;
+8. delete the old Channel-only identity.
+
+Failure at any step must roll back the entire merge. The former display name may
+remain only in restricted security audit data and must no longer appear in the
+product interface.
+
+## 17.7 Storage and trust boundary
+
+Channel-only identities must not be represented by fabricated emails or normal
+Supabase Auth users. Keep their data separate, conceptually:
+
+```text
+channel_identities
+channel_identity_sessions
+channel_identity_marks
+channel_identity_audit
+```
+
+Channel reads may combine formal-account shares with Channel-only marks, but
+Channel-only writes must pass through narrowly scoped trusted server endpoints.
+Do not weaken the existing formal-account RLS policies or authorize requests from
+client-supplied identity or Channel IDs alone.
+
+Owners may see a Channel-only identity's display name, `GUEST` label, role, join
+time, last activity time, and mark count. They must never see its access code,
+code hash, IP address, device details, or failed-login records.
+
+All credentials created under the former read-only guest model must be revoked
+when this model is introduced. They must not silently gain write access.
+
+---
+
+# 18. User-created events
+
+Signed-in formal-account users may create an event that does not exist in the official cinema dataset.
+
+User events are separate from official schedule records.
+
+They must:
+
+* display a clear `用户创建` label;
+* never receive official extraction status;
+* never be merged into the official cinema schedule dataset;
+* remain private unless explicitly shared to a Channel.
+
+User-event details may include:
+
+* title;
+* description/content;
+* New York date;
+* time;
+* optional location;
+* optional external URL.
+
+Exact optional-field requirements may be refined when this feature is implemented.
+
+---
+
+# 19. Authorization invariants
+
+Database constraints and RLS must enforce the following:
+
+* users can modify only their own marks;
+* users can modify only their own user events;
+* users can share only items they own;
+* users can share only into Channels they currently belong to;
+* Channel membership allows reading only content explicitly shared into that Channel;
+* shared visibility never grants edit/delete permission;
+* leaving a Channel immediately revokes Channel-derived visibility;
+* removing a membership removes that user's Channel shares without deleting their private items;
+* deleting a Channel removes Channel-derived visibility;
+* invitation acceptance binds the trusted authenticated identity;
+* client-supplied user IDs must never determine authorization;
+* a Channel-only session can authorize operations only for its bound identity
+  and Channel;
+* Channel-only marks are always visible to their bound Channel and cannot have a
+  private or cross-Channel state;
+* Channel-only owner and member permissions are enforced by trusted server code,
+  not by client-supplied roles;
+* merging an identity, its marks, membership, and possible ownership transfer is
+  atomic and immediately revokes the old credential and sessions;
+* deleting a Channel-only identity deletes its marks rather than retaining
+  ownerless content.
+
+Authorization behavior must be covered by tests before a new collaboration capability is considered complete.
+
+---
+
+# 20. Navigation and layout
+
+## 20.1 Product identity
+
+Signed-in product title:
+
+```text
+一起看
+```
+
+---
+
+## 20.2 Desktop navigation
+
+Use a two-level Channel navigation model.
+
+### Primary rail
+
+Contains:
+
+* personal home;
+* joined Channels;
+* create-Channel control;
+* persistent account/Friend-ID area.
+
+This multi-Channel rail applies fully to formal accounts. A Channel-only session
+retains a personal schedule home for browsing dates, filters, and films, plus its
+one Channel entry. Marks made from that home are immediately part of the bound
+Channel. It must not reveal unrelated Channels. The create control remains
+visible, but creating another Channel first ends the current Channel-only session
+and creates a separate identity and credential pair.
+
+### Contextual rail
+
+Appears only when viewing a Channel.
+
+Contains Channel-specific navigation and controls.
+
+Selecting personal home collapses the contextual rail.
+
+Creating a Channel opens an independent modal rather than expanding the contextual rail.
+
+---
+
+## 20.3 Mobile navigation
+
+On narrow screens:
+
+* both rails become drawer-based navigation;
+* film cards retain the available content width;
+* drawers may use a backdrop;
+* navigation must not permanently compress the schedule content.
+
+---
+
+# 21. Channel schedule behavior
+
+The Channel activity view shows shared official showings grouped by:
+
+1. local date;
+2. local showing time.
+
+A showing card may group members who independently shared the same showing.
+
+Member identity is displayed using:
+
+* a formal account's public username, or a Channel-only identity's immutable
+  display name and `GUEST` label;
+* stable colored identity initials.
+
+No profile photo or additional personal information is required.
+
+---
+
+## 21.1 Joining another member's showing
+
+If User A shares a showing and User B clicks `想看` on it:
+
+* a formal-account User B receives their own personal watch mark, which may be
+  shared into the current Channel;
+* a Channel-only User B creates a Channel-only mark that is immediately visible
+  in the current Channel;
+* User A's mark remains unchanged.
+
+---
+
+## 21.2 Removing a mark from a Channel
+
+For a mark owned by the current user, the Channel UI must distinguish:
+
+```text
+Remove from this Channel
+```
+
+from:
+
+```text
+Delete my personal mark
+```
+
+Deleting the personal mark has a wider effect and must be explained before confirmation.
+
+This distinction does not apply to a Channel-only identity. Its only available
+removal action deletes its Channel-only mark from the Channel.
+
+---
+
+# 22. Social context on personal schedule
+
+On personal-home schedule cards, the interface may display how many **distinct other users** in shared Channels explicitly shared the same showing.
+
+Rules:
+
+* exclude the current user;
+* count the same person once even across multiple shared Channels;
+* never include private/unshared marks;
+* do not expose identities the current user is not authorized to see.
+
+---
+
+# 23. Notifications
+
+Formal-account pages expose a top-right bell entry.
+
+The notification page includes:
+
+* pending direct Channel invitations;
+* recent watch marks shared by other members in Channels the user currently belongs to.
+
+Invitation acceptance is always explicit.
+
+---
+
+## 23.1 Read state
+
+Watch-mark activity uses private per-Channel read cursors.
+
+The cursor:
+
+* defaults to the membership join time;
+* advances only when the user explicitly chooses to mark activity as read;
+* disappears when membership is removed.
+
+Notifications use one reverse-chronological feed rather than separate sections for each reminder type.
+
+Channel-only identities do not have a global notification view in the initial
+implementation.
+
+---
+
+# 24. UI feedback principles
+
+Async operations must provide visible progress, success, or failure feedback.
+
+Feedback should:
+
+* appear near the action when practical;
+* clear automatically when appropriate;
+* not permanently occupy layout space;
+* never require a full page reload to reveal a successful write.
+
+Non-modal sharing interactions must not block scrolling or unrelated UI.
+
+Destructive actions require explicit confirmation.
+
+---
+
+# 25. Non-goals
+
+Unless explicitly moved into scope, do not build:
+
+* comprehensive NYC commercial-cinema coverage;
+* public user profiles;
+* public social feeds;
+* followers;
+* private messaging;
+* comments;
+* ratings/reviews;
+* paid subscriptions;
+* complex social-network mechanics;
+* unsupported third-party schedule aggregation;
+* administrative infrastructure without a concrete requirement.
+
+Avoid speculative architecture for features outside the accepted roadmap.
+
+---
+
+# 26. Product success criteria
+
+The project is successful when:
+
+* a user can identify an appropriate screening in roughly one minute;
+* every official screening can be traced to an official source;
+* routine schedule updates require no frontend-code changes;
+* one cinema parser failure cannot contaminate the other cinema feeds;
+* stale or questionable data cannot silently replace approved data;
+* schedule updates can operate reliably over long periods;
+* maintainers can understand publication changes quickly;
+* formal-account personal marks remain private by default;
+* Channel sharing does not weaken ownership or authorization boundaries;
+* people can create or join one Channel without providing an email address;
+* Channel-only identities cannot access or discover unrelated Channels;
+* the system remains understandable as cinema and collaboration features expand.
+
+---
+
+# 27. Current product priorities
+
+Current work should focus on:
+
+1. Add and stabilize the **Syndicated Bar Theater Kitchen** cinema adapter and schedule integration.
+2. Replace the read-only guest model with the specified **Channel-only identity**
+   creation, access, marking, ownership, and formal-account merge workflow.
+3. 接受邀请时选择要不要共享当前的个人标记，也可以选择以后自己手动分享.
+4. 接受邀请时要立刻在左侧出现channel.
+
+
+These priorities may be changed directly by the user.
+
+They are current tasks, not permanent architectural requirements.
+
+---
+
+# 28. Open product decisions
+
+The following decisions remain unresolved:
+
+1. Which cinemas should be added after the current seven-cinema scope?
+2. Whether user-created events require location.
+3. Whether user-created events require an end time.
+4. Whether user-created events may contain an external URL.
+5. Whether Channels should eventually support reactions or comments.
+
+Do not silently decide these when implementation reaches the relevant boundary.
+
+Surface the decision to the user first.

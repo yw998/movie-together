@@ -10,8 +10,8 @@ describe("trusted channel invitation endpoint", () => {
 
     expect(source).toContain('readKey("SUPABASE_SECRET_KEYS", "SUPABASE_SERVICE_ROLE_KEY")');
     expect(source).toContain('userClient.auth.getUser()');
-    expect(source).toContain('action === "guest_join"');
-    expect(source).toContain('action === "guest_access"');
+    expect(source).toContain('action === "identity_join"');
+    expect(source).toContain('action === "identity_login"');
     expect(source).not.toContain("console.log");
   });
 

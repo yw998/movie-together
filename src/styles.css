@@ -147,9 +147,17 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-delete-toast { color: #fff; background: #22231ef2; border: 1px solid #6d6f63; border-radius: 6px; max-width: min(88vw, 360px); padding: 13px 18px; position: fixed; z-index: 80; top: 50%; left: 50%; font-size: 12px; font-weight: 700; transform: translate(-50%, -50%); box-shadow: 0 14px 45px #0006; pointer-events: none; animation: channel-delete-toast 3s ease forwards; }
 @keyframes channel-delete-toast { 0%, 85% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -48%) scale(.98); } }
 .invite-dialog .auth-submit { width: 100%; margin: 12px 0; }
+.invite-share-existing { background: #fff; border: 1px solid var(--line); align-items: flex-start; gap: 10px; margin-top: 16px; padding: 12px; display: flex; }
+.invite-share-existing input { margin-top: 2px; }
+.invite-share-existing span { display: grid; gap: 4px; }
+.invite-share-existing b { color: var(--ink); font-size: 12px; }
+.invite-share-existing small { color: var(--muted); font-size: 10px; line-height: 1.4; }
 .guest-form { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 18px; }
 .guest-credential { gap: 8px; display: grid; }
 .guest-credential code { word-break: break-all; background: #fff; border: 1px solid var(--line); padding: 10px; }
+.channel-identity-details { gap: 10px; display: grid; }
+.channel-identity-details label { color: var(--muted); gap: 5px; font-size: 10px; display: grid; }
+.channel-identity-details code { color: var(--ink); background: #fff; border: 1px solid var(--line); padding: 10px; font-size: 14px; }
 .guest-view { color: var(--muted); line-height: 1.5; }
 .guest-view b { color: var(--ink); }
 .guest-view article { border: 1px solid var(--line); justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0; padding: 10px; display: flex; }
@@ -181,10 +189,14 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-member-row > span { color: #fff; border-radius: 50%; align-items: center; justify-content: center; width: 29px; height: 29px; flex: 0 0 auto; font-size: 10px; font-weight: 800; display: flex; }
 .channel-member-row > strong { text-overflow: ellipsis; white-space: nowrap; min-width: 0; font-size: 12px; overflow: hidden; }
 .channel-member-row > small { color: #888980; margin-left: auto; font: 700 8px monospace; }
+.channel-member-row > button { color: #f0b5aa; background: transparent; border: 0; margin-left: auto; padding: 4px; font-size: 9px; }
+.channel-member-row > small + small, .channel-member-row > small + button { margin-left: 0; }
 .channel-invite-footer { background: #20211d; border-top: 1px solid #3e4037; padding: 11px 14px 13px; }
 .channel-invite-footer .channel-invite { grid-template-columns: 1fr; gap: 5px; margin: 8px 0; display: grid; }
 .channel-invite-footer .channel-invite input, .channel-invite-footer .channel-invite select { width: 100%; padding: 7px 8px; font-size: 11px; }
 .channel-invite-footer .channel-invite button, .channel-invite-footer .copy-invite { padding: 7px 9px; font-size: 11px; }
+.identity-invite-link { color: #aaa99e; align-items: center; justify-content: space-between; gap: 8px; margin-top: 7px; display: flex; }
+.identity-invite-link button { color: #f0b5aa; background: transparent; border: 0; padding: 3px; font-size: 9px; }
 .invite-copy-notice { color: #683516; background: #fff2df; border: 1px solid #d9bea0; margin: 7px 0 0; padding: 8px 9px; font-size: 10px; line-height: 1.4; animation: invite-copy-notice 3s ease forwards; }
 @keyframes invite-copy-notice { 0%, 66% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(3px); } }
 .channel-user-footer { background: #191a17; border-top: 1px solid #3e4037; padding: 11px 14px 14px; }
@@ -203,6 +215,11 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .notification-row { border: 1px solid var(--line); background: #faf7ef; align-items: center; gap: 16px; min-height: 90px; padding: 18px 20px; display: flex; }
 .notification-row.unread { background: #fffdf7; border-left: 4px solid #6d8d5a; padding-left: 17px; }
 .notification-row > div { min-width: 0; flex: 1; }
+.notification-row > .invitation-actions { align-items: flex-end; flex: 0 0 auto; gap: 5px; display: flex; flex-direction: column; }
+.invitation-actions label { align-items: center; gap: 6px; font-size: 11px; display: flex; }
+.invitation-actions > small { color: var(--muted); margin: 0; font-size: 9px; }
+.invitation-actions > button { color: #fff; background: var(--ink); border: 0; border-radius: 4px; margin-top: 4px; padding: 10px 13px; font-size: 11px; font-weight: 700; }
+.invitation-actions > button:disabled { opacity: .55; }
 .notification-row p { margin: 0 0 7px; font-size: 12px; }
 .notification-row strong { font: 700 17px Georgia, "Songti SC", serif; }
 .notification-row small { color: var(--muted); margin-top: 7px; font-size: 10px; display: block; }

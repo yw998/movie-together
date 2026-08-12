@@ -45,7 +45,7 @@ describe("personal mark and channel share flow", () => {
     expect(hook).toContain('rpc("add_watch_mark_to_channel"');
     expect(hook).toContain("target_channel_id: channelId");
     expect(channelView).toContain("watchMarks.addToChannel(activity.showingId, channelId)");
-    expect(channelView).toContain("mark.user_id === user?.id");
+    expect(channelView).toContain("identityMarkOwner ?? user?.id");
   });
 
   it("dismisses watch-mark errors after three seconds", async () => {

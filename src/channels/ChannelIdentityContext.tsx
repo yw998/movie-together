@@ -1,0 +1,297 @@
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { callInvitationFunction, invitationUrl } from "./channel-api";
+import { showingStorageWindow } from "../watch-marks/useWatchMarks";
+
+const SESSION_KEY = "movie-together:channel-identity-session";
+const CODE_KEY_PREFIX = "movie-together:channel-identity-code:";
+
+export type ChannelIdentity = {
+  id: string;
+  displayName: string;
+  role: "owner" | "member";
+  channelId: string;
+  channelName: string;
+  publicChannelId: string;
+};
+
+export type ChannelIdentityMember = {
+  id: string;
+  displayName: string;
+  role: "owner" | "member";
+  kind: "account" | "channel_only";
+  joinedAt: string;
+};
+
+export type ChannelIdentityMark = {
+  id: string;
+  displayName: string;
+  kind: "account" | "channel_only";
+  windowStart: string;
+  showingId: string;
+  createdAt: string;
+};
+
+type IdentityView = {
+  identity: ChannelIdentity;
+  members: ChannelIdentityMember[];
+  marks: ChannelIdentityMark[];
+  inviteLinks: { id: string; expiresAt: string; useCount: number; maxUses: number; revokedAt: string | null }[];
+};
+
+type IdentityResponse = {
+  sessionToken: string;
+  accessCode?: string;
+  view: IdentityView;
+};
+
+type ChannelIdentityState = {
+  loading: boolean;
+  sessionToken: string | null;
+  identity: ChannelIdentity | null;
+  members: ChannelIdentityMember[];
+  marks: ChannelIdentityMark[];
+  inviteLinks: IdentityView["inviteLinks"];
+  savedCode: string | null;
+  createChannel: (channelName: string, displayName: string) => Promise<string | null>;
+  joinInvite: (inviteToken: string, displayName: string) => Promise<string | null>;
+  login: (publicChannelId: string, accessCode: string) => Promise<string | null>;
+  refresh: () => Promise<boolean>;
+  toggleMark: (showingId: string, localDate: string) => Promise<boolean>;
+  rotateCode: () => Promise<string | null>;
+  createInviteLink: () => Promise<string | null>;
+  revokeInviteLink: (linkId: string) => Promise<boolean>;
+  removeMember: (identityId: string) => Promise<boolean>;
+  leave: () => Promise<boolean>;
+  deleteChannel: () => Promise<boolean>;
+  logout: () => Promise<void>;
+  mergeIntoAccount: () => Promise<string | null>;
+  mergeCredentials: (publicChannelId: string, accessCode: string) => Promise<string | null>;
+};
+
+const emptyState: ChannelIdentityState = {
+  loading: true,
+  sessionToken: null,
+  identity: null,
+  members: [],
+  marks: [],
+  inviteLinks: [],
+  savedCode: null,
+  createChannel: async () => null,
+  joinInvite: async () => null,
+  login: async () => null,
+  refresh: async () => false,
+  toggleMark: async () => false,
+  rotateCode: async () => null,
+  createInviteLink: async () => null,
+  revokeInviteLink: async () => false,
+  removeMember: async () => false,
+  leave: async () => false,
+  deleteChannel: async () => false,
+  logout: async () => undefined,
+  mergeIntoAccount: async () => null,
+  mergeCredentials: async () => null,
+};
+
+const ChannelIdentityContext = createContext<ChannelIdentityState>(emptyState);
+
+export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
+  const [loading, setLoading] = useState(true);
+  const [sessionToken, setSessionToken] = useState<string | null>(() => localStorage.getItem(SESSION_KEY));
+  const [view, setView] = useState<IdentityView | null>(null);
+
+  const acceptResponse = useCallback((response: IdentityResponse, suppliedCode?: string) => {
+    localStorage.setItem(SESSION_KEY, response.sessionToken);
+    setSessionToken(response.sessionToken);
+    setView(response.view);
+    const code = response.accessCode ?? suppliedCode;
+    if (code) localStorage.setItem(`${CODE_KEY_PREFIX}${response.view.identity.publicChannelId}`, code.toUpperCase());
+  }, []);
+
+  const clearSession = useCallback(() => {
+    localStorage.removeItem(SESSION_KEY);
+    setSessionToken(null);
+    setView(null);
+  }, []);
+
+  const refresh = useCallback(async () => {
+    if (!sessionToken) {
+      setView(null);
+      setLoading(false);
+      return false;
+    }
+    try {
+      const result = await callInvitationFunction<{ view: IdentityView }>(null, {
+        action: "identity_session",
+        sessionToken,
+      });
+      setView(result.view);
+      setLoading(false);
+      return true;
+    } catch {
+      clearSession();
+      setLoading(false);
+      return false;
+    }
+  }, [clearSession, sessionToken]);
+
+  useEffect(() => { void refresh(); }, [refresh]);
+
+  const createChannel = useCallback(async (channelName: string, displayName: string) => {
+    try {
+      const result = await callInvitationFunction<IdentityResponse>(null, {
+        action: "identity_create_channel", channelName, displayName,
+      });
+      acceptResponse(result);
+      return result.accessCode ?? null;
+    } catch { return null; }
+  }, [acceptResponse]);
+
+  const joinInvite = useCallback(async (inviteToken: string, displayName: string) => {
+    try {
+      const result = await callInvitationFunction<IdentityResponse>(null, {
+        action: "identity_join", inviteToken, displayName,
+      });
+      acceptResponse(result);
+      return result.accessCode ?? null;
+    } catch { return null; }
+  }, [acceptResponse]);
+
+  const login = useCallback(async (publicChannelId: string, accessCode: string) => {
+    try {
+      const result = await callInvitationFunction<IdentityResponse>(null, {
+        action: "identity_login", publicChannelId, accessCode,
+      });
+      acceptResponse(result, accessCode);
+      return result.view.identity.channelId;
+    } catch { return null; }
+  }, [acceptResponse]);
+
+  const toggleMark = useCallback(async (showingId: string, localDate: string) => {
+    if (!sessionToken) return false;
+    try {
+      const result = await callInvitationFunction<{ view: IdentityView }>(null, {
+        action: "identity_toggle_mark",
+        sessionToken,
+        windowStart: showingStorageWindow(localDate),
+        showingId,
+      });
+      setView(result.view);
+      return true;
+    } catch { return false; }
+  }, [sessionToken]);
+
+  const rotateCode = useCallback(async () => {
+    if (!sessionToken) return null;
+    try {
+      const result = await callInvitationFunction<IdentityResponse>(null, {
+        action: "identity_rotate_code", sessionToken,
+      });
+      acceptResponse(result);
+      return result.accessCode ?? null;
+    } catch { return null; }
+  }, [acceptResponse, sessionToken]);
+
+  const createInviteLink = useCallback(async () => {
+    if (!sessionToken) return null;
+    try {
+      const result = await callInvitationFunction<{ link: { invite_token: string } }>(null, {
+        action: "identity_create_link", sessionToken,
+      });
+      await refresh();
+      return invitationUrl(result.link.invite_token);
+    } catch { return null; }
+  }, [refresh, sessionToken]);
+
+  const revokeInviteLink = useCallback(async (linkId: string) => {
+    if (!sessionToken) return false;
+    try {
+      await callInvitationFunction(null, { action: "identity_revoke_link", sessionToken, linkId });
+      return refresh();
+    } catch { return false; }
+  }, [refresh, sessionToken]);
+
+  const removeMember = useCallback(async (identityId: string) => {
+    if (!sessionToken) return false;
+    try {
+      await callInvitationFunction(null, { action: "identity_remove_member", sessionToken, identityId });
+      return refresh();
+    } catch { return false; }
+  }, [refresh, sessionToken]);
+
+  const endIdentity = useCallback(async (action: "identity_leave" | "identity_delete_channel") => {
+    if (!sessionToken) return false;
+    try {
+      await callInvitationFunction(null, { action, sessionToken });
+      clearSession();
+      return true;
+    } catch { return false; }
+  }, [clearSession, sessionToken]);
+
+  const logout = useCallback(async () => {
+    if (sessionToken) {
+      try { await callInvitationFunction(null, { action: "identity_logout", sessionToken }); } catch { /* local logout still succeeds */ }
+    }
+    clearSession();
+  }, [clearSession, sessionToken]);
+
+  const mergeIntoAccount = useCallback(async () => {
+    if (!sessionToken) return null;
+    try {
+      const result = await callInvitationFunction<{ channelId: string }>(null, {
+        action: "identity_merge", sessionToken,
+      });
+      clearSession();
+      return result.channelId;
+    } catch { return null; }
+  }, [clearSession, sessionToken]);
+
+  const mergeCredentials = useCallback(async (publicChannelId: string, accessCode: string) => {
+    try {
+      const preview = await callInvitationFunction<IdentityResponse>(null, {
+        action: "identity_login", publicChannelId, accessCode,
+      });
+      const accepted = window.confirm(
+        `确认把「${preview.view.identity.channelName}」中的 ${preview.view.identity.role === "owner" ? "owner" : "member"} 身份和 ${preview.view.marks.filter((mark) => mark.id === `identity:${preview.view.identity.id}`).length} 个标记合并到当前正式账号吗？此操作不可撤销。`,
+      );
+      if (!accepted) {
+        await callInvitationFunction(null, { action: "identity_logout", sessionToken: preview.sessionToken });
+        return null;
+      }
+      const result = await callInvitationFunction<{ channelId: string }>(null, {
+        action: "identity_merge", sessionToken: preview.sessionToken,
+      });
+      return result.channelId;
+    } catch { return null; }
+  }, []);
+
+  const savedCode = view ? localStorage.getItem(`${CODE_KEY_PREFIX}${view.identity.publicChannelId}`) : null;
+  const value = useMemo<ChannelIdentityState>(() => ({
+    loading,
+    sessionToken,
+    identity: view?.identity ?? null,
+    members: view?.members ?? [],
+    marks: view?.marks ?? [],
+    inviteLinks: view?.inviteLinks ?? [],
+    savedCode,
+    createChannel,
+    joinInvite,
+    login,
+    refresh,
+    toggleMark,
+    rotateCode,
+    createInviteLink,
+    revokeInviteLink,
+    removeMember,
+    leave: () => endIdentity("identity_leave"),
+    deleteChannel: () => endIdentity("identity_delete_channel"),
+    logout,
+    mergeIntoAccount,
+    mergeCredentials,
+  }), [createChannel, createInviteLink, endIdentity, joinInvite, loading, login, logout, mergeCredentials, mergeIntoAccount, refresh, removeMember, revokeInviteLink, rotateCode, savedCode, sessionToken, toggleMark, view]);
+
+  return <ChannelIdentityContext.Provider value={value}>{children}</ChannelIdentityContext.Provider>;
+}
+
+export function useChannelIdentity() {
+  return useContext(ChannelIdentityContext);
+}

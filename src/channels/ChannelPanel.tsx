@@ -2,29 +2,23 @@ import { useCallback, useEffect, useRef, useState, type FormEvent } from "react"
 import { requestAccountDialog } from "../auth/account-events";
 import { supabase } from "../auth/supabase";
 import { useAuth } from "../auth/AuthContext";
-import { scheduleData } from "../data/schedule";
 import {
   callInvitationFunction,
+  CHANNELS_CHANGED_EVENT,
   clearInviteToken,
   invitationUrl,
+  notifyChannelsChanged,
   readInviteToken,
   type Channel,
   type InvitePreview,
 } from "./channel-api";
 import { avatarColor } from "./avatar";
 import { useTransientMessage } from "../lib/useTransientMessage";
+import { useChannelIdentity } from "./ChannelIdentityContext";
+import { ChannelIdentityPanel } from "./ChannelIdentityPanel";
 
-// Keep the guest implementation available for a future re-enable, but do not
-// expose guest entry points in the public UI for now.
-const GUEST_ACCESS_VISIBLE = false;
-
-type Member = { user_id: string; role: "owner" | "member"; auto_share_new_marks: boolean; profiles: { username: string } | null };
-type GuestView = {
-  channel: { id: string; name: string };
-  members: { username: string; role: string }[];
-  guests: { name: string }[];
-  sharedMarks: { windowStart: string; showingId: string; username: string }[];
-};
+type Member = { user_id: string; role: "owner" | "member"; auto_share_new_marks: boolean; kind: "account" | "channel_only"; profiles: { username: string } | null };
+type ParticipantRow = { participant_id: string; display_name: string; role: string; kind: string; auto_share_new_marks: boolean };
 
 type ChannelPanelProps = {
   activeChannelId: string | null;
@@ -32,9 +26,15 @@ type ChannelPanelProps = {
   onNavigate: (channelId: string | null) => void;
 };
 
-export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }: ChannelPanelProps) {
+export function ChannelPanel(props: ChannelPanelProps) {
+  const { identity } = useChannelIdentity();
+  return identity ? <ChannelIdentityPanel {...props} /> : <RegisteredChannelPanel {...props} />;
+}
+
+function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate }: ChannelPanelProps) {
   const client = supabase;
   const { user, username } = useAuth();
+  const channelIdentity = useChannelIdentity();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const createDialogRef = useRef<HTMLDialogElement>(null);
   const creatingRef = useRef(false);
@@ -47,8 +47,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
   const [message, setMessage] = useTransientMessage();
   const [busy, setBusy] = useState(false);
   const [invitePreview, setInvitePreview] = useState<InvitePreview | null>(null);
-  const [guestCredential, setGuestCredential] = useState<{ id: string; code: string } | null>(null);
-  const [guestView, setGuestView] = useState<GuestView | null>(null);
+  const [shareExistingOnJoin, setShareExistingOnJoin] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [friendIdCopied, setFriendIdCopied] = useState(false);
   const [createMessage, setCreateMessage] = useTransientMessage();
@@ -78,6 +77,11 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
 
   useEffect(() => { void load(); }, [load]);
 
+  useEffect(() => {
+    window.addEventListener(CHANNELS_CHANGED_EVENT, load);
+    return () => window.removeEventListener(CHANNELS_CHANGED_EVENT, load);
+  }, [load]);
+
   useEffect(() => () => {
     if (friendIdCopyTimerRef.current !== null) window.clearTimeout(friendIdCopyTimerRef.current);
     if (inviteCopyTimerRef.current !== null) window.clearTimeout(inviteCopyTimerRef.current);
@@ -94,23 +98,16 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
       setMembers([]);
       return;
     }
-    void client
-      .from("channel_members")
-      .select("user_id,role,auto_share_new_marks")
-      .eq("channel_id", selected)
-      .order("joined_at")
-      .then(async ({ data, error }) => {
+    void client.rpc("list_channel_participants", { target_channel_id: selected })
+      .then(({ data, error }) => {
         if (error) setMessage("无法读取成员列表。");
         else {
-          const rows = (data ?? []) as Omit<Member, "profiles">[];
-          const { data: profiles } = await client
-            .from("profiles")
-            .select("id,username")
-            .in("id", rows.map((row) => row.user_id));
-          const usernames = new Map((profiles ?? []).map((profile) => [profile.id, profile.username]));
-          setMembers(rows.map((row) => ({
-            ...row,
-            profiles: usernames.has(row.user_id) ? { username: usernames.get(row.user_id)! } : null,
+          setMembers(((data ?? []) as ParticipantRow[]).map((row) => ({
+            user_id: row.participant_id,
+            role: row.role as "owner" | "member",
+            auto_share_new_marks: row.auto_share_new_marks,
+            kind: row.kind as "account" | "channel_only",
+            profiles: { username: row.display_name },
           })));
         }
       });
@@ -210,6 +207,20 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
     await load();
   }
 
+  async function removeChannelIdentityMember(identityId: string) {
+    if (!selected || !owner || busy) return;
+    if (!window.confirm("确定移除这个 Channel-only 成员吗？其身份和全部标记都会永久删除。")) return;
+    setBusy(true);
+    const { error } = await client!.rpc("remove_channel_identity_as_account", {
+      target_channel_id: selected,
+      target_identity_id: identityId,
+    });
+    setBusy(false);
+    if (error) return setMessage("无法移除这个成员。");
+    setMembers((current) => current.filter((member) => member.user_id !== identityId));
+    window.dispatchEvent(new Event("movie-together:watch-marks-changed"));
+  }
+
   function showDeleteNotice(text: string) {
     if (deleteNoticeTimerRef.current !== null) window.clearTimeout(deleteNoticeTimerRef.current);
     setDeleteNotice({ id: Date.now(), text });
@@ -281,50 +292,31 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
       return;
     }
     setBusy(true);
-    const { error } = await client!.rpc("accept_channel_invite_link", { invite_token: token });
+    const { error } = await client!.rpc("accept_channel_invite_link", {
+      invite_token: token,
+      share_existing_marks: shareExistingOnJoin,
+    });
     setBusy(false);
     if (error) return setMessage("邀请已失效或人数已满。");
     clearInviteToken();
     setInvitePreview(null);
     dialogRef.current?.close();
     setMessage("已加入 Channel。");
-    await load();
+    setShareExistingOnJoin(false);
+    notifyChannelsChanged();
   }
 
-  async function joinAsGuest(event: FormEvent<HTMLFormElement>) {
+  async function joinAsChannelIdentity(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const token = readInviteToken();
     if (!token) return;
-    const guestName = String(new FormData(event.currentTarget).get("guest_name") ?? "").trim();
+    const displayName = String(new FormData(event.currentTarget).get("display_name") ?? "").trim();
     setBusy(true);
-    try {
-      const result = await callInvitationFunction<{ guest: { id: string; accessCode: string } }>(client!, {
-        action: "guest_join", inviteToken: token, guestName,
-      });
-      setGuestCredential({ id: result.guest.id, code: result.guest.accessCode });
-      clearInviteToken();
-    } catch {
-      setMessage("无法以访客身份加入；链接可能已过期或请求过于频繁。");
-    }
+    const code = await channelIdentity.joinInvite(token, displayName);
     setBusy(false);
-  }
-
-  async function accessAsGuest(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    setBusy(true);
-    try {
-      const result = await callInvitationFunction<{ view: GuestView }>(client!, {
-        action: "guest_access",
-        guestId: String(form.get("guest_id") ?? "").trim(),
-        accessCode: String(form.get("access_code") ?? "").trim(),
-      });
-      setGuestView(result.view);
-      setMessage(null);
-    } catch {
-      setMessage("访客凭证无效、已撤销或尝试次数过多。");
-    }
-    setBusy(false);
+    if (!code) return setMessage("无法加入；链接可能已失效，或显示名已被使用。");
+    clearInviteToken();
+    dialogRef.current?.close();
   }
 
   return (
@@ -377,7 +369,6 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
         </div>
         <div className="channel-context-scroll">
           {!user && <div className="channel-heading-actions">
-            {GUEST_ACCESS_VISIBLE && <button onClick={() => { setInvitePreview(null); setGuestView(null); dialogRef.current?.showModal(); }} type="button">使用访客代码</button>}
             <button onClick={requestAccountDialog} type="button">登录后创建</button>
           </div>}
           {user && <>
@@ -398,8 +389,10 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
                   const memberName = member.profiles?.username ?? "member";
                   return <div className="channel-member-row" key={member.user_id}>
                     <span style={{ background: avatarColor(memberName) }}>{memberName[0]?.toUpperCase()}</span>
-                    <strong>@{memberName}</strong>
+                    <strong>{member.kind === "channel_only" ? memberName : `@${memberName}`}</strong>
+                    {member.kind === "channel_only" && <small>GUEST</small>}
                     {member.role === "owner" && <small>OWNER</small>}
+                    {owner && member.kind === "channel_only" && member.role === "member" && <button disabled={busy} onClick={() => void removeChannelIdentityMember(member.user_id)} type="button">移除</button>}
                   </div>;
                 })}
               </div>
@@ -458,34 +451,19 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
 
       <dialog className="auth-dialog invite-dialog" ref={dialogRef}>
         <form className="dialog-close" method="dialog"><button aria-label="关闭" type="submit">×</button></form>
-        <h2>{invitePreview ? `加入「${invitePreview.channelName}」` : guestView ? guestView.channel.name : "访客访问"}</h2>
-        {guestView ? <div className="guest-view">
-          <p>只读访客可以看到成员与已分享内容，但不能标记、编辑或进入其他 Channel。</p>
-          <b>成员</b>
-          <p>{guestView.members.map((member) => `@${member.username}${member.role === "owner" ? "（owner）" : ""}`).join(" · ")}</p>
-          {guestView.guests.length > 0 && <><b>访客</b><p>{guestView.guests.map((guest) => guest.name).join(" · ")}</p></>}
-          <b>大家想看</b>
-          {guestView.sharedMarks.length === 0 ? <p>还没有成员分享想看场次。</p> : [...new Set(guestView.sharedMarks.map((mark) => mark.showingId))].map((showingId) => {
-            const showing = scheduleData.showings.find((row) => row.id === showingId);
-            const film = showing ? scheduleData.films.find((row) => row.id === showing.filmId) : null;
-            const names = guestView.sharedMarks.filter((mark) => mark.showingId === showingId).map((mark) => mark.username);
-            return <article key={showingId}><strong>{film?.displayTitle ?? "已下架场次"}</strong><div className="mark-avatars">{names.map((name) => <span key={name} style={{ background: avatarColor(name) }} title={`@${name}`}>{name[0]?.toUpperCase()}</span>)}</div></article>;
-          })}
-        </div> : guestCredential ? <div className="guest-credential">
-          <p>请立即保存这组访客凭证。访问代码只显示一次，并且只能进入这个 Channel。</p>
-          <code>Guest ID: {guestCredential.id}</code>
-          <code>Access code: {guestCredential.code}</code>
-        </div> : invitePreview ? <>
+        <h2>{invitePreview ? `加入「${invitePreview.channelName}」` : "邀请已失效"}</h2>
+        {invitePreview ? <>
+          {user && <label className="invite-share-existing">
+            <input checked={shareExistingOnJoin} onChange={(event) => setShareExistingOnJoin(event.target.checked)} type="checkbox" />
+            <span><b>同步现有的全部个人标记</b><small>不勾选也能加入，以后可逐条手动分享。</small></span>
+          </label>}
           <button className="auth-submit" disabled={busy} onClick={() => void acceptLink()} type="button">{user ? "加入我的账号" : "登录 / 注册后加入"}</button>
-          {GUEST_ACCESS_VISIBLE && !user && <form className="auth-form guest-form" onSubmit={joinAsGuest}>
-            <label>不注册，使用临时名字<input maxLength={40} name="guest_name" required /></label>
-            <button className="auth-submit" disabled={busy} type="submit">只读访问</button>
+          {!user && <form className="auth-form guest-form" onSubmit={joinAsChannelIdentity}>
+            <label>不注册，创建不可修改的显示名<input maxLength={40} name="display_name" required /></label>
+            <p className="privacy-note">加入后所有想看标记都会直接同步到这个 Channel。</p>
+            <button className="auth-submit" disabled={busy} type="submit">创建 Channel-only 身份</button>
           </form>}
-        </> : <form className="auth-form" onSubmit={accessAsGuest}>
-          <label>Guest ID<input autoComplete="off" name="guest_id" required /></label>
-          <label>Access code<input autoComplete="off" name="access_code" required /></label>
-          <button className="auth-submit" disabled={busy} type="submit">只读进入</button>
-        </form>}
+        </> : <p>请重新打开有效的邀请链接。</p>}
       </dialog>
     </aside>
     {deleteNotice && <div className="channel-delete-toast" key={deleteNotice.id} role="status">{deleteNotice.text}</div>}

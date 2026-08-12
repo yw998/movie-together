@@ -1,6 +1,7 @@
 node_modules/
 dist/
 data/runs/
+data/backups/
 *.tsbuildinfo
 *.log
 .env

@@ -3,12 +3,13 @@ import { describe, expect, it } from "vitest";
 
 const componentPath = new URL("./ChannelPanel.tsx", import.meta.url);
 
-describe("guest access visibility", () => {
-  it("keeps both public guest entry points behind the disabled visibility flag", async () => {
+describe("legacy guest replacement", () => {
+  it("replaces the hidden read-only guest form with Channel-only identity creation", async () => {
     const source = await readFile(componentPath, "utf8");
 
-    expect(source).toContain("const GUEST_ACCESS_VISIBLE = false");
-    expect(source).toContain("{GUEST_ACCESS_VISIBLE && <button");
-    expect(source).toContain("{GUEST_ACCESS_VISIBLE && !user && <form");
+    expect(source).not.toContain("GUEST_ACCESS_VISIBLE");
+    expect(source).toContain("joinAsChannelIdentity");
+    expect(source).toContain("创建 Channel-only 身份");
+    expect(source).not.toContain("只读访问");
   });
 });

@@ -3,10 +3,13 @@ import { normalizeUsername, usernameError } from "../lib/username";
 import { passwordChangeError } from "../lib/password";
 import { authConfigured, supabase } from "./supabase";
 import { useAuth } from "./AuthContext";
-import { OPEN_ACCOUNT_EVENT } from "./account-events";
+import { OPEN_ACCOUNT_EVENT, OPEN_CHANNEL_CREATE_EVENT } from "./account-events";
 import { useTransientMessage } from "../lib/useTransientMessage";
+import { useChannelIdentity } from "../channels/ChannelIdentityContext";
+import { notifyChannelsChanged } from "../channels/channel-api";
 
-type Mode = "login" | "signup" | "resend" | "reset" | "update_password" | "change_password";
+type Mode = "login" | "signup" | "resend" | "reset" | "update_password" | "change_password"
+  | "channel_login" | "channel_create" | "channel_identity" | "channel_merge";
 type AccountControlProps = {
   lightBackground?: boolean;
   notificationRefreshKey?: number;
@@ -17,6 +20,7 @@ type AccountControlProps = {
 export function AccountControl({ lightBackground = false, notificationRefreshKey = 0, notificationsOpen = false, onOpenNotifications }: AccountControlProps) {
   const client = supabase;
   const { loading, user, username } = useAuth();
+  const channelIdentity = useChannelIdentity();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [mode, setMode] = useState<Mode>("login");
   const [busy, setBusy] = useState(false);
@@ -55,6 +59,12 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
       dialogRef.current?.showModal();
     };
     window.addEventListener(OPEN_ACCOUNT_EVENT, openForLogin);
+    const openForChannelCreate = () => {
+      setMode("channel_create");
+      setMessage(null);
+      dialogRef.current?.showModal();
+    };
+    window.addEventListener(OPEN_CHANNEL_CREATE_EVENT, openForChannelCreate);
     const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
     if (hash.get("error_code") === "otp_expired") {
       setMode("resend");
@@ -71,6 +81,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
     });
     return () => {
       window.removeEventListener(OPEN_ACCOUNT_EVENT, openForLogin);
+      window.removeEventListener(OPEN_CHANNEL_CREATE_EVENT, openForChannelCreate);
       listener.subscription.unsubscribe();
     };
   }, [client]);
@@ -80,6 +91,43 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
+    if (mode === "channel_create") {
+      setBusy(true);
+      const code = await channelIdentity.createChannel(
+        String(form.get("channel_name") ?? "").trim(),
+        String(form.get("display_name") ?? "").trim(),
+      );
+      setBusy(false);
+      if (!code) return setMessage("无法创建 Channel；请检查名称后重试。");
+      setMode("channel_identity");
+      setMessage(`Channel 已创建。请立即保存个人代码：${code}`);
+      return;
+    }
+    if (mode === "channel_login") {
+      setBusy(true);
+      const channelId = await channelIdentity.login(
+        String(form.get("public_channel_id") ?? "").trim(),
+        String(form.get("access_code") ?? "").trim(),
+      );
+      setBusy(false);
+      if (!channelId) return setMessage("Channel ID 或个人代码不正确。");
+      setMessage(null);
+      dialogRef.current?.close();
+      return;
+    }
+    if (mode === "channel_merge") {
+      setBusy(true);
+      const channelId = await channelIdentity.mergeCredentials(
+        String(form.get("public_channel_id") ?? "").trim(),
+        String(form.get("access_code") ?? "").trim(),
+      );
+      setBusy(false);
+      if (!channelId) return setMessage("无法连接身份，请检查 Channel ID 和个人代码。");
+      await channelIdentity.refresh();
+      notifyChannelsChanged();
+      setMessage("Channel-only 身份已合并到正式账号。");
+      return;
+    }
     const email = String(form.get("email") ?? "").trim();
     const password = String(form.get("password") ?? "");
     const currentPassword = String(form.get("current_password") ?? "");
@@ -179,9 +227,22 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
     setBusy(false);
   }
 
+  async function rotateIdentityCode() {
+    setBusy(true);
+    const code = await channelIdentity.rotateCode();
+    setBusy(false);
+    setMessage(code ? `新代码是 ${code}。旧代码与其他设备会话已失效。` : "无法更换代码。");
+  }
+
   return (
     <div className={`account-control${lightBackground ? " on-light" : ""}`}>
-      {loading ? null : user ? (
+      {loading || channelIdentity.loading ? null : channelIdentity.identity && !user ? (
+        <>
+          <span>{channelIdentity.identity.displayName} <small>GUEST</small></span>
+          <button onClick={() => { setMode("channel_identity"); setMessage(null); dialogRef.current?.showModal(); }} type="button">身份</button>
+          <button disabled={busy} onClick={() => void channelIdentity.logout()} type="button">退出</button>
+        </>
+      ) : user ? (
         <>
           {onOpenNotifications && <button
             aria-label={reminderCount > 0 ? `提醒，${reminderCount} 条未读` : "提醒"}
@@ -196,36 +257,60 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
           </button>}
           <span>@{username ?? "account"}</span>
           <button onClick={() => { setMode("change_password"); setMessage(null); dialogRef.current?.showModal(); }} type="button">修改密码</button>
+          <button onClick={() => { setMode("channel_merge"); setMessage(null); dialogRef.current?.showModal(); }} type="button">连接 Channel 身份</button>
           <button disabled={busy} onClick={signOut} type="button">退出</button>
         </>
       ) : (
-        <button onClick={() => dialogRef.current?.showModal()} type="button">登录 / 注册</button>
+        <>
+          <button onClick={() => { setMode("channel_login"); setMessage(null); dialogRef.current?.showModal(); }} type="button">Channel 登录</button>
+          <button onClick={() => { setMode("login"); setMessage(null); dialogRef.current?.showModal(); }} type="button">登录 / 注册</button>
+        </>
       )}
       <dialog className="auth-dialog" ref={dialogRef}>
         <form method="dialog" className="dialog-close"><button aria-label="关闭" type="submit">×</button></form>
-        {mode !== "change_password" && <div className="auth-tabs">
+        {mode !== "change_password" && mode !== "channel_identity" && mode !== "channel_merge" && <div className="auth-tabs">
           <button className={mode === "login" ? "active" : ""} onClick={() => { setMode("login"); setMessage(null); }} type="button">登录</button>
           <button className={mode === "signup" ? "active" : ""} onClick={() => { setMode("signup"); setMessage(null); }} type="button">注册</button>
+          <button className={mode === "channel_login" ? "active" : ""} onClick={() => { setMode("channel_login"); setMessage(null); }} type="button">Channel</button>
         </div>}
-        <h2>{mode === "login" ? "欢迎回来" : mode === "signup" ? "创建账号" : mode === "resend" ? "重发验证邮件" : mode === "reset" ? "找回账号" : mode === "change_password" ? "修改密码" : "设置新密码"}</h2>
-        <p className="privacy-note">其他用户只会看到 username。邮箱仅用于登录、验证和找回，不会公开。</p>
+        <h2>{mode === "login" ? "欢迎回来" : mode === "signup" ? "创建账号" : mode === "resend" ? "重发验证邮件" : mode === "reset" ? "找回账号" : mode === "change_password" ? "修改密码" : mode === "channel_login" ? "进入 Channel" : mode === "channel_create" ? "创建 Channel" : mode === "channel_identity" ? "Channel 身份" : mode === "channel_merge" ? "连接 Channel-only 身份" : "设置新密码"}</h2>
+        {mode === "channel_identity" ? <div className="channel-identity-details">
+          <p className="privacy-note">这个身份只能访问下面的 Channel。代码丢失后无法恢复。</p>
+          <label>Channel ID<code>{channelIdentity.identity?.publicChannelId}</code></label>
+          <label>个人代码<code>{channelIdentity.savedCode ?? "此设备没有保存代码"}</code></label>
+          {message && <p className="auth-message" role="status">{message}</p>}
+          <button className="auth-submit" disabled={busy} onClick={() => void rotateIdentityCode()} type="button">更换个人代码</button>
+          <button className="auth-link" onClick={() => { setMode("signup"); setMessage("注册并登录后，可使用“连接 Channel 身份”完成合并。"); }} type="button">升级为正式账号</button>
+        </div> : <>
+        <p className="privacy-note">{mode.startsWith("channel_") ? "Channel-only 身份不需要邮箱，只能访问一个 Channel。" : "其他用户只会看到 username。邮箱仅用于登录、验证和找回，不会公开。"}</p>
         <form className="auth-form" onSubmit={submit}>
+          {mode === "channel_create" && <>
+            <label>Channel 名称<input maxLength={80} name="channel_name" required /></label>
+            <label>不可修改的显示名<input maxLength={40} name="display_name" required /></label>
+          </>}
+          {(mode === "channel_login" || mode === "channel_merge") && <>
+            <label>Channel ID<input autoCapitalize="characters" name="public_channel_id" pattern="CH-[A-HJ-NP-Za-hj-np-z2-9]{8}" placeholder="CH-7KDM4QPX" required /></label>
+            <label>个人代码<input autoCapitalize="characters" name="access_code" pattern="[A-HJ-NP-Za-hj-np-z2-9]{4}-?[A-HJ-NP-Za-hj-np-z2-9]{4}" placeholder="7KDM-4QPX" required /></label>
+          </>}
           {mode === "signup" && (
             <label>Username<input autoComplete="username" maxLength={24} minLength={3} name="username" pattern="[a-zA-Z0-9_]+" required /></label>
           )}
-          {mode !== "update_password" && mode !== "change_password" && <label>邮箱<input autoComplete="email" name="email" required type="email" /></label>}
+          {!mode.startsWith("channel_") && mode !== "update_password" && mode !== "change_password" && <label>邮箱<input autoComplete="email" name="email" required type="email" /></label>}
           {mode === "change_password" ? <>
             <label>当前密码<input autoComplete="current-password" name="current_password" required type="password" /></label>
             <label>新密码<input autoComplete="new-password" minLength={8} name="password" required type="password" /></label>
             <label>确认新密码<input autoComplete="new-password" minLength={8} name="password_confirmation" required type="password" /></label>
-          </> : mode !== "reset" && mode !== "resend" && <label>密码<input autoComplete={mode === "login" ? "current-password" : "new-password"} minLength={8} name="password" required type="password" /></label>}
+          </> : !mode.startsWith("channel_") && mode !== "reset" && mode !== "resend" && <label>密码<input autoComplete={mode === "login" ? "current-password" : "new-password"} minLength={8} name="password" required type="password" /></label>}
           {message && <p className="auth-message" role="status">{message}</p>}
-          <button className="auth-submit" disabled={busy} type="submit">{busy ? "请稍候…" : mode === "login" ? "登录" : mode === "signup" ? "创建账号" : mode === "resend" ? "重新发送" : mode === "reset" ? "发送重设邮件" : mode === "change_password" ? "保存新密码" : "更新密码"}</button>
+          <button className="auth-submit" disabled={busy} type="submit">{busy ? "请稍候…" : mode === "login" ? "登录" : mode === "signup" ? "创建账号" : mode === "resend" ? "重新发送" : mode === "reset" ? "发送重设邮件" : mode === "change_password" ? "保存新密码" : mode === "channel_login" ? "进入 Channel" : mode === "channel_create" ? "创建并获取代码" : mode === "channel_merge" ? "确认连接并合并" : "更新密码"}</button>
+          {mode === "channel_login" && <button className="auth-link" onClick={() => { setMode("channel_create"); setMessage(null); }} type="button">没有 Channel？直接创建</button>}
+          {mode === "channel_create" && <button className="auth-link" onClick={() => { setMode("channel_login"); setMessage(null); }} type="button">已有 Channel ID 和代码</button>}
           {mode === "login" && <button className="auth-link" onClick={() => { setMode("reset"); setMessage(null); }} type="button">忘记密码？</button>}
           {mode === "signup" && <button className="auth-link" onClick={() => { setMode("resend"); setMessage(null); }} type="button">没有收到验证邮件？</button>}
           {(mode === "resend" || mode === "reset" || mode === "update_password") && <button className="auth-link" onClick={() => { setMode("login"); setMessage(null); }} type="button">返回登录</button>}
           {mode === "change_password" && <button className="auth-link" onClick={() => dialogRef.current?.close()} type="button">取消</button>}
         </form>
+        </>}
       </dialog>
     </div>
   );

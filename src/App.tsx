@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { scheduleData, scheduleValidation } from "./data/schedule";
 import {
   formatDisplayTime,
@@ -14,6 +14,7 @@ import { ChannelPanel } from "./channels/ChannelPanel";
 import { ChannelMainView } from "./channels/ChannelMainView";
 import { ShareMarkPopover } from "./watch-marks/ShareMarkDialog";
 import { NotificationsView } from "./notifications/NotificationsView";
+import { useChannelIdentity } from "./channels/ChannelIdentityContext";
 
 const timeClusters: TimeCluster[] = ["上午", "下午", "晚间", "深夜"];
 
@@ -30,12 +31,23 @@ export default function App() {
   const [activeChannelId, setActiveChannelId] = useState<string | null>(null);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [notificationRefreshKey, setNotificationRefreshKey] = useState(0);
+  const channelIdentity = useChannelIdentity();
+  const previousIdentityChannelRef = useRef<string | null>(null);
+  const [identityBusy, setIdentityBusy] = useState<Set<string>>(new Set());
   const [sharePrompt, setSharePrompt] = useState<{
     markId: string;
     filmTitle: string;
     anchor: { left: number; top: number; maxHeight: number; placement: "above" | "below" };
   } | null>(null);
   const watchMarks = useWatchMarks(showings);
+
+  useEffect(() => {
+    const previousChannelId = previousIdentityChannelRef.current;
+    if (!channelIdentity.identity && previousChannelId) {
+      setActiveChannelId((current) => current === previousChannelId ? null : current);
+    }
+    previousIdentityChannelRef.current = channelIdentity.identity?.channelId ?? null;
+  }, [channelIdentity.identity, channelIdentity.loading, channelIdentity.sessionToken]);
   const navigateTogether = useCallback((channelId: string | null) => {
     setActiveChannelId(channelId);
     setNotificationsOpen(false);
@@ -67,7 +79,9 @@ export default function App() {
         return (
           (scheduleView === "personal" || showing.localDate === selectedDate) &&
           selectedCinemas.includes(showing.cinemaId) &&
-          (scheduleView === "all" || watchMarks.isMarked(showing.id)) &&
+          (scheduleView === "all" || (channelIdentity.identity
+            ? channelIdentity.marks.some((mark) => mark.id === `identity:${channelIdentity.identity!.id}` && mark.showingId === showing.id)
+            : watchMarks.isMarked(showing.id))) &&
           searchable.toLocaleLowerCase("zh-CN").includes(normalizedQuery)
         );
       })
@@ -85,6 +99,8 @@ export default function App() {
     showings,
     scheduleView,
     watchMarks,
+    channelIdentity.identity,
+    channelIdentity.marks,
   ]);
 
   const groups = (scheduleView === "personal"
@@ -190,11 +206,13 @@ export default function App() {
         <div className="summary">
           <span>{scheduleView === "personal" ? "未来七天 · 我的想看" : dateLabels[selectedDate]}</span>
           <div className="summary-tools">
-            {watchMarks.signedIn && <div className="view-switch">
+            {(watchMarks.signedIn || channelIdentity.identity) && <div className="view-switch">
               <button className={scheduleView === "all" ? "active" : ""} onClick={() => setScheduleView("all")} type="button">全部排片</button>
               <button className={scheduleView === "personal" ? "active" : ""} onClick={() => setScheduleView("personal")} type="button">我的想看</button>
             </div>}
-            <b>{visibleShowings.length} 场{watchMarks.signedIn && ` · 已标记 ${watchMarks.markedCount} 场`}</b>
+            <b>{visibleShowings.length} 场{channelIdentity.identity
+              ? ` · 已标记 ${channelIdentity.marks.filter((mark) => mark.id === `identity:${channelIdentity.identity!.id}`).length} 场`
+              : watchMarks.signedIn && ` · 已标记 ${watchMarks.markedCount} 场`}</b>
           </div>
         </div>
         {watchMarks.error && <aside className="mark-error" role="status">{watchMarks.error}</aside>}
@@ -211,10 +229,21 @@ export default function App() {
                     cinema={cinemaById.get(showing.cinemaId)!}
                     film={filmById.get(showing.filmId)!}
                     key={showing.id}
-                    markBusy={watchMarks.isBusy(showing.id)}
-                    marked={watchMarks.isMarked(showing.id)}
+                    markBusy={channelIdentity.identity ? identityBusy.has(showing.id) : watchMarks.isBusy(showing.id)}
+                    marked={channelIdentity.identity
+                      ? channelIdentity.marks.some((mark) => mark.id === `identity:${channelIdentity.identity!.id}` && mark.showingId === showing.id)
+                      : watchMarks.isMarked(showing.id)}
                     mutualCount={watchMarks.mutualCount(showing.id)}
                     onToggleMark={(button) => {
+                      if (channelIdentity.identity) {
+                        setIdentityBusy((current) => new Set(current).add(showing.id));
+                        void channelIdentity.toggleMark(showing.id, showing.localDate).finally(() => setIdentityBusy((current) => {
+                          const next = new Set(current);
+                          next.delete(showing.id);
+                          return next;
+                        }));
+                        return;
+                      }
                       const anchor = sharePopoverAnchor(button);
                       void watchMarks.toggle(showing.id).then((result) => {
                       if (result?.action === "created") setSharePrompt({
@@ -225,6 +254,7 @@ export default function App() {
                     });
                     }}
                     onEditShare={(button) => {
+                      if (channelIdentity.identity) return;
                       const markId = watchMarks.markId(showing.id);
                       if (markId) setSharePrompt({
                         markId,
@@ -232,8 +262,9 @@ export default function App() {
                         anchor: sharePopoverAnchor(button),
                       });
                     }}
-                    shareCount={watchMarks.shareCount(showing.id)}
-                    signedIn={watchMarks.signedIn}
+                    shareCount={channelIdentity.identity ? 1 : watchMarks.shareCount(showing.id)}
+                    signedIn={Boolean(channelIdentity.identity) || watchMarks.signedIn}
+                    channelOnly={Boolean(channelIdentity.identity)}
                     showing={showing}
                   />
                 ))}
@@ -286,9 +317,10 @@ type ShowingCardProps = {
   signedIn: boolean;
   shareCount: number;
   mutualCount: number;
+  channelOnly: boolean;
 };
 
-function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, onEditShare, signedIn, shareCount, mutualCount }: ShowingCardProps) {
+function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, onEditShare, signedIn, shareCount, mutualCount, channelOnly }: ShowingCardProps) {
   return (
     <article
       className="card"
@@ -307,7 +339,9 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
         </p>
         {showing.eventNote && <small>{showing.eventNote}</small>}
         {mutualCount > 0 && <small className="mutual-interest">共同 Channel 中有 {mutualCount} 人也想看</small>}
-        {marked && <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? `已分享至 ${shareCount} 个 Channel · 编辑` : "仅个人可见 · 设置分享"}</button>}
+        {marked && (channelOnly
+          ? <small className="mutual-interest">已同步到当前 Channel</small>
+          : <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? `已分享至 ${shareCount} 个 Channel · 编辑` : "仅个人可见 · 设置分享"}</button>)}
         <div className="card-actions">
           <a href={showing.detailUrl} rel="noreferrer" target="_blank">
             官方详情 / 购票 ↗
@@ -317,7 +351,7 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
             className={`watch-mark${marked ? " marked" : ""}`}
             disabled={markBusy}
             onClick={(event) => onToggleMark(event.currentTarget)}
-            title={signedIn ? "此标记目前仅自己可见" : "登录后标记具体场次"}
+            title={channelOnly ? "此标记会直接同步到当前 Channel" : signedIn ? "此标记目前仅自己可见" : "登录后标记具体场次"}
             type="button"
           >
             {markBusy ? "保存中…" : marked ? "✓ 想看" : "+ 想看"}
