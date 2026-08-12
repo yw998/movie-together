@@ -3,7 +3,7 @@ import type { User } from "@supabase/supabase-js";
 import { normalizeUsername, usernameError } from "../lib/username";
 import { authConfigured, supabase } from "./supabase";
 
-type Mode = "login" | "signup";
+type Mode = "login" | "signup" | "reset" | "update_password";
 
 export function AccountControl() {
   const client = supabase;
@@ -32,8 +32,13 @@ export function AccountControl() {
       if (active) setUsername(data?.username ?? null);
     };
     void client.auth.getUser().then(({ data }) => loadProfile(data.user));
-    const { data: listener } = client.auth.onAuthStateChange((_event, session) => {
+    const { data: listener } = client.auth.onAuthStateChange((event, session) => {
       void loadProfile(session?.user ?? null);
+      if (event === "PASSWORD_RECOVERY") {
+        setMode("update_password");
+        setMessage(null);
+        dialogRef.current?.showModal();
+      }
     });
     return () => {
       active = false;
@@ -49,12 +54,28 @@ export function AccountControl() {
     const email = String(form.get("email") ?? "").trim();
     const password = String(form.get("password") ?? "");
     setMessage(null);
+    if (mode === "reset") {
+      setBusy(true);
+      const { error } = await client!.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin,
+      });
+      setMessage(
+        error
+          ? "无法发送重设邮件，请稍后重试。"
+          : "如果该邮箱已注册，重设密码邮件将很快送达。",
+      );
+      setBusy(false);
+      return;
+    }
     if (password.length < 8) {
       setMessage("密码至少需要 8 位。请使用不与其他网站重复的密码。");
       return;
     }
     setBusy(true);
-    if (mode === "signup") {
+    if (mode === "update_password") {
+      const { error } = await client!.auth.updateUser({ password });
+      setMessage(error ? "密码更新失败，请重新打开邮件中的链接。" : "密码已更新。");
+    } else if (mode === "signup") {
       const requestedUsername = String(form.get("username") ?? "");
       const validation = usernameError(requestedUsername);
       if (validation) {
@@ -65,7 +86,10 @@ export function AccountControl() {
       const { data, error } = await client!.auth.signUp({
         email,
         password,
-        options: { data: { username: normalizeUsername(requestedUsername) } },
+        options: {
+          data: { username: normalizeUsername(requestedUsername) },
+          emailRedirectTo: window.location.origin,
+        },
       });
       setMessage(
         error
@@ -104,16 +128,18 @@ export function AccountControl() {
           <button className={mode === "login" ? "active" : ""} onClick={() => { setMode("login"); setMessage(null); }} type="button">登录</button>
           <button className={mode === "signup" ? "active" : ""} onClick={() => { setMode("signup"); setMessage(null); }} type="button">注册</button>
         </div>
-        <h2>{mode === "login" ? "欢迎回来" : "创建账号"}</h2>
+        <h2>{mode === "login" ? "欢迎回来" : mode === "signup" ? "创建账号" : mode === "reset" ? "找回账号" : "设置新密码"}</h2>
         <p className="privacy-note">其他用户只会看到 username。邮箱仅用于登录、验证和找回，不会公开。</p>
         <form className="auth-form" onSubmit={submit}>
           {mode === "signup" && (
             <label>Username<input autoComplete="username" maxLength={24} minLength={3} name="username" pattern="[a-zA-Z0-9_]+" required /></label>
           )}
-          <label>邮箱<input autoComplete="email" name="email" required type="email" /></label>
-          <label>密码<input autoComplete={mode === "login" ? "current-password" : "new-password"} minLength={8} name="password" required type="password" /></label>
+          {mode !== "update_password" && <label>邮箱<input autoComplete="email" name="email" required type="email" /></label>}
+          {mode !== "reset" && <label>密码<input autoComplete={mode === "login" ? "current-password" : "new-password"} minLength={8} name="password" required type="password" /></label>}
           {message && <p className="auth-message" role="status">{message}</p>}
-          <button className="auth-submit" disabled={busy} type="submit">{busy ? "请稍候…" : mode === "login" ? "登录" : "创建账号"}</button>
+          <button className="auth-submit" disabled={busy} type="submit">{busy ? "请稍候…" : mode === "login" ? "登录" : mode === "signup" ? "创建账号" : mode === "reset" ? "发送重设邮件" : "更新密码"}</button>
+          {mode === "login" && <button className="auth-link" onClick={() => { setMode("reset"); setMessage(null); }} type="button">忘记密码？</button>}
+          {(mode === "reset" || mode === "update_password") && <button className="auth-link" onClick={() => { setMode("login"); setMessage(null); }} type="button">返回登录</button>}
         </form>
       </dialog>
     </div>

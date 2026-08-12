@@ -26,6 +26,7 @@ a { color: inherit; }
 .auth-message { color: #873b2b; background: #fff1df; margin: 0; padding: 9px 11px; font-size: 12px; line-height: 1.4; }
 .auth-submit { color: #fff; background: var(--ink); border: 0; border-radius: 4px; padding: 12px 16px; font-weight: 700; }
 .auth-submit:disabled { opacity: .6; }
+.auth-link { color: #62635c; background: transparent; border: 0; justify-self: center; padding: 3px; font-size: 12px; text-decoration: underline; }
 .eyebrow { letter-spacing: .22em; color: #c9c4b7; font: 700 12px/1 monospace; }
 .hero h1 { letter-spacing: -.06em; z-index: 1; margin: 22px 0 16px; font-family: Georgia, "Songti SC", serif; font-size: clamp(54px, 8vw, 104px); line-height: .95; position: relative; }
 .hero p { color: #d1cdc3; margin: 0; font-size: 19px; }
