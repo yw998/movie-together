@@ -620,6 +620,10 @@ The member who created their own mark can click its marked control inside a
 Channel to open a non-modal choice: remove only that Channel share while keeping
 the personal mark, or delete the personal mark and consequently remove all of
 its Channel shares. The UI must state the wider effect before personal deletion.
+On personal-home showing cards, the UI displays a small count of distinct other
+users in shared Channels who explicitly shared the same showing. The current user
+is excluded, the same person is counted once across multiple common Channels, and
+private/unshared marks are never included or exposed.
 Channel creation gives immediate progress/success/error feedback and rejects
 case-insensitive duplicate names owned by the same user, including concurrent
 double submissions. Existing duplicates are never deleted automatically; owners

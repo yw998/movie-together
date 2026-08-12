@@ -196,6 +196,7 @@ export default function App() {
                     key={showing.id}
                     markBusy={watchMarks.isBusy(showing.id)}
                     marked={watchMarks.isMarked(showing.id)}
+                    mutualCount={watchMarks.mutualCount(showing.id)}
                     onToggleMark={(button) => {
                       const anchor = sharePopoverAnchor(button);
                       void watchMarks.toggle(showing.id).then((result) => {
@@ -267,9 +268,10 @@ type ShowingCardProps = {
   onEditShare: (button: HTMLButtonElement) => void;
   signedIn: boolean;
   shareCount: number;
+  mutualCount: number;
 };
 
-function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, onEditShare, signedIn, shareCount }: ShowingCardProps) {
+function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, onEditShare, signedIn, shareCount, mutualCount }: ShowingCardProps) {
   const availability = availabilityLabel(showing.availability);
   return (
     <article
@@ -289,6 +291,7 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
             "本周特别放映；点击查看影院官方介绍与最新票务状态。"}
         </p>
         {showing.eventNote && <small>{showing.eventNote}</small>}
+        {mutualCount > 0 && <small className="mutual-interest">共同 Channel 中有 {mutualCount} 人也想看</small>}
         {marked && <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? `已分享至 ${shareCount} 个 Channel · 编辑` : "仅个人可见 · 设置分享"}</button>}
         <div className="card-actions">
           <a href={showing.detailUrl} rel="noreferrer" target="_blank">

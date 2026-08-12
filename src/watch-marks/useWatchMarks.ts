@@ -19,6 +19,7 @@ export function useWatchMarks(windowStart: string) {
   const [marks, setMarks] = useState<Map<string, string>>(new Map());
   const [busy, setBusy] = useState<Set<string>>(new Set());
   const [shareCounts, setShareCounts] = useState<Map<string, number>>(new Map());
+  const [mutualCounts, setMutualCounts] = useState<Map<string, number>>(new Map());
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -60,6 +61,43 @@ export function useWatchMarks(windowStart: string) {
       });
     return () => { active = false; };
   }, [user, windowStart]);
+
+  const loadMutualCounts = useCallback(async () => {
+    const client = supabase;
+    if (!client || !user) {
+      setMutualCounts(new Map());
+      return;
+    }
+    const { data: memberships, error: membershipError } = await client
+      .from("channel_members")
+      .select("channel_id")
+      .eq("user_id", user.id);
+    if (membershipError || !memberships?.length) {
+      setMutualCounts(new Map());
+      return;
+    }
+    const results = await Promise.all(memberships.map((membership) => client.rpc(
+      "list_channel_shared_marks",
+      { target_channel_id: membership.channel_id },
+    )));
+    const peopleByShowing = new Map<string, Set<string>>();
+    for (const result of results) {
+      if (result.error) continue;
+      for (const mark of result.data ?? []) {
+        if (mark.user_id === user.id || mark.window_start !== windowStart) continue;
+        const people = peopleByShowing.get(mark.showing_id) ?? new Set<string>();
+        people.add(mark.user_id);
+        peopleByShowing.set(mark.showing_id, people);
+      }
+    }
+    setMutualCounts(new Map([...peopleByShowing].map(([showingId, people]) => [showingId, people.size])));
+  }, [user, windowStart]);
+
+  useEffect(() => {
+    void loadMutualCounts();
+    window.addEventListener(WATCH_MARKS_CHANGED_EVENT, loadMutualCounts);
+    return () => window.removeEventListener(WATCH_MARKS_CHANGED_EVENT, loadMutualCounts);
+  }, [loadMutualCounts]);
 
   const toggle = useCallback(async (showingId: string): Promise<WatchMarkToggleResult> => {
     const client = supabase;
@@ -211,6 +249,7 @@ export function useWatchMarks(windowStart: string) {
       const markId = marks.get(showingMarkKey(windowStart, showingId));
       return markId ? shareCounts.get(markId) ?? 0 : 0;
     },
+    mutualCount: (showingId: string) => mutualCounts.get(showingId) ?? 0,
     toggle,
     updateSharing,
     addToChannel,

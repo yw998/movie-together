@@ -56,4 +56,14 @@ describe("personal mark and channel share flow", () => {
     expect(channelView).toContain("也会从所有 Channel 移除");
     expect(channelView).toContain("watchMarks.toggle(activity.showingId)");
   });
+
+  it("counts distinct other members who shared a showing through common Channels", async () => {
+    const hook = await readFile(hookPath, "utf8");
+    const app = await readFile(appPath, "utf8");
+
+    expect(hook).toContain("const peopleByShowing = new Map<string, Set<string>>()");
+    expect(hook).toContain("mark.user_id === user.id");
+    expect(hook).toContain("people.add(mark.user_id)");
+    expect(app).toContain("共同 Channel 中有 {mutualCount} 人也想看");
+  });
 });
