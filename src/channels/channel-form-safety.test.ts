@@ -27,4 +27,13 @@ describe("async channel forms", () => {
     expect(styles).toContain("animation: invite-copy-notice 3s ease forwards");
     expect(styles).toContain("0%, 66%");
   });
+
+  it("opens Channel creation in an independent modal without expanding context navigation", async () => {
+    const source = await readFile(componentPath, "utf8");
+
+    expect(source).toContain('className="channel-create-dialog"');
+    expect(source).toContain("createDialogRef.current?.showModal()");
+    expect(source).toContain('${selected ? " context-open" : ""}');
+    expect(source).not.toContain("showCreate");
+  });
 });

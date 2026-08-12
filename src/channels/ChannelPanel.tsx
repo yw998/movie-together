@@ -31,6 +31,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
   const client = supabase;
   const { user, username } = useAuth();
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const createDialogRef = useRef<HTMLDialogElement>(null);
   const creatingRef = useRef(false);
   const inviteCopyTimerRef = useRef<number | null>(null);
   const [channels, setChannels] = useState<Channel[]>([]);
@@ -43,7 +44,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
   const [guestView, setGuestView] = useState<GuestView | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [friendIdCopied, setFriendIdCopied] = useState(false);
-  const [showCreate, setShowCreate] = useState(false);
+  const [createMessage, setCreateMessage] = useState<string | null>(null);
   const [inviteNotice, setInviteNotice] = useState<{ id: number; text: string } | null>(null);
   const selected = activeChannelId;
 
@@ -132,7 +133,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
     const name = String(new FormData(formElement).get("name") ?? "").trim();
     if (!name) return;
     if (channels.some((channel) => channel.name.trim().toLocaleLowerCase() === name.toLocaleLowerCase())) {
-      setMessage("你已经有一个同名 Channel。");
+      setCreateMessage("你已经有一个同名 Channel。");
       return;
     }
     creatingRef.current = true;
@@ -140,11 +141,11 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
     const { data, error } = await client!.rpc("create_channel", { channel_name: name });
     creatingRef.current = false;
     setBusy(false);
-    if (error) return setMessage(error.code === "23505" ? "你已经有一个同名 Channel。" : "无法创建 Channel，请稍后重试。");
+    if (error) return setCreateMessage(error.code === "23505" ? "你已经有一个同名 Channel。" : "无法创建 Channel，请稍后重试。");
     formElement.reset();
     await load();
+    createDialogRef.current?.close();
     onNavigate(data as string);
-    setShowCreate(false);
     setMessage(`已创建「${name}」。`);
   }
 
@@ -306,12 +307,12 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
       onClick={() => setMobileOpen(false)}
       type="button"
     />
-    <aside className={`channel-panel${mobileOpen ? " open" : ""}${selected || showCreate ? " context-open" : ""}`}>
+    <aside className={`channel-panel${mobileOpen ? " open" : ""}${selected ? " context-open" : ""}`}>
       <nav className="channel-rail-nav" aria-label="一起看导航">
         <button
           aria-label="个人主页"
           className={`channel-rail-home${selected === null && !notificationsOpen ? " active" : ""}`}
-          onClick={() => { onNavigate(null); setShowCreate(false); setMobileOpen(false); }}
+          onClick={() => { onNavigate(null); setMobileOpen(false); }}
           title="个人主页"
           type="button"
         >我</button>
@@ -321,7 +322,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
             aria-label={channel.name}
             className={selected === channel.id ? "active" : ""}
             key={channel.id}
-            onClick={() => { onNavigate(channel.id); setShowCreate(false); setMobileOpen(false); }}
+            onClick={() => { onNavigate(channel.id); setMobileOpen(false); }}
             title={channel.name}
             type="button"
           >{channel.name.trim().slice(0, 2)}</button>)}
@@ -329,7 +330,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
         {user && <button
           aria-label="新建 Channel"
           className="channel-rail-create"
-          onClick={() => setShowCreate((current) => !current)}
+          onClick={() => { setCreateMessage(null); setMobileOpen(false); createDialogRef.current?.showModal(); }}
           title="新建 Channel"
           type="button"
         >＋</button>}
@@ -346,10 +347,6 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
             <button onClick={requestAccountDialog} type="button">登录后创建</button>
           </div>}
           {user && <>
-            {showCreate && <form className="channel-create" onSubmit={createChannel}>
-              <input autoFocus maxLength={80} name="name" placeholder="新 Channel 名称" required />
-              <button disabled={busy} type="submit">{busy ? "处理中…" : "创建"}</button>
-            </form>}
             {!selectedChannel ? <div className="channel-personal-summary">
               <span className="eyebrow dark">PERSONAL</span>
               <h3>个人主页</h3>
@@ -402,6 +399,18 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
           </div>
         </div>}
       </section>
+
+      <dialog className="channel-create-dialog" onClick={(event) => { if (event.target === event.currentTarget) event.currentTarget.close(); }} onClose={() => setCreateMessage(null)} ref={createDialogRef}>
+        <form className="dialog-close" method="dialog"><button aria-label="关闭" type="submit">×</button></form>
+        <span className="eyebrow dark">NEW CHANNEL</span>
+        <h2>创建 Channel</h2>
+        <p>建立一个只对受邀成员开放的共享想看空间。</p>
+        <form className="channel-create-modal-form" onSubmit={createChannel}>
+          <label>Channel 名称<input autoFocus maxLength={80} name="name" placeholder="例如：周末电影小组" required /></label>
+          {createMessage && <p className="channel-create-message" role="status">{createMessage}</p>}
+          <button disabled={busy} type="submit">{busy ? "创建中…" : "创建 Channel"}</button>
+        </form>
+      </dialog>
 
       <dialog className="auth-dialog invite-dialog" ref={dialogRef}>
         <form className="dialog-close" method="dialog"><button aria-label="关闭" type="submit">×</button></form>

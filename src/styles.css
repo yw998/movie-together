@@ -22,6 +22,17 @@ a { color: inherit; }
 .account-control.on-light .account-reminders.active { color: #fff; background: var(--ink); }
 .auth-dialog { color: var(--ink); border: 1px solid var(--line); background: var(--paper); width: min(92vw, 430px); padding: 28px; box-shadow: 0 24px 80px #0007; }
 .auth-dialog::backdrop { background: #0c0d0aa8; backdrop-filter: blur(4px); }
+.channel-create-dialog { color: var(--ink); background: var(--paper); border: 1px solid #77766e; border-radius: 12px; width: min(92vw, 460px); padding: 32px; box-shadow: 0 24px 90px #0009; }
+.channel-create-dialog::backdrop { background: #090a08c7; backdrop-filter: blur(3px); }
+.channel-create-dialog h2 { margin: 14px 0 8px; font: 700 32px Georgia, "Songti SC", serif; }
+.channel-create-dialog > p { color: var(--muted); margin: 0 0 24px; font-size: 12px; line-height: 1.55; }
+.channel-create-modal-form { gap: 13px; display: grid; }
+.channel-create-modal-form label { color: #575851; gap: 7px; font-size: 11px; font-weight: 700; display: grid; }
+.channel-create-modal-form input { color: var(--ink); background: #fff; border: 1px solid #aaa69c; border-radius: 5px; width: 100%; padding: 12px; outline: 0; }
+.channel-create-modal-form input:focus { border-color: var(--ink); box-shadow: 0 0 0 2px #1718131c; }
+.channel-create-modal-form > button { color: #fff; background: var(--ink); border: 0; border-radius: 5px; padding: 12px 15px; font-weight: 700; }
+.channel-create-modal-form > button:disabled { cursor: wait; opacity: .55; }
+.channel-create-message { color: #683516; background: #fff2df; border: 1px solid #d9bea0; margin: 0; padding: 9px 11px; font-size: 11px; }
 .dialog-close { position: absolute; top: 10px; right: 12px; }
 .dialog-close button { color: #777; background: transparent; border: 0; padding: 5px 8px; font-size: 24px; }
 .auth-tabs { border-bottom: 1px solid var(--line); gap: 18px; display: flex; }

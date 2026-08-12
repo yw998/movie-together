@@ -619,12 +619,14 @@ Channel below it, and keeps the create-Channel entry at the bottom. Selecting ho
 shows the normal personal schedule and collapses the contextual second rail so only
 the narrow primary rail remains. Selecting a Channel replaces the main content
 with that Channel's members and shared watchlist and opens the second rail. The
-create entry may temporarily open that rail for its form. The second rail holds contextual
-Channel settings. On narrow screens both rails become a button-triggered drawer
+second rail holds contextual Channel settings. On narrow screens both rails become a button-triggered drawer
 with a backdrop, preserving the full width of film cards. The signed-in account's
 Friend ID is pinned to the bottom-left account area in every personal or Channel
 view, with an adjacent clipboard button and explicit copied or permission-failure
 feedback.
+The create entry no longer expands the contextual rail. It opens a centered,
+independent modal over a dimmed backdrop, keeps validation and progress feedback
+inside that modal, and closes before navigating to the newly created Channel.
 After an owner copies a Channel invitation link, its success notice appears
 directly below the copy button, stays readable for roughly two seconds, fades
 during the final second, and is removed after three seconds. Repeated copying
