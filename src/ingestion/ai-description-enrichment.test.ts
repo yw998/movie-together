@@ -89,6 +89,20 @@ describe("automatic Chinese description enrichment", () => {
     expect(fetcher).toHaveBeenCalledOnce();
   });
 
+  it("backs off and retries an official page after rate limiting", async () => {
+    const fetcher = vi.fn()
+      .mockResolvedValueOnce(new Response("rate limited", { status: 429, headers: { "Retry-After": "0" } }))
+      .mockResolvedValueOnce(new Response(`
+        <html><head><meta name="description" content="An official synopsis follows a family through a long period of difficult changes and reunions."></head></html>
+      `, { status: 200 }));
+    const { fetchOfficialDescriptionEvidence } = await import("./ai-description-enrichment");
+    const evidence = await fetchOfficialDescriptionEvidence(
+      "new-film", "New Film", "https://my.filmforum.org/new-film", fetcher,
+    );
+    expect(evidence.evidenceText).toContain("official synopsis");
+    expect(fetcher).toHaveBeenCalledTimes(2);
+  });
+
   it("uses the database cache without fetching evidence or calling OpenAI", async () => {
     const fetchEvidence = vi.fn();
     const generate = vi.fn();

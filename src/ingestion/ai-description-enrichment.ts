@@ -31,6 +31,26 @@ type FetchLike = (
   init?: RequestInit,
 ) => Promise<Response>;
 
+const wait = (milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+
+async function fetchOfficialWithRetry(
+  fetcher: FetchLike,
+  input: string | URL | Request,
+  init?: RequestInit,
+): Promise<Response> {
+  const retryable = new Set([429, 502, 503, 504]);
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    const response = await fetcher(input, init);
+    if (!retryable.has(response.status) || attempt === 3) return response;
+    const retryAfter = Number(response.headers.get("retry-after"));
+    const delay = Number.isFinite(retryAfter) && retryAfter >= 0
+      ? retryAfter * 1_000
+      : Math.min(1_000 * 2 ** attempt, 8_000);
+    await wait(delay);
+  }
+  throw new Error("Official evidence retry loop ended unexpectedly.");
+}
+
 function normalizeText(value: string): string {
   return value.replace(/\s+/g, " ").trim();
 }
@@ -95,7 +115,7 @@ export async function fetchOfficialDescriptionEvidence(
     (parsedSource.hostname === "filmlinc.org" || parsedSource.hostname === "www.filmlinc.org") &&
     /^\/films\/[a-z0-9-]+\/$/.test(parsedSource.pathname)
   ) {
-    const response = await fetcher("https://api.filmlinc.org/wordpress/graphql", {
+    const response = await fetchOfficialWithRetry(fetcher, "https://api.filmlinc.org/wordpress/graphql", {
       method: "POST",
       headers: { Accept: "application/json", "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -124,7 +144,7 @@ export async function fetchOfficialDescriptionEvidence(
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15_000);
   try {
-    const response = await fetcher(sourceUrl, {
+    const response = await fetchOfficialWithRetry(fetcher, sourceUrl, {
       headers: {
         Accept: "text/html,application/xhtml+xml",
         "User-Agent": "NYC-Repertory-Cinema-Week/0.1 (description evidence)",
@@ -344,11 +364,13 @@ export async function enrichWeeklyBundleDescriptions(
       }
     });
     const fetchEvidence = options.fetchEvidence ?? fetchOfficialDescriptionEvidence;
-    const evidence = await Promise.all(missing.map((film) => {
+    const evidence: DescriptionEvidence[] = [];
+    for (const [index, film] of missing.entries()) {
       const sourceUrl = sourceByFilmId.get(film.id);
       if (!sourceUrl) throw new Error(`Description enrichment has no official detail URL for ${film.id}.`);
-      return fetchEvidence(film.id, film.displayTitle, sourceUrl);
-    }));
+      evidence.push(await fetchEvidence(film.id, film.displayTitle, sourceUrl));
+      if (!options.fetchEvidence && index < missing.length - 1) await wait(250);
+    }
     if (!options.generate) throw new Error("Description generator is not configured for new films.");
     const decisions = await options.generate(evidence);
     const evidenceById = new Map(evidence.map((item) => [item.filmId, item]));
