@@ -105,12 +105,19 @@ try {
         refreshed_local_date = excluded.refreshed_local_date,
         provenance_note = excluded.provenance_note, run_id = excluded.run_id
     `;
-    await transaction`delete from showings where window_start = ${compiled.metadata.windowStart}`;
-    await transaction`delete from schedule_films where window_start = ${compiled.metadata.windowStart}`;
+    // Keep stable showing rows so future user watch marks cannot be orphaned by
+    // a weekly refresh. Rows missing from the latest approved candidate remain
+    // auditable but are excluded from the public export.
+    await transaction`
+      update showings
+      set publication_status = 'removed'
+      where window_start = ${compiled.metadata.windowStart}
+    `;
     for (const film of compiled.films) {
       await transaction`
         insert into schedule_films (window_start, film_id)
         values (${compiled.metadata.windowStart}, ${film.id})
+        on conflict (window_start, film_id) do nothing
       `;
     }
     for (const showing of compiled.showings) {
@@ -118,12 +125,21 @@ try {
         insert into showings
           (window_start, id, cinema_id, film_id, starts_at, local_date, local_time, format,
            event_type, event_note, detail_url, ticket_url, availability, source_url,
-           fetched_at, extraction_status)
+           fetched_at, extraction_status, publication_status)
         values
           (${compiled.metadata.windowStart}, ${showing.id}, ${showing.cinemaId}, ${showing.filmId},
            ${showing.startsAt}, ${showing.localDate}, ${showing.localTime}, ${showing.format},
            ${showing.eventType}, ${showing.eventNote}, ${showing.detailUrl}, ${showing.ticketUrl},
-           ${showing.availability}, ${showing.sourceUrl}, ${showing.fetchedAt}, ${showing.extractionStatus})
+           ${showing.availability}, ${showing.sourceUrl}, ${showing.fetchedAt}, ${showing.extractionStatus}, 'active')
+        on conflict (window_start, id) do update set
+          cinema_id = excluded.cinema_id, film_id = excluded.film_id,
+          starts_at = excluded.starts_at, local_date = excluded.local_date,
+          local_time = excluded.local_time, format = excluded.format,
+          event_type = excluded.event_type, event_note = excluded.event_note,
+          detail_url = excluded.detail_url, ticket_url = excluded.ticket_url,
+          availability = excluded.availability, source_url = excluded.source_url,
+          fetched_at = excluded.fetched_at, extraction_status = excluded.extraction_status,
+          publication_status = 'active'
       `;
     }
     await transaction`delete from manual_overrides where run_id = ${candidate.generatedAt}`;

@@ -22,9 +22,11 @@ artifacts:
 
 - `DATABASE_URL` exists only in `.env.local`, which is ignored by Git.
 - Database variables must never use the `VITE_` prefix.
-- All application tables have Row Level Security enabled with no public policy.
-- Table and sequence privileges are revoked from Supabase `anon` and
-  `authenticated` roles.
+- Server-managed schedule and audit tables have Row Level Security enabled with
+  no browser policy, and their table/sequence privileges are revoked from
+  Supabase `anon` and `authenticated` roles.
+- Authenticated user tables use explicit owner-only policies and the minimum
+  required table privileges. Anonymous users receive no user-table privileges.
 - The static frontend uses exported JSON and does not use Supabase public or
   service-role API keys.
 
@@ -87,6 +89,12 @@ Apply pending migrations:
 npm run db:migrate
 ```
 
+Verify the account/watch-mark schema without reading user content:
+
+```text
+npm run db:verify-user-schema
+```
+
 ## Approved import
 
 The importer independently recompiles the source candidate, applies the exact
@@ -137,3 +145,5 @@ Always run `npm test` and `npm run build` after exporting public data.
 - Approvals: 1
 - Workflow artifacts: 6
 - Database round-trip verification: passed
+- Account foundation: `profiles` and exact-showing `watch_marks` schema ready;
+  frontend authentication is not enabled yet

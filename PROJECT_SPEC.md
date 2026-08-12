@@ -518,6 +518,15 @@ Open decisions to confirm before implementation reaches each boundary:
 - whether channel members can react/comment, which is outside the confirmed
   read-only sharing requirement.
 
+Implementation note (2026-08-11): the account foundation now has a database
+migration for owner-scoped `profiles` and exact-showing `watch_marks`, with RLS,
+unique marks per user/showing, and a restrictive composite foreign key to
+`showings(window_start, id)`. Weekly imports preserve stable showing rows by
+marking missing records as `removed` and upserting current records as `active`;
+the public export includes only active records. Account UI, authentication
+method selection, channels, invitations, sharing, and user-created events are
+not implemented yet.
+
 ## 11. 第一轮 Codex 任务清单
 
 将下面内容作为新 agent 的第一个执行队列：

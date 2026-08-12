@@ -43,13 +43,16 @@ try {
   const windowEnd = dateText(week.window_end);
   const cinemaRows = await sql`select * from cinemas where enabled = true order by sort_order`;
   const filmRows = await sql`
-    select f.* from films f
-    join schedule_films sf on sf.film_id = f.id
-    where sf.window_start = ${windowStart}
+    select distinct f.* from films f
+    join showings s on s.film_id = f.id
+    where s.window_start = ${windowStart}
+      and s.publication_status = 'active'
     order by f.display_title, f.id
   `;
   const showingRows = await sql`
-    select * from showings where window_start = ${windowStart}
+    select * from showings
+    where window_start = ${windowStart}
+      and publication_status = 'active'
     order by starts_at, id
   `;
   const cinemas: Cinema[] = cinemaRows.map((row) => ({
