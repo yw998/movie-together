@@ -35,5 +35,6 @@ describe("async channel forms", () => {
     expect(source).toContain("createDialogRef.current?.showModal()");
     expect(source).toContain('${selected ? " context-open" : ""}');
     expect(source).not.toContain("showCreate");
+    expect(source).not.toContain("已创建「");
   });
 });

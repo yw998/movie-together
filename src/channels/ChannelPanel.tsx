@@ -146,7 +146,6 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
     await load();
     createDialogRef.current?.close();
     onNavigate(data as string);
-    setMessage(`已创建「${name}」。`);
   }
 
   async function copyFriendId() {

@@ -627,6 +627,8 @@ feedback.
 The create entry no longer expands the contextual rail. It opens a centered,
 independent modal over a dimmed backdrop, keeps validation and progress feedback
 inside that modal, and closes before navigating to the newly created Channel.
+Successful creation does not add a redundant confirmation banner to the Channel
+settings rail; arriving in the new Channel is the success feedback.
 After an owner copies a Channel invitation link, its success notice appears
 directly below the copy button, stays readable for roughly two seconds, fades
 during the final second, and is removed after three seconds. Repeated copying
