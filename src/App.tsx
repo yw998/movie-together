@@ -11,6 +11,7 @@ import { formatWindowYears, formatWindowZh } from "./lib/date-display";
 import { availabilityLabel } from "./lib/showing-labels";
 import { AccountControl } from "./auth/AccountControl";
 import { useWatchMarks } from "./watch-marks/useWatchMarks";
+import { ChannelPanel } from "./channels/ChannelPanel";
 
 const timeClusters: TimeCluster[] = ["上午", "下午", "晚间", "深夜"];
 
@@ -175,6 +176,8 @@ export default function App() {
           <div className="empty">没有符合筛选条件的场次。</div>
         )}
       </section>
+
+      <ChannelPanel />
 
       <footer>
         <p>

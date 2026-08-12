@@ -151,14 +151,15 @@ try {
           'public.preview_channel_invite(text)'::regprocedure,
           'public.create_channel_guest_limited(text,text,text)'::regprocedure,
           'public.read_channel_as_guest(uuid,text)'::regprocedure,
-          'public.invite_channel_user_by_email(uuid,uuid,text)'::regprocedure
+          'public.invite_channel_user_by_email(uuid,uuid,text)'::regprocedure,
+          'public.list_my_channel_invitations()'::regprocedure
         )
       ) as function_count
   `;
   if (
     trustedEndpoints.attempts !== "channel_guest_access_attempts" ||
     trustedEndpoints.joins !== "channel_guest_join_attempts" ||
-    trustedEndpoints.function_count !== 4
+    trustedEndpoints.function_count !== 5
   ) {
     throw new Error("Trusted guest/email endpoint database support is incomplete.");
   }

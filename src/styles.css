@@ -75,6 +75,32 @@ footer { color: #aaa99f; background: #171813; justify-content: space-between; ga
 footer p { max-width: 500px; margin: 0; line-height: 1.6; }
 footer div { flex-wrap: wrap; gap: 16px; display: flex; }
 footer a { color: #e5e0d5; text-decoration: none; }
+.channel-panel { border-top: 1px solid var(--line); max-width: 1180px; margin: 0 auto; padding: 50px 20px 70px; }
+.channel-heading { justify-content: space-between; align-items: center; gap: 20px; display: flex; }
+.channel-heading-actions { gap: 8px; display: flex; }
+.channel-heading h2 { margin: 8px 0 0; font: 700 34px Georgia, "Songti SC", serif; }
+.eyebrow.dark { color: #77766e; }
+.channel-heading button, .channel-create button, .channel-notice button, .channel-invite button, .copy-invite { color: #fff; background: var(--ink); border: 0; border-radius: 4px; padding: 10px 14px; font-weight: 700; }
+.friend-id { color: var(--muted); margin: 24px 0 12px; font-size: 12px; }
+.friend-id code { color: var(--ink); background: #fff; border: 1px solid var(--line); margin-left: 8px; padding: 6px 8px; }
+.channel-notice { border: 1px solid #a9a595; background: #fff; justify-content: space-between; align-items: center; gap: 14px; margin: 10px 0; padding: 12px; display: flex; }
+.channel-create, .channel-invite { gap: 8px; margin: 16px 0; display: flex; }
+.channel-create input, .channel-invite input, .channel-invite select { border: 1px solid #aaa69c; background: #fff; min-width: 0; padding: 10px 12px; }
+.channel-create input { flex: 1; }
+.channel-workspace { border: 1px solid var(--line); background: #fff; grid-template-columns: 220px 1fr; min-height: 190px; display: grid; }
+.channel-workspace nav { border-right: 1px solid var(--line); padding: 10px; }
+.channel-workspace nav button { text-align: left; background: transparent; border: 0; width: 100%; padding: 10px; }
+.channel-workspace nav button.active { color: #fff; background: var(--ink); }
+.channel-detail { padding: 20px; }
+.channel-detail h3 { margin: 0 0 8px; font: 700 24px Georgia, "Songti SC", serif; }
+.channel-detail p { color: var(--muted); font-size: 12px; }
+.channel-message { color: #683516; background: #fff2df; padding: 10px 13px; font-size: 12px; }
+.invite-dialog .auth-submit { width: 100%; margin: 12px 0; }
+.guest-form { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 18px; }
+.guest-credential { gap: 8px; display: grid; }
+.guest-credential code { word-break: break-all; background: #fff; border: 1px solid var(--line); padding: 10px; }
+.guest-view { color: var(--muted); line-height: 1.5; }
+.guest-view b { color: var(--ink); }
 @media (max-width: 760px) {
   .hero { padding-top: 52px; }
   .filters { flex-direction: column; align-items: stretch; }
@@ -86,4 +112,7 @@ footer a { color: #e5e0d5; text-decoration: none; }
   footer { flex-direction: column; }
   .hero::after { opacity: .45; }
   .account-control { top: 16px; right: 18px; }
+  .channel-workspace { grid-template-columns: 1fr; }
+  .channel-workspace nav { border-right: 0; border-bottom: 1px solid var(--line); }
+  .channel-create, .channel-invite { flex-direction: column; }
 }

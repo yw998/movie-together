@@ -572,9 +572,13 @@ guest credentials all use deny-by-default RLS and controlled functions. Channel
 guest/email database endpoints and database-backed attempt limits are deployed,
 and the matching Edge Function source is ready for deployment. Owner/outsider
 and service-role authorization tests pass with all test data rolled back.
-Channel UI, the Edge deployment, sharing, and user-created events are not yet
-enabled; a second registered test identity is still required before the UI is
-exposed broadly.
+The Edge Function is deployed and the first Channel UI is implemented: signed-in
+users can create channels, see their Friend ID, invite by username/Friend ID/email,
+create link invitations, and accept pending invitations. Link visitors can join
+an account or create a read-only guest, save the one-time guest credential, and
+later reopen only that channel. Sharing and user-created events are not yet
+implemented; a second registered test identity is still required for a complete
+two-account acceptance test.
 
 Authentication decision confirmed 2026-08-11: v1 uses a unique public username
 plus a private email-and-password Supabase Auth identity. Email is used only for
