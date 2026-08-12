@@ -164,6 +164,23 @@ try {
     throw new Error("Trusted guest/email endpoint database support is incomplete.");
   }
 
+  const [invitationMethods] = await sql<{ friend_id_enabled: boolean; generic_disabled: boolean }[]>`
+    select
+      has_function_privilege(
+        'authenticated',
+        'public.invite_channel_user_by_friend_id(uuid,text)',
+        'EXECUTE'
+      ) as friend_id_enabled,
+      not has_function_privilege(
+        'authenticated',
+        'public.invite_channel_user(uuid,text,text)',
+        'EXECUTE'
+      ) as generic_disabled
+  `;
+  if (!invitationMethods.friend_id_enabled || !invitationMethods.generic_disabled) {
+    throw new Error("Registered-user invitations are not restricted to Friend ID/email.");
+  }
+
   console.log("Verified accounts, watch marks, channel invitations, defaults, and RLS policies.");
 } finally {
   await sql.end();

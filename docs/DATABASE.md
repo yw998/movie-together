@@ -96,8 +96,8 @@ marks. Channel share rows are not created by the private-mark UI.
 ## Planned channel identity and invitation security
 
 Registered channel membership has two roles: `owner` and `member`. Direct
-invitations can resolve an exact username, a random public Friend ID, or a
-private Auth email. Email lookup must run in a trusted Edge Function/server
+invitations can resolve only a random public Friend ID or a private Auth email;
+username is not an invitation identifier. Email lookup must run in a trusted Edge Function/server
 context because `auth.users` is never browser-readable. Its response must not
 confirm whether an arbitrary email is registered. Username/Friend-ID lookup is
 an exact-match RPC that returns only the minimum public profile fields.

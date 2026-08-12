@@ -161,12 +161,11 @@ export function ChannelPanel() {
         setMessage("无法发送邮箱邀请。");
       }
     } else {
-      const { error } = await client!.rpc("invite_channel_user", {
+      const { error } = await client!.rpc("invite_channel_user_by_friend_id", {
         target_channel_id: selected,
-        identifier_kind: kind,
-        identifier_value: value,
+        target_friend_id: value,
       });
-      setMessage(error ? "没有找到可邀请的用户，或对方已经是成员。" : "邀请已发送。");
+      setMessage(error ? "没有找到这个 Friend ID，或对方已经是成员。" : "邀请已发送，等待对方接受后才会加入。");
     }
     setBusy(false);
     formElement.reset();
@@ -287,7 +286,7 @@ export function ChannelPanel() {
             <p>{members.map((member) => `@${member.profiles?.username ?? "member"}${member.role === "owner" ? "（owner）" : ""}`).join(" · ")}</p>
             {owner && <>
               <form className="channel-invite" onSubmit={inviteUser}>
-                <select name="kind"><option value="username">Username</option><option value="friend_id">Friend ID</option><option value="email">邮箱</option></select>
+                <select name="kind"><option value="friend_id">Friend ID</option><option value="email">邮箱</option></select>
                 <input name="identifier" placeholder="输入准确账号标识" required />
                 <button disabled={busy} type="submit">邀请</button>
               </form>

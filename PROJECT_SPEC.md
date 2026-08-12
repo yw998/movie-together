@@ -515,9 +515,9 @@ Channel roles confirmed 2026-08-12:
 
 Two invitation paths are required:
 
-1. **Direct account invitation.** The owner can target an existing account by
-   exact username, private email, or a random unique Friend ID. Username and
-   Friend ID are public identifiers. Email matching happens only in trusted
+1. **Direct account invitation.** The owner can target an existing account only
+   by private email or a random unique Friend ID. Username is not an invitation
+   identifier. Email matching happens only in trusted
    server code and must not reveal registered email addresses or allow account
    enumeration. A Friend ID is independent from username, contains no personal
    information, and can be regenerated to invalidate the old value.
@@ -641,6 +641,7 @@ showing. No mark is shared to a channel in this phase.
 8. Channel 首版只有 owner/member；支持通过 username、私密邮箱、随机 Friend ID 直接邀请，也支持可撤销链接。
 9. 未登录访客可选择注册，或用临时名字成为仅限该 Channel 的 guest，并获得只访问该 Channel 的独立代码。
 10. Guest 首版只读；邀请链接默认 7 天后过期，最多允许 20 人成功加入，owner 可随时提前撤销。
+11. 账号内部邀请只允许 Friend ID 或私密邮箱；邀请保持 pending，必须由被邀请者明确接受后才加入 Channel。
 
 尚未确定、需要向用户确认：
 
