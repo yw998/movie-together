@@ -43,6 +43,7 @@ tables are:
 
 - `profiles`
 - `channels`, `channel_members`, `channel_invitations`
+- `channel_invite_links`, `channel_guests`
 - `watch_marks`
 - `user_events`
 - `channel_mark_shares`, `channel_event_shares`
@@ -91,6 +92,36 @@ The frontend reads only the signed-in user's marks for the current
 still verifies ownership. Deletion uses the mark UUID and remains owner-scoped.
 The unique `(user_id, window_start, showing_id)` constraint prevents duplicate
 marks. Channel share rows are not created by the private-mark UI.
+
+## Planned channel identity and invitation security
+
+Registered channel membership has two roles: `owner` and `member`. Direct
+invitations can resolve an exact username, a random public Friend ID, or a
+private Auth email. Email lookup must run in a trusted Edge Function/server
+context because `auth.users` is never browser-readable. Its response must not
+confirm whether an arbitrary email is registered. Username/Friend-ID lookup is
+an exact-match RPC that returns only the minimum public profile fields.
+
+Friend IDs are random, non-personal identifiers stored with a unique constraint;
+they are separate from usernames and can be rotated. They must not be derived
+from user UUIDs, emails, names, timestamps, or row counts.
+
+Invitation URLs store only a token hash in `channel_invite_links`. The plaintext
+token is returned once, can be revoked, has an expiry/use policy, and is not
+written to logs. Acceptance is an atomic trusted operation that validates the
+token before inserting membership.
+
+An unauthenticated link visitor may register or create a `channel_guests` row
+with a temporary display name. The guest receives a separate cryptographically
+random access code; only its hash is stored. Guest authorization is
+channel-scoped and must be enforced by a server endpoint rather than treating
+the guest as a normal Supabase authenticated user. Code attempts are
+rate-limited, and removing the guest immediately invalidates access.
+
+Recommended v1 behavior is read-only guest access. If guests later own marks or
+events, those records need a separate guest-owner model plus an explicit atomic
+conversion process on registration; this must not be approximated by sharing a
+normal user ID or weakening existing RLS.
 
 Implementation must include multi-user RLS tests before these tables are used by
 the production frontend. Supabase publishable keys may be exposed to the browser
@@ -178,5 +209,5 @@ Always run `npm test` and `npm run build` after exporting public data.
 - Approvals: 1
 - Workflow artifacts: 6
 - Database round-trip verification: passed
-- Account foundation: `profiles` and exact-showing `watch_marks` schema ready;
-  frontend authentication is not enabled yet
+- Account foundation, frontend authentication, password management, and private
+  exact-showing watch marks are enabled

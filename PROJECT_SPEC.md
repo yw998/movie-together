@@ -483,6 +483,8 @@ watch_marks             user-owned mark referencing one exact official showing
 user_events             user-owned manually entered event
 channel_mark_shares     explicit channel visibility for a watch mark
 channel_event_shares    explicit channel visibility for a user event
+channel_invite_links    revocable link tokens stored only as hashes
+channel_guests          channel-scoped guest name and hashed access code
 ```
 
 Required authorization invariants:
@@ -499,6 +501,46 @@ Required authorization invariants:
   existing mark, even if that showing is later removed or cancelled upstream;
 - RLS policies and database constraints are tested before enabling the feature.
 
+#### Channel roles and invitation paths
+
+Channel roles confirmed 2026-08-12:
+
+- `owner` can rename/delete the channel, create or revoke invitations, and remove
+  members or guests;
+- `member` can view channel content, share or unshare only their own items, and
+  leave voluntarily;
+- there is no admin role in v1;
+- leaving immediately revokes the user's channel access and removes that user's
+  shares from the channel without deleting their private marks or events.
+
+Two invitation paths are required:
+
+1. **Direct account invitation.** The owner can target an existing account by
+   exact username, private email, or a random unique Friend ID. Username and
+   Friend ID are public identifiers. Email matching happens only in trusted
+   server code and must not reveal registered email addresses or allow account
+   enumeration. A Friend ID is independent from username, contains no personal
+   information, and can be regenerated to invalidate the old value.
+2. **Revocable invitation link.** An authenticated visitor accepts the invite
+   into their existing account. An unauthenticated visitor is offered account
+   registration or guest access. Registration resumes the pending invitation
+   after authentication. Guest access asks for a channel-visible temporary name,
+   creates a guest scoped to that one channel, and displays a separate access
+   code that can reopen only that channel.
+
+Invitation-link tokens and guest access codes are bearer credentials. They must
+be generated with cryptographic randomness, shown only when necessary, stored
+only as hashes, rate-limited on verification, expire or be revocable, and never
+appear in analytics or application logs. A guest code cannot query profiles,
+discover channels, reuse normal authenticated RLS access, or enter any channel
+other than the one encoded in its server-validated guest record.
+
+Recommended v1 guest boundary (awaiting confirmation): guests are read-only.
+They can view the channel member names and shared items, but cannot create watch
+marks, share content, create user events, invite others, or modify the channel.
+Registering converts their place in that channel into a normal `member` without
+making the guest code a general account credential.
+
 Recommended delivery order:
 
 1. Supabase Auth, profile creation, session handling, and protected account UI.
@@ -510,9 +552,8 @@ Recommended delivery order:
 
 Open decisions to confirm before implementation reaches each boundary:
 
-- whether invitations use email, a revocable invite link, or both;
-- whether channels need owner/admin roles beyond ordinary membership;
-- what happens to shared visibility when a user leaves a channel;
+- whether v1 guests are read-only as recommended or may own editable marks/events;
+- default expiry and maximum uses for invitation links;
 - whether user-created events may omit an end time, location, or external URL;
 - whether channel members can react/comment, which is outside the confirmed
   read-only sharing requirement.
@@ -522,9 +563,9 @@ migration for owner-scoped `profiles` and exact-showing `watch_marks`, with RLS,
 unique marks per user/showing, and a restrictive composite foreign key to
 `showings(window_start, id)`. Weekly imports preserve stable showing rows by
 marking missing records as `removed` and upserting current records as `active`;
-the public export includes only active records. Account UI, authentication
-method selection, channels, invitations, sharing, and user-created events are
-  not implemented yet.
+the public export includes only active records. Account UI, authentication, and
+private showing-level marks are implemented; channels, invitations, sharing,
+and user-created events are not implemented yet.
 
 Authentication decision confirmed 2026-08-11: v1 uses a unique public username
 plus a private email-and-password Supabase Auth identity. Email is used only for
@@ -573,11 +614,13 @@ showing. No mark is shared to a channel in this phase.
 5. 分享只授予频道成员查看权；其他成员不能编辑标记或活动，默认状态始终为私人。
 6. “想看”标记针对一个具体官方场次；同一电影的不同时间或影院分别标记。
 7. 首版账号对外仅显示唯一 username；邮箱只用于 Supabase 登录、验证和找回，密码至少 8 位，不收集其他个人资料。
+8. Channel 首版只有 owner/member；支持通过 username、私密邮箱、随机 Friend ID 直接邀请，也支持可撤销链接。
+9. 未登录访客可选择注册，或用临时名字成为仅限该 Channel 的 guest，并获得只访问该 Channel 的独立代码。
 
 尚未确定、需要向用户确认：
 
 1. 下一批扩展影院的优先顺序是什么？
-2. 频道是否需要 owner/admin/member 角色，以及退出频道后的共享记录如何处理？
+2. Guest 首版是否按建议设为只读？邀请链接默认多久过期、可使用多少次？
 
 ## 13. 非目标
 
