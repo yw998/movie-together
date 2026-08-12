@@ -54,6 +54,12 @@ least eight characters. No real name, phone, birthday, contacts, or address is
 requested. Channel invitations will use revocable links rather than exposing
 member email addresses.
 
+The signup UI includes an explicit confirmation-email resend action. Supabase's
+built-in email provider is intended for initial testing and is rate-limited; an
+earlier confirmation link remains usable for its configured validity period.
+Production growth requires custom SMTP plus CAPTCHA rather than encouraging
+users to submit the signup form repeatedly.
+
 Official films/showings and user-created events must remain separate. A user
 event is never official source evidence and must be visibly labeled as
 user-created in the UI.

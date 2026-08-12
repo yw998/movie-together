@@ -3,7 +3,7 @@ import type { User } from "@supabase/supabase-js";
 import { normalizeUsername, usernameError } from "../lib/username";
 import { authConfigured, supabase } from "./supabase";
 
-type Mode = "login" | "signup" | "reset" | "update_password";
+type Mode = "login" | "signup" | "resend" | "reset" | "update_password";
 
 export function AccountControl() {
   const client = supabase;
@@ -54,6 +54,23 @@ export function AccountControl() {
     const email = String(form.get("email") ?? "").trim();
     const password = String(form.get("password") ?? "");
     setMessage(null);
+    if (mode === "resend") {
+      setBusy(true);
+      const { error } = await client!.auth.resend({
+        type: "signup",
+        email,
+        options: { emailRedirectTo: window.location.origin },
+      });
+      setMessage(
+        error
+          ? error.status === 429
+            ? "发送次数已达限制。7 分钟前的邮件仍有效，请先使用旧邮件，或稍后再试。"
+            : "无法重新发送。请确认已用该邮箱注册，或稍后再试。"
+          : "验证邮件已重新发送；若未看到，请检查垃圾邮件。",
+      );
+      setBusy(false);
+      return;
+    }
     if (mode === "reset") {
       setBusy(true);
       const { error } = await client!.auth.resetPasswordForEmail(email, {
@@ -128,18 +145,19 @@ export function AccountControl() {
           <button className={mode === "login" ? "active" : ""} onClick={() => { setMode("login"); setMessage(null); }} type="button">登录</button>
           <button className={mode === "signup" ? "active" : ""} onClick={() => { setMode("signup"); setMessage(null); }} type="button">注册</button>
         </div>
-        <h2>{mode === "login" ? "欢迎回来" : mode === "signup" ? "创建账号" : mode === "reset" ? "找回账号" : "设置新密码"}</h2>
+        <h2>{mode === "login" ? "欢迎回来" : mode === "signup" ? "创建账号" : mode === "resend" ? "重发验证邮件" : mode === "reset" ? "找回账号" : "设置新密码"}</h2>
         <p className="privacy-note">其他用户只会看到 username。邮箱仅用于登录、验证和找回，不会公开。</p>
         <form className="auth-form" onSubmit={submit}>
           {mode === "signup" && (
             <label>Username<input autoComplete="username" maxLength={24} minLength={3} name="username" pattern="[a-zA-Z0-9_]+" required /></label>
           )}
           {mode !== "update_password" && <label>邮箱<input autoComplete="email" name="email" required type="email" /></label>}
-          {mode !== "reset" && <label>密码<input autoComplete={mode === "login" ? "current-password" : "new-password"} minLength={8} name="password" required type="password" /></label>}
+          {mode !== "reset" && mode !== "resend" && <label>密码<input autoComplete={mode === "login" ? "current-password" : "new-password"} minLength={8} name="password" required type="password" /></label>}
           {message && <p className="auth-message" role="status">{message}</p>}
-          <button className="auth-submit" disabled={busy} type="submit">{busy ? "请稍候…" : mode === "login" ? "登录" : mode === "signup" ? "创建账号" : mode === "reset" ? "发送重设邮件" : "更新密码"}</button>
+          <button className="auth-submit" disabled={busy} type="submit">{busy ? "请稍候…" : mode === "login" ? "登录" : mode === "signup" ? "创建账号" : mode === "resend" ? "重新发送" : mode === "reset" ? "发送重设邮件" : "更新密码"}</button>
           {mode === "login" && <button className="auth-link" onClick={() => { setMode("reset"); setMessage(null); }} type="button">忘记密码？</button>}
-          {(mode === "reset" || mode === "update_password") && <button className="auth-link" onClick={() => { setMode("login"); setMessage(null); }} type="button">返回登录</button>}
+          {mode === "signup" && <button className="auth-link" onClick={() => { setMode("resend"); setMessage(null); }} type="button">没有收到验证邮件？</button>}
+          {(mode === "resend" || mode === "reset" || mode === "update_password") && <button className="auth-link" onClick={() => { setMode("login"); setMessage(null); }} type="button">返回登录</button>}
         </form>
       </dialog>
     </div>
