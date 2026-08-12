@@ -115,6 +115,12 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
     return () => window.removeEventListener(WATCH_MARKS_CHANGED_EVENT, loadMutualCounts);
   }, [loadMutualCounts]);
 
+  useEffect(() => {
+    if (!error) return;
+    const timer = window.setTimeout(() => setError(null), 3000);
+    return () => window.clearTimeout(timer);
+  }, [error]);
+
   const toggle = useCallback(async (showingId: string): Promise<WatchMarkToggleResult> => {
     const client = supabase;
     if (!client || !user) {
@@ -198,32 +204,16 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
     if (busy.has(key)) return false;
     setBusy((current) => new Set(current).add(key));
     setError(null);
-    let markId = marks.get(key) ?? null;
-    if (!markId) {
-      const { data, error: insertError } = await client.rpc("create_watch_mark_with_defaults", {
-        target_window_start: windowStart,
-        target_showing_id: showingId,
-      });
-      if (insertError) {
-        setError("无法保存标记，请稍后重试。");
-        setBusy((current) => { const next = new Set(current); next.delete(key); return next; });
-        return false;
-      }
-      markId = data as string;
-      setMarks((current) => new Map(current).set(key, markId!));
-    }
-    const { data: existingShares, error: queryError } = await client
-      .from("channel_mark_shares")
-      .select("channel_id")
-      .eq("mark_id", markId);
-    const channelIds = [...new Set([...(existingShares ?? []).map((share) => share.channel_id), channelId])];
-    const { error: shareError } = queryError ? { error: queryError } : await client.rpc("set_watch_mark_channels", {
-      target_mark_id: markId,
-      target_channel_ids: channelIds,
+    const { data, error: shareError } = await client.rpc("add_watch_mark_to_channel", {
+      target_window_start: windowStart,
+      target_showing_id: showingId,
+      target_channel_id: channelId,
     });
     if (shareError) setError("无法把标记分享到这个 Channel，请稍后重试。");
     else {
-      setShareCounts((current) => new Map(current).set(markId!, channelIds.length));
+      const markId = data as string;
+      setMarks((current) => new Map(current).set(key, markId));
+      setShareCounts((current) => new Map(current).set(markId, (current.get(markId) ?? 0) + 1));
       window.dispatchEvent(new Event(WATCH_MARKS_CHANGED_EVENT));
     }
     setBusy((current) => { const next = new Set(current); next.delete(key); return next; });

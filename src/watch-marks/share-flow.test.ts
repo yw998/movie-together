@@ -42,9 +42,17 @@ describe("personal mark and channel share flow", () => {
     const channelView = await readFile(channelViewPath, "utf8");
 
     expect(hook).toContain("const addToChannel");
-    expect(hook).toContain('target_channel_ids: channelIds');
+    expect(hook).toContain('rpc("add_watch_mark_to_channel"');
+    expect(hook).toContain("target_channel_id: channelId");
     expect(channelView).toContain("watchMarks.addToChannel(activity.showingId, channelId)");
     expect(channelView).toContain("mark.user_id === user?.id");
+  });
+
+  it("dismisses watch-mark errors after three seconds", async () => {
+    const hook = await readFile(hookPath, "utf8");
+
+    expect(hook).toContain("window.setTimeout(() => setError(null), 3000)");
+    expect(hook).toContain("window.clearTimeout(timer)");
   });
 
   it("distinguishes removing one Channel share from deleting the personal mark", async () => {

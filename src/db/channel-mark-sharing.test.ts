@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 
 const migrationPath = new URL("../../db/migrations/011_channel_watch_mark_sharing.sql", import.meta.url);
 const cleanupMigrationPath = new URL("../../db/migrations/012_cleanup_shares_on_membership_removal.sql", import.meta.url);
+const atomicMigrationPath = new URL("../../db/migrations/014_atomic_channel_watch_mark.sql", import.meta.url);
 
 describe("channel watch-mark sharing", () => {
   it("keeps the personal mark as source data and shares through join rows", async () => {
@@ -38,5 +39,15 @@ describe("channel watch-mark sharing", () => {
     expect(migration).toContain("before delete on channel_members");
     expect(migration).toContain("delete from public.channel_mark_shares");
     expect(migration).not.toContain("delete from public.watch_marks");
+  });
+
+  it("adds a membership-checked atomic operation for marking within a Channel", async () => {
+    const migration = await readFile(atomicMigrationPath, "utf8");
+
+    expect(migration).toContain("create or replace function add_watch_mark_to_channel");
+    expect(migration).toContain("Channel membership not found.");
+    expect(migration).toContain("insert into public.watch_marks");
+    expect(migration).toContain("insert into public.channel_mark_shares");
+    expect(migration).toContain("grant execute on function add_watch_mark_to_channel(date, text, uuid) to authenticated");
   });
 });
