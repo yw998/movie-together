@@ -616,6 +616,10 @@ local showing time, matching the personal schedule's chronological reading order
 A member may click “想看” on another member's shared official showing; this creates
 the member's own personal mark and explicitly shares that mark to the current
 Channel, without modifying the original member's mark.
+The member who created their own mark can click its marked control inside a
+Channel to open a non-modal choice: remove only that Channel share while keeping
+the personal mark, or delete the personal mark and consequently remove all of
+its Channel shares. The UI must state the wider effect before personal deletion.
 Channel creation gives immediate progress/success/error feedback and rejects
 case-insensitive duplicate names owned by the same user, including concurrent
 double submissions. Existing duplicates are never deleted automatically; owners

@@ -17,6 +17,7 @@ export function ChannelMainView({ channelId }: { channelId: string }) {
   const [members, setMembers] = useState<Member[]>([]);
   const [sharedMarks, setSharedMarks] = useState<SharedMark[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [removePrompt, setRemovePrompt] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     if (!client) return;
@@ -103,13 +104,24 @@ export function ChannelMainView({ channelId }: { channelId: string }) {
                 </div>
                 <div className="channel-card-actions">
                   {activity.showing && <a href={activity.showing.detailUrl} rel="noreferrer" target="_blank">官方详情 / 购票 ↗</a>}
-                  {activity.showing && <button
-                    aria-pressed={currentUserShared}
-                    className={`watch-mark${currentUserShared ? " marked" : ""}`}
-                    disabled={currentUserShared || watchMarks.isBusy(activity.showingId)}
-                    onClick={() => void watchMarks.addToChannel(activity.showingId, channelId)}
-                    type="button"
-                  >{watchMarks.isBusy(activity.showingId) ? "保存中…" : currentUserShared ? "✓ 已想看" : "+ 想看"}</button>}
+                  {activity.showing && <div className="channel-mark-control">
+                    <button
+                      aria-expanded={currentUserShared ? removePrompt === activity.showingId : undefined}
+                      aria-pressed={currentUserShared}
+                      className={`watch-mark${currentUserShared ? " marked" : ""}`}
+                      disabled={watchMarks.isBusy(activity.showingId)}
+                      onClick={() => currentUserShared
+                        ? setRemovePrompt((current) => current === activity.showingId ? null : activity.showingId)
+                        : void watchMarks.addToChannel(activity.showingId, channelId)}
+                      type="button"
+                    >{watchMarks.isBusy(activity.showingId) ? "保存中…" : currentUserShared ? "✓ 已想看" : "+ 想看"}</button>
+                    {currentUserShared && removePrompt === activity.showingId && <div className="channel-remove-menu" role="dialog" aria-label="取消想看">
+                      <b>如何取消？</b>
+                      <button onClick={() => { setRemovePrompt(null); void watchMarks.removeFromChannel(activity.showingId, channelId); }} type="button">仅从这个 Channel 取消</button>
+                      <button className="remove-personal-mark" onClick={() => { setRemovePrompt(null); void watchMarks.toggle(activity.showingId); }} type="button">从个人想看中删除<small>也会从所有 Channel 移除</small></button>
+                      <button className="cancel-remove-mark" onClick={() => setRemovePrompt(null)} type="button">保留想看</button>
+                    </div>}
+                  </div>}
                 </div>
               </div>
             </article>;

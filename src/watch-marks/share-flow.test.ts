@@ -45,4 +45,15 @@ describe("personal mark and channel share flow", () => {
     expect(channelView).toContain("watchMarks.addToChannel(activity.showingId, channelId)");
     expect(channelView).toContain("mark.user_id === user?.id");
   });
+
+  it("distinguishes removing one Channel share from deleting the personal mark", async () => {
+    const hook = await readFile(hookPath, "utf8");
+    const channelView = await readFile(channelViewPath, "utf8");
+
+    expect(hook).toContain("const removeFromChannel");
+    expect(hook).toContain("existingChannelId !== channelId");
+    expect(channelView).toContain("仅从这个 Channel 取消");
+    expect(channelView).toContain("也会从所有 Channel 移除");
+    expect(channelView).toContain("watchMarks.toggle(activity.showingId)");
+  });
 });

@@ -172,6 +172,34 @@ export function useWatchMarks(windowStart: string) {
     return !shareError;
   }, [busy, marks, user, windowStart]);
 
+  const removeFromChannel = useCallback(async (showingId: string, channelId: string) => {
+    const client = supabase;
+    if (!client || !user) return false;
+    const key = showingMarkKey(windowStart, showingId);
+    const markId = marks.get(key);
+    if (!markId || busy.has(key)) return false;
+    setBusy((current) => new Set(current).add(key));
+    setError(null);
+    const { data: existingShares, error: queryError } = await client
+      .from("channel_mark_shares")
+      .select("channel_id")
+      .eq("mark_id", markId);
+    const channelIds = (existingShares ?? [])
+      .map((share) => share.channel_id)
+      .filter((existingChannelId) => existingChannelId !== channelId);
+    const { error: shareError } = queryError ? { error: queryError } : await client.rpc("set_watch_mark_channels", {
+      target_mark_id: markId,
+      target_channel_ids: channelIds,
+    });
+    if (shareError) setError("无法从这个 Channel 取消分享，请稍后重试。");
+    else {
+      setShareCounts((current) => new Map(current).set(markId, channelIds.length));
+      window.dispatchEvent(new Event(WATCH_MARKS_CHANGED_EVENT));
+    }
+    setBusy((current) => { const next = new Set(current); next.delete(key); return next; });
+    return !shareError;
+  }, [busy, marks, user, windowStart]);
+
   return {
     error,
     markedCount: marks.size,
@@ -186,5 +214,6 @@ export function useWatchMarks(windowStart: string) {
     toggle,
     updateSharing,
     addToChannel,
+    removeFromChannel,
   };
 }

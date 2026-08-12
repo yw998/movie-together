@@ -191,7 +191,14 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-shared-footer .mark-avatars span { border-color: #faf7ef; }
 .channel-shared-footer a { border-bottom: 1px solid #aaa; font: 700 10px monospace; text-decoration: none; }
 .channel-card-actions { align-items: center; justify-content: flex-end; gap: 12px; display: flex; }
-.channel-card-actions .watch-mark.marked:disabled { cursor: default; opacity: 1; }
+.channel-mark-control { position: relative; }
+.channel-remove-menu { color: var(--ink); background: #fffdf7; border: 1px solid #aaa69c; width: 245px; padding: 12px; position: absolute; z-index: 12; right: 0; bottom: calc(100% + 7px); box-shadow: 0 12px 32px #0003; }
+.channel-remove-menu > b { margin: 0 0 8px; font: 700 13px Georgia, "Songti SC", serif; display: block; }
+.channel-remove-menu > button { text-align: left; color: var(--ink); background: #f3eee3; border: 1px solid var(--line); width: 100%; margin-top: 6px; padding: 8px 9px; font-size: 11px; font-weight: 700; display: block; }
+.channel-remove-menu > button:hover { background: #e8e1d4; }
+.channel-remove-menu > button.remove-personal-mark { color: #8a3024; border-color: #d7aaa2; }
+.channel-remove-menu > button.cancel-remove-mark { text-align: center; color: #686961; background: transparent; border: 0; font-weight: 400; }
+.channel-remove-menu small { color: #8a7772; margin-top: 3px; font-size: 9px; font-weight: 400; display: block; }
 .share-mark-popover { color: var(--ink); background: var(--paper); border: 1px solid #aaa69c; width: min(286px, calc(100vw - 24px)); max-height: var(--share-max-height); padding: 17px; position: fixed; z-index: 45; left: var(--share-left); top: var(--share-top); overflow-y: auto; box-shadow: 0 14px 40px #0004; }
 .share-mark-popover.above { transform: translateY(-100%); }
 .share-mark-popover h2 { margin: 12px 0 5px; font: 700 20px Georgia, "Songti SC", serif; }
