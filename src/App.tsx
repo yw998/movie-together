@@ -8,7 +8,6 @@ import {
 } from "./lib/time";
 import type { Showing } from "./types/schedule";
 import { formatWindowYears, formatWindowZh } from "./lib/date-display";
-import { availabilityLabel } from "./lib/showing-labels";
 import { AccountControl } from "./auth/AccountControl";
 import { useWatchMarks } from "./watch-marks/useWatchMarks";
 import { ChannelPanel } from "./channels/ChannelPanel";
@@ -272,10 +271,9 @@ type ShowingCardProps = {
 };
 
 function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, onEditShare, signedIn, shareCount, mutualCount }: ShowingCardProps) {
-  const availability = availabilityLabel(showing.availability);
   return (
     <article
-      className={`card${showing.availability === "sold_out" ? " sold-out" : ""}`}
+      className="card"
       style={{ "--c": cinema.color } as ColorStyle}
     >
       <div className="time">{formatDisplayTime(showing.localTime)}</div>
@@ -283,7 +281,6 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
         <div className="cinema">
           <i />
           {cinema.name}
-          {availability && <strong className="availability">{availability}</strong>}
         </div>
         <h2>{film.displayTitle}</h2>
         <p>
@@ -295,7 +292,7 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
         {marked && <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? `已分享至 ${shareCount} 个 Channel · 编辑` : "仅个人可见 · 设置分享"}</button>}
         <div className="card-actions">
           <a href={showing.detailUrl} rel="noreferrer" target="_blank">
-            {showing.availability === "sold_out" ? "查看官方详情" : "官方详情 / 购票"} ↗
+            官方详情 / 购票 ↗
           </a>
           <button
             aria-pressed={marked}

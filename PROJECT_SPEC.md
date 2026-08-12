@@ -330,8 +330,9 @@ offset-bearing New York datetimes, performance and production IDs, venues,
 ticket URLs, accessibility, and ticket status. Each in-window film is joined by
 official slug to its WordPress GraphQL record for director, year, runtime,
 presentation format, synopsis evidence, and performance-ID-scoped Q&A/intro
-metadata. Standby-only screenings remain visible with a sold-out label and
-explicit standby note. Synthetic pass products are excluded. A missing detail
+metadata. Standby-only screenings remain visible, but the public UI does not
+display availability labels; exact event notes remain available when material.
+Synthetic pass products are excluded. A missing detail
 join, inconsistent ID/time/link, or empty feed becomes a visible partial/failed
 result and blocks publication.
 
@@ -354,7 +355,8 @@ Product decisions confirmed 2026-08-11:
   It was superseded on 2026-08-12 by the rolling seven-day homepage decision.
 - A successful review report requires explicit named human approval before any
   publication step. There is no automatic publication.
-- Sold-out events remain visible and carry a clear sold-out label.
+- Sold-out events remain visible, while availability labels are hidden from the
+  public UI because the update frequency cannot guarantee current ticket status.
 
 The recovered August 11–17 prototype bundle predates the calendar-week decision
 and remains unchanged as historical evidence. Newly generated bundles must use
@@ -684,7 +686,7 @@ showing. No mark is shared to a channel in this phase.
    仍按周一至周日保存和审核场次，以维持稳定场次身份与想看标记；跨周主页合并
    当前周和下一周的已批准数据。此决定于 2026-08-12 取代此前自然周主页决定。
 2. 每周更新必须先生成 review report，再由具名用户明确批准；不自动发布。
-3. 已售罄场次继续显示并明确标注。
+3. 已售罄场次继续显示，但前端不展示售罄标签；数据库继续保留抓取时的状态用于审计。
 4. 产品需要用户账号、私人想看标记、受邀请成员可见的共享频道，以及可选择共享的用户自建活动。
 5. 分享只授予频道成员查看权；其他成员不能编辑标记或活动，默认状态始终为私人。
 6. “想看”标记针对一个具体官方场次；同一电影的不同时间或影院分别标记。

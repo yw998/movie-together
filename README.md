@@ -58,8 +58,9 @@ Source ingestion and database identities remain Monday through Sunday. The
 public homepage is a rolling New York today-plus-six-days window assembled from
 the one or two approved calendar weeks it overlaps. A concern-free automated
 report may publish; any warning or questionable change stops publication and
-opens manual review. Sold-out screenings remain in public data and are displayed
-with an `已售罄` label.
+opens manual review. Sold-out screenings remain in public data for provenance,
+but the public UI does not display availability labels because publication is
+not frequent enough to promise live ticket status.
 
 The August 10–16 review is at
 [`data/reviews/2026-08-10-v3-report.md`](data/reviews/2026-08-10-v3-report.md).
