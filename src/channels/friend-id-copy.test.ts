@@ -11,6 +11,8 @@ describe("Friend ID copy control", () => {
     expect(source).toContain('disabled={!friendId}');
     expect(source).toContain('friendIdCopied ? "已复制" : "复制"');
     expect(source).toContain("无法复制 Friend ID");
+    expect(source).toContain("friendIdCopyTimerRef.current = window.setTimeout");
+    expect(source).toContain("}, 3000)");
   });
 
   it("shows the personal Friend ID and copy control in the Channel creation dialog", async () => {

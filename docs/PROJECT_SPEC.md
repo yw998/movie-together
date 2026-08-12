@@ -609,7 +609,11 @@ create link invitations, and accept pending invitations. Link visitors can join
 an account or create a read-only guest, save the one-time guest credential, and
 later reopen only that channel. Personal mark sharing, membership auto-share
 defaults, week-wide personal view, per-card share counts, Channel activity cards,
-and colored username initials are implemented. User-created events are not yet
+and colored username initials are implemented. Members can leave a Channel while
+retaining their personal marks; their shares to that Channel are removed. Owners
+delete rather than leave their Channel. Operation feedback across account,
+Channel, notification, sharing, and watch-mark controls clears after three
+seconds. User-created events are not yet
 implemented; a second registered test identity is still required for a complete
 two-account acceptance test.
 

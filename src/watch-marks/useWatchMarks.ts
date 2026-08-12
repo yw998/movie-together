@@ -3,6 +3,7 @@ import { useAuth } from "../auth/AuthContext";
 import { requestAccountDialog } from "../auth/account-events";
 import { supabase } from "../auth/supabase";
 import { calendarWeekFor } from "../lib/calendar-week";
+import { useTransientMessage } from "../lib/useTransientMessage";
 
 type WatchMarkRow = { id: string; window_start: string; showing_id: string };
 export const WATCH_MARKS_CHANGED_EVENT = "movie-together:watch-marks-changed";
@@ -25,7 +26,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
   const [busy, setBusy] = useState<Set<string>>(new Set());
   const [shareCounts, setShareCounts] = useState<Map<string, number>>(new Map());
   const [mutualCounts, setMutualCounts] = useState<Map<string, number>>(new Map());
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useTransientMessage();
   const showingWindows = useMemo(() => new Map(showings.map((showing) => [
     showing.id,
     showingStorageWindow(showing.localDate),
@@ -114,12 +115,6 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
     window.addEventListener(WATCH_MARKS_CHANGED_EVENT, loadMutualCounts);
     return () => window.removeEventListener(WATCH_MARKS_CHANGED_EVENT, loadMutualCounts);
   }, [loadMutualCounts]);
-
-  useEffect(() => {
-    if (!error) return;
-    const timer = window.setTimeout(() => setError(null), 3000);
-    return () => window.clearTimeout(timer);
-  }, [error]);
 
   const toggle = useCallback(async (showingId: string): Promise<WatchMarkToggleResult> => {
     const client = supabase;

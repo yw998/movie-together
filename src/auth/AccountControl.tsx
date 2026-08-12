@@ -4,6 +4,7 @@ import { passwordChangeError } from "../lib/password";
 import { authConfigured, supabase } from "./supabase";
 import { useAuth } from "./AuthContext";
 import { OPEN_ACCOUNT_EVENT } from "./account-events";
+import { useTransientMessage } from "../lib/useTransientMessage";
 
 type Mode = "login" | "signup" | "resend" | "reset" | "update_password" | "change_password";
 type AccountControlProps = {
@@ -19,7 +20,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [mode, setMode] = useState<Mode>("login");
   const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useTransientMessage();
   const [reminderCount, setReminderCount] = useState(0);
 
   useEffect(() => {

@@ -5,6 +5,7 @@ import { scheduleData } from "../data/schedule";
 import { formatDisplayTime, minutesSinceMidnight } from "../lib/time";
 import { useWatchMarks, WATCH_MARKS_CHANGED_EVENT } from "../watch-marks/useWatchMarks";
 import { avatarColor } from "./avatar";
+import { useTransientMessage } from "../lib/useTransientMessage";
 
 type SharedMark = { showing_id: string; user_id: string; username: string };
 type Member = { user_id: string; role: "owner" | "member"; username: string };
@@ -16,7 +17,7 @@ export function ChannelMainView({ channelId }: { channelId: string }) {
   const [name, setName] = useState("Channel");
   const [members, setMembers] = useState<Member[]>([]);
   const [sharedMarks, setSharedMarks] = useState<SharedMark[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useTransientMessage();
   const [removePrompt, setRemovePrompt] = useState<string | null>(null);
 
   const load = useCallback(async () => {

@@ -5,6 +5,7 @@ import { supabase } from "../auth/supabase";
 import { scheduleData } from "../data/schedule";
 import { formatDisplayTime } from "../lib/time";
 import type { ChannelInvitation, ChannelNotification } from "../channels/channel-api";
+import { useTransientMessage } from "../lib/useTransientMessage";
 
 type NotificationsViewProps = {
   onOpenChannel: (channelId: string) => void;
@@ -18,7 +19,7 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
   const [activities, setActivities] = useState<ChannelNotification[]>([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useTransientMessage();
 
   const showingById = useMemo(() => new Map(scheduleData.showings.map((showing) => [showing.id, showing])), []);
   const filmById = useMemo(() => new Map(scheduleData.films.map((film) => [film.id, film])), []);

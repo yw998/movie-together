@@ -38,14 +38,24 @@ describe("async channel forms", () => {
     expect(source).not.toContain("已创建「");
   });
 
-  it("shows Channel deletion success in a one-second centered toast", async () => {
+  it("shows Channel exit and deletion success in a three-second centered toast", async () => {
     const source = await readFile(componentPath, "utf8");
     const styles = await readFile(stylesPath, "utf8");
 
     expect(source).toContain('showDeleteNotice(`已删除「${selectedChannel.name}」。`)');
+    expect(source).toContain('showDeleteNotice(`已退出「${selectedChannel.name}」。`)');
     expect(source).toContain('className="channel-delete-toast"');
-    expect(source).toContain("}, 1000)");
+    expect(source).toContain("}, 3000)");
     expect(styles).toContain("top: 50%; left: 50%");
-    expect(styles).toContain("animation: channel-delete-toast 1s ease forwards");
+    expect(styles).toContain("animation: channel-delete-toast 3s ease forwards");
+  });
+
+  it("lets members leave while requiring owners to delete their Channel", async () => {
+    const source = await readFile(componentPath, "utf8");
+
+    expect(source).toContain('rpc("leave_channel"');
+    expect(source).toContain("!owner && <button");
+    expect(source).toContain("退出 Channel</button>");
+    expect(source).toContain("个人想看仍会保留");
   });
 });

@@ -12,6 +12,7 @@ import {
   type InvitePreview,
 } from "./channel-api";
 import { avatarColor } from "./avatar";
+import { useTransientMessage } from "../lib/useTransientMessage";
 
 // Keep the guest implementation available for a future re-enable, but do not
 // expose guest entry points in the public UI for now.
@@ -37,19 +38,20 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
   const dialogRef = useRef<HTMLDialogElement>(null);
   const createDialogRef = useRef<HTMLDialogElement>(null);
   const creatingRef = useRef(false);
+  const friendIdCopyTimerRef = useRef<number | null>(null);
   const inviteCopyTimerRef = useRef<number | null>(null);
   const deleteNoticeTimerRef = useRef<number | null>(null);
   const [channels, setChannels] = useState<Channel[]>([]);
   const [friendId, setFriendId] = useState<string | null>(null);
   const [members, setMembers] = useState<Member[]>([]);
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useTransientMessage();
   const [busy, setBusy] = useState(false);
   const [invitePreview, setInvitePreview] = useState<InvitePreview | null>(null);
   const [guestCredential, setGuestCredential] = useState<{ id: string; code: string } | null>(null);
   const [guestView, setGuestView] = useState<GuestView | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [friendIdCopied, setFriendIdCopied] = useState(false);
-  const [createMessage, setCreateMessage] = useState<string | null>(null);
+  const [createMessage, setCreateMessage] = useTransientMessage();
   const [inviteNotice, setInviteNotice] = useState<{ id: number; text: string } | null>(null);
   const [deleteNotice, setDeleteNotice] = useState<{ id: number; text: string } | null>(null);
   const selected = activeChannelId;
@@ -77,6 +79,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
   useEffect(() => { void load(); }, [load]);
 
   useEffect(() => () => {
+    if (friendIdCopyTimerRef.current !== null) window.clearTimeout(friendIdCopyTimerRef.current);
     if (inviteCopyTimerRef.current !== null) window.clearTimeout(inviteCopyTimerRef.current);
     if (deleteNoticeTimerRef.current !== null) window.clearTimeout(deleteNoticeTimerRef.current);
   }, []);
@@ -160,7 +163,11 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
     try {
       await navigator.clipboard.writeText(friendId);
       setFriendIdCopied(true);
-      window.setTimeout(() => setFriendIdCopied(false), 1800);
+      if (friendIdCopyTimerRef.current !== null) window.clearTimeout(friendIdCopyTimerRef.current);
+      friendIdCopyTimerRef.current = window.setTimeout(() => {
+        setFriendIdCopied(false);
+        friendIdCopyTimerRef.current = null;
+      }, 3000);
     } catch {
       setMessage("无法复制 Friend ID，请检查浏览器的剪贴板权限。");
     }
@@ -191,13 +198,25 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
     await load();
   }
 
+  async function leaveSelectedChannel() {
+    if (!selectedChannel || owner || busy) return;
+    if (!window.confirm(`确定退出「${selectedChannel.name}」吗？你在这个 Channel 的分享会被移除，个人想看仍会保留。`)) return;
+    setBusy(true);
+    const { error } = await client!.rpc("leave_channel", { target_channel_id: selectedChannel.id });
+    setBusy(false);
+    if (error) return setMessage("无法退出 Channel，请稍后重试。");
+    showDeleteNotice(`已退出「${selectedChannel.name}」。`);
+    onNavigate(null);
+    await load();
+  }
+
   function showDeleteNotice(text: string) {
     if (deleteNoticeTimerRef.current !== null) window.clearTimeout(deleteNoticeTimerRef.current);
     setDeleteNotice({ id: Date.now(), text });
     deleteNoticeTimerRef.current = window.setTimeout(() => {
       setDeleteNotice(null);
       deleteNoticeTimerRef.current = null;
-    }, 1000);
+    }, 3000);
   }
 
   async function inviteUser(event: FormEvent<HTMLFormElement>) {
@@ -387,6 +406,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
               {owner && <>
                 <button className="delete-channel" disabled={busy} onClick={() => void deleteSelectedChannel()} type="button">删除 Channel</button>
               </>}
+              {!owner && <button className="leave-channel" disabled={busy} onClick={() => void leaveSelectedChannel()} type="button">退出 Channel</button>}
             </div>}
             {message && <p className="channel-message" role="status">{message}</p>}
           </>}

@@ -51,8 +51,7 @@ describe("personal mark and channel share flow", () => {
   it("dismisses watch-mark errors after three seconds", async () => {
     const hook = await readFile(hookPath, "utf8");
 
-    expect(hook).toContain("window.setTimeout(() => setError(null), 3000)");
-    expect(hook).toContain("window.clearTimeout(timer)");
+    expect(hook).toContain("useTransientMessage");
   });
 
   it("distinguishes removing one Channel share from deleting the personal mark", async () => {

@@ -141,11 +141,11 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .mark-avatars span { color: #fff; border: 2px solid #2d2f28; border-radius: 50%; align-items: center; justify-content: center; width: 25px; height: 25px; margin-left: -7px; font-size: 9px; font-weight: 700; display: flex; }
 .channel-invite { flex-direction: column; }
 .copy-invite { width: 100%; }
-.delete-channel { color: #f4b8ad; background: transparent; border: 1px solid #81483f; border-radius: 4px; width: 100%; margin-top: 8px; padding: 8px 10px; font-size: 11px; }
-.delete-channel:hover { color: #fff; background: #6e342c; }
+.delete-channel, .leave-channel { color: #f4b8ad; background: transparent; border: 1px solid #81483f; border-radius: 4px; width: 100%; margin-top: 8px; padding: 8px 10px; font-size: 11px; }
+.delete-channel:hover, .leave-channel:hover { color: #fff; background: #6e342c; }
 .channel-message { color: #683516; background: #fff2df; padding: 10px 13px; font-size: 12px; }
-.channel-delete-toast { color: #fff; background: #22231ef2; border: 1px solid #6d6f63; border-radius: 6px; max-width: min(88vw, 360px); padding: 13px 18px; position: fixed; z-index: 80; top: 50%; left: 50%; font-size: 12px; font-weight: 700; transform: translate(-50%, -50%); box-shadow: 0 14px 45px #0006; pointer-events: none; animation: channel-delete-toast 1s ease forwards; }
-@keyframes channel-delete-toast { 0%, 70% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -48%) scale(.98); } }
+.channel-delete-toast { color: #fff; background: #22231ef2; border: 1px solid #6d6f63; border-radius: 6px; max-width: min(88vw, 360px); padding: 13px 18px; position: fixed; z-index: 80; top: 50%; left: 50%; font-size: 12px; font-weight: 700; transform: translate(-50%, -50%); box-shadow: 0 14px 45px #0006; pointer-events: none; animation: channel-delete-toast 3s ease forwards; }
+@keyframes channel-delete-toast { 0%, 85% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -48%) scale(.98); } }
 .invite-dialog .auth-submit { width: 100%; margin: 12px 0; }
 .guest-form { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 18px; }
 .guest-credential { gap: 8px; display: grid; }

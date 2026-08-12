@@ -1,6 +1,7 @@
 import { useEffect, useState, type CSSProperties, type FormEvent } from "react";
 import { supabase } from "../auth/supabase";
 import { useAuth } from "../auth/AuthContext";
+import { useTransientMessage } from "../lib/useTransientMessage";
 
 type ShareChannel = { id: string; name: string; autoShare: boolean };
 
@@ -21,7 +22,7 @@ export function ShareMarkPopover({
   const [channels, setChannels] = useState<ShareChannel[]>([]);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [busy, setBusy] = useState(true);
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useTransientMessage();
 
   useEffect(() => {
     const client = supabase;
