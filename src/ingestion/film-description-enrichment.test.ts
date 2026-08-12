@@ -58,7 +58,7 @@ describe("film description enrichment", () => {
       publishedSchedule.films as Film[],
       publishedSchedule.showings as Showing[],
     );
-    expect(enriched).toHaveLength(96);
+    expect(enriched).toHaveLength(publishedSchedule.films.length);
     expect(
       enriched.filter((item) => !item.descriptionZh || !item.descriptionSource),
     ).toEqual([]);
