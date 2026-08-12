@@ -454,7 +454,9 @@ Product scope confirmed 2026-08-11:
    card shows how many channels currently receive that mark. It spans the whole
    published week and groups marks by date rather than inheriting one active date tab.
 7. Creating a mark always saves it privately first, then opens a channel-sharing
-   dialog. Dismissing the dialog keeps the personal mark. The user can select
+   non-modal popover beside the clicked control. It has no backdrop and does not
+   block scrolling or interaction with any other component. Ignoring or dismissing
+   the popover keeps the personal mark. The user can select
    channels individually; membership-level auto-share defaults are preselected
    and applied immediately, but can be changed for that mark in the dialog.
 8. Each channel has a member-visible activity view of shared marks. A showing

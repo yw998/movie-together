@@ -1,21 +1,22 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useState, type CSSProperties, type FormEvent } from "react";
 import { supabase } from "../auth/supabase";
 import { useAuth } from "../auth/AuthContext";
 
 type ShareChannel = { id: string; name: string; autoShare: boolean };
 
-export function ShareMarkDialog({
+export function ShareMarkPopover({
   markId,
   filmTitle,
+  anchor,
   onClose,
   onSaved,
 }: {
   markId: string;
   filmTitle: string;
+  anchor: { left: number; top: number; maxHeight: number; placement: "above" | "below" };
   onClose: () => void;
   onSaved: (channelIds: string[]) => Promise<boolean>;
 }) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
   const { user } = useAuth();
   const [channels, setChannels] = useState<ShareChannel[]>([]);
   const [selected, setSelected] = useState<Set<string>>(new Set());
@@ -23,7 +24,6 @@ export function ShareMarkDialog({
   const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    dialogRef.current?.showModal();
     const client = supabase;
     if (!client || !user) {
       setMessage("请重新登录后设置分享。");
@@ -64,14 +64,21 @@ export function ShareMarkDialog({
     const channelIds = [...selected];
     const saved = await onSaved(channelIds);
     setBusy(false);
-    if (saved) {
-      dialogRef.current?.close();
-      onClose();
-    } else setMessage("无法保存分享设置，请稍后重试。");
+    if (saved) onClose();
+    else setMessage("无法保存分享设置，请稍后重试。");
   }
 
-  return <dialog className="auth-dialog share-mark-dialog" ref={dialogRef} onClose={onClose}>
-    <button className="share-dialog-close" onClick={() => dialogRef.current?.close()} type="button">×</button>
+  return <aside
+    aria-label="选择要分享的 Channel"
+    className={`share-mark-popover ${anchor.placement}`}
+    role="dialog"
+    style={{
+      "--share-left": `${anchor.left}px`,
+      "--share-top": `${anchor.top}px`,
+      "--share-max-height": `${anchor.maxHeight}px`,
+    } as CSSProperties}
+  >
+    <button className="share-dialog-close" onClick={onClose} type="button">×</button>
     <span className="eyebrow dark">PERSONAL MARK SAVED</span>
     <h2>分享到 Channel？</h2>
     <p className="privacy-note">「{filmTitle}」已经加入个人主视图。关闭这里不会取消标记。</p>
@@ -91,5 +98,5 @@ export function ShareMarkDialog({
       {message && <p className="auth-message">{message}</p>}
       <button className="auth-submit" disabled={busy} type="submit">{busy ? "保存中…" : "保存分享设置"}</button>
     </form>
-  </dialog>;
+  </aside>;
 }

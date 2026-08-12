@@ -12,7 +12,7 @@ import { availabilityLabel } from "./lib/showing-labels";
 import { AccountControl } from "./auth/AccountControl";
 import { useWatchMarks } from "./watch-marks/useWatchMarks";
 import { ChannelPanel } from "./channels/ChannelPanel";
-import { ShareMarkDialog } from "./watch-marks/ShareMarkDialog";
+import { ShareMarkPopover } from "./watch-marks/ShareMarkDialog";
 
 const timeClusters: TimeCluster[] = ["上午", "下午", "晚间", "深夜"];
 
@@ -26,7 +26,11 @@ export default function App() {
   );
   const [query, setQuery] = useState("");
   const [scheduleView, setScheduleView] = useState<"all" | "personal">("all");
-  const [sharePrompt, setSharePrompt] = useState<{ markId: string; filmTitle: string } | null>(null);
+  const [sharePrompt, setSharePrompt] = useState<{
+    markId: string;
+    filmTitle: string;
+    anchor: { left: number; top: number; maxHeight: number; placement: "above" | "below" };
+  } | null>(null);
   const watchMarks = useWatchMarks(metadata.windowStart);
 
   const cinemaById = useMemo(
@@ -182,15 +186,23 @@ export default function App() {
                     key={showing.id}
                     markBusy={watchMarks.isBusy(showing.id)}
                     marked={watchMarks.isMarked(showing.id)}
-                    onToggleMark={() => void watchMarks.toggle(showing.id).then((result) => {
+                    onToggleMark={(button) => {
+                      const anchor = sharePopoverAnchor(button);
+                      void watchMarks.toggle(showing.id).then((result) => {
                       if (result?.action === "created") setSharePrompt({
                         markId: result.markId,
                         filmTitle: filmById.get(showing.filmId)!.displayTitle,
+                        anchor,
                       });
-                    })}
-                    onEditShare={() => {
+                    });
+                    }}
+                    onEditShare={(button) => {
                       const markId = watchMarks.markId(showing.id);
-                      if (markId) setSharePrompt({ markId, filmTitle: filmById.get(showing.filmId)!.displayTitle });
+                      if (markId) setSharePrompt({
+                        markId,
+                        filmTitle: filmById.get(showing.filmId)!.displayTitle,
+                        anchor: sharePopoverAnchor(button),
+                      });
                     }}
                     shareCount={watchMarks.shareCount(showing.id)}
                     signedIn={watchMarks.signedIn}
@@ -223,7 +235,8 @@ export default function App() {
         </div>
       </footer>
       </div>
-      {sharePrompt && <ShareMarkDialog
+      {sharePrompt && <ShareMarkPopover
+        anchor={sharePrompt.anchor}
         filmTitle={sharePrompt.filmTitle}
         markId={sharePrompt.markId}
         onClose={() => setSharePrompt(null)}
@@ -239,8 +252,8 @@ type ShowingCardProps = {
   showing: Showing;
   marked: boolean;
   markBusy: boolean;
-  onToggleMark: () => void;
-  onEditShare: () => void;
+  onToggleMark: (button: HTMLButtonElement) => void;
+  onEditShare: (button: HTMLButtonElement) => void;
   signedIn: boolean;
   shareCount: number;
 };
@@ -265,7 +278,7 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
             "本周特别放映；点击查看影院官方介绍与最新票务状态。"}
         </p>
         {showing.eventNote && <small>{showing.eventNote}</small>}
-        {marked && <button className="share-count" onClick={onEditShare} type="button">{shareCount > 0 ? `已分享至 ${shareCount} 个 Channel · 编辑` : "仅个人可见 · 设置分享"}</button>}
+        {marked && <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? `已分享至 ${shareCount} 个 Channel · 编辑` : "仅个人可见 · 设置分享"}</button>}
         <div className="card-actions">
           <a href={showing.detailUrl} rel="noreferrer" target="_blank">
             {showing.availability === "sold_out" ? "查看官方详情" : "官方详情 / 购票"} ↗
@@ -274,7 +287,7 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
             aria-pressed={marked}
             className={`watch-mark${marked ? " marked" : ""}`}
             disabled={markBusy}
-            onClick={onToggleMark}
+            onClick={(event) => onToggleMark(event.currentTarget)}
             title={signedIn ? "此标记目前仅自己可见" : "登录后标记具体场次"}
             type="button"
           >
@@ -284,4 +297,19 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
       </div>
     </article>
   );
+}
+
+function sharePopoverAnchor(button: HTMLButtonElement) {
+  const rect = button.getBoundingClientRect();
+  const width = 286;
+  const left = Math.max(12, Math.min(rect.right - width, window.innerWidth - width - 12));
+  const roomBelow = window.innerHeight - rect.bottom - 12;
+  const roomAbove = rect.top - 12;
+  const placement = roomBelow >= Math.min(310, roomAbove) ? "below" as const : "above" as const;
+  return {
+    left,
+    top: placement === "below" ? rect.bottom + 7 : rect.top - 7,
+    maxHeight: Math.max(150, Math.min(390, placement === "below" ? roomBelow : roomAbove)),
+    placement,
+  };
 }

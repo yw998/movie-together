@@ -130,9 +130,13 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .guest-view b { color: var(--ink); }
 .guest-view article { border: 1px solid var(--line); justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0; padding: 10px; display: flex; }
 .guest-view .mark-avatars span { border-color: var(--paper); }
-.share-dialog-close { color: #777; background: transparent; border: 0; padding: 5px 8px; position: absolute; top: 10px; right: 12px; font-size: 24px; }
+.share-mark-popover { color: var(--ink); background: var(--paper); border: 1px solid #aaa69c; width: min(286px, calc(100vw - 24px)); max-height: var(--share-max-height); padding: 17px; position: fixed; z-index: 45; left: var(--share-left); top: var(--share-top); overflow-y: auto; box-shadow: 0 14px 40px #0004; }
+.share-mark-popover.above { transform: translateY(-100%); }
+.share-mark-popover h2 { margin: 12px 0 5px; font: 700 20px Georgia, "Songti SC", serif; }
+.share-mark-popover .privacy-note { margin-bottom: 12px; }
+.share-dialog-close { color: #777; background: transparent; border: 0; padding: 3px 6px; position: absolute; top: 6px; right: 7px; font-size: 20px; }
 .share-channel-form { gap: 9px; display: grid; }
-.share-channel-form > label { border: 1px solid var(--line); background: #fff; align-items: center; gap: 10px; padding: 11px 12px; display: flex; }
+.share-channel-form > label { border: 1px solid var(--line); background: #fff; align-items: center; gap: 8px; padding: 8px 9px; font-size: 12px; display: flex; }
 .share-channel-form small { color: #777; margin-left: 8px; font-size: 10px; }
 .channel-mobile-toggle, .channel-mobile-close, .channel-backdrop { display: none; }
 @media (max-width: 760px) {

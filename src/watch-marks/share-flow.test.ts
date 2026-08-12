@@ -14,6 +14,7 @@ describe("personal mark and channel share flow", () => {
     expect(hook).toContain('action: "created", markId');
     expect(app).toContain('result?.action === "created"');
     expect(app).toContain("setSharePrompt");
+    expect(app).toContain("sharePopoverAnchor(button)");
   });
 
   it("keeps dismissal separate from deletion and saves explicit channels", async () => {
@@ -22,6 +23,8 @@ describe("personal mark and channel share flow", () => {
     expect(dialog).toContain("关闭这里不会取消标记");
     expect(dialog).toContain("onSaved(channelIds)");
     expect(dialog).not.toContain('.from("watch_marks").delete');
+    expect(dialog).not.toContain("showModal");
+    expect(dialog).toContain("share-mark-popover");
   });
 
   it("provides a week-wide personal view and share counts", async () => {
