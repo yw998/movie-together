@@ -112,7 +112,8 @@ export function ChannelPanel() {
     event.preventDefault();
     if (!user) return requestAccountDialog();
     if (creatingRef.current) return;
-    const name = String(new FormData(event.currentTarget).get("name") ?? "").trim();
+    const formElement = event.currentTarget;
+    const name = String(new FormData(formElement).get("name") ?? "").trim();
     if (!name) return;
     if (channels.some((channel) => channel.name.trim().toLocaleLowerCase() === name.toLocaleLowerCase())) {
       setMessage("你已经有一个同名 Channel。");
@@ -124,7 +125,7 @@ export function ChannelPanel() {
     creatingRef.current = false;
     setBusy(false);
     if (error) return setMessage(error.code === "23505" ? "你已经有一个同名 Channel。" : "无法创建 Channel，请稍后重试。");
-    event.currentTarget.reset();
+    formElement.reset();
     await load();
     setSelected(data as string);
     setMessage(`已创建「${name}」。`);
@@ -145,7 +146,8 @@ export function ChannelPanel() {
   async function inviteUser(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!selected) return;
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     const kind = String(form.get("kind"));
     const value = String(form.get("identifier") ?? "").trim();
     setBusy(true);
@@ -167,7 +169,7 @@ export function ChannelPanel() {
       setMessage(error ? "没有找到可邀请的用户，或对方已经是成员。" : "邀请已发送。");
     }
     setBusy(false);
-    event.currentTarget.reset();
+    formElement.reset();
   }
 
   async function createLink() {
