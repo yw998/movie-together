@@ -1,0 +1,3403 @@
+{
+  "metadata": {
+    "timezone": "America/New_York",
+    "windowStart": "2026-08-11",
+    "windowEnd": "2026-08-17",
+    "refreshedLocalDate": "2026-08-11",
+    "provenanceNote": "Recovered from the deployed prototype. Records require official-source verification before republication."
+  },
+  "cinemaUrls": {
+    "Metrograph": "https://metrograph.com/film/",
+    "Film Forum": "https://filmforum.org/",
+    "IFC Center": "https://www.ifccenter.com/",
+    "Roxy Cinema": "https://www.roxycinemanewyork.com/now-showing/",
+    "Paris Theater": "https://www.paristheaternyc.com/"
+  },
+  "colors": {
+    "Metrograph": "#ef5a3c",
+    "Film Forum": "#38a169",
+    "IFC Center": "#805ad5",
+    "Roxy Cinema": "#d69e2e",
+    "Paris Theater": "#3182ce"
+  },
+  "dateLabels": {
+    "2026-08-11": "周二 8/11",
+    "2026-08-12": "周三 8/12",
+    "2026-08-13": "周四 8/13",
+    "2026-08-14": "周五 8/14",
+    "2026-08-15": "周六 8/15",
+    "2026-08-16": "周日 8/16",
+    "2026-08-17": "周一 8/17"
+  },
+  "descriptions": {
+    "Vertigo": "希区柯克关于欲望、替身与执念的迷离悬疑经典。",
+    "The Great Silence": "雪原中的政治寓言式意大利西部片，冷酷而反类型。",
+    "Before Sunrise": "一对陌生人在维也纳共度一夜，爱情从漫谈中生长。",
+    "The Green Room": "特吕弗一部私密、忧郁的悼亡之作。",
+    "Love in the Afternoon": "侯麦以轻盈对白剖开婚姻、诱惑与自我想象。",
+    "The Red Light Bandit": "巴西地下电影的狂野犯罪拼贴，躁动又反叛。",
+    "Good Time": "萨弗迪兄弟让一场纽约逃亡变成霓虹色的高压噩梦。",
+    "Fallen Angels": "王家卫拍夜香港：杀手、失恋者与擦肩而过的欲望。",
+    "Solaris": "塔可夫斯基的太空哲思：记忆、愧疚与无法复原的爱。",
+    "Mountains of the Moon": "两位探险家寻找尼罗河源头，也被野心与友谊撕裂。",
+    "Members Only: Girl with a Suitcase with James Gray": "被遗弃的歌女与少年相遇；映后 James Gray 对谈（会员场）。",
+    "Take Care of My Cat": "五位年轻女性离开校园后，在友情与城市压力间漂流。",
+    "State of Grace": "纽约爱尔兰黑帮卧底故事，Gary Oldman 火力全开。",
+    "El Topo": "Jodorowsky 的迷幻酸性西部片，宗教寓言与暴力奇观并行。",
+    "La Haine": "巴黎郊区三位青年在骚乱后的一天，怒火不断逼近爆点。",
+    "Happy Together": "王家卫以布宜诺斯艾利斯为背景拍一段反复破裂的爱情。",
+    "Linda Linda Linda": "高中女生临时组乐队，为校园演出拼尽最后几天。",
+    "L'Argent": "布列松用一张假钞追踪偶然如何一路酿成悲剧。",
+    "The Traveler": "少年为看球赛不择手段；基亚罗斯塔米早期成长寓言。",
+    "Do You Love Me": "以黎巴嫩影像档案拼贴私人记忆与国家历史。",
+    "JFK": "奥利弗·斯通把肯尼迪遇刺调查拍成狂热的阴谋史诗。",
+    "Les Bonnes Femmes": "四位巴黎店员的梦想、日常与危险，夏布洛冷眼旁观。",
+    "The Warriors": "纽约帮派被诬陷后横穿全城返乡的夜行冒险。",
+    "La Notte": "安东尼奥尼凝视一段婚姻在米兰上流社交中悄然瓦解。",
+    "Deliverance": "四位都市人泛舟荒野，旅程迅速滑向生存噩梦。",
+    "Nil by Mouth": "Gary Oldman 导演处女作，粗粝直视家庭、成瘾与暴力。",
+    "Walkabout": "两个城市孩子迷失澳洲荒野，与原住民少年同行。",
+    "The Hunger": "David Bowie 与 Catherine Deneuve 主演的华丽吸血鬼爱情。",
+    "Obsession": "一枚许愿符把单恋变成失控的超自然占有。",
+    "Chungking Express": "两个失恋警察、菠萝罐头与加州梦交织的香港情书。",
+    "Irreversible": "倒叙结构的极端复仇悲剧；内容强烈，谨慎选择。",
+    "The Dark Knight": "诺兰把超级英雄片升级为关于秩序与混乱的都市犯罪史诗。",
+    "A Day in the Country + People on Sunday": "两部轻盈诗意的户外短长片联映，捕捉稍纵即逝的假日。",
+    "Two by Robb Moss": "Robb Moss 两部作品联映，观察时间如何改变一群人的生活。",
+    "Hannibal": "优雅食人魔重返银幕，华丽、阴森又歌剧化。",
+    "The Others": "雾锁庄园中的哥特鬼故事，靠空间与沉默制造寒意。",
+    "Four Adventures of Reinette and Mirabelle": "侯麦四段小故事，乡村女孩与巴黎女孩争论生活和道德。",
+    "The Jungle Book": "迪士尼手绘经典，丛林男孩在歌声与冒险中寻找归属。",
+    "Otar Iosseliani Early Shorts Program": "伊奥塞利亚尼早期短片集，幽默观察劳动、秩序与日常。",
+    "Falling Leaves": "格鲁吉亚青年步入酒厂与成人世界的温柔讽刺。",
+    "Paranoid Park": "Van Sant 以碎片化时间描画少年事故后的秘密与内疚。",
+    "There Once Was a Singing Blackbird": "一位忙碌鼓手在琐事与偶遇中度过看似寻常的一天。",
+    "The Milk of Sorrow": "一名秘鲁女子背负战争创伤，慢慢尝试找回自己的声音。",
+    "3 Women": "Altman 梦境般的女性心理剧，身份在沙漠中不断交换。",
+    "My Little Loves": "少年在乡间与城市之间成长，性意识与孤独悄然萌发。",
+    "Good Morning": "小津用孩子罢说话的喜剧，观察家庭、邻里与现代生活。",
+    "Jacob's Ladder": "越战老兵被幻觉缠绕，现实与炼狱边界逐渐崩塌。",
+    "Tampopo": "一碗拉面串起美食、欲望与日本社会的类型喜剧。",
+    "Dumplings": "关于青春执念的香港身体恐怖寓言。",
+    "Late Fame": "年长诗人被年轻崇拜者重新发现，虚荣与旧梦随之苏醒。",
+    "Center Stage": "八位纽约芭蕾学生在竞争、欲望与艺术理想之间成长。",
+    "Dread Beat an' Blood": "诗人 Linton Kwesi Johnson 与英国雷鬼现场的有力纪录。",
+    "White Nights": "一段压抑婚姻被突如其来的激情撕开。",
+    "Remake": "波黑家庭影像与记忆交叠，重访战争留下的创伤。",
+    "Sherman's March": "原本的历史纪录片逐渐变成一场荒诞又坦诚的爱情游记。",
+    "The French Connection": "纽约缉毒警追捕走私集团，包含影史级街头追车。",
+    "Riverdogs": "Robb Moss 早期河流影像，记录共同体与自由实验。",
+    "The Same River Twice": "二十多年后重访旧友，理想主义被时间重新衡量。",
+    "The Bend in the River": "Moss 再次回望朋友、衰老与一条持续流动的河。",
+    "Billy Liar": "爱幻想的年轻职员在谎言与逃离小城的机会之间摇摆。",
+    "The Big Cheese": "奶酪竞赛纪录片，竞技热闹背后也有人情与坚持。",
+    "A Child of My Own": "关于家庭、渴望与归属的当代剧情片。",
+    "The Fence": "围绕边界与分隔展开的社会观察。",
+    "Jimmy": "一段聚焦人物处境与选择的独立剧情片。",
+    "Julian": "亲密的人物肖像，观察成长与身份。",
+    "Maddie's Secret": "美食网红的成功压力唤醒她极力压下的过往。",
+    "Mary Oliver: Saved by the Beauty of the World": "以诗歌与自然走近诗人 Mary Oliver 的纪录片。",
+    "Michael Mann's Manhunter: The Final Cut": "FBI 侧写师追捕连环杀手，冷峻色彩与电子乐塑造现代惊悚。",
+    "The Samurai and the Prisoner": "黑泽清的新作，以武士时代故事拆解忠诚与囚禁。",
+    "Wild Inside": "关于纽约明星猫头鹰 Flaco 与城市投射的纪录片。",
+    "Union County": "年轻人回到家乡，在家庭与阶层现实中重新定位自己。",
+    "Mysterious Skin": "Gregg Araki 以两段破碎记忆直视创伤与自我认知。",
+    "Train to Busan": "高速列车爆发丧尸危机，类型刺激中包裹亲情抉择。",
+    "Freefall: A Reckoning for Boeing": "Rory Kennedy 延续调查，追问波音危机、吹哨者与企业责任。",
+    "Addams Family Values": "暗黑一家迎来新成员，Wednesday 的讽刺锋芒最抢眼。",
+    "Battle Royale": "学生被迫互相猎杀的残酷生存寓言。",
+    "Ghost in the Shell": "押井守的赛博朋克动画经典，追问身体、记忆与灵魂。",
+    "The Panic in Needle Park": "一对恋人在纽约毒瘾世界中逐渐失控。",
+    "CatVideoFest 2026": "年度猫咪视频精选，轻松治愈，也为动物公益募款。",
+    "Three Bewildered People in the Night": "Gregg Araki 首作，低成本捕捉三位年轻人的欲望与迷惘。",
+    "National Theatre Live: All My Sons (2026)": "Arthur Miller 家庭悲剧的舞台高清放映。",
+    "Session 9 + Q&A": "清理废弃精神病院的工队逐渐被旧日恐怖吞没，映后主创问答。",
+    "Barrio Triste": "1987 年麦德林，少年用偷来的摄像机记录危险生活。",
+    "Black Book - 35MM | 2006 Movies": "荷兰犹太女子潜入纳粹内部，在抵抗、爱情与背叛间周旋。",
+    "The Invite": "一场邻里晚餐逐渐揭开两段婚姻的欲望与裂缝。",
+    "Vogue's Night of Jazz": "现场爵士、诗歌、五部短片与导演问答的综合夜场。",
+    "Disclosure Day": "Spielberg 回归宏大科幻：全人类被迫面对外星真相。",
+    "Gail Daughtry and the Celebrity Sex Pass": "小镇发型师为报复未婚夫，闯入荒诞的好莱坞追星之旅。",
+    "Dead Souls": "1890 年亚利桑那小镇因一份死者名单陷入荒诞混乱。",
+    "Magic Lanterns 2": "Elsie Fisher、Luke Rathborne 等参与的音乐综艺现场。",
+    "54: The Director's Cut + Q&A": "泽西城少年踏入 1979 年 Studio 54 的炫目与代价，映后问答。",
+    "The Fountain - 35MM | 2006 Movies": "跨越时空的爱情寓言，把死亡、医学与永生编织在一起。",
+    "Incorrectional: A Memorial Service": "一次放映也是一场电影葬礼，结束后项目文件将现场销毁。",
+    "Crank - 35MM | 2006 Movies": "杀手必须持续提高心率才能活命的高速动作狂想。",
+    "A Clockwork Orange": "Kubrick 的反乌托邦经典，35mm 放映并由 Rafer Guzmán 引介。"
+  },
+  "showings": [
+    [
+      "2026-08-11",
+      "3:15 PM",
+      "Metrograph",
+      "Vertigo",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "3:45 PM",
+      "Metrograph",
+      "The Great Silence",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "5:50 PM",
+      "Metrograph",
+      "Before Sunrise",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "6:00 PM",
+      "Metrograph",
+      "The Green Room",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "8:00 PM",
+      "Metrograph",
+      "Love in the Afternoon",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "8:00 PM",
+      "Metrograph",
+      "The Red Light Bandit",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "10:00 PM",
+      "Metrograph",
+      "Good Time",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "10:10 PM",
+      "Metrograph",
+      "Fallen Angels",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "3:15 PM",
+      "Metrograph",
+      "Solaris",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "4:30 PM",
+      "Metrograph",
+      "Mountains of the Moon",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "6:30 PM",
+      "Metrograph",
+      "Members Only: Girl with a Suitcase with James Gray",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "7:20 PM",
+      "Metrograph",
+      "Take Care of My Cat",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "9:35 PM",
+      "Metrograph",
+      "State of Grace",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "9:40 PM",
+      "Metrograph",
+      "El Topo",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "2:00 PM",
+      "Metrograph",
+      "La Haine",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "2:10 PM",
+      "Metrograph",
+      "Happy Together",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "4:00 PM",
+      "Metrograph",
+      "Linda Linda Linda",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "4:15 PM",
+      "Metrograph",
+      "L'Argent",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "6:10 PM",
+      "Metrograph",
+      "The Traveler",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "6:20 PM",
+      "Metrograph",
+      "Do You Love Me",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "7:45 PM",
+      "Metrograph",
+      "JFK",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "1:45 PM",
+      "Metrograph",
+      "Les Bonnes Femmes",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "2:00 PM",
+      "Metrograph",
+      "The Warriors",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "3:50 PM",
+      "Metrograph",
+      "La Notte",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "4:10 PM",
+      "Metrograph",
+      "Deliverance",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "6:20 PM",
+      "Metrograph",
+      "Nil by Mouth",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "6:30 PM",
+      "Metrograph",
+      "Walkabout",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "8:45 PM",
+      "Metrograph",
+      "The Hunger",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "8:50 PM",
+      "Metrograph",
+      "Obsession",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "10:50 PM",
+      "Metrograph",
+      "Chungking Express",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "11:00 PM",
+      "Metrograph",
+      "Irreversible",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "12:00 PM",
+      "Metrograph",
+      "The Dark Knight",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "12:30 PM",
+      "Metrograph",
+      "A Day in the Country + People on Sunday",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "3:00 PM",
+      "Metrograph",
+      "Two by Robb Moss",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "3:10 PM",
+      "Metrograph",
+      "Deliverance",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "5:30 PM",
+      "Metrograph",
+      "Hannibal",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "5:35 PM",
+      "Metrograph",
+      "Nil by Mouth",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "8:15 PM",
+      "Metrograph",
+      "The Others",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "8:20 PM",
+      "Metrograph",
+      "Obsession",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "10:25 PM",
+      "Metrograph",
+      "Chungking Express",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "10:30 PM",
+      "Metrograph",
+      "Irreversible",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "11:00 AM",
+      "Metrograph",
+      "Four Adventures of Reinette and Mirabelle",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "11:00 AM",
+      "Metrograph",
+      "The Jungle Book",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "12:50 PM",
+      "Metrograph",
+      "Walkabout",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "1:00 PM",
+      "Metrograph",
+      "Otar Iosseliani Early Shorts Program",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "3:00 PM",
+      "Metrograph",
+      "Falling Leaves",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "3:10 PM",
+      "Metrograph",
+      "Paranoid Park",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "5:00 PM",
+      "Metrograph",
+      "There Once Was a Singing Blackbird",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "5:15 PM",
+      "Metrograph",
+      "The Milk of Sorrow",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "7:15 PM",
+      "Metrograph",
+      "La Notte",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "7:30 PM",
+      "Metrograph",
+      "Les Bonnes Femmes",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "9:45 PM",
+      "Metrograph",
+      "Chungking Express",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "9:50 PM",
+      "Metrograph",
+      "The Hunger",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "3:00 PM",
+      "Metrograph",
+      "3 Women",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "3:10 PM",
+      "Metrograph",
+      "My Little Loves",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "5:30 PM",
+      "Metrograph",
+      "Good Morning",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "5:35 PM",
+      "Metrograph",
+      "L'Argent",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "7:25 PM",
+      "Metrograph",
+      "Jacob's Ladder",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "7:30 PM",
+      "Metrograph",
+      "Tampopo",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "9:45 PM",
+      "Metrograph",
+      "Dumplings",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "9:50 PM",
+      "Metrograph",
+      "Happy Together",
+      "https://metrograph.com/film/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "12:15 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-11",
+      "2:25 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-11",
+      "4:40 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-11",
+      "6:50 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-11",
+      "9:00 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-11",
+      "1:00 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-11",
+      "4:10 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-11",
+      "9:10 PM",
+      "Film Forum",
+      "Dread Beat an' Blood",
+      "https://filmforum.org/film/dread-beat-an-blood",
+      null
+    ],
+    [
+      "2026-08-11",
+      "12:20 PM",
+      "Film Forum",
+      "White Nights",
+      "https://filmforum.org/film/white-nights",
+      null
+    ],
+    [
+      "2026-08-11",
+      "2:35 PM",
+      "Film Forum",
+      "White Nights",
+      "https://filmforum.org/film/white-nights",
+      null
+    ],
+    [
+      "2026-08-11",
+      "4:50 PM",
+      "Film Forum",
+      "White Nights",
+      "https://filmforum.org/film/white-nights",
+      null
+    ],
+    [
+      "2026-08-11",
+      "7:00 PM",
+      "Film Forum",
+      "White Nights",
+      "https://filmforum.org/film/white-nights",
+      null
+    ],
+    [
+      "2026-08-11",
+      "12:50 PM",
+      "Film Forum",
+      "Remake",
+      "https://filmforum.org/film/remake",
+      null
+    ],
+    [
+      "2026-08-11",
+      "3:20 PM",
+      "Film Forum",
+      "Sherman's March",
+      "https://filmforum.org/film/shermans-march",
+      null
+    ],
+    [
+      "2026-08-11",
+      "6:40 PM",
+      "Film Forum",
+      "Sherman's March",
+      "https://filmforum.org/film/shermans-march",
+      null
+    ],
+    [
+      "2026-08-11",
+      "7:20 PM",
+      "Film Forum",
+      "The French Connection",
+      "https://filmforum.org/film/the-french-connection",
+      null
+    ],
+    [
+      "2026-08-12",
+      "12:15 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-12",
+      "2:25 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-12",
+      "4:40 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-12",
+      "6:50 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-12",
+      "9:00 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-12",
+      "1:00 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-12",
+      "4:10 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-12",
+      "7:20 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-12",
+      "9:30 PM",
+      "Film Forum",
+      "Dread Beat an' Blood",
+      "https://filmforum.org/film/dread-beat-an-blood",
+      null
+    ],
+    [
+      "2026-08-12",
+      "12:20 PM",
+      "Film Forum",
+      "White Nights",
+      "https://filmforum.org/film/white-nights",
+      null
+    ],
+    [
+      "2026-08-12",
+      "2:35 PM",
+      "Film Forum",
+      "White Nights",
+      "https://filmforum.org/film/white-nights",
+      null
+    ],
+    [
+      "2026-08-12",
+      "4:50 PM",
+      "Film Forum",
+      "White Nights",
+      "https://filmforum.org/film/white-nights",
+      null
+    ],
+    [
+      "2026-08-12",
+      "12:50 PM",
+      "Film Forum",
+      "Remake",
+      "https://filmforum.org/film/remake",
+      null
+    ],
+    [
+      "2026-08-12",
+      "3:20 PM",
+      "Film Forum",
+      "Sherman's March",
+      "https://filmforum.org/film/shermans-march",
+      null
+    ],
+    [
+      "2026-08-12",
+      "6:40 PM",
+      "Film Forum",
+      "Sherman's March",
+      "https://filmforum.org/film/shermans-march",
+      null
+    ],
+    [
+      "2026-08-12",
+      "7:00 PM",
+      "Film Forum",
+      "Riverdogs",
+      "https://filmforum.org/film/riverdogs",
+      null
+    ],
+    [
+      "2026-08-12",
+      "8:15 PM",
+      "Film Forum",
+      "Riverdogs",
+      "https://filmforum.org/film/riverdogs",
+      null
+    ],
+    [
+      "2026-08-13",
+      "12:15 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-13",
+      "2:25 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-13",
+      "4:40 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-13",
+      "6:50 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-13",
+      "9:00 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-13",
+      "1:00 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-13",
+      "4:10 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-13",
+      "7:20 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-13",
+      "9:10 PM",
+      "Film Forum",
+      "Dread Beat an' Blood",
+      "https://filmforum.org/film/dread-beat-an-blood",
+      null
+    ],
+    [
+      "2026-08-13",
+      "12:20 PM",
+      "Film Forum",
+      "White Nights",
+      "https://filmforum.org/film/white-nights",
+      null
+    ],
+    [
+      "2026-08-13",
+      "2:35 PM",
+      "Film Forum",
+      "White Nights",
+      "https://filmforum.org/film/white-nights",
+      null
+    ],
+    [
+      "2026-08-13",
+      "4:50 PM",
+      "Film Forum",
+      "White Nights",
+      "https://filmforum.org/film/white-nights",
+      null
+    ],
+    [
+      "2026-08-13",
+      "7:00 PM",
+      "Film Forum",
+      "White Nights",
+      "https://filmforum.org/film/white-nights",
+      null
+    ],
+    [
+      "2026-08-13",
+      "12:50 PM",
+      "Film Forum",
+      "Remake",
+      "https://filmforum.org/film/remake",
+      null
+    ],
+    [
+      "2026-08-13",
+      "3:20 PM",
+      "Film Forum",
+      "Sherman's March",
+      "https://filmforum.org/film/shermans-march",
+      null
+    ],
+    [
+      "2026-08-13",
+      "6:30 PM",
+      "Film Forum",
+      "The Same River Twice",
+      "https://filmforum.org/film/the-same-river-twice",
+      null
+    ],
+    [
+      "2026-08-14",
+      "12:20 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-14",
+      "2:15 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-14",
+      "4:10 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-14",
+      "6:10 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-14",
+      "8:10 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-14",
+      "12:30 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-14",
+      "2:40 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-14",
+      "4:50 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-14",
+      "7:00 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-14",
+      "9:10 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-14",
+      "12:15 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-14",
+      "2:25 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-14",
+      "4:40 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-14",
+      "6:50 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-14",
+      "9:00 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-14",
+      "1:00 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-14",
+      "4:10 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-14",
+      "7:20 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-15",
+      "12:20 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-15",
+      "2:15 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-15",
+      "4:10 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-15",
+      "6:10 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-15",
+      "8:45 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-15",
+      "12:30 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-15",
+      "2:40 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-15",
+      "4:50 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-15",
+      "7:00 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-15",
+      "9:10 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-15",
+      "12:15 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-15",
+      "2:25 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-15",
+      "4:40 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-15",
+      "6:50 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-15",
+      "9:00 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-15",
+      "1:00 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-15",
+      "4:10 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-15",
+      "7:20 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-16",
+      "12:20 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-16",
+      "2:15 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-16",
+      "4:10 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-16",
+      "6:10 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-16",
+      "8:10 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-16",
+      "12:30 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-16",
+      "2:40 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-16",
+      "4:50 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-16",
+      "7:00 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-16",
+      "9:10 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-16",
+      "12:15 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-16",
+      "2:25 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-16",
+      "4:40 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-16",
+      "6:50 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-16",
+      "9:00 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-16",
+      "1:00 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-16",
+      "4:10 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-16",
+      "7:20 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-17",
+      "12:20 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-17",
+      "2:15 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-17",
+      "4:10 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-17",
+      "6:10 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-17",
+      "8:10 PM",
+      "Film Forum",
+      "The Bend in the River",
+      "https://filmforum.org/film/the-bend-in-the-river",
+      null
+    ],
+    [
+      "2026-08-17",
+      "12:30 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-17",
+      "2:40 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-17",
+      "4:50 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-17",
+      "7:00 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-17",
+      "9:10 PM",
+      "Film Forum",
+      "Billy Liar",
+      "https://filmforum.org/film/billy-liar",
+      null
+    ],
+    [
+      "2026-08-17",
+      "12:15 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-17",
+      "2:25 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-17",
+      "4:40 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-17",
+      "6:50 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-17",
+      "9:00 PM",
+      "Film Forum",
+      "Late Fame",
+      "https://filmforum.org/film/late-fame",
+      null
+    ],
+    [
+      "2026-08-17",
+      "1:00 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-17",
+      "4:10 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-17",
+      "7:20 PM",
+      "Film Forum",
+      "Center Stage",
+      "https://filmforum.org/film/center-stage",
+      null
+    ],
+    [
+      "2026-08-11",
+      "10:40 AM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "12:50 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "5:25 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "7:35 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "10:45 AM",
+      "IFC Center",
+      "A Child of My Own",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "12:45 PM",
+      "IFC Center",
+      "A Child of My Own",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "7:15 PM",
+      "IFC Center",
+      "A Child of My Own",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "12:05 PM",
+      "IFC Center",
+      "The Fence",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "6:35 PM",
+      "IFC Center",
+      "The Fence",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "10:35 AM",
+      "IFC Center",
+      "Jimmy",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "5:30 PM",
+      "IFC Center",
+      "Jimmy",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "1:30 PM",
+      "IFC Center",
+      "Julian",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "9:35 PM",
+      "IFC Center",
+      "Julian",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "3:00 PM",
+      "IFC Center",
+      "Maddie's Secret",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "9:20 PM",
+      "IFC Center",
+      "Maddie's Secret",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "3:05 PM",
+      "IFC Center",
+      "Mary Oliver: Saved by the Beauty of the World",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "3:45 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "9:40 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "12:30 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "3:35 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "6:40 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "9:00 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "11:10 AM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "2:35 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "4:50 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "7:05 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "9:30 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "10:40 AM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "12:50 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "5:25 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "7:35 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "10:45 AM",
+      "IFC Center",
+      "A Child of My Own",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "12:45 PM",
+      "IFC Center",
+      "A Child of My Own",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "7:15 PM",
+      "IFC Center",
+      "A Child of My Own",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "12:05 PM",
+      "IFC Center",
+      "The Fence",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "9:35 PM",
+      "IFC Center",
+      "The Fence",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "10:35 AM",
+      "IFC Center",
+      "Jimmy",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "5:30 PM",
+      "IFC Center",
+      "Jimmy",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "1:30 PM",
+      "IFC Center",
+      "Julian",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "9:35 PM",
+      "IFC Center",
+      "Julian",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "10:50 AM",
+      "IFC Center",
+      "Maddie's Secret",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "3:00 PM",
+      "IFC Center",
+      "Maddie's Secret",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "9:20 PM",
+      "IFC Center",
+      "Maddie's Secret",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "3:05 PM",
+      "IFC Center",
+      "Mary Oliver: Saved by the Beauty of the World",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "3:45 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "9:40 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "12:30 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "3:35 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "6:40 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "11:50 AM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "2:35 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "4:50 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "7:05 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "9:30 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "10:40 AM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "12:50 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "5:25 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "7:35 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "10:45 AM",
+      "IFC Center",
+      "A Child of My Own",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "12:45 PM",
+      "IFC Center",
+      "A Child of My Own",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "7:15 PM",
+      "IFC Center",
+      "A Child of My Own",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "1:05 PM",
+      "IFC Center",
+      "The Fence",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "9:30 PM",
+      "IFC Center",
+      "The Fence",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "10:35 AM",
+      "IFC Center",
+      "Jimmy",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "5:30 PM",
+      "IFC Center",
+      "Jimmy",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "1:30 PM",
+      "IFC Center",
+      "Julian",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "9:35 PM",
+      "IFC Center",
+      "Julian",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "11:10 AM",
+      "IFC Center",
+      "Maddie's Secret",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "3:00 PM",
+      "IFC Center",
+      "Maddie's Secret",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "9:30 PM",
+      "IFC Center",
+      "Maddie's Secret",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "3:10 PM",
+      "IFC Center",
+      "Mary Oliver: Saved by the Beauty of the World",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "3:45 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "9:40 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "3:35 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "6:40 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "9:20 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "7:00 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "2:35 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "4:50 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "7:05 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "11:30 PM",
+      "IFC Center",
+      "Addams Family Values",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "11:35 PM",
+      "IFC Center",
+      "Battle Royale",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "12:40 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "9:35 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "10:35 AM",
+      "IFC Center",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "12:25 PM",
+      "IFC Center",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "7:25 PM",
+      "IFC Center",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "11:59 PM",
+      "IFC Center",
+      "Ghost in the Shell",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "10:45 AM",
+      "IFC Center",
+      "Maddie's Secret",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "4:05 PM",
+      "IFC Center",
+      "Maddie's Secret",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "3:45 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "11:40 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "2:05 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "4:40 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "7:15 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "9:50 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "11:55 PM",
+      "IFC Center",
+      "The Panic in Needle Park",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "10:35 AM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "12:45 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "4:30 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "8:40 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "1:15 PM",
+      "IFC Center",
+      "Train to Busan",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "6:50 PM",
+      "IFC Center",
+      "Train to Busan",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "9:40 PM",
+      "IFC Center",
+      "Train to Busan",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "11:30 AM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "2:30 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "4:30 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "7:00 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "9:30 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "10:45 AM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "2:20 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "6:25 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "11:30 PM",
+      "IFC Center",
+      "Addams Family Values",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "11:35 PM",
+      "IFC Center",
+      "Battle Royale",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "12:40 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "9:35 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "11:05 AM",
+      "IFC Center",
+      "CatVideoFest 2026",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "10:35 AM",
+      "IFC Center",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "12:25 PM",
+      "IFC Center",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "7:25 PM",
+      "IFC Center",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "11:59 PM",
+      "IFC Center",
+      "Ghost in the Shell",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "3:45 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "11:40 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "2:05 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "7:15 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "9:45 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "11:00 AM",
+      "IFC Center",
+      "National Theatre Live: All My Sons (2026)",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "11:55 PM",
+      "IFC Center",
+      "The Panic in Needle Park",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "10:35 AM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "12:45 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "4:30 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "8:40 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "4:45 PM",
+      "IFC Center",
+      "Three Bewildered People in the Night",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "4:00 PM",
+      "IFC Center",
+      "Train to Busan",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "6:50 PM",
+      "IFC Center",
+      "Train to Busan",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "9:40 PM",
+      "IFC Center",
+      "Train to Busan",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "2:30 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "4:35 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "7:00 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "9:30 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "10:45 AM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "1:35 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "2:20 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "6:25 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "12:40 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "9:30 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "11:05 AM",
+      "IFC Center",
+      "CatVideoFest 2026",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "10:35 AM",
+      "IFC Center",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "12:25 PM",
+      "IFC Center",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "7:25 PM",
+      "IFC Center",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "3:45 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "9:40 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "2:30 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "4:55 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "7:20 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "9:45 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "11:00 AM",
+      "IFC Center",
+      "National Theatre Live: All My Sons (2026)",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "10:35 AM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "12:45 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "4:30 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "8:40 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "1:15 PM",
+      "IFC Center",
+      "Train to Busan",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "4:00 PM",
+      "IFC Center",
+      "Train to Busan",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "6:50 PM",
+      "IFC Center",
+      "Train to Busan",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "2:00 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "4:30 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "7:00 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "9:30 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "10:45 AM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "2:20 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "6:25 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "12:40 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "9:30 PM",
+      "IFC Center",
+      "The Big Cheese",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "10:35 AM",
+      "IFC Center",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "12:25 PM",
+      "IFC Center",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "7:25 PM",
+      "IFC Center",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "10:45 AM",
+      "IFC Center",
+      "Maddie's Secret",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "1:30 PM",
+      "IFC Center",
+      "Maddie's Secret",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "3:45 PM",
+      "IFC Center",
+      "Michael Mann's Manhunter: The Final Cut",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "2:05 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "4:40 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "7:15 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "9:45 PM",
+      "IFC Center",
+      "Mysterious Skin",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "6:30 PM",
+      "IFC Center",
+      "National Theatre Live: All My Sons (2026)",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "10:35 AM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "12:45 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "4:30 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "9:20 PM",
+      "IFC Center",
+      "The Samurai and the Prisoner",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "4:00 PM",
+      "IFC Center",
+      "Train to Busan",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "6:50 PM",
+      "IFC Center",
+      "Train to Busan",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "9:40 PM",
+      "IFC Center",
+      "Train to Busan",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "11:30 AM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "2:30 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "4:45 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "7:10 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "9:35 PM",
+      "IFC Center",
+      "Union County",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "10:45 AM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "2:20 PM",
+      "IFC Center",
+      "Wild Inside",
+      "https://www.ifccenter.com/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "7:00 PM",
+      "Roxy Cinema",
+      "Session 9 + Q&A",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-11",
+      "9:30 PM",
+      "Roxy Cinema",
+      "Barrio Triste",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "6:45 PM",
+      "Roxy Cinema",
+      "Black Book - 35MM | 2006 Movies",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-12",
+      "9:30 PM",
+      "Roxy Cinema",
+      "Obsession",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "4:45 PM",
+      "Roxy Cinema",
+      "The Invite",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "7:15 PM",
+      "Roxy Cinema",
+      "Vogue's Night of Jazz",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-13",
+      "9:30 PM",
+      "Roxy Cinema",
+      "Barrio Triste",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "4:00 PM",
+      "Roxy Cinema",
+      "Disclosure Day",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "7:00 PM",
+      "Roxy Cinema",
+      "Gail Daughtry and the Celebrity Sex Pass",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-14",
+      "9:00 PM",
+      "Roxy Cinema",
+      "Dead Souls",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "2:15 PM",
+      "Roxy Cinema",
+      "The Invite",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "4:30 PM",
+      "Roxy Cinema",
+      "Black Book - 35MM | 2006 Movies",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "7:30 PM",
+      "Roxy Cinema",
+      "Dead Souls",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-15",
+      "9:45 PM",
+      "Roxy Cinema",
+      "Magic Lanterns 2",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "12:45 PM",
+      "Roxy Cinema",
+      "The Invite",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "3:00 PM",
+      "Roxy Cinema",
+      "54: The Director's Cut + Q&A",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "5:15 PM",
+      "Roxy Cinema",
+      "The Fountain - 35MM | 2006 Movies",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "7:30 PM",
+      "Roxy Cinema",
+      "Incorrectional: A Memorial Service",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "7:00 PM",
+      "Roxy Cinema",
+      "Crank - 35MM | 2006 Movies",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-17",
+      "9:00 PM",
+      "Roxy Cinema",
+      "Dead Souls",
+      "https://www.roxycinemanewyork.com/now-showing/",
+      null
+    ],
+    [
+      "2026-08-16",
+      "12:00 PM",
+      "Paris Theater",
+      "A Clockwork Orange",
+      "https://www.paristheaternyc.com/event/a-clockwork-orange-paris",
+      "35mm · Rafer Guzmán 引介"
+    ],
+    [
+      "2026-08-14",
+      "10:30 AM",
+      "Paris Theater",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.paristheaternyc.com/film/freefall-paris",
+      "请在购票前以影院日期选择器为准"
+    ],
+    [
+      "2026-08-14",
+      "2:30 PM",
+      "Paris Theater",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.paristheaternyc.com/film/freefall-paris",
+      "请在购票前以影院日期选择器为准"
+    ],
+    [
+      "2026-08-14",
+      "7:00 PM",
+      "Paris Theater",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.paristheaternyc.com/film/freefall-paris",
+      "请在购票前以影院日期选择器为准"
+    ],
+    [
+      "2026-08-15",
+      "10:30 AM",
+      "Paris Theater",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.paristheaternyc.com/film/freefall-paris",
+      "请在购票前以影院日期选择器为准"
+    ],
+    [
+      "2026-08-15",
+      "2:30 PM",
+      "Paris Theater",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.paristheaternyc.com/film/freefall-paris",
+      "请在购票前以影院日期选择器为准"
+    ],
+    [
+      "2026-08-15",
+      "7:00 PM",
+      "Paris Theater",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.paristheaternyc.com/film/freefall-paris",
+      "请在购票前以影院日期选择器为准"
+    ],
+    [
+      "2026-08-16",
+      "3:30 PM",
+      "Paris Theater",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.paristheaternyc.com/film/freefall-paris",
+      "请在购票前以影院日期选择器为准"
+    ],
+    [
+      "2026-08-16",
+      "7:00 PM",
+      "Paris Theater",
+      "Freefall: A Reckoning for Boeing",
+      "https://www.paristheaternyc.com/film/freefall-paris",
+      "请在购票前以影院日期选择器为准"
+    ]
+  ]
+}

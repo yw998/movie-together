@@ -1,0 +1,459 @@
+# NYC Repertory Cinema Week — 项目需求与路线图
+
+**状态：** 长期项目规划稿  
+**产品语言：** 中文优先，电影原名保留  
+**时区：** `America/New_York`  
+**当前网站：** https://nyc-rep-cinema-week.wyzmanto.chatgpt.site
+
+## 1. 项目目的
+
+这是一个纽约艺术影院与 repertory cinema 的每周排片聚合网站。它要帮助用户快速回答三个问题：
+
+1. 这周有什么值得看的电影？
+2. 哪家影院、哪一天、几点放映？
+3. 我在哪里查看官方信息或购票？
+
+它不是覆盖所有商业院线的通用搜索引擎。产品价值来自：精选影院范围、清晰的时间组织、可靠数据、简洁中文简介，以及对特别场次的准确标记。
+
+## 2. 当前范围
+
+### 2.1 首批影院
+
+| 影院 | 官方入口 | 初步抓取判断 |
+| --- | --- | --- |
+| Metrograph | https://metrograph.com/film/ | 页面结构复杂；可能需要详情页跟进或浏览器渲染 |
+| Film Forum | https://filmforum.org/ | 服务端 HTML 相对稳定，适合直接解析 |
+| IFC Center | https://www.ifccenter.com/ | 官方主页含按日排片表，适合直接解析 |
+| Roxy Cinema New York | https://www.roxycinemanewyork.com/now-showing/ | 官方 Now Showing 页面含场次、简介与票务链接 |
+| Paris Theater | https://www.paristheaternyc.com/ | 动态日期选择器；需要解析页面数据或保留人工复核 |
+| Film at Lincoln Center | https://www.filmlinc.org/ | ... |
+| Syndicated Bar Theater Kitchen | https://syndicatedbk.com/ | ... |
+
+
+未来可以扩展到 BAM、Museum of the Moving Image、Anthology Film Archives、Quad Cinema 等，但不属于第一阶段完成标准。
+
+### 2.2 当前原型已有功能
+
+- 七天排片页面
+- 日期标签切换
+- 影院多选筛选
+- 电影名与影院搜索
+- 按上午、下午、晚间、深夜聚类
+- 中文简短电影简介
+- 官方详情／购票链接
+- 手机与桌面响应式布局
+- 公开分享链接
+
+### 2.3 当前原型的主要限制
+
+- 2026-08-11 原型排片已从 UI 组件分离到独立数据文件，并通过 TypeScript 标准化层渲染；这些恢复自线上 bundle 的旧记录仍未逐条完成官方来源验证。
+- 不能自动进入下一周。
+- 数据已有统一类型和验证状态，但旧记录缺少可靠的逐条抓取时间，统一标记为 `needs_review` 且 `fetchedAt: null`。
+- 没有抓取失败报告或发布前 diff。
+- 简介和场次数据尚未完全分层。
+- 没有历史排片档案。
+
+## 3. 核心用户体验
+
+### 3.1 首页
+
+首页默认显示当前有效的七天窗口，并提供：
+
+- 日期切换
+- 影院筛选
+- 搜索
+- 时间段聚类
+- 当天总场次数
+- 每张卡片的时间、影院、片名、简短简介、格式／特别活动标签和官方链接
+- 数据最后更新时间
+
+### 3.2 时间段定义
+
+建议默认值如下，并保留为配置项：
+
+| 时间段 | 本地开场时间 |
+| --- | --- |
+| 上午 | 12:00 AM–11:59 AM |
+| 下午 | 12:00 PM–4:59 PM |
+| 晚间 | 5:00 PM–8:59 PM |
+| 深夜 | 9:00 PM–11:59 PM |
+
+### 3.3 电影与场次
+
+同一电影可以有多个场次。以下差异不能被错误合并：
+
+- 不同影院
+- 不同日期或时间
+- 不同放映格式（35mm、70mm、DCP 等）
+- 普通场与 Q&A／intro／members-only／open-caption 场
+- 不同官方票务链接
+
+## 4. 数据可信度原则
+
+这是项目最高优先级。
+
+1. **官方来源优先。** 场次必须来自影院官方页面或影院官方票务页面。
+2. **禁止猜测。** 不能根据电影档期、相邻日期或搜索摘要补出看似合理的时间。
+3. **每条场次可追溯。** 必须保存来源链接和抓取时间。
+4. **解析不确定时不发布。** 将记录标为需要人工确认。
+5. **简介与排片事实分离。** AI 可以压缩简介，但不得修改时间、日期、影院或活动属性。
+6. **保留官方特殊信息。** Q&A、嘉宾、胶片格式、字幕与会员限制会影响用户选择。
+7. **显示新鲜度。** 页面明确写明最近更新时间；过期数据不能继续伪装为本周数据。
+
+## 5. 建议数据模型
+
+### 5.1 `Cinema`
+
+```ts
+type Cinema = {
+  id: string;
+  name: string;
+  officialUrl: string;
+  scheduleUrl: string;
+  timezone: "America/New_York";
+  enabled: boolean;
+};
+```
+
+### 5.2 `Film`
+
+```ts
+type Film = {
+  id: string;
+  canonicalTitle: string;
+  displayTitle: string;
+  year: number | null;
+  director: string | null;
+  runtimeMinutes: number | null;
+  descriptionZh: string | null;
+  descriptionSource: string | null;
+};
+```
+
+### 5.3 `Showing`
+
+```ts
+type Showing = {
+  id: string;
+  cinemaId: string;
+  filmId: string;
+  startsAt: string;              // ISO 8601 with New York offset
+  localDate: string;             // YYYY-MM-DD in America/New_York
+  localTime: string;             // HH:mm
+  format: "35mm" | "70mm" | "16mm" | "DCP" | "4K DCP" | null;
+  eventType: "standard" | "qa" | "intro" | "members_only" | "open_caption" | "other";
+  eventNote: string | null;
+  detailUrl: string;
+  ticketUrl: string | null;
+  availability: "available" | "sold_out" | "unknown";
+  sourceUrl: string;
+  fetchedAt: string;
+  extractionStatus: "verified" | "needs_review" | "manual";
+};
+```
+
+### 5.4 原始证据
+
+每次更新应保留最少的审计信息：
+
+```ts
+type SourceSnapshot = {
+  cinemaId: string;
+  fetchedAt: string;
+  sourceUrl: string;
+  contentHash: string;
+  parserVersion: string;
+  result: "success" | "partial" | "failed";
+  error: string | null;
+};
+```
+
+原始 HTML 可以短期保存在构建产物之外，用于调试；不要直接公开，也不要无限期无治理地积累。
+
+## 6. 系统结构
+
+```mermaid
+flowchart TD
+    A[影院官方页面] --> B[影院独立适配器]
+    B --> C[标准化数据]
+    C --> D[Schema 与业务验证]
+    D --> E[发布前变更报告]
+    E --> F{人工确认或自动规则}
+    F --> G[公开排片 JSON]
+    G --> H[网站]
+    G --> I[历史档案]
+```
+
+### 6.1 抓取层
+
+每家影院拥有独立 adapter，例如：
+
+```text
+src/ingestion/adapters/
+  film-forum.ts
+  ifc-center.ts
+  roxy-cinema.ts
+  metrograph.ts
+  paris-theater.ts
+```
+
+Adapter 只负责从该影院官方来源提取候选数据。共享逻辑负责：
+
+- 日期和时间标准化
+- 时区处理
+- 电影名清洗
+- 去重
+- 活动与格式标签解析
+- Schema 验证
+- 来源与抓取状态记录
+
+当前实现状态（2026-08-11）：Film Forum 已使用官方 `my.filmforum.org` 日历 JSON 接口实现首个 adapter。该接口提供带纽约 UTC offset 的明确时间、稳定 performance ID、售票状态和直接购票链接。IFC Center adapter 使用官网服务端 HTML 中的明确 AM/PM、影片详情页和 ticket event ID；特别活动只有在日期、片名和时间唯一匹配时才并入场次。Roxy Cinema adapter 使用官网 Now Showing 卡片的 offset 时间和 Veezi purchase ID，保留片名中的胶片格式，并仅把带明确日期的 introduction 应用于相同日期。Metrograph adapter 使用官网电影卡片、Vista session ID 和格式 metadata；无年份日期只在请求窗口内唯一匹配时采用，sold-out 场次保留但不虚构 ticket URL。任一页面结构变化或零记录异常都会返回 `failed`／`partial`，不会静默发布。
+
+### 6.2 获取策略优先级
+
+1. 官方公开 JSON／页面内结构化数据
+2. 官方服务端渲染 HTML + HTML parser
+3. 官方详情页跟进
+4. 浏览器渲染
+5. 人工 override
+
+不要因为一种策略失败就改用非官方聚合数据并静默发布。
+
+### 6.3 人工覆盖
+
+建议提供受版本控制的人工修正文件：
+
+```text
+data/manual-overrides/YYYY-MM-DD.json
+```
+
+每条人工记录也必须包含官方 `sourceUrl`、录入原因和录入时间。下周不应自动继承旧 override。
+
+## 7. 每周更新流程
+
+### 推荐的第一版：自动整理，人工确认
+
+1. 按固定时间运行抓取。
+2. 输出本周候选数据和影院级状态。
+3. 与当前线上数据比较。
+4. 生成 review report：新增、删除、时间变化、链接变化、解析失败、异常数量波动。
+5. 用户或维护者确认。
+6. 生成公开 JSON 并部署。
+7. 保存上周数据到 archive。
+
+完全自动发布应在每家影院连续稳定运行数周后再启用。
+
+### 更新频率建议
+
+- 每周主更新：一次
+- 周末前增量检查：一次（可选）
+- 单影院失败：继续保留其他影院更新，但页面必须显示该影院数据状态，不能把旧数据当作最新数据
+
+## 8. 验证规则
+
+至少实现以下自动检查：
+
+- `localDate` 位于当前发布窗口内
+- `startsAt` 与 `localDate`/`localTime` 一致
+- `cinemaId` 存在于配置中
+- `sourceUrl` 属于对应影院的允许域名
+- 电影名非空且不为 placeholder
+- 同一影院、同一电影、同一时间的重复场次被识别
+- 相同时间但不同格式／活动标签的场次不被误删
+- 每家影院记录量相对上一周异常下降时报警
+- 官方页面抓取失败时禁止把空数组解释为“本周无排片”
+- 数据超过规定新鲜度时阻止发布或显示醒目警告
+
+## 9. 发布前报告
+
+Review report 至少包含：
+
+```text
+IFC Center: success, 126 showings, +14 / -9
+Film Forum: success, 73 showings, +6 / -12
+Roxy Cinema: partial, 18 showings, 2 need review
+Metrograph: failed, selector not found
+Paris Theater: manual review required
+```
+
+并列出：
+
+- 新电影／新场次
+- 被删除的场次
+- 时间或票务链接变化
+- 特别活动变化
+- 所有 `needs_review` 记录
+
+## 10. 分阶段路线图
+
+### Phase 0 — 接管现有项目
+
+- 检查当前 repository 结构和部署方式
+- 确认原型源码与线上版本一致
+- 记录现有硬编码数据的位置
+- 补充运行、构建和测试说明
+- 确认“本周”的日期定义
+
+### Phase 1 — 数据与 UI 解耦
+
+- 建立 TypeScript schema
+- 把硬编码排片移到独立 JSON／TS 数据文件
+- 保持当前 UI 行为和视觉不变
+- 添加时间排序、去重和时区测试
+- 页面显示最后更新时间
+
+**完成标准：** 替换一个数据文件即可更新整周网站，不必修改页面组件。
+
+### Phase 2 — 可验证的抓取
+
+- Film Forum adapter
+- IFC Center adapter
+- Roxy Cinema adapter
+- Metrograph adapter
+- Paris Theater adapter
+- 统一验证和 provenance
+- 人工 override
+- review report
+
+**完成标准：** 五家影院均能输出已验证数据，失败时不会发布虚假或空白结果。
+
+Implementation note (2026-08-11): the first five official-source adapters are
+now implemented. Paris Theater showtimes come from its official digital API
+and are joined to its official CMS by Vista film ID. The adapter discovers the
+current public client configuration from the theater's own layout bundle at
+runtime and never persists or logs those values. Special-event copy is joined
+only when the CMS ticket link contains the exact showtime ID; failed joins are
+excluded or flagged for review rather than inferred from a shared date.
+
+The pre-publication review report compares serialized ingestion bundles by
+stable showing ID. It lists new, removed, and factually changed records, and
+places publication on hold for failed/partial feeds, parser warnings, duplicate
+IDs, unverified records, missing or empty cinemas, and showing-count drops over
+25%. The threshold is a review trigger, not an automatic factual judgment.
+
+The public header derives its year, cinema count, and localized date range from
+schedule metadata. Newly generated bundles use the confirmed Monday–Sunday
+calendar-week rule.
+
+Product decisions confirmed 2026-08-11:
+
+- “This week” is the New York calendar week from Monday through Sunday.
+- A successful review report requires explicit named human approval before any
+  publication step. There is no automatic publication.
+- Sold-out events remain visible and carry a clear sold-out label.
+
+The recovered August 11–17 prototype bundle predates the calendar-week decision
+and remains unchanged as historical evidence. Newly generated bundles must use
+the Monday–Sunday rule.
+
+The weekly candidate command accepts any New York local anchor date, computes
+its Monday–Sunday window, runs all five implemented official adapters, and
+writes a new file without overwriting an existing candidate. It does not review,
+approve, or publish; those remain explicit subsequent stages.
+
+Implementation note (2026-08-11): the compiler now merges adapter results and
+week-scoped manual overrides into normalized public JSON, validates and
+deduplicates all facts, and projects the compiled result into a review bundle.
+Review reports contain a SHA-256 candidate digest. Promotion recompiles the
+candidate and refuses to write public data unless a named approval contains the
+same digest. The first August 10–16 report contains 342 showings and zero
+concerns. Yuzhen Wang approved its digest, and the guarded local promotion
+completed after separate publication authorization. The normalized frontend
+data now contains that approved schedule; tests and the production build pass.
+
+Storage decision confirmed 2026-08-11: Supabase PostgreSQL is the durable system
+of record. Normalized cinema, film, showing, weekly publication, ingestion,
+source snapshot, override, review, and approval records are relational. Exact
+workflow JSON is retained separately in `workflow_artifacts`. The public site
+does not connect to PostgreSQL; it uses a validated static JSON export of the
+current approved week. Database import is transactional and digest-verified.
+All server-managed tables have RLS enabled with no browser policy, and privileges
+are revoked from Supabase anonymous and authenticated API roles.
+
+Automation decision updated 2026-08-11: clean weekly runs with zero review
+concerns may receive a distinct `auto_approved` decision and continue through
+database import, static export, tests, build, and Vercel deployment. Any failed
+feed, unresolved warning, questionable change, validation error, database
+failure, round-trip mismatch, test failure, or build failure stops the workflow,
+keeps the previous site active, uploads private review artifacts, and creates a
+GitHub Issue for manual investigation. This replaces mandatory human approval
+for every clean week; manual approval remains available for reviewed exceptions.
+
+Schedule decision updated 2026-08-11: the weekly workflow runs at the end of
+Sunday, expressed as Monday 00:00 in `America/New_York`. The Monday execution
+date anchors the new Monday–Sunday calendar week.
+
+### Phase 3 — 每周工作流
+
+- 设置每周定时执行
+- 保存抓取日志与报告
+- 选择人工批准或自动发布
+- 部署成功检查
+- 失败通知
+
+**完成标准：** 连续四周不需要修改前端代码即可更新排片。
+
+### Phase 4 — 长期产品能力
+
+- 上周／下周与历史档案
+- 电影详情页
+- 新增场次区块
+- 地图和影院信息
+- 35mm／70mm／Q&A 等标签筛选
+- 一键加入 Google／Apple Calendar
+- 收藏和隐藏影院（本地存储即可起步）
+- “本周值得看”的编辑推荐
+
+## 11. 第一轮 Codex 任务清单
+
+将下面内容作为新 agent 的第一个执行队列：
+
+```text
+1. Read AGENTS.md and docs/PROJECT_SPEC.md completely.
+2. Inspect the repository without editing it.
+3. Report the current architecture, commands, hard-coded data locations,
+   deployment setup, test coverage, and any differences from the spec.
+4. Propose the smallest implementation for Phase 1.
+5. After approval, move schedule data out of the UI component and add a typed
+   schema without changing visible behavior.
+6. Add tests for New York time parsing, chronological sorting, noon/midnight,
+   deduplication, and preservation of special-event variants.
+7. Run the existing build and tests, then summarize changed files and remaining
+   risks.
+```
+
+## 12. 产品决定
+
+已确认：
+
+1. “本周”是自然周（周一至周日）。
+2. 每周更新必须先生成 review report，再由具名用户明确批准；不自动发布。
+3. 已售罄场次继续显示并明确标注。
+
+尚未确定、需要向用户确认：
+
+1. 中文简介是否允许引用 TMDB、Criterion 等可信外部电影资料？
+2. 下一批扩展影院的优先顺序是什么？
+3. 是否需要用户账号；若只做本地收藏，第一阶段无需账号或数据库。
+
+## 13. 非目标
+
+在核心每周更新稳定前，不做以下扩张：
+
+- 覆盖所有 NYC 商业影院
+- 复杂社交功能
+- 用户评论系统
+- 付费或订阅体系
+- 为了“看起来完整”而接入来源不明的排片聚合数据
+- 在没有实际需求前提前建设复杂数据库和后台管理系统
+
+## 14. 成功标准
+
+这个项目成功，不是因为页面收录的电影最多，而是因为：
+
+- 用户能在一分钟内找到合适的场次；
+- 每条排片都能回到官方来源；
+- 每周更新不需要改前端代码；
+- 单家影院抓取失败不会污染其他数据；
+- 维护者能快速看懂变化并安全发布；
+- 网站连续运行数月后仍然清晰、准确、可扩展。

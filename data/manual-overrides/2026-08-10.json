@@ -1,0 +1,42 @@
+{
+  "windowStart": "2026-08-10",
+  "windowEnd": "2026-08-16",
+  "entries": [
+    {
+      "operation": "upsert",
+      "sourceUrl": "https://www.ifccenter.com/films/union-county/",
+      "reason": "The official film page explicitly identifies the Friday August 14 Q&A as the 7:00 PM show and marks that performance sold out.",
+      "enteredAt": "2026-08-11T23:19:00.000Z",
+      "resolvesWarnings": [
+        "special-event[1] could not be tied to one showtime: Fri Aug 14 Union County"
+      ],
+      "film": {
+        "id": "union-county",
+        "canonicalTitle": "Union County",
+        "displayTitle": "Union County",
+        "year": null,
+        "director": null,
+        "runtimeMinutes": null,
+        "descriptionZh": null,
+        "descriptionSource": null
+      },
+      "showing": {
+        "id": "ifc-center-569494",
+        "cinemaId": "ifc-center",
+        "filmId": "union-county",
+        "startsAt": "2026-08-14T19:00:00-04:00",
+        "localDate": "2026-08-14",
+        "localTime": "19:00",
+        "format": null,
+        "eventType": "qa",
+        "eventNote": "Q&A with dir. Adam Meeks & stars Will Poulter & Annette Deao, moderated by Danny Strong",
+        "detailUrl": "https://www.ifccenter.com/films/union-county/",
+        "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569494~8722a542-64c1-4c0b-af02-c3e8a239d769&",
+        "availability": "sold_out",
+        "sourceUrl": "https://www.ifccenter.com/films/union-county/",
+        "fetchedAt": "2026-08-11T23:19:00.000Z",
+        "extractionStatus": "manual"
+      }
+    }
+  ]
+}

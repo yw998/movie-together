@@ -1,0 +1,47 @@
+{
+  "name": "nyc-repertory-cinema-week",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "db:migrate": "node --env-file-if-exists=.env.local --import tsx scripts/db/migrate.ts",
+    "db:import": "node --env-file-if-exists=.env.local --import tsx scripts/db/import-approved.ts",
+    "db:export": "node --env-file-if-exists=.env.local --import tsx scripts/db/export-published.ts",
+    "db:export-artifact": "node --env-file-if-exists=.env.local --import tsx scripts/db/export-artifact.ts",
+    "db:status": "node --env-file-if-exists=.env.local --import tsx scripts/db/status.ts",
+    "db:verify-export": "node --import tsx scripts/db/verify-export.ts",
+    "build": "tsc -b && vite build",
+    "automation:week-info": "tsx scripts/automation/week-info.ts",
+    "automation:create-override": "tsx scripts/automation/create-empty-override.ts",
+    "approve:schedule": "tsx scripts/approve-schedule.ts",
+    "auto-approve:schedule": "tsx scripts/auto-approve-schedule.ts",
+    "compile:candidate": "tsx scripts/compile-candidate.ts",
+    "ingest:film-forum": "tsx scripts/ingest-film-forum.ts",
+    "ingest:week": "tsx scripts/ingest-week.ts",
+    "ingest:ifc-center": "tsx scripts/ingest-ifc-center.ts",
+    "ingest:metrograph": "tsx scripts/ingest-metrograph.ts",
+    "ingest:paris-theater": "tsx scripts/ingest-paris-theater.ts",
+    "ingest:roxy-cinema": "tsx scripts/ingest-roxy-cinema.ts",
+    "promote:schedule": "tsx scripts/promote-schedule.ts",
+    "review:schedule": "tsx scripts/review-schedule.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "cheerio": "latest",
+    "postgres": "^3.4.9",
+    "react": "latest",
+    "react-dom": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "tsx": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}

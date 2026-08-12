@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "types": ["node"],
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "include": [
+    "vite.config.ts",
+    "scripts",
+    "src/data",
+    "src/db",
+    "src/ingestion",
+    "src/lib/calendar-week.ts",
+    "src/lib/schedule-validation.ts",
+    "src/lib/time.ts",
+    "src/lib/timezone.ts",
+    "src/types/schedule.ts"
+  ]
+}

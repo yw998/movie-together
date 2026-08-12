@@ -1,0 +1,188 @@
+name: Weekly schedule publication
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+      timezone: "America/New_York"
+  workflow_dispatch:
+    inputs:
+      anchor_date:
+        description: "Optional New York local date (YYYY-MM-DD)"
+        required: false
+        type: string
+
+concurrency:
+  group: weekly-schedule-publication
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Prepare calendar-week paths
+        id: context
+        shell: bash
+        run: |
+          ANCHOR="${{ inputs.anchor_date }}"
+          if [ -z "$ANCHOR" ]; then
+            ANCHOR="$(TZ=America/New_York date +%F)"
+          fi
+          INFO="$(npm run --silent automation:week-info -- "$ANCHOR")"
+          WINDOW_START="$(printf '%s' "$INFO" | jq -r .windowStart)"
+          RUN_DIR="data/runs/$WINDOW_START/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          mkdir -p "$RUN_DIR"
+          echo "anchor=$ANCHOR" >> "$GITHUB_OUTPUT"
+          echo "window_start=$WINDOW_START" >> "$GITHUB_OUTPUT"
+          echo "run_dir=$RUN_DIR" >> "$GITHUB_OUTPUT"
+
+      - name: Apply database migrations
+        run: npm run db:migrate
+
+      - name: Export previous approved review bundle
+        run: >-
+          npm run db:export-artifact -- review_bundle
+          "${{ steps.context.outputs.run_dir }}/previous-review-bundle.json"
+
+      - name: Create week-scoped empty override
+        run: >-
+          npm run automation:create-override --
+          "${{ steps.context.outputs.anchor }}"
+          "${{ steps.context.outputs.run_dir }}/overrides.json"
+
+      - name: Pull official cinema schedules
+        id: ingest
+        continue-on-error: true
+        run: >-
+          npm run ingest:week --
+          "${{ steps.context.outputs.anchor }}"
+          "${{ steps.context.outputs.run_dir }}/candidate.json"
+
+      - name: Compile normalized candidate
+        id: compile
+        run: >-
+          npm run compile:candidate --
+          "${{ steps.context.outputs.run_dir }}/candidate.json"
+          "${{ steps.context.outputs.run_dir }}/compiled-schedule.json"
+          "${{ steps.context.outputs.run_dir }}/review-bundle.json"
+          "${{ steps.context.outputs.run_dir }}/overrides.json"
+
+      - name: Compare with current publication
+        id: review
+        continue-on-error: true
+        run: >-
+          npm run review:schedule --
+          "${{ steps.context.outputs.run_dir }}/previous-review-bundle.json"
+          "${{ steps.context.outputs.run_dir }}/review-bundle.json"
+          "${{ steps.context.outputs.run_dir }}/review-report.json"
+          "${{ steps.context.outputs.run_dir }}/review-report.md"
+
+      - name: Stop on ambiguous or questionable changes
+        if: steps.review.outcome == 'failure'
+        run: |
+          echo "Review contains concerns; database publication and deployment are blocked."
+          exit 1
+
+      - name: Automatically approve clean report
+        run: >-
+          npm run auto-approve:schedule --
+          "${{ steps.context.outputs.run_dir }}/review-report.json"
+          "${{ steps.context.outputs.run_dir }}/approval.json"
+
+      - name: Import approved week into Supabase
+        run: >-
+          npm run db:import --
+          "${{ steps.context.outputs.run_dir }}/candidate.json"
+          "${{ steps.context.outputs.run_dir }}/compiled-schedule.json"
+          "${{ steps.context.outputs.run_dir }}/review-bundle.json"
+          "${{ steps.context.outputs.run_dir }}/overrides.json"
+          "${{ steps.context.outputs.run_dir }}/review-report.json"
+          "${{ steps.context.outputs.run_dir }}/approval.json"
+
+      - name: Export current database publication for frontend
+        run: npm run db:export -- src/data/published-schedule.json
+
+      - name: Verify database round trip
+        run: >-
+          npm run db:verify-export --
+          "${{ steps.context.outputs.run_dir }}/compiled-schedule.json"
+          src/data/published-schedule.json
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build production site
+        run: npm run build
+
+      - name: Commit validated public data
+        shell: bash
+        run: |
+          if git diff --quiet -- src/data/published-schedule.json; then
+            echo "Published JSON is unchanged; no deployment commit is needed."
+            exit 0
+          fi
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
+          git add src/data/published-schedule.json
+          git commit -m "data: publish week ${{ steps.context.outputs.window_start }}"
+          git push
+
+      - name: Upload review artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: schedule-${{ steps.context.outputs.window_start }}-${{ github.run_id }}
+          path: ${{ steps.context.outputs.run_dir }}
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Create manual-review issue on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          ISSUE_BODY="${RUNNER_TEMP}/schedule-issue.md"
+          {
+            echo "The automated schedule publication stopped before deployment."
+            echo
+            echo "- Week: ${{ steps.context.outputs.window_start }}"
+            echo "- Workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo "- Ingestion outcome: ${{ steps.ingest.outcome }}"
+            echo "- Compile outcome: ${{ steps.compile.outcome }}"
+            echo "- Review outcome: ${{ steps.review.outcome }}"
+            echo
+            echo "The previous production schedule remains active. Download the workflow artifact for candidate and review evidence."
+            REPORT="${{ steps.context.outputs.run_dir }}/review-report.md"
+            if [ -f "$REPORT" ]; then
+              echo
+              echo "## Review concerns"
+              grep "CONCERN:" "$REPORT" || true
+            fi
+          } > "$ISSUE_BODY"
+          gh issue create \
+            --title "Schedule review required: ${{ steps.context.outputs.window_start }}" \
+            --body-file "$ISSUE_BODY" \
+            --label "schedule-review" || \
+          gh issue create \
+            --title "Schedule review required: ${{ steps.context.outputs.window_start }}" \
+            --body-file "$ISSUE_BODY"

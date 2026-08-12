@@ -1,0 +1,33 @@
+export type TimeCluster = "上午" | "下午" | "晚间" | "深夜";
+
+export function parseDisplayTime(value: string): string {
+  const match = value.match(/^(\d{1,2}):(\d{2})\s(AM|PM)$/);
+  if (!match) throw new Error(`Invalid display time: ${value}`);
+
+  let hour = Number(match[1]) % 12;
+  if (match[3] === "PM") hour += 12;
+  return `${String(hour).padStart(2, "0")}:${match[2]}`;
+}
+
+export function minutesSinceMidnight(localTime: string): number {
+  const match = localTime.match(/^([01]\d|2[0-3]):([0-5]\d)$/);
+  if (!match) throw new Error(`Invalid local time: ${localTime}`);
+  return Number(match[1]) * 60 + Number(match[2]);
+}
+
+export function formatDisplayTime(localTime: string): string {
+  const minutes = minutesSinceMidnight(localTime);
+  const hour24 = Math.floor(minutes / 60);
+  const minute = String(minutes % 60).padStart(2, "0");
+  const suffix = hour24 >= 12 ? "PM" : "AM";
+  const hour12 = hour24 % 12 || 12;
+  return `${hour12}:${minute} ${suffix}`;
+}
+
+export function getTimeCluster(localTime: string): TimeCluster {
+  const minutes = minutesSinceMidnight(localTime);
+  if (minutes < 12 * 60) return "上午";
+  if (minutes < 17 * 60) return "下午";
+  if (minutes < 21 * 60) return "晚间";
+  return "深夜";
+}
