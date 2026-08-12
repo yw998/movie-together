@@ -86,6 +86,12 @@ rows when an upstream event disappears, with an explicit removed/cancelled
 state where appropriate. A refresh must never silently orphan or erase a user's
 mark.
 
+The frontend reads only the signed-in user's marks for the current
+`window_start`. Inserts omit `user_id` so PostgreSQL supplies `auth.uid()`; RLS
+still verifies ownership. Deletion uses the mark UUID and remains owner-scoped.
+The unique `(user_id, window_start, showing_id)` constraint prevents duplicate
+marks. Channel share rows are not created by the private-mark UI.
+
 Implementation must include multi-user RLS tests before these tables are used by
 the production frontend. Supabase publishable keys may be exposed to the browser
 only after the policies are in place; `DATABASE_URL` and service-role credentials

@@ -10,6 +10,7 @@ import type { Showing } from "./types/schedule";
 import { formatWindowYears, formatWindowZh } from "./lib/date-display";
 import { availabilityLabel } from "./lib/showing-labels";
 import { AccountControl } from "./auth/AccountControl";
+import { useWatchMarks } from "./watch-marks/useWatchMarks";
 
 const timeClusters: TimeCluster[] = ["上午", "下午", "晚间", "深夜"];
 
@@ -22,6 +23,7 @@ export default function App() {
     cinemas.map((cinema) => cinema.id),
   );
   const [query, setQuery] = useState("");
+  const watchMarks = useWatchMarks(metadata.windowStart);
 
   const cinemaById = useMemo(
     () => new Map(cinemas.map((cinema) => [cinema.id, cinema])),
@@ -143,8 +145,9 @@ export default function App() {
         )}
         <div className="summary">
           <span>{dateLabels[selectedDate]}</span>
-          <b>{visibleShowings.length} 场</b>
+          <b>{visibleShowings.length} 场{watchMarks.signedIn && ` · 已标记 ${watchMarks.markedCount} 场`}</b>
         </div>
+        {watchMarks.error && <aside className="mark-error" role="status">{watchMarks.error}</aside>}
         {groups.length ? (
           groups.map((group) => (
             <section className="cluster" key={group.name}>
@@ -158,6 +161,10 @@ export default function App() {
                     cinema={cinemaById.get(showing.cinemaId)!}
                     film={filmById.get(showing.filmId)!}
                     key={showing.id}
+                    markBusy={watchMarks.isBusy(showing.id)}
+                    marked={watchMarks.isMarked(showing.id)}
+                    onToggleMark={() => void watchMarks.toggle(showing.id)}
+                    signedIn={watchMarks.signedIn}
                     showing={showing}
                   />
                 ))}
@@ -194,9 +201,13 @@ type ShowingCardProps = {
   cinema: (typeof scheduleData.cinemas)[number];
   film: (typeof scheduleData.films)[number];
   showing: Showing;
+  marked: boolean;
+  markBusy: boolean;
+  onToggleMark: () => void;
+  signedIn: boolean;
 };
 
-function ShowingCard({ cinema, film, showing }: ShowingCardProps) {
+function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, signedIn }: ShowingCardProps) {
   const availability = availabilityLabel(showing.availability);
   return (
     <article
@@ -216,9 +227,21 @@ function ShowingCard({ cinema, film, showing }: ShowingCardProps) {
             "本周特别放映；点击查看影院官方介绍与最新票务状态。"}
         </p>
         {showing.eventNote && <small>{showing.eventNote}</small>}
-        <a href={showing.detailUrl} rel="noreferrer" target="_blank">
-          {showing.availability === "sold_out" ? "查看官方详情" : "官方详情 / 购票"} ↗
-        </a>
+        <div className="card-actions">
+          <a href={showing.detailUrl} rel="noreferrer" target="_blank">
+            {showing.availability === "sold_out" ? "查看官方详情" : "官方详情 / 购票"} ↗
+          </a>
+          <button
+            aria-pressed={marked}
+            className={`watch-mark${marked ? " marked" : ""}`}
+            disabled={markBusy}
+            onClick={onToggleMark}
+            title={signedIn ? "此标记目前仅自己可见" : "登录后标记具体场次"}
+            type="button"
+          >
+            {markBusy ? "保存中…" : marked ? "✓ 想看" : "+ 想看"}
+          </button>
+        </div>
       </div>
     </article>
   );

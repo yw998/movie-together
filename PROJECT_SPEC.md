@@ -537,6 +537,13 @@ Signed-in users can change their password by providing the current password and
 a distinct confirmed new password of at least eight characters. Password values
 are sent only to Supabase Auth and are never stored in application tables.
 
+Watch-mark implementation note (2026-08-12): each public showing card now has a
+private “想看” toggle. A signed-in user's exact-showing marks are loaded from
+Supabase for the published week, persist across browser sessions, and can be
+removed only by their owner under RLS. The UI reports the user's marked-showing
+count and opens the account dialog when an anonymous visitor attempts to mark a
+showing. No mark is shared to a channel in this phase.
+
 ## 11. 第一轮 Codex 任务清单
 
 将下面内容作为新 agent 的第一个执行队列：

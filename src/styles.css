@@ -46,6 +46,7 @@ a { color: inherit; }
 .search input { background: transparent; border: 0; outline: 0; width: 100%; margin-left: 6px; font-size: 13px; }
 .content { max-width: 1180px; margin: auto; padding: 38px 20px 80px; }
 .data-warning { border: 1px solid #c88758; color: #683516; background: #fff2df; margin: 0 0 28px; padding: 13px 16px; font-size: 13px; line-height: 1.5; }
+.mark-error { border: 1px solid #c88758; color: #683516; background: #fff2df; margin: -18px 0 28px; padding: 10px 13px; font-size: 12px; }
 .summary { justify-content: space-between; align-items: baseline; margin-bottom: 32px; display: flex; }
 .summary span { font: 32px Georgia, "Songti SC", serif; }
 .summary b { color: var(--muted); font: 13px monospace; }
@@ -64,7 +65,11 @@ a { color: inherit; }
 .body h2 { margin: 10px 0 7px; font: 700 22px/1.1 Georgia, "Songti SC", serif; }
 .body p { color: #66665f; margin: 0 0 12px; font-size: 13px; line-height: 1.5; }
 .body small { color: #9a4e39; margin: -3px 0 9px; font-size: 11px; }
-.body a { border-bottom: 1px solid #aaa; margin-top: auto; font: 700 11px monospace; text-decoration: none; }
+.card-actions { align-items: center; justify-content: space-between; gap: 12px; width: 100%; margin-top: auto; display: flex; }
+.body a { border-bottom: 1px solid #aaa; font: 700 11px monospace; text-decoration: none; }
+.watch-mark { white-space: nowrap; color: #54554e; background: #f4f0e6; border: 1px solid #c9c3b6; border-radius: 99px; padding: 6px 9px; font-size: 11px; font-weight: 700; }
+.watch-mark.marked { color: #fff; background: var(--ink); border-color: var(--ink); }
+.watch-mark:disabled { cursor: wait; opacity: .6; }
 .empty { text-align: center; color: #777; padding: 90px 0; }
 footer { color: #aaa99f; background: #171813; justify-content: space-between; gap: 30px; padding: 40px max(28px, calc(50vw - 590px)); font-size: 12px; display: flex; }
 footer p { max-width: 500px; margin: 0; line-height: 1.6; }

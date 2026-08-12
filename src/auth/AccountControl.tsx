@@ -1,23 +1,27 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import type { User } from "@supabase/supabase-js";
 import { normalizeUsername, usernameError } from "../lib/username";
 import { passwordChangeError } from "../lib/password";
 import { authConfigured, supabase } from "./supabase";
+import { useAuth } from "./AuthContext";
+import { OPEN_ACCOUNT_EVENT } from "./account-events";
 
 type Mode = "login" | "signup" | "resend" | "reset" | "update_password" | "change_password";
-
 export function AccountControl() {
   const client = supabase;
+  const { loading, user, username } = useAuth();
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const [user, setUser] = useState<User | null>(null);
-  const [username, setUsername] = useState<string | null>(null);
   const [mode, setMode] = useState<Mode>("login");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (!client) return;
-    let active = true;
+    const openForLogin = () => {
+      setMode("login");
+      setMessage(null);
+      dialogRef.current?.showModal();
+    };
+    window.addEventListener(OPEN_ACCOUNT_EVENT, openForLogin);
     const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
     if (hash.get("error_code") === "otp_expired") {
       setMode("resend");
@@ -25,23 +29,7 @@ export function AccountControl() {
       dialogRef.current?.showModal();
       window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
     }
-    const loadProfile = async (nextUser: User | null) => {
-      if (!active) return;
-      setUser(nextUser);
-      if (!nextUser) {
-        setUsername(null);
-        return;
-      }
-      const { data } = await client
-        .from("profiles")
-        .select("username")
-        .eq("id", nextUser.id)
-        .maybeSingle();
-      if (active) setUsername(data?.username ?? null);
-    };
-    void client.auth.getUser().then(({ data }) => loadProfile(data.user));
     const { data: listener } = client.auth.onAuthStateChange((event, session) => {
-      void loadProfile(session?.user ?? null);
       if (event === "PASSWORD_RECOVERY") {
         setMode("update_password");
         setMessage(null);
@@ -49,7 +37,7 @@ export function AccountControl() {
       }
     });
     return () => {
-      active = false;
+      window.removeEventListener(OPEN_ACCOUNT_EVENT, openForLogin);
       listener.subscription.unsubscribe();
     };
   }, [client]);
@@ -160,7 +148,7 @@ export function AccountControl() {
 
   return (
     <div className="account-control">
-      {user ? (
+      {loading ? null : user ? (
         <>
           <span>@{username ?? "account"}</span>
           <button onClick={() => { setMode("change_password"); setMessage(null); dialogRef.current?.showModal(); }} type="button">修改密码</button>
