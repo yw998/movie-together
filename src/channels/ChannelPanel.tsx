@@ -2,6 +2,9 @@ import { useCallback, useEffect, useRef, useState, type FormEvent } from "react"
 import { requestAccountDialog } from "../auth/account-events";
 import { supabase } from "../auth/supabase";
 import { useAuth } from "../auth/AuthContext";
+import { scheduleData } from "../data/schedule";
+import { formatDisplayTime } from "../lib/time";
+import { WATCH_MARKS_CHANGED_EVENT } from "../watch-marks/useWatchMarks";
 import {
   callInvitationFunction,
   clearInviteToken,
@@ -12,12 +15,21 @@ import {
   type InvitePreview,
 } from "./channel-api";
 
-type Member = { user_id: string; role: "owner" | "member"; profiles: { username: string } | null };
+type Member = { user_id: string; role: "owner" | "member"; auto_share_new_marks: boolean; profiles: { username: string } | null };
+type SharedMark = { mark_id: string; window_start: string; showing_id: string; user_id: string; username: string; shared_at: string };
 type GuestView = {
   channel: { id: string; name: string };
   members: { username: string; role: string }[];
   guests: { name: string }[];
+  sharedMarks: { windowStart: string; showingId: string; username: string }[];
 };
+
+function avatarColor(username: string): string {
+  const palette = ["#c75b4b", "#4d83b8", "#6d9852", "#9b62a5", "#c18a3f", "#4f9a92"];
+  let hash = 0;
+  for (const character of username) hash = ((hash << 5) - hash + character.charCodeAt(0)) | 0;
+  return palette[Math.abs(hash) % palette.length];
+}
 
 export function ChannelPanel() {
   const client = supabase;
@@ -29,6 +41,7 @@ export function ChannelPanel() {
   const [friendId, setFriendId] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [members, setMembers] = useState<Member[]>([]);
+  const [sharedMarks, setSharedMarks] = useState<SharedMark[]>([]);
   const [message, setMessage] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [invitePreview, setInvitePreview] = useState<InvitePreview | null>(null);
@@ -71,7 +84,7 @@ export function ChannelPanel() {
     }
     void client
       .from("channel_members")
-      .select("user_id,role")
+      .select("user_id,role,auto_share_new_marks")
       .eq("channel_id", selected)
       .order("joined_at")
       .then(async ({ data, error }) => {
@@ -91,6 +104,24 @@ export function ChannelPanel() {
       });
   }, [client, selected]);
 
+  const loadSharedMarks = useCallback(() => {
+    if (!client || !selected) {
+      setSharedMarks([]);
+      return;
+    }
+    void client.rpc("list_channel_shared_marks", { target_channel_id: selected })
+      .then(({ data, error }) => {
+        if (error) setMessage("无法读取 Channel 想看活动。");
+        else setSharedMarks((data ?? []) as SharedMark[]);
+      });
+  }, [client, selected]);
+
+  useEffect(() => {
+    loadSharedMarks();
+    window.addEventListener(WATCH_MARKS_CHANGED_EVENT, loadSharedMarks);
+    return () => window.removeEventListener(WATCH_MARKS_CHANGED_EVENT, loadSharedMarks);
+  }, [loadSharedMarks]);
+
   useEffect(() => {
     const token = readInviteToken();
     if (!client || !token) return;
@@ -108,6 +139,17 @@ export function ChannelPanel() {
   if (!client) return null;
   const selectedChannel = channels.find((channel) => channel.id === selected) ?? null;
   const owner = selectedChannel?.owner_user_id === user?.id;
+  const myMembership = members.find((member) => member.user_id === user?.id);
+  const sharedActivities = [...new Set(sharedMarks.map((mark) => mark.showing_id))].map((showingId) => {
+    const showing = scheduleData.showings.find((row) => row.id === showingId);
+    const film = showing ? scheduleData.films.find((row) => row.id === showing.filmId) : null;
+    return {
+      showingId,
+      showing,
+      film,
+      usernames: sharedMarks.filter((mark) => mark.showing_id === showingId).map((mark) => mark.username),
+    };
+  });
 
   async function createChannel(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -141,6 +183,19 @@ export function ChannelPanel() {
     } catch {
       setMessage("无法复制 Friend ID，请检查浏览器的剪贴板权限。");
     }
+  }
+
+  async function setAutoShare(enabled: boolean) {
+    if (!selected) return;
+    const { error } = await client!.rpc("set_channel_auto_share", {
+      target_channel_id: selected,
+      enabled,
+    });
+    if (error) return setMessage("无法更新默认同步设置。");
+    setMembers((current) => current.map((member) => member.user_id === user?.id
+      ? { ...member, auto_share_new_marks: enabled }
+      : member));
+    setMessage(enabled ? "以后新标记会默认同步到这个 Channel。" : "以后新标记不会默认同步到这个 Channel。");
   }
 
   async function deleteSelectedChannel() {
@@ -304,6 +359,19 @@ export function ChannelPanel() {
           {selectedChannel && <div className="channel-detail">
             <h3>{selectedChannel.name}</h3>
             <p>{members.map((member) => `@${member.profiles?.username ?? "member"}${member.role === "owner" ? "（owner）" : ""}`).join(" · ")}</p>
+            <label className="auto-share-setting">
+              <input checked={myMembership?.auto_share_new_marks ?? false} onChange={(event) => void setAutoShare(event.target.checked)} type="checkbox" />
+              新标记默认同步到这里
+            </label>
+            <div className="channel-activity">
+              <b>大家想看</b>
+              {sharedActivities.length === 0 ? <p>还没有成员分享想看场次。</p> : sharedActivities.map((activity) => <article key={activity.showingId}>
+                <div><strong>{activity.film?.displayTitle ?? "已下架场次"}</strong>{activity.showing && <small>{activity.showing.localDate} · {formatDisplayTime(activity.showing.localTime)}</small>}</div>
+                <div className="mark-avatars" aria-label={activity.usernames.map((name) => `@${name}`).join("、")}>
+                  {activity.usernames.map((name) => <span key={name} style={{ background: avatarColor(name) }} title={`@${name}`}>{name[0]?.toUpperCase()}</span>)}
+                </div>
+              </article>)}
+            </div>
             {owner && <>
               <form className="channel-invite" onSubmit={inviteUser}>
                 <select name="kind"><option value="friend_id">Friend ID</option><option value="email">邮箱</option></select>
@@ -326,6 +394,13 @@ export function ChannelPanel() {
           <b>成员</b>
           <p>{guestView.members.map((member) => `@${member.username}${member.role === "owner" ? "（owner）" : ""}`).join(" · ")}</p>
           {guestView.guests.length > 0 && <><b>访客</b><p>{guestView.guests.map((guest) => guest.name).join(" · ")}</p></>}
+          <b>大家想看</b>
+          {guestView.sharedMarks.length === 0 ? <p>还没有成员分享想看场次。</p> : [...new Set(guestView.sharedMarks.map((mark) => mark.showingId))].map((showingId) => {
+            const showing = scheduleData.showings.find((row) => row.id === showingId);
+            const film = showing ? scheduleData.films.find((row) => row.id === showing.filmId) : null;
+            const names = guestView.sharedMarks.filter((mark) => mark.showingId === showingId).map((mark) => mark.username);
+            return <article key={showingId}><strong>{film?.displayTitle ?? "已下架场次"}</strong><div className="mark-avatars">{names.map((name) => <span key={name} style={{ background: avatarColor(name) }} title={`@${name}`}>{name[0]?.toUpperCase()}</span>)}</div></article>;
+          })}
         </div> : guestCredential ? <div className="guest-credential">
           <p>请立即保存这组访客凭证。访问代码只显示一次，并且只能进入这个 Channel。</p>
           <code>Guest ID: {guestCredential.id}</code>

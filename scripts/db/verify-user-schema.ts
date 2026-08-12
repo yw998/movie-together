@@ -181,6 +181,29 @@ try {
     throw new Error("Registered-user invitations are not restricted to Friend ID/email.");
   }
 
+  const [sharingSchema] = await sql<{ shares: string | null; auto_share: boolean; function_count: number }[]>`
+    select
+      to_regclass('public.channel_mark_shares')::text as shares,
+      exists (
+        select 1 from information_schema.columns
+        where table_schema = 'public'
+          and table_name = 'channel_members'
+          and column_name = 'auto_share_new_marks'
+      ) as auto_share,
+      (
+        select count(*)::integer from pg_proc
+        where oid in (
+          'public.create_watch_mark_with_defaults(date,text)'::regprocedure,
+          'public.set_watch_mark_channels(uuid,uuid[])'::regprocedure,
+          'public.set_channel_auto_share(uuid,boolean)'::regprocedure,
+          'public.list_channel_shared_marks(uuid)'::regprocedure
+        )
+      ) as function_count
+  `;
+  if (sharingSchema.shares !== "channel_mark_shares" || !sharingSchema.auto_share || sharingSchema.function_count !== 4) {
+    throw new Error("Channel watch-mark sharing schema is incomplete.");
+  }
+
   console.log("Verified accounts, watch marks, channel invitations, defaults, and RLS policies.");
 } finally {
   await sql.end();

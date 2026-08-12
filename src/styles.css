@@ -52,6 +52,10 @@ a { color: inherit; }
 .summary { justify-content: space-between; align-items: baseline; margin-bottom: 32px; display: flex; }
 .summary span { font: 32px Georgia, "Songti SC", serif; }
 .summary b { color: var(--muted); font: 13px monospace; }
+.summary-tools { align-items: flex-end; gap: 9px; display: grid; justify-items: end; }
+.view-switch { border: 1px solid var(--line); background: #ebe6da; border-radius: 99px; padding: 2px; display: flex; }
+.view-switch button { color: #77766e; background: transparent; border: 0; border-radius: 99px; padding: 6px 10px; font-size: 11px; }
+.view-switch button.active { color: #fff; background: var(--ink); }
 .cluster { grid-template-columns: 90px 1fr; gap: 22px; margin-bottom: 42px; display: grid; }
 .rail { color: #777; flex-direction: column; align-items: flex-start; gap: 12px; padding-top: 4px; font: 700 13px monospace; display: flex; }
 .rail i { background: var(--line); width: 1px; height: 100%; }
@@ -67,6 +71,8 @@ a { color: inherit; }
 .body h2 { margin: 10px 0 7px; font: 700 22px/1.1 Georgia, "Songti SC", serif; }
 .body p { color: #66665f; margin: 0 0 12px; font-size: 13px; line-height: 1.5; }
 .body small { color: #9a4e39; margin: -3px 0 9px; font-size: 11px; }
+.body button.share-count { color: #6b6c64; background: #f0ece2; border: 0; margin: -2px 0 10px; padding: 4px 7px; font-size: 11px; }
+.body button.share-count:hover { color: var(--ink); background: #e5dfd1; }
 .card-actions { align-items: center; justify-content: space-between; gap: 12px; width: 100%; margin-top: auto; display: flex; }
 .body a { border-bottom: 1px solid #aaa; font: 700 11px monospace; text-decoration: none; }
 .watch-mark { white-space: nowrap; color: #54554e; background: #f4f0e6; border: 1px solid #c9c3b6; border-radius: 99px; padding: 6px 9px; font-size: 11px; font-weight: 700; }
@@ -103,6 +109,14 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-detail { border-top: 1px solid #3e4037; margin-top: 12px; padding-top: 18px; }
 .channel-detail h3 { color: #fff; margin: 0 0 8px; font: 700 21px Georgia, "Songti SC", serif; }
 .channel-detail p { color: #aaa99e; font-size: 11px; line-height: 1.5; }
+.auto-share-setting { color: #d2cec4; align-items: center; gap: 8px; margin: 14px 0; font-size: 11px; display: flex; }
+.channel-activity { border-top: 1px solid #3e4037; margin-top: 15px; padding-top: 14px; }
+.channel-activity > b { color: #aaa99e; font-size: 11px; text-transform: uppercase; }
+.channel-activity article { background: #2d2f28; border-radius: 4px; justify-content: space-between; align-items: center; gap: 8px; margin-top: 8px; padding: 10px; display: flex; }
+.channel-activity article strong { color: #f5f0e6; font: 700 13px Georgia, "Songti SC", serif; display: block; }
+.channel-activity article small { color: #96968d; margin-top: 4px; font-size: 9px; display: block; }
+.mark-avatars { justify-content: flex-end; display: flex; }
+.mark-avatars span { color: #fff; border: 2px solid #2d2f28; border-radius: 50%; align-items: center; justify-content: center; width: 25px; height: 25px; margin-left: -7px; font-size: 9px; font-weight: 700; display: flex; }
 .channel-invite { flex-direction: column; }
 .copy-invite { width: 100%; }
 .delete-channel { color: #f4b8ad; background: transparent; border: 1px solid #81483f; border-radius: 4px; width: 100%; margin-top: 8px; padding: 8px 10px; font-size: 11px; }
@@ -114,6 +128,12 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .guest-credential code { word-break: break-all; background: #fff; border: 1px solid var(--line); padding: 10px; }
 .guest-view { color: var(--muted); line-height: 1.5; }
 .guest-view b { color: var(--ink); }
+.guest-view article { border: 1px solid var(--line); justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0; padding: 10px; display: flex; }
+.guest-view .mark-avatars span { border-color: var(--paper); }
+.share-dialog-close { color: #777; background: transparent; border: 0; padding: 5px 8px; position: absolute; top: 10px; right: 12px; font-size: 24px; }
+.share-channel-form { gap: 9px; display: grid; }
+.share-channel-form > label { border: 1px solid var(--line); background: #fff; align-items: center; gap: 10px; padding: 11px 12px; display: flex; }
+.share-channel-form small { color: #777; margin-left: 8px; font-size: 10px; }
 .channel-mobile-toggle, .channel-mobile-close, .channel-backdrop { display: none; }
 @media (max-width: 760px) {
   .site-shell { margin-left: 0; }

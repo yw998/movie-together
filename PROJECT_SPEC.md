@@ -450,6 +450,19 @@ Product scope confirmed 2026-08-11:
 5. If an event is missing from the official cinema catalog, a signed-in user can
    create a user event with manually entered title/content and New York date and
    time. It can remain private or be shared into channels under the same rules.
+6. The personal main view contains every mark owned by the signed-in user. Each
+   card shows how many channels currently receive that mark. It spans the whole
+   published week and groups marks by date rather than inheriting one active date tab.
+7. Creating a mark always saves it privately first, then opens a channel-sharing
+   dialog. Dismissing the dialog keeps the personal mark. The user can select
+   channels individually; membership-level auto-share defaults are preselected
+   and applied immediately, but can be changed for that mark in the dialog.
+8. Each channel has a member-visible activity view of shared marks. A showing
+   card groups all members who marked it using stable colored username initials;
+   no profile photo or additional personal information is required.
+9. Clicking the share-count control on an existing personal card reopens its
+   per-Channel selection. Leaving or being removed from a Channel deletes that
+   user's shares in the Channel but never deletes the underlying personal mark.
 
 The initial collaboration model is intentionally closer to a shared drive than
 to a public social network: channel membership grants visibility to explicitly
@@ -566,17 +579,19 @@ unique marks per user/showing, and a restrictive composite foreign key to
 marking missing records as `removed` and upserting current records as `active`;
 the public export includes only active records. Account UI, authentication, and
 private showing-level marks are implemented. The channel database foundation is
-also deployed: random Friend IDs, owner/member membership, direct username or
-Friend-ID invitations, hashed seven-day/20-use links, and hashed channel-scoped
+also deployed: random Friend IDs, owner/member membership, Friend-ID or private
+email invitations, hashed seven-day/20-use links, and hashed channel-scoped
 guest credentials all use deny-by-default RLS and controlled functions. Channel
 guest/email database endpoints and database-backed attempt limits are deployed,
 and the matching Edge Function source is ready for deployment. Owner/outsider
 and service-role authorization tests pass with all test data rolled back.
 The Edge Function is deployed and the first Channel UI is implemented: signed-in
-users can create channels, see their Friend ID, invite by username/Friend ID/email,
+users can create channels, see their Friend ID, invite by Friend ID/email,
 create link invitations, and accept pending invitations. Link visitors can join
 an account or create a read-only guest, save the one-time guest credential, and
-later reopen only that channel. Sharing and user-created events are not yet
+later reopen only that channel. Personal mark sharing, membership auto-share
+defaults, week-wide personal view, per-card share counts, Channel activity cards,
+and colored username initials are implemented. User-created events are not yet
 implemented; a second registered test identity is still required for a complete
 two-account acceptance test.
 

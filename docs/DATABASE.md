@@ -91,7 +91,16 @@ The frontend reads only the signed-in user's marks for the current
 `window_start`. Inserts omit `user_id` so PostgreSQL supplies `auth.uid()`; RLS
 still verifies ownership. Deletion uses the mark UUID and remains owner-scoped.
 The unique `(user_id, window_start, showing_id)` constraint prevents duplicate
-marks. Channel share rows are not created by the private-mark UI.
+marks. A mark remains personal source data even when explicit Channel share rows
+are created for it.
+
+Channel mark sharing uses `channel_mark_shares` as an explicit join layer; the
+personal `watch_marks` row remains the source of truth. Each membership stores
+an `auto_share_new_marks` default. Creating a mark applies enabled defaults in
+the same transaction, then the per-mark sharing dialog may replace that set.
+Members can read shared marks and owner usernames but cannot update or delete
+another user's mark or share. Guest reads receive the same shared showing IDs
+through their single-channel server endpoint without receiving database access.
 
 ## Planned channel identity and invitation security
 

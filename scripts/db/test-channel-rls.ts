@@ -16,6 +16,10 @@ try {
     const [{ id: outsiderId }] = await transaction<{ id: string }[]>`
       select gen_random_uuid()::text as id
     `;
+    const [showing] = await transaction<{ window_start: string; id: string }[]>`
+      select window_start::text, id from showings order by window_start desc, starts_at limit 1
+    `;
+    assert(showing, "At least one showing is required for the sharing RLS test.");
 
     async function assumeIdentity(userId: string) {
       await transaction.unsafe("set local role authenticated");
@@ -41,6 +45,15 @@ try {
     const [inviteLink] = await transaction<{ invite_token: string }[]>`
       select invite_token from create_channel_invite_link(${channelId}::uuid)
     `;
+    await transaction`select set_channel_auto_share(${channelId}::uuid, true)`;
+    const [{ create_watch_mark_with_defaults: markId }] = await transaction<{ create_watch_mark_with_defaults: string }[]>`
+      select create_watch_mark_with_defaults(${showing.window_start}::date, ${showing.id})
+    `;
+    const sharedRows = await transaction`
+      select * from list_channel_shared_marks(${channelId}::uuid)
+      where mark_id = ${markId}::uuid
+    `;
+    assert(sharedRows.length === 1, "Auto-share did not expose the new personal mark to its channel.");
     await resetIdentity();
 
     await transaction.unsafe("set local role service_role");
@@ -57,10 +70,11 @@ try {
       )
     `;
     assert(guest?.guest_id, "Trusted guest creation failed for a valid link.");
-    const [{ read_channel_as_guest: guestView }] = await transaction<{ read_channel_as_guest: { channel: { id: string } } | null }[]>`
+    const [{ read_channel_as_guest: guestView }] = await transaction<{ read_channel_as_guest: { channel: { id: string }; sharedMarks: unknown[] } | null }[]>`
       select read_channel_as_guest(${guest.guest_id}::uuid, ${guest.access_code})
     `;
     assert(guestView?.channel.id === channelId, "A valid guest code cannot read its channel.");
+    assert(guestView.sharedMarks.length === 1, "A valid guest cannot read shared marks in its channel.");
     await resetIdentity();
 
     await assumeIdentity(outsiderId);
@@ -70,6 +84,10 @@ try {
       select username from profiles where id = ${existingUser.id}::uuid
     `;
     assert(outsiderProfileRows.length === 0, "Outsider can read a channel member profile.");
+    const outsiderSharedRows = await transaction`
+      select * from list_channel_shared_marks(${channelId}::uuid)
+    `;
+    assert(outsiderSharedRows.length === 0, "Outsider can read a channel's shared marks.");
     await resetIdentity();
 
     const [privileges] = await transaction<{
@@ -81,6 +99,7 @@ try {
       anon_guest_read: boolean;
       authenticated_email_invite: boolean;
       service_guest_read: boolean;
+      authenticated_share_update: boolean;
     }[]>`
       select
         has_table_privilege('authenticated', 'channel_members', 'INSERT') as authenticated_member_insert,
@@ -90,7 +109,8 @@ try {
         has_function_privilege('service_role', 'create_channel_guest(text,text)', 'EXECUTE') as service_guest_create,
         has_function_privilege('anon', 'read_channel_as_guest(uuid,text)', 'EXECUTE') as anon_guest_read,
         has_function_privilege('authenticated', 'invite_channel_user_by_email(uuid,uuid,text)', 'EXECUTE') as authenticated_email_invite,
-        has_function_privilege('service_role', 'read_channel_as_guest(uuid,text)', 'EXECUTE') as service_guest_read
+        has_function_privilege('service_role', 'read_channel_as_guest(uuid,text)', 'EXECUTE') as service_guest_read,
+        has_table_privilege('authenticated', 'channel_mark_shares', 'UPDATE') as authenticated_share_update
     `;
     assert(!privileges.authenticated_member_insert, "Authenticated users can insert memberships directly.");
     assert(!privileges.anon_channel_select, "Anonymous users have direct channel-table access.");
@@ -100,6 +120,7 @@ try {
     assert(!privileges.anon_guest_read, "Anonymous users can call the trusted guest reader directly.");
     assert(!privileges.authenticated_email_invite, "Authenticated users can bypass the trusted email endpoint.");
     assert(privileges.service_guest_read, "The trusted service role cannot read a channel as a guest.");
+    assert(!privileges.authenticated_share_update, "Authenticated users can update share ownership rows.");
 
     throw rollbackMarker;
   });
@@ -109,4 +130,4 @@ try {
   await sql.end();
 }
 
-console.log("Verified owner/outsider visibility and guest-service privilege boundaries; test data rolled back.");
+console.log("Verified Channel sharing, owner/outsider visibility, guest reads, and service boundaries; test data rolled back.");

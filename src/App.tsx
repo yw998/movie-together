@@ -12,6 +12,7 @@ import { availabilityLabel } from "./lib/showing-labels";
 import { AccountControl } from "./auth/AccountControl";
 import { useWatchMarks } from "./watch-marks/useWatchMarks";
 import { ChannelPanel } from "./channels/ChannelPanel";
+import { ShareMarkDialog } from "./watch-marks/ShareMarkDialog";
 
 const timeClusters: TimeCluster[] = ["上午", "下午", "晚间", "深夜"];
 
@@ -24,6 +25,8 @@ export default function App() {
     cinemas.map((cinema) => cinema.id),
   );
   const [query, setQuery] = useState("");
+  const [scheduleView, setScheduleView] = useState<"all" | "personal">("all");
+  const [sharePrompt, setSharePrompt] = useState<{ markId: string; filmTitle: string } | null>(null);
   const watchMarks = useWatchMarks(metadata.windowStart);
 
   const cinemaById = useMemo(
@@ -44,8 +47,9 @@ export default function App() {
         const film = filmById.get(showing.filmId);
         const searchable = `${film?.displayTitle ?? ""}${cinema?.name ?? ""}`;
         return (
-          showing.localDate === selectedDate &&
+          (scheduleView === "personal" || showing.localDate === selectedDate) &&
           selectedCinemas.includes(showing.cinemaId) &&
+          (scheduleView === "all" || watchMarks.isMarked(showing.id)) &&
           searchable.toLocaleLowerCase("zh-CN").includes(normalizedQuery)
         );
       })
@@ -61,15 +65,21 @@ export default function App() {
     selectedCinemas,
     selectedDate,
     showings,
+    scheduleView,
+    watchMarks,
   ]);
 
-  const groups = timeClusters
-    .map((name) => ({
-      name,
-      rows: visibleShowings.filter(
-        (showing) => getTimeCluster(showing.localTime) === name,
-      ),
-    }))
+  const groups = (scheduleView === "personal"
+    ? dates.map((date) => ({
+        name: dateLabels[date],
+        rows: visibleShowings.filter((showing) => showing.localDate === date),
+      }))
+    : timeClusters.map((name) => ({
+        name,
+        rows: visibleShowings.filter(
+          (showing) => getTimeCluster(showing.localTime) === name,
+        ),
+      })))
     .filter((group) => group.rows.length > 0);
 
   function toggleCinema(cinemaId: string) {
@@ -147,8 +157,14 @@ export default function App() {
           </aside>
         )}
         <div className="summary">
-          <span>{dateLabels[selectedDate]}</span>
-          <b>{visibleShowings.length} 场{watchMarks.signedIn && ` · 已标记 ${watchMarks.markedCount} 场`}</b>
+          <span>{scheduleView === "personal" ? "个人主视图" : dateLabels[selectedDate]}</span>
+          <div className="summary-tools">
+            {watchMarks.signedIn && <div className="view-switch">
+              <button className={scheduleView === "all" ? "active" : ""} onClick={() => setScheduleView("all")} type="button">全部排片</button>
+              <button className={scheduleView === "personal" ? "active" : ""} onClick={() => setScheduleView("personal")} type="button">我的想看</button>
+            </div>}
+            <b>{visibleShowings.length} 场{watchMarks.signedIn && ` · 已标记 ${watchMarks.markedCount} 场`}</b>
+          </div>
         </div>
         {watchMarks.error && <aside className="mark-error" role="status">{watchMarks.error}</aside>}
         {groups.length ? (
@@ -166,7 +182,17 @@ export default function App() {
                     key={showing.id}
                     markBusy={watchMarks.isBusy(showing.id)}
                     marked={watchMarks.isMarked(showing.id)}
-                    onToggleMark={() => void watchMarks.toggle(showing.id)}
+                    onToggleMark={() => void watchMarks.toggle(showing.id).then((result) => {
+                      if (result?.action === "created") setSharePrompt({
+                        markId: result.markId,
+                        filmTitle: filmById.get(showing.filmId)!.displayTitle,
+                      });
+                    })}
+                    onEditShare={() => {
+                      const markId = watchMarks.markId(showing.id);
+                      if (markId) setSharePrompt({ markId, filmTitle: filmById.get(showing.filmId)!.displayTitle });
+                    }}
+                    shareCount={watchMarks.shareCount(showing.id)}
                     signedIn={watchMarks.signedIn}
                     showing={showing}
                   />
@@ -197,6 +223,12 @@ export default function App() {
         </div>
       </footer>
       </div>
+      {sharePrompt && <ShareMarkDialog
+        filmTitle={sharePrompt.filmTitle}
+        markId={sharePrompt.markId}
+        onClose={() => setSharePrompt(null)}
+        onSaved={(channelIds) => watchMarks.updateSharing(sharePrompt.markId, channelIds)}
+      />}
     </main>
   );
 }
@@ -208,10 +240,12 @@ type ShowingCardProps = {
   marked: boolean;
   markBusy: boolean;
   onToggleMark: () => void;
+  onEditShare: () => void;
   signedIn: boolean;
+  shareCount: number;
 };
 
-function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, signedIn }: ShowingCardProps) {
+function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, onEditShare, signedIn, shareCount }: ShowingCardProps) {
   const availability = availabilityLabel(showing.availability);
   return (
     <article
@@ -231,6 +265,7 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, si
             "本周特别放映；点击查看影院官方介绍与最新票务状态。"}
         </p>
         {showing.eventNote && <small>{showing.eventNote}</small>}
+        {marked && <button className="share-count" onClick={onEditShare} type="button">{shareCount > 0 ? `已分享至 ${shareCount} 个 Channel · 编辑` : "仅个人可见 · 设置分享"}</button>}
         <div className="card-actions">
           <a href={showing.detailUrl} rel="noreferrer" target="_blank">
             {showing.availability === "sold_out" ? "查看官方详情" : "官方详情 / 购票"} ↗
