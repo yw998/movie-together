@@ -130,6 +130,48 @@ export function useWatchMarks(windowStart: string) {
     return true;
   }, [user]);
 
+  const addToChannel = useCallback(async (showingId: string, channelId: string) => {
+    const client = supabase;
+    if (!client || !user) {
+      requestAccountDialog();
+      return false;
+    }
+    const key = showingMarkKey(windowStart, showingId);
+    if (busy.has(key)) return false;
+    setBusy((current) => new Set(current).add(key));
+    setError(null);
+    let markId = marks.get(key) ?? null;
+    if (!markId) {
+      const { data, error: insertError } = await client.rpc("create_watch_mark_with_defaults", {
+        target_window_start: windowStart,
+        target_showing_id: showingId,
+      });
+      if (insertError) {
+        setError("无法保存标记，请稍后重试。");
+        setBusy((current) => { const next = new Set(current); next.delete(key); return next; });
+        return false;
+      }
+      markId = data as string;
+      setMarks((current) => new Map(current).set(key, markId!));
+    }
+    const { data: existingShares, error: queryError } = await client
+      .from("channel_mark_shares")
+      .select("channel_id")
+      .eq("mark_id", markId);
+    const channelIds = [...new Set([...(existingShares ?? []).map((share) => share.channel_id), channelId])];
+    const { error: shareError } = queryError ? { error: queryError } : await client.rpc("set_watch_mark_channels", {
+      target_mark_id: markId,
+      target_channel_ids: channelIds,
+    });
+    if (shareError) setError("无法把标记分享到这个 Channel，请稍后重试。");
+    else {
+      setShareCounts((current) => new Map(current).set(markId!, channelIds.length));
+      window.dispatchEvent(new Event(WATCH_MARKS_CHANGED_EVENT));
+    }
+    setBusy((current) => { const next = new Set(current); next.delete(key); return next; });
+    return !shareError;
+  }, [busy, marks, user, windowStart]);
+
   return {
     error,
     markedCount: marks.size,
@@ -143,5 +185,6 @@ export function useWatchMarks(windowStart: string) {
     },
     toggle,
     updateSharing,
+    addToChannel,
   };
 }

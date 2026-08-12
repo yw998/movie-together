@@ -607,6 +607,13 @@ with a backdrop, preserving the full width of film cards. The signed-in account'
 Friend ID is pinned to the bottom-left account area in every personal or Channel
 view, with an adjacent clipboard button and explicit copied or permission-failure
 feedback.
+Inside a Channel, members are shown as individual rows in the contextual rail,
+while owner invitation controls are pinned above the persistent account/Friend-ID
+area at the bottom. The shared watchlist is grouped by local date and sorted by
+local showing time, matching the personal schedule's chronological reading order.
+A member may click “想看” on another member's shared official showing; this creates
+the member's own personal mark and explicitly shares that mark to the current
+Channel, without modifying the original member's mark.
 Channel creation gives immediate progress/success/error feedback and rejects
 case-insensitive duplicate names owned by the same user, including concurrent
 double submissions. Existing duplicates are never deleted automatically; owners

@@ -349,24 +349,37 @@ export function ChannelPanel({ activeChannelId, onNavigate }: ChannelPanelProps)
             </div> : <div className="channel-detail">
               <span className="eyebrow dark">CHANNEL</span>
               <h3>{selectedChannel.name}</h3>
-              <p>{members.map((member) => `@${member.profiles?.username ?? "member"}${member.role === "owner" ? "（owner）" : ""}`).join(" · ")}</p>
               <label className="auto-share-setting">
                 <input checked={myMembership?.auto_share_new_marks ?? false} onChange={(event) => void setAutoShare(event.target.checked)} type="checkbox" />
                 新标记默认同步到这里
               </label>
+              <div className="channel-member-list">
+                <b>组内成员 · {members.length}</b>
+                {members.map((member) => {
+                  const memberName = member.profiles?.username ?? "member";
+                  return <div className="channel-member-row" key={member.user_id}>
+                    <span style={{ background: avatarColor(memberName) }}>{memberName[0]?.toUpperCase()}</span>
+                    <strong>@{memberName}</strong>
+                    {member.role === "owner" && <small>OWNER</small>}
+                  </div>;
+                })}
+              </div>
               {owner && <>
-                <form className="channel-invite" onSubmit={inviteUser}>
-                  <select name="kind"><option value="friend_id">Friend ID</option><option value="email">邮箱</option></select>
-                  <input name="identifier" placeholder="输入准确账号标识" required />
-                  <button disabled={busy} type="submit">邀请</button>
-                </form>
-                <button className="copy-invite" disabled={busy} onClick={() => void createLink()} type="button">复制分享链接</button>
                 <button className="delete-channel" disabled={busy} onClick={() => void deleteSelectedChannel()} type="button">删除 Channel</button>
               </>}
             </div>}
             {message && <p className="channel-message" role="status">{message}</p>}
           </>}
         </div>
+        {user && owner && selectedChannel && <div className="channel-invite-footer">
+          <b>邀请成员</b>
+          <form className="channel-invite" onSubmit={inviteUser}>
+            <select name="kind"><option value="friend_id">Friend ID</option><option value="email">邮箱</option></select>
+            <input name="identifier" placeholder="输入准确账号标识" required />
+            <button disabled={busy} type="submit">邀请</button>
+          </form>
+          <button className="copy-invite" disabled={busy} onClick={() => void createLink()} type="button">复制分享链接</button>
+        </div>}
         {user && <div className="channel-user-footer">
           <strong>@{username ?? "user"}</strong>
           <div className="friend-id">

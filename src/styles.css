@@ -140,7 +140,7 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-rail-divider { background: #3e4038; width: 34px; height: 1px; }
 .channel-rail-list { align-content: start; gap: 9px; width: 100%; min-height: 0; display: grid; justify-items: center; overflow-y: auto; scrollbar-width: none; }
 .channel-rail-list::-webkit-scrollbar { display: none; }
-.channel-context { grid-template-rows: auto minmax(0, 1fr) auto; min-width: 0; height: 100dvh; display: grid; overflow: hidden; }
+.channel-context { grid-template-rows: auto minmax(0, 1fr) auto auto; min-width: 0; height: 100dvh; display: grid; overflow: hidden; }
 .channel-context .channel-heading { border-bottom: 1px solid #3e4037; min-height: 65px; padding: 17px 17px 14px; flex-wrap: nowrap; }
 .channel-context .channel-heading h2 { margin: 0; font-size: 25px; }
 .channel-context-scroll { padding: 16px; overflow-y: auto; }
@@ -149,6 +149,16 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-personal-summary h3 { margin: 8px 0; font: 700 21px Georgia, "Songti SC", serif; }
 .channel-personal-summary p { color: #aaa99e; font-size: 12px; line-height: 1.55; }
 .channel-detail { border-top: 0; margin-top: 0; padding-top: 8px; }
+.channel-member-list { border-top: 1px solid #3e4037; margin-top: 18px; padding-top: 14px; }
+.channel-member-list > b, .channel-invite-footer > b { color: #aaa99e; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.channel-member-row { color: #dfdbd1; align-items: center; gap: 8px; min-width: 0; padding: 8px 2px; display: flex; }
+.channel-member-row > span { color: #fff; border-radius: 50%; align-items: center; justify-content: center; width: 29px; height: 29px; flex: 0 0 auto; font-size: 10px; font-weight: 800; display: flex; }
+.channel-member-row > strong { text-overflow: ellipsis; white-space: nowrap; min-width: 0; font-size: 12px; overflow: hidden; }
+.channel-member-row > small { color: #888980; margin-left: auto; font: 700 8px monospace; }
+.channel-invite-footer { background: #20211d; border-top: 1px solid #3e4037; padding: 11px 14px 13px; }
+.channel-invite-footer .channel-invite { grid-template-columns: 1fr; gap: 5px; margin: 8px 0; display: grid; }
+.channel-invite-footer .channel-invite input, .channel-invite-footer .channel-invite select { width: 100%; padding: 7px 8px; font-size: 11px; }
+.channel-invite-footer .channel-invite button, .channel-invite-footer .copy-invite { padding: 7px 9px; font-size: 11px; }
 .channel-user-footer { background: #191a17; border-top: 1px solid #3e4037; padding: 11px 14px 14px; }
 .channel-user-footer > strong { color: #f5f0e6; font-size: 12px; }
 .channel-user-footer .friend-id { margin: 7px 0 0; }
@@ -166,6 +176,9 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-main-title h2 { margin: 7px 0 0; font: 700 32px Georgia, "Songti SC", serif; }
 .channel-main-title > b { color: var(--muted); font: 700 12px monospace; }
 .channel-main-empty { text-align: center; color: var(--muted); border: 1px dashed #bbb5a8; padding: 80px 20px; }
+.channel-date-group { grid-template-columns: 92px minmax(0, 1fr); gap: 18px; margin-bottom: 32px; display: grid; }
+.channel-date-rail { color: #77786f; gap: 10px; padding-top: 4px; font: 700 11px monospace; display: flex; flex-direction: column; }
+.channel-date-rail i { background: var(--line); width: 1px; min-height: 70px; margin-left: 4px; flex: 1; }
 .channel-shared-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; display: grid; }
 .channel-shared-card { background: #faf7ef; border: 1px solid var(--line); min-height: 230px; padding: 22px; display: flex; flex-direction: column; }
 .channel-shared-meta { color: var(--muted); justify-content: space-between; gap: 15px; font: 700 10px monospace; display: flex; }
@@ -174,6 +187,8 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-shared-footer { align-items: center; justify-content: space-between; gap: 15px; margin-top: auto; display: flex; }
 .channel-shared-footer .mark-avatars span { border-color: #faf7ef; }
 .channel-shared-footer a { border-bottom: 1px solid #aaa; font: 700 10px monospace; text-decoration: none; }
+.channel-card-actions { align-items: center; justify-content: flex-end; gap: 12px; display: flex; }
+.channel-card-actions .watch-mark.marked:disabled { cursor: default; opacity: 1; }
 .share-mark-popover { color: var(--ink); background: var(--paper); border: 1px solid #aaa69c; width: min(286px, calc(100vw - 24px)); max-height: var(--share-max-height); padding: 17px; position: fixed; z-index: 45; left: var(--share-left); top: var(--share-top); overflow-y: auto; box-shadow: 0 14px 40px #0004; }
 .share-mark-popover.above { transform: translateY(-100%); }
 .share-mark-popover h2 { margin: 12px 0 5px; font: 700 20px Georgia, "Songti SC", serif; }
@@ -203,5 +218,7 @@ footer a { color: #e5e0d5; text-decoration: none; }
   .channel-backdrop.open { display: block; }
   .channel-create { flex-direction: column; }
   .channel-shared-grid { grid-template-columns: 1fr; }
+  .channel-date-group { grid-template-columns: 58px minmax(0, 1fr); gap: 10px; }
+  .channel-card-actions { align-items: flex-end; flex-direction: column; }
   .channel-main-hero { min-height: 245px; padding-top: 72px; }
 }
