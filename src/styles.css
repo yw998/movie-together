@@ -163,6 +163,8 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-invite-footer .channel-invite { grid-template-columns: 1fr; gap: 5px; margin: 8px 0; display: grid; }
 .channel-invite-footer .channel-invite input, .channel-invite-footer .channel-invite select { width: 100%; padding: 7px 8px; font-size: 11px; }
 .channel-invite-footer .channel-invite button, .channel-invite-footer .copy-invite { padding: 7px 9px; font-size: 11px; }
+.invite-copy-notice { color: #683516; background: #fff2df; border: 1px solid #d9bea0; margin: 7px 0 0; padding: 8px 9px; font-size: 10px; line-height: 1.4; animation: invite-copy-notice 5s ease forwards; }
+@keyframes invite-copy-notice { 0%, 78% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(3px); } }
 .channel-user-footer { background: #191a17; border-top: 1px solid #3e4037; padding: 11px 14px 14px; }
 .channel-user-footer > strong { color: #f5f0e6; font-size: 12px; }
 .channel-user-footer .friend-id { margin: 7px 0 0; }

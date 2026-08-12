@@ -609,6 +609,10 @@ with a backdrop, preserving the full width of film cards. The signed-in account'
 Friend ID is pinned to the bottom-left account area in every personal or Channel
 view, with an adjacent clipboard button and explicit copied or permission-failure
 feedback.
+After an owner copies a Channel invitation link, its success notice appears
+directly below the copy button, stays readable for roughly four seconds, fades
+during the final second, and is removed after five seconds. Repeated copying
+restarts the notice timer and animation; clipboard failures use error feedback.
 Inside a Channel, members are shown as individual rows in the contextual rail,
 while owner invitation controls are pinned above the persistent account/Friend-ID
 area at the bottom. The shared watchlist is grouped by local date and sorted by

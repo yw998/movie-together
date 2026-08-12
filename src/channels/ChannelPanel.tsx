@@ -32,6 +32,7 @@ export function ChannelPanel({ activeChannelId, onNavigate }: ChannelPanelProps)
   const { user, username } = useAuth();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const creatingRef = useRef(false);
+  const inviteCopyTimerRef = useRef<number | null>(null);
   const [channels, setChannels] = useState<Channel[]>([]);
   const [invitations, setInvitations] = useState<ChannelInvitation[]>([]);
   const [friendId, setFriendId] = useState<string | null>(null);
@@ -44,6 +45,7 @@ export function ChannelPanel({ activeChannelId, onNavigate }: ChannelPanelProps)
   const [mobileOpen, setMobileOpen] = useState(false);
   const [friendIdCopied, setFriendIdCopied] = useState(false);
   const [showCreate, setShowCreate] = useState(false);
+  const [inviteCopyNotice, setInviteCopyNotice] = useState<{ id: number } | null>(null);
   const selected = activeChannelId;
 
   const load = useCallback(async () => {
@@ -70,6 +72,15 @@ export function ChannelPanel({ activeChannelId, onNavigate }: ChannelPanelProps)
   }, [activeChannelId, client, onNavigate, user]);
 
   useEffect(() => { void load(); }, [load]);
+
+  useEffect(() => () => {
+    if (inviteCopyTimerRef.current !== null) window.clearTimeout(inviteCopyTimerRef.current);
+  }, []);
+
+  useEffect(() => {
+    setInviteCopyNotice(null);
+    if (inviteCopyTimerRef.current !== null) window.clearTimeout(inviteCopyTimerRef.current);
+  }, [selected]);
 
   useEffect(() => {
     if (!client || !selected) {
@@ -213,8 +224,18 @@ export function ChannelPanel({ activeChannelId, onNavigate }: ChannelPanelProps)
     const row = Array.isArray(data) ? data[0] : null;
     if (error || !row) return setMessage("无法生成邀请链接。");
     const url = invitationUrl(row.invite_token);
-    await navigator.clipboard.writeText(url);
-    setMessage("邀请链接已复制：7 天有效，最多 20 人加入。");
+    try {
+      await navigator.clipboard.writeText(url);
+      setMessage(null);
+      setInviteCopyNotice({ id: Date.now() });
+      if (inviteCopyTimerRef.current !== null) window.clearTimeout(inviteCopyTimerRef.current);
+      inviteCopyTimerRef.current = window.setTimeout(() => {
+        setInviteCopyNotice(null);
+        inviteCopyTimerRef.current = null;
+      }, 5000);
+    } catch {
+      setMessage("无法复制邀请链接，请检查浏览器的剪贴板权限。");
+    }
   }
 
   async function acceptDirect(invitationId: string) {
@@ -379,6 +400,7 @@ export function ChannelPanel({ activeChannelId, onNavigate }: ChannelPanelProps)
             <button disabled={busy} type="submit">邀请</button>
           </form>
           <button className="copy-invite" disabled={busy} onClick={() => void createLink()} type="button">复制分享链接</button>
+          {inviteCopyNotice && <p className="invite-copy-notice" key={inviteCopyNotice.id} role="status">邀请链接已复制：7 天有效，最多 20 人加入。</p>}
         </div>}
         {user && <div className="channel-user-footer">
           <strong>@{username ?? "user"}</strong>
