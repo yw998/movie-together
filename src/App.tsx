@@ -141,7 +141,7 @@ export default function App() {
       </header>
 
       <div className="sticky">
-        <nav className="dates" aria-label="日期">
+        {scheduleView === "all" && <nav className="dates" aria-label="日期">
           {dates.map((date) => (
             <button
               className={date === selectedDate ? "active" : ""}
@@ -152,7 +152,7 @@ export default function App() {
               {dateLabels[date]}
             </button>
           ))}
-        </nav>
+        </nav>}
         <div className="filters">
           <div className="cinemas">
             {cinemas.map((cinema) => (
@@ -188,7 +188,7 @@ export default function App() {
           </aside>
         )}
         <div className="summary">
-          <span>{scheduleView === "personal" ? "个人主视图" : dateLabels[selectedDate]}</span>
+          <span>{scheduleView === "personal" ? "未来七天 · 我的想看" : dateLabels[selectedDate]}</span>
           <div className="summary-tools">
             {watchMarks.signedIn && <div className="view-switch">
               <button className={scheduleView === "all" ? "active" : ""} onClick={() => setScheduleView("all")} type="button">全部排片</button>

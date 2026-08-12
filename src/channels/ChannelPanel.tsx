@@ -13,6 +13,10 @@ import {
 } from "./channel-api";
 import { avatarColor } from "./avatar";
 
+// Keep the guest implementation available for a future re-enable, but do not
+// expose guest entry points in the public UI for now.
+const GUEST_ACCESS_VISIBLE = false;
+
 type Member = { user_id: string; role: "owner" | "member"; auto_share_new_marks: boolean; profiles: { username: string } | null };
 type GuestView = {
   channel: { id: string; name: string };
@@ -354,7 +358,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
         </div>
         <div className="channel-context-scroll">
           {!user && <div className="channel-heading-actions">
-            <button onClick={() => { setInvitePreview(null); setGuestView(null); dialogRef.current?.showModal(); }} type="button">使用访客代码</button>
+            {GUEST_ACCESS_VISIBLE && <button onClick={() => { setInvitePreview(null); setGuestView(null); dialogRef.current?.showModal(); }} type="button">使用访客代码</button>}
             <button onClick={requestAccountDialog} type="button">登录后创建</button>
           </div>}
           {user && <>
@@ -416,6 +420,15 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
         <span className="eyebrow dark">NEW CHANNEL</span>
         <h2>创建 Channel</h2>
         <p>建立一个只对受邀成员开放的共享想看空间。</p>
+        <div className="channel-create-friend-id">
+          <span>个人 Friend ID</span>
+          <div>
+            <code>{friendId ?? "读取中…"}</code>
+            <button disabled={!friendId} onClick={() => void copyFriendId()} type="button">
+              {friendIdCopied ? "已复制" : "复制"}
+            </button>
+          </div>
+        </div>
         <form className="channel-create-modal-form" onSubmit={createChannel}>
           <label>Channel 名称<input autoFocus maxLength={80} name="name" placeholder="例如：周末电影小组" required /></label>
           {createMessage && <p className="channel-create-message" role="status">{createMessage}</p>}
@@ -444,7 +457,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
           <code>Access code: {guestCredential.code}</code>
         </div> : invitePreview ? <>
           <button className="auth-submit" disabled={busy} onClick={() => void acceptLink()} type="button">{user ? "加入我的账号" : "登录 / 注册后加入"}</button>
-          {!user && <form className="auth-form guest-form" onSubmit={joinAsGuest}>
+          {GUEST_ACCESS_VISIBLE && !user && <form className="auth-form guest-form" onSubmit={joinAsGuest}>
             <label>不注册，使用临时名字<input maxLength={40} name="guest_name" required /></label>
             <button className="auth-submit" disabled={busy} type="submit">只读访问</button>
           </form>}

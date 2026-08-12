@@ -32,7 +32,8 @@ describe("personal mark and channel share flow", () => {
     const app = await readFile(appPath, "utf8");
 
     expect(app).toContain('scheduleView === "personal" || showing.localDate === selectedDate');
-    expect(app).toContain('scheduleView === "personal" ? "个人主视图"');
+    expect(app).toContain('{scheduleView === "all" && <nav className="dates"');
+    expect(app).toContain('scheduleView === "personal" ? "未来七天 · 我的想看"');
     expect(app).toContain("已分享至 ${shareCount} 个 Channel");
   });
 

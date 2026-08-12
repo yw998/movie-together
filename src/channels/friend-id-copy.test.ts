@@ -12,4 +12,18 @@ describe("Friend ID copy control", () => {
     expect(source).toContain('friendIdCopied ? "已复制" : "复制"');
     expect(source).toContain("无法复制 Friend ID");
   });
+
+  it("shows the personal Friend ID and copy control in the Channel creation dialog", async () => {
+    const source = await readFile(componentPath, "utf8");
+    const createDialog = source.slice(
+      source.indexOf('<dialog className="channel-create-dialog"'),
+      source.indexOf('<dialog className="auth-dialog invite-dialog"'),
+    );
+
+    expect(createDialog).toContain('className="channel-create-friend-id"');
+    expect(createDialog).toContain("个人 Friend ID");
+    expect(createDialog).toContain('{friendId ?? "读取中…"}');
+    expect(createDialog).toContain('onClick={() => void copyFriendId()}');
+    expect(createDialog).toContain('disabled={!friendId}');
+  });
 });

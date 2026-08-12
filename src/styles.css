@@ -26,6 +26,11 @@ a { color: inherit; }
 .channel-create-dialog::backdrop { background: #090a08c7; backdrop-filter: blur(3px); }
 .channel-create-dialog h2 { margin: 14px 0 8px; font: 700 32px Georgia, "Songti SC", serif; }
 .channel-create-dialog > p { color: var(--muted); margin: 0 0 24px; font-size: 12px; line-height: 1.55; }
+.channel-create-friend-id { color: #575851; margin: 0 0 18px; font-size: 11px; font-weight: 700; }
+.channel-create-friend-id > div { gap: 7px; margin-top: 7px; display: flex; }
+.channel-create-friend-id code { color: var(--ink); background: #fff; border: 1px solid #aaa69c; border-radius: 5px; min-width: 0; padding: 11px 12px; flex: 1; font-size: 12px; font-weight: 400; }
+.channel-create-friend-id button { color: #fff; background: var(--ink); border: 0; border-radius: 5px; min-width: 58px; padding: 10px 12px; font-size: 11px; font-weight: 700; }
+.channel-create-friend-id button:disabled { cursor: wait; opacity: .55; }
 .channel-create-modal-form { gap: 13px; display: grid; }
 .channel-create-modal-form label { color: #575851; gap: 7px; font-size: 11px; font-weight: 700; display: grid; }
 .channel-create-modal-form input { color: var(--ink); background: #fff; border: 1px solid #aaa69c; border-radius: 5px; width: 100%; padding: 12px; outline: 0; }
@@ -247,14 +252,36 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .share-channel-form small { color: #777; margin-left: 8px; font-size: 10px; }
 .channel-mobile-toggle, .channel-mobile-close, .channel-backdrop { display: none; }
 @media (max-width: 760px) {
-  .site-shell { margin-left: 0; }
-  .hero { padding-top: 52px; }
-  .filters { flex-direction: column; align-items: stretch; }
+  .site-shell, .personal-home .site-shell { width: 100%; margin-left: 0; }
+  .hero { padding: 54px 18px 34px; }
+  .hero h1 { margin: 18px 0 12px; font-size: 52px; }
+  .hero p { font-size: 15px; }
+  .stats { margin-top: 22px; }
+  .sticky { position: static; backdrop-filter: none; }
+  .dates { padding: 0 8px; scrollbar-width: none; }
+  .dates::-webkit-scrollbar, .cinemas::-webkit-scrollbar { display: none; }
+  .dates button { padding: 13px 12px; }
+  .filters { gap: 10px; padding: 10px 12px 12px; flex-direction: column; align-items: stretch; overflow: hidden; }
+  .cinemas { flex-wrap: nowrap; margin: 0 -12px; padding: 0 12px; overflow-x: auto; scrollbar-width: none; }
+  .cinemas button { flex: 0 0 auto; padding: 7px 10px; }
   .search { width: 100%; }
+  .content { padding: 24px 12px 64px; }
+  .summary { margin-bottom: 20px; }
+  .summary span { font-size: 27px; }
   .cards { grid-template-columns: 1fr; }
-  .cluster { grid-template-columns: 58px 1fr; gap: 10px; }
-  .card { grid-template-columns: 76px 1fr; }
-  .body h2 { font-size: 19px; }
+  .cluster { margin-bottom: 28px; display: block; }
+  .rail { flex-direction: row; align-items: center; gap: 10px; margin-bottom: 8px; padding: 0; }
+  .rail i { width: auto; height: 1px; flex: 1; }
+  .card { grid-template-columns: 70px minmax(0, 1fr); min-height: 0; }
+  .time { padding: 12px 8px; font-size: 12px; }
+  .body { min-width: 0; padding: 11px 12px 12px; }
+  .cinema { font-size: 9px; }
+  .body h2 { margin: 6px 0 4px; font-size: 18px; }
+  .body p { margin-bottom: 8px; font-size: 11px; line-height: 1.4; display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+  .body small { margin-bottom: 7px; font-size: 10px; }
+  .card-actions { gap: 8px; margin-top: 3px; }
+  .body a, .watch-mark { font-size: 10px; }
+  .watch-mark { padding: 5px 8px; }
   footer { flex-direction: column; }
   .hero::after { opacity: .45; }
   .account-control { top: 16px; right: 18px; }
