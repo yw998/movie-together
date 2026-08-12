@@ -133,6 +133,8 @@ jobs:
         run: |
           ISSUE_BODY="${RUNNER_TEMP}/schedule-issue.md"
           {
+            echo "## Review update: ${{ steps.context.outputs.anchor }}"
+            echo
             echo "The daily rolling schedule publication stopped before deployment."
             echo
             echo "- Rolling start: ${{ steps.context.outputs.anchor }}"
@@ -142,5 +144,10 @@ jobs:
             echo "The previous production schedule remains active. Download the private workflow artifact for source evidence and review details."
             find "${{ steps.context.outputs.run_dir }}" -name review-report.md -print0 2>/dev/null | xargs -0 grep "CONCERN:" 2>/dev/null || true
           } > "$ISSUE_BODY"
-          gh issue create --title "Rolling schedule review required: ${{ steps.context.outputs.anchor }}" --body-file "$ISSUE_BODY" --label "schedule-review" || \
-          gh issue create --title "Rolling schedule review required: ${{ steps.context.outputs.anchor }}" --body-file "$ISSUE_BODY"
+          EXISTING_ISSUE="$(gh issue list --state open --label schedule-review --limit 1 --json number --jq '.[0].number // empty')"
+          if [ -n "$EXISTING_ISSUE" ]; then
+            gh issue comment "$EXISTING_ISSUE" --body-file "$ISSUE_BODY"
+          else
+            gh issue create --title "Rolling schedule review required: ${{ steps.context.outputs.anchor }}" --body-file "$ISSUE_BODY" --label "schedule-review" || \
+            gh issue create --title "Rolling schedule review required: ${{ steps.context.outputs.anchor }}" --body-file "$ISSUE_BODY"
+          fi

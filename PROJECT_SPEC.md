@@ -349,6 +349,11 @@ schedule metadata. Source bundles and database identities retain Monday–Sunday
 calendar weeks; the public export combines the approved weeks and exposes the
 New York today-plus-six-days rolling window.
 
+Automation alerting note (2026-08-12): a failed or ambiguous publication keeps
+the previous public data active. If a `schedule-review` issue is already open,
+later failures append their run details to that issue instead of creating
+duplicate alerts.
+
 Product decisions confirmed 2026-08-11:
 
 - Historical decision: “This week” was originally the New York calendar week.
