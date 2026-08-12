@@ -35,7 +35,7 @@ path and will not become browser-writable.
 
 ## Planned authenticated application data
 
-The confirmed product direction includes accounts, private watch marks,
+The confirmed product direction includes accounts, private showing-level watch marks,
 invite-only channels, explicit sharing, and user-created events. The planned
 tables are:
 
@@ -58,6 +58,15 @@ The security model is deny-by-default Row Level Security:
 - channel membership and invitation acceptance are validated in the database or
   trusted server code, never by trusting a client-supplied owner ID;
 - removing membership immediately removes channel-derived read access.
+
+Each `watch_marks` row targets one exact official showing, not a film in
+general. The reference therefore needs the showing's stable database identity
+(currently the composite `window_start` + showing `id`). Before watch marks are
+enabled, the approved-week importer must stop deleting and recreating all rows
+for the week. It must upsert stable showing occurrences and preserve referenced
+rows when an upstream event disappears, with an explicit removed/cancelled
+state where appropriate. A refresh must never silently orphan or erase a user's
+mark.
 
 Implementation must include multi-user RLS tests before these tables are used by
 the production frontend. Supabase publishable keys may be exposed to the browser

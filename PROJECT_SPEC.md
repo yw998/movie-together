@@ -438,8 +438,9 @@ Product scope confirmed 2026-08-11:
 
 1. Users can create an account and sign in. Anonymous visitors can continue to
    browse the public official schedule without an account.
-2. A signed-in user can privately mark a film they want to see. Private is the
-   default; creating a mark must never publish it implicitly.
+2. A signed-in user can privately mark one specific official showing they want
+   to attend. Marking another time or cinema for the same film creates a separate
+   mark. Private is the default; creating a mark must never publish it implicitly.
 3. A user can create a channel and invite friends. A channel member can see
    marks that another member explicitly shared into that channel, but cannot
    edit or delete another user's mark.
@@ -478,7 +479,7 @@ profiles                one application profile per auth.users identity
 channels                channel metadata and creator
 channel_members         membership and role per channel/user
 channel_invitations     expiring invitation state
-watch_marks             user-owned mark referencing an official film/showing
+watch_marks             user-owned mark referencing one exact official showing
 user_events             user-owned manually entered event
 channel_mark_shares     explicit channel visibility for a watch mark
 channel_event_shares    explicit channel visibility for a user event
@@ -494,12 +495,14 @@ Required authorization invariants:
 - accepting an invitation must bind the authenticated identity, not merely trust
   a client-supplied user ID;
 - deleting a channel or membership must revoke channel-derived visibility;
+- a schedule refresh must preserve the stable showing reference used by an
+  existing mark, even if that showing is later removed or cancelled upstream;
 - RLS policies and database constraints are tested before enabling the feature.
 
 Recommended delivery order:
 
 1. Supabase Auth, profile creation, session handling, and protected account UI.
-2. Private watch marks for official films/showings.
+2. Private watch marks for exact official showings.
 3. Channels, membership, and invitations.
 4. Explicit mark sharing and a read-only channel activity view.
 5. Private user-created events, then explicit channel sharing.
@@ -508,7 +511,6 @@ Recommended delivery order:
 Open decisions to confirm before implementation reaches each boundary:
 
 - login methods for v1 (email magic link, email/password, Google, or a subset);
-- whether a mark targets the film generally, one exact showing, or supports both;
 - whether invitations use email, a revocable invite link, or both;
 - whether channels need owner/admin roles beyond ordinary membership;
 - what happens to shared visibility when a user leaves a channel;
@@ -543,13 +545,13 @@ Open decisions to confirm before implementation reaches each boundary:
 3. 已售罄场次继续显示并明确标注。
 4. 产品需要用户账号、私人想看标记、受邀请成员可见的共享频道，以及可选择共享的用户自建活动。
 5. 分享只授予频道成员查看权；其他成员不能编辑标记或活动，默认状态始终为私人。
+6. “想看”标记针对一个具体官方场次；同一电影的不同时间或影院分别标记。
 
 尚未确定、需要向用户确认：
 
 1. 下一批扩展影院的优先顺序是什么？
 2. 账号首版采用哪些登录方式，以及邀请采用邮件、可撤销链接或两者兼有？
-3. “想看”标记是针对电影、具体场次，还是两者都支持？
-4. 频道是否需要 owner/admin/member 角色，以及退出频道后的共享记录如何处理？
+3. 频道是否需要 owner/admin/member 角色，以及退出频道后的共享记录如何处理？
 
 ## 13. 非目标
 
