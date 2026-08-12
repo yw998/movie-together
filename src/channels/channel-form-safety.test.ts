@@ -37,4 +37,15 @@ describe("async channel forms", () => {
     expect(source).not.toContain("showCreate");
     expect(source).not.toContain("已创建「");
   });
+
+  it("shows Channel deletion success in a one-second centered toast", async () => {
+    const source = await readFile(componentPath, "utf8");
+    const styles = await readFile(stylesPath, "utf8");
+
+    expect(source).toContain('showDeleteNotice(`已删除「${selectedChannel.name}」。`)');
+    expect(source).toContain('className="channel-delete-toast"');
+    expect(source).toContain("}, 1000)");
+    expect(styles).toContain("top: 50%; left: 50%");
+    expect(styles).toContain("animation: channel-delete-toast 1s ease forwards");
+  });
 });

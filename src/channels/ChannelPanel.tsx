@@ -34,6 +34,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
   const createDialogRef = useRef<HTMLDialogElement>(null);
   const creatingRef = useRef(false);
   const inviteCopyTimerRef = useRef<number | null>(null);
+  const deleteNoticeTimerRef = useRef<number | null>(null);
   const [channels, setChannels] = useState<Channel[]>([]);
   const [friendId, setFriendId] = useState<string | null>(null);
   const [members, setMembers] = useState<Member[]>([]);
@@ -46,6 +47,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
   const [friendIdCopied, setFriendIdCopied] = useState(false);
   const [createMessage, setCreateMessage] = useState<string | null>(null);
   const [inviteNotice, setInviteNotice] = useState<{ id: number; text: string } | null>(null);
+  const [deleteNotice, setDeleteNotice] = useState<{ id: number; text: string } | null>(null);
   const selected = activeChannelId;
 
   const load = useCallback(async () => {
@@ -72,6 +74,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
 
   useEffect(() => () => {
     if (inviteCopyTimerRef.current !== null) window.clearTimeout(inviteCopyTimerRef.current);
+    if (deleteNoticeTimerRef.current !== null) window.clearTimeout(deleteNoticeTimerRef.current);
   }, []);
 
   useEffect(() => {
@@ -179,9 +182,18 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
     const { error } = await client!.rpc("delete_channel", { target_channel_id: selectedChannel.id });
     setBusy(false);
     if (error) return setMessage("无法删除 Channel，请稍后重试。");
-    setMessage(`已删除「${selectedChannel.name}」。`);
+    showDeleteNotice(`已删除「${selectedChannel.name}」。`);
     onNavigate(null);
     await load();
+  }
+
+  function showDeleteNotice(text: string) {
+    if (deleteNoticeTimerRef.current !== null) window.clearTimeout(deleteNoticeTimerRef.current);
+    setDeleteNotice({ id: Date.now(), text });
+    deleteNoticeTimerRef.current = window.setTimeout(() => {
+      setDeleteNotice(null);
+      deleteNoticeTimerRef.current = null;
+    }, 1000);
   }
 
   async function inviteUser(event: FormEvent<HTMLFormElement>) {
@@ -443,6 +455,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
         </form>}
       </dialog>
     </aside>
+    {deleteNotice && <div className="channel-delete-toast" key={deleteNotice.id} role="status">{deleteNotice.text}</div>}
     </>
   );
 }

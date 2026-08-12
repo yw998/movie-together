@@ -655,6 +655,9 @@ Channel creation gives immediate progress/success/error feedback and rejects
 case-insensitive duplicate names owned by the same user, including concurrent
 double submissions. Existing duplicates are never deleted automatically; owners
 can remove a channel through an explicit confirmed delete action.
+After a successful deletion, confirmation appears as a non-interactive centered
+toast, fades during its final 300 ms, and is removed after one second; it does not
+occupy the contextual Channel rail.
 Async Channel forms retain their form element before awaiting Supabase so a
 successful write always proceeds to local reset, refresh, selection, and visible
 confirmation without requiring a page reload.
