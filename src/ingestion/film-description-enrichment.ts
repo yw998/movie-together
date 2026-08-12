@@ -59,6 +59,10 @@ const supplementalDescriptions: Record<string, DescriptionEntry> = {
   "the-piano": {
     text: "失语钢琴家带着女儿来到殖民时期的新西兰，在包办婚姻、欲望与自由之间挣扎。",
   },
+  "the-taking-of-pelham-123": {
+    text: "四名劫匪劫持纽约地铁列车并索要赎金，市府与交通警察在限时威胁下展开营救。",
+    source: "https://www.tcm.com/watchtcm/titles/92255",
+  },
   "the-razor-s-edge-lebanese-hostage-of-their-city": {
     text: "围城中的贝鲁特见证艺术家与难民少年的友谊，并以前导短片凝视战火城市。",
   },
