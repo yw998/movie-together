@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
 
 const migrationPath = new URL("../../db/migrations/005_channels_and_invitations.sql", import.meta.url);
+const hardeningMigrationPath = new URL("../../db/migrations/006_harden_channel_function_grants.sql", import.meta.url);
 
 describe("channel membership and invitations", () => {
   it("uses owner/member roles and deny-by-default RLS", async () => {
@@ -28,10 +29,14 @@ describe("channel membership and invitations", () => {
 
   it("keeps guest creation behind the service role", async () => {
     const migration = await readFile(migrationPath, "utf8");
+    const hardeningMigration = await readFile(hardeningMigrationPath, "utf8");
 
     expect(migration).toContain("grant execute on function create_channel_guest(text, text) to service_role");
     expect(migration).not.toContain("grant execute on function create_channel_guest(text, text) to anon");
     expect(migration).not.toContain("grant execute on function create_channel_guest(text, text) to authenticated");
+    expect(hardeningMigration).toContain(
+      "revoke execute on function create_channel_guest(text, text) from anon, authenticated",
+    );
   });
 
   it("does not allow an owner to leave or remove themselves", async () => {
