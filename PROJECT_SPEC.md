@@ -432,6 +432,90 @@ database import and is not regenerated on later weeks.
 - 收藏和隐藏影院（本地存储即可起步）
 - “本周值得看”的编辑推荐
 
+### Phase 5 — 账号、个人计划与共享频道
+
+Product scope confirmed 2026-08-11:
+
+1. Users can create an account and sign in. Anonymous visitors can continue to
+   browse the public official schedule without an account.
+2. A signed-in user can privately mark a film they want to see. Private is the
+   default; creating a mark must never publish it implicitly.
+3. A user can create a channel and invite friends. A channel member can see
+   marks that another member explicitly shared into that channel, but cannot
+   edit or delete another user's mark.
+4. When creating a new mark, the owner may leave it private or share it into one
+   or more channels they belong to. The owner can also change the sharing choice
+   later without changing the underlying official film or showing.
+5. If an event is missing from the official cinema catalog, a signed-in user can
+   create a user event with manually entered title/content and New York date and
+   time. It can remain private or be shared into channels under the same rules.
+
+The initial collaboration model is intentionally closer to a shared drive than
+to a public social network: channel membership grants visibility to explicitly
+shared items, not ownership. Only the creator can edit the underlying mark or
+user event. Channel members must not be able to edit another member's content.
+
+#### Data and trust boundaries
+
+- Official `Film` and `Showing` records remain read-only products of the
+  evidence-backed ingestion and approval workflow.
+- User-created events live in a separate table and must display a clear
+  “用户创建” label. They must never receive `verified` extraction status or be
+  merged into the official schedule dataset.
+- Personal marks, user events, memberships, invitations, and shares are dynamic
+  application data stored in Supabase PostgreSQL; they are not exported into the
+  public weekly JSON.
+- The browser may use the Supabase authenticated client only for user-scoped
+  data protected by Row Level Security. `DATABASE_URL` and service-role secrets
+  remain server-only.
+- Every personal item is private unless the owner creates an explicit share
+  record for a channel. Removing a share must not delete the underlying item.
+
+Proposed relational shape (names may be refined during implementation):
+
+```text
+profiles                one application profile per auth.users identity
+channels                channel metadata and creator
+channel_members         membership and role per channel/user
+channel_invitations     expiring invitation state
+watch_marks             user-owned mark referencing an official film/showing
+user_events             user-owned manually entered event
+channel_mark_shares     explicit channel visibility for a watch mark
+channel_event_shares    explicit channel visibility for a user event
+```
+
+Required authorization invariants:
+
+- users can create, read, update, and delete only their own marks and user events;
+- channel members can read an item only while it is explicitly shared to a
+  channel in which they have active membership;
+- shared visibility never grants update/delete rights to the viewer;
+- users can share only their own item and only to a channel they belong to;
+- accepting an invitation must bind the authenticated identity, not merely trust
+  a client-supplied user ID;
+- deleting a channel or membership must revoke channel-derived visibility;
+- RLS policies and database constraints are tested before enabling the feature.
+
+Recommended delivery order:
+
+1. Supabase Auth, profile creation, session handling, and protected account UI.
+2. Private watch marks for official films/showings.
+3. Channels, membership, and invitations.
+4. Explicit mark sharing and a read-only channel activity view.
+5. Private user-created events, then explicit channel sharing.
+6. Notifications and convenience features only after authorization tests pass.
+
+Open decisions to confirm before implementation reaches each boundary:
+
+- login methods for v1 (email magic link, email/password, Google, or a subset);
+- whether a mark targets the film generally, one exact showing, or supports both;
+- whether invitations use email, a revocable invite link, or both;
+- whether channels need owner/admin roles beyond ordinary membership;
+- what happens to shared visibility when a user leaves a channel;
+- whether user-created events may omit an end time, location, or external URL;
+- whether channel members can react/comment, which is outside the confirmed
+  read-only sharing requirement.
+
 ## 11. 第一轮 Codex 任务清单
 
 将下面内容作为新 agent 的第一个执行队列：
@@ -457,18 +541,22 @@ database import and is not regenerated on later weeks.
 1. “本周”是自然周（周一至周日）。
 2. 每周更新必须先生成 review report，再由具名用户明确批准；不自动发布。
 3. 已售罄场次继续显示并明确标注。
+4. 产品需要用户账号、私人想看标记、受邀请成员可见的共享频道，以及可选择共享的用户自建活动。
+5. 分享只授予频道成员查看权；其他成员不能编辑标记或活动，默认状态始终为私人。
 
 尚未确定、需要向用户确认：
 
 1. 下一批扩展影院的优先顺序是什么？
-2. 是否需要用户账号；若只做本地收藏，第一阶段无需账号或数据库。
+2. 账号首版采用哪些登录方式，以及邀请采用邮件、可撤销链接或两者兼有？
+3. “想看”标记是针对电影、具体场次，还是两者都支持？
+4. 频道是否需要 owner/admin/member 角色，以及退出频道后的共享记录如何处理？
 
 ## 13. 非目标
 
 在核心每周更新稳定前，不做以下扩张：
 
 - 覆盖所有 NYC 商业影院
-- 复杂社交功能
+- 超出已确认频道共享范围的复杂社交功能，例如公开动态流、私信、评论和关注关系
 - 用户评论系统
 - 付费或订阅体系
 - 为了“看起来完整”而接入来源不明的排片聚合数据

@@ -28,6 +28,42 @@ artifacts:
 - The static frontend uses exported JSON and does not use Supabase public or
   service-role API keys.
 
+This describes the current public schedule. The planned account features will
+add a Supabase browser client for authenticated, user-scoped tables only. The
+official weekly schedule will continue to use the server-side import/export
+path and will not become browser-writable.
+
+## Planned authenticated application data
+
+The confirmed product direction includes accounts, private watch marks,
+invite-only channels, explicit sharing, and user-created events. The planned
+tables are:
+
+- `profiles`
+- `channels`, `channel_members`, `channel_invitations`
+- `watch_marks`
+- `user_events`
+- `channel_mark_shares`, `channel_event_shares`
+
+Official films/showings and user-created events must remain separate. A user
+event is never official source evidence and must be visibly labeled as
+user-created in the UI.
+
+The security model is deny-by-default Row Level Security:
+
+- owners can manage their own marks and user events;
+- active channel members can read explicitly shared items;
+- channel readers cannot edit or delete another user's item;
+- only an item's owner can create or remove its share records;
+- channel membership and invitation acceptance are validated in the database or
+  trusted server code, never by trusting a client-supplied owner ID;
+- removing membership immediately removes channel-derived read access.
+
+Implementation must include multi-user RLS tests before these tables are used by
+the production frontend. Supabase publishable keys may be exposed to the browser
+only after the policies are in place; `DATABASE_URL` and service-role credentials
+remain secret.
+
 ## Setup
 
 Copy `.env.example` to `.env.local` and set the Supabase Session Pooler URI:
@@ -83,10 +119,10 @@ Always run `npm test` and `npm run build` after exporting public data.
 ## Current database state — 2026-08-11
 
 - Current week: August 10–16, 2026
-- Cinemas: 5
-- Films: 89
-- Showings: 342
-- Source snapshots: 5
+- Cinemas: 6
+- Films: 107
+- Showings: 404
+- Source snapshots: 6
 - Manual overrides: 1
 - Review reports: 1
 - Approvals: 1
