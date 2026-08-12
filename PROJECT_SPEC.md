@@ -629,6 +629,9 @@ After an owner copies a Channel invitation link, its success notice appears
 directly below the copy button, stays readable for roughly four seconds, fades
 during the final second, and is removed after five seconds. Repeated copying
 restarts the notice timer and animation; clipboard failures use error feedback.
+Friend-ID and email invitation results, link-generation failures, and clipboard
+failures use this same notice position and five-second lifecycle instead of
+appearing in the scrollable Channel settings area.
 Inside a Channel, members are shown as individual rows in the contextual rail,
 while owner invitation controls are pinned above the persistent account/Friend-ID
 area at the bottom. The shared watchlist is grouped by local date and sorted by

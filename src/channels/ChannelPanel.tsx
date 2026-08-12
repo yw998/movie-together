@@ -44,7 +44,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
   const [mobileOpen, setMobileOpen] = useState(false);
   const [friendIdCopied, setFriendIdCopied] = useState(false);
   const [showCreate, setShowCreate] = useState(false);
-  const [inviteCopyNotice, setInviteCopyNotice] = useState<{ id: number } | null>(null);
+  const [inviteNotice, setInviteNotice] = useState<{ id: number; text: string } | null>(null);
   const selected = activeChannelId;
 
   const load = useCallback(async () => {
@@ -74,7 +74,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
   }, []);
 
   useEffect(() => {
-    setInviteCopyNotice(null);
+    setInviteNotice(null);
     if (inviteCopyTimerRef.current !== null) window.clearTimeout(inviteCopyTimerRef.current);
   }, [selected]);
 
@@ -197,16 +197,16 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
         const result = await callInvitationFunction<{ message: string }>(client!, {
           action: "email_invite", channelId: selected, email: value,
         });
-        setMessage(result.message);
+        showInviteNotice(result.message);
       } catch {
-        setMessage("无法发送邮箱邀请。");
+        showInviteNotice("无法发送邮箱邀请。");
       }
     } else {
       const { error } = await client!.rpc("invite_channel_user_by_friend_id", {
         target_channel_id: selected,
         target_friend_id: value,
       });
-      setMessage(error ? "没有找到这个 Friend ID，或对方已经是成员。" : "邀请已发送，等待对方接受后才会加入。");
+      showInviteNotice(error ? "没有找到这个 Friend ID，或对方已经是成员。" : "邀请已发送，等待对方接受后才会加入。");
     }
     setBusy(false);
     formElement.reset();
@@ -218,20 +218,23 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
     const { data, error } = await client!.rpc("create_channel_invite_link", { target_channel_id: selected });
     setBusy(false);
     const row = Array.isArray(data) ? data[0] : null;
-    if (error || !row) return setMessage("无法生成邀请链接。");
+    if (error || !row) return showInviteNotice("无法生成邀请链接。");
     const url = invitationUrl(row.invite_token);
     try {
       await navigator.clipboard.writeText(url);
-      setMessage(null);
-      setInviteCopyNotice({ id: Date.now() });
-      if (inviteCopyTimerRef.current !== null) window.clearTimeout(inviteCopyTimerRef.current);
-      inviteCopyTimerRef.current = window.setTimeout(() => {
-        setInviteCopyNotice(null);
-        inviteCopyTimerRef.current = null;
-      }, 5000);
+      showInviteNotice("邀请链接已复制：7 天有效，最多 20 人加入。");
     } catch {
-      setMessage("无法复制邀请链接，请检查浏览器的剪贴板权限。");
+      showInviteNotice("无法复制邀请链接，请检查浏览器的剪贴板权限。");
     }
+  }
+
+  function showInviteNotice(text: string) {
+    if (inviteCopyTimerRef.current !== null) window.clearTimeout(inviteCopyTimerRef.current);
+    setInviteNotice({ id: Date.now(), text });
+    inviteCopyTimerRef.current = window.setTimeout(() => {
+      setInviteNotice(null);
+      inviteCopyTimerRef.current = null;
+    }, 5000);
   }
 
   async function acceptLink() {
@@ -384,7 +387,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
             <button disabled={busy} type="submit">邀请</button>
           </form>
           <button className="copy-invite" disabled={busy} onClick={() => void createLink()} type="button">复制分享链接</button>
-          {inviteCopyNotice && <p className="invite-copy-notice" key={inviteCopyNotice.id} role="status">邀请链接已复制：7 天有效，最多 20 人加入。</p>}
+          {inviteNotice && <p className="invite-copy-notice" key={inviteNotice.id} role="status">{inviteNotice.text}</p>}
         </div>}
         {user && <div className="channel-user-footer">
           <strong>@{username ?? "user"}</strong>

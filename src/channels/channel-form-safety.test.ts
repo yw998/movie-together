@@ -13,11 +13,15 @@ describe("async channel forms", () => {
     expect(source.match(/formElement\.reset\(\)/g)).toHaveLength(2);
   });
 
-  it("places copied-link feedback by the button and removes it after five seconds", async () => {
+  it("places all invitation feedback by the button and removes it after five seconds", async () => {
     const source = await readFile(componentPath, "utf8");
     const styles = await readFile(stylesPath, "utf8");
 
     expect(source).toContain('className="invite-copy-notice"');
+    expect(source).toContain('showInviteNotice(error ? "没有找到这个 Friend ID');
+    expect(source).toContain('showInviteNotice("无法发送邮箱邀请。")');
+    expect(source).toContain('showInviteNotice("无法生成邀请链接。")');
+    expect(source).toContain("{inviteNotice.text}");
     expect(source).toContain("}, 5000)");
     expect(source).toContain("window.clearTimeout(inviteCopyTimerRef.current)");
     expect(styles).toContain("animation: invite-copy-notice 5s ease forwards");
