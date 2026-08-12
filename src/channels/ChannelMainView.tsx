@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { supabase } from "../auth/supabase";
 import { scheduleData } from "../data/schedule";
-import { formatDisplayTime, minutesSinceMidnight } from "../lib/time";
+import { formatDisplayTime, hasShowingStarted, minutesSinceMidnight } from "../lib/time";
 import { useWatchMarks, WATCH_MARKS_CHANGED_EVENT } from "../watch-marks/useWatchMarks";
 import { avatarColor } from "./avatar";
 import { useTransientMessage } from "../lib/useTransientMessage";
@@ -12,7 +12,7 @@ type SharedMark = { showing_id: string; user_id: string; username: string };
 type Member = { user_id: string; role: "owner" | "member"; username: string; kind?: "account" | "channel_only" };
 type ParticipantRow = { participant_id: string; display_name: string; role: string; kind: string };
 
-export function ChannelMainView({ channelId }: { channelId: string }) {
+export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs: number }) {
   const client = supabase;
   const { user } = useAuth();
   const channelIdentity = useChannelIdentity();
@@ -75,15 +75,15 @@ export function ChannelMainView({ channelId }: { channelId: string }) {
     const cinema = showing ? scheduleData.cinemas.find((row) => row.id === showing.cinemaId) : null;
     const marks = sharedMarks.filter((mark) => mark.showing_id === showingId);
     return { showingId, showing, film, cinema, marks };
-  }).sort((left, right) => {
+  }).filter((activity) => activity.showing && !hasShowingStarted(activity.showing.startsAt, nowMs)).sort((left, right) => {
     if (!left.showing) return 1;
     if (!right.showing) return -1;
     return left.showing.localDate.localeCompare(right.showing.localDate)
       || minutesSinceMidnight(left.showing.localTime) - minutesSinceMidnight(right.showing.localTime);
     });
-  }, [sharedMarks]);
+  }, [nowMs, sharedMarks]);
 
-  const sharedShowingCount = useMemo(() => new Set(sharedMarks.map((mark) => mark.showing_id)).size, [sharedMarks]);
+  const sharedShowingCount = activities.length;
 
   const groups = useMemo(() => {
     const dated = Object.keys(scheduleData.dateLabels).map((date) => ({
@@ -91,8 +91,7 @@ export function ChannelMainView({ channelId }: { channelId: string }) {
       label: scheduleData.dateLabels[date],
       rows: activities.filter((activity) => activity.showing?.localDate === date),
     })).filter((group) => group.rows.length > 0);
-    const removed = activities.filter((activity) => !activity.showing);
-    return removed.length ? [...dated, { key: "removed", label: "已下架", rows: removed }] : dated;
+    return dated;
   }, [activities]);
 
   return <section className="channel-main-view">

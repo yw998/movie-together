@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { scheduleData, scheduleValidation } from "./data/schedule";
 import {
+  defaultScheduleDate,
   formatDisplayTime,
   getTimeCluster,
+  hasShowingStarted,
   minutesSinceMidnight,
   type TimeCluster,
 } from "./lib/time";
@@ -22,7 +24,11 @@ type ColorStyle = CSSProperties & { "--c": string };
 
 export default function App() {
   const { metadata, cinemas, films, showings, dateLabels } = scheduleData;
-  const [selectedDate, setSelectedDate] = useState(metadata.windowStart);
+  const dates = Object.keys(dateLabels);
+  const [selectedDate, setSelectedDate] = useState(() =>
+    defaultScheduleDate(dates, metadata.windowStart),
+  );
+  const [nowMs, setNowMs] = useState(() => Date.now());
   const [selectedCinemas, setSelectedCinemas] = useState(() =>
     cinemas.map((cinema) => cinema.id),
   );
@@ -33,6 +39,7 @@ export default function App() {
   const [notificationRefreshKey, setNotificationRefreshKey] = useState(0);
   const channelIdentity = useChannelIdentity();
   const previousIdentityChannelRef = useRef<string | null>(null);
+  const previousNotificationChannelRef = useRef<string | null>(null);
   const [identityBusy, setIdentityBusy] = useState<Set<string>>(new Set());
   const [sharePrompt, setSharePrompt] = useState<{
     markId: string;
@@ -40,6 +47,16 @@ export default function App() {
     anchor: { left: number; top: number; maxHeight: number; placement: "above" | "below" };
   } | null>(null);
   const watchMarks = useWatchMarks(showings);
+
+  useEffect(() => {
+    const refreshNow = () => setNowMs(Date.now());
+    const timer = window.setInterval(refreshNow, 30_000);
+    document.addEventListener("visibilitychange", refreshNow);
+    return () => {
+      window.clearInterval(timer);
+      document.removeEventListener("visibilitychange", refreshNow);
+    };
+  }, []);
 
   useEffect(() => {
     const previousChannelId = previousIdentityChannelRef.current;
@@ -53,11 +70,18 @@ export default function App() {
     setNotificationsOpen(false);
     setSharePrompt(null);
   }, []);
-  const openNotifications = useCallback(() => {
+  const toggleNotifications = useCallback(() => {
+    if (notificationsOpen) {
+      setNotificationsOpen(false);
+      setActiveChannelId(previousNotificationChannelRef.current);
+      previousNotificationChannelRef.current = null;
+      return;
+    }
+    previousNotificationChannelRef.current = activeChannelId;
     setActiveChannelId(null);
     setNotificationsOpen(true);
     setSharePrompt(null);
-  }, []);
+  }, [activeChannelId, notificationsOpen]);
 
   const cinemaById = useMemo(
     () => new Map(cinemas.map((cinema) => [cinema.id, cinema])),
@@ -67,7 +91,13 @@ export default function App() {
     () => new Map(films.map((film) => [film.id, film])),
     [films],
   );
-  const dates = Object.keys(dateLabels);
+  const upcomingStats = useMemo(() => {
+    const upcoming = showings.filter((showing) => !hasShowingStarted(showing.startsAt, nowMs));
+    return {
+      films: new Set(upcoming.map((showing) => showing.filmId)).size,
+      showings: upcoming.length,
+    };
+  }, [nowMs, showings]);
 
   const visibleShowings = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase("zh-CN");
@@ -77,6 +107,7 @@ export default function App() {
         const film = filmById.get(showing.filmId);
         const searchable = `${film?.displayTitle ?? ""}${cinema?.name ?? ""}`;
         return (
+          !hasShowingStarted(showing.startsAt, nowMs) &&
           (scheduleView === "personal" || showing.localDate === selectedDate) &&
           selectedCinemas.includes(showing.cinemaId) &&
           (scheduleView === "all" || (channelIdentity.identity
@@ -101,6 +132,7 @@ export default function App() {
     watchMarks,
     channelIdentity.identity,
     channelIdentity.marks,
+    nowMs,
   ]);
 
   const groups = (scheduleView === "personal"
@@ -136,9 +168,9 @@ export default function App() {
         lightBackground={notificationsOpen}
         notificationRefreshKey={notificationRefreshKey}
         notificationsOpen={notificationsOpen}
-        onOpenNotifications={openNotifications}
+        onOpenNotifications={toggleNotifications}
       />
-      {activeChannelId ? <ChannelMainView channelId={activeChannelId} /> : notificationsOpen ? <NotificationsView
+      {activeChannelId ? <ChannelMainView channelId={activeChannelId} nowMs={nowMs} /> : notificationsOpen ? <NotificationsView
         onNotificationsChanged={() => setNotificationRefreshKey((current) => current + 1)}
         onOpenChannel={(channelId) => navigateTogether(channelId)}
       /> : <>
@@ -151,8 +183,8 @@ export default function App() {
           {cinemas.length} 家纽约艺术影院 · {formatWindowZh(metadata.windowStart, metadata.windowEnd)}
         </p>
         <div className="stats">
-          <b>{showings.length}</b> 个场次 <span>·</span>{" "}
-          <b>{films.length}</b> 部影片
+          <b>{upcomingStats.showings}</b> 个场次 <span>·</span>{" "}
+          <b>{upcomingStats.films}</b> 部影片
         </div>
       </header>
 

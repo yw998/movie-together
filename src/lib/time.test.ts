@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
+  defaultScheduleDate,
   formatDisplayTime,
   getTimeCluster,
+  hasShowingStarted,
   minutesSinceMidnight,
+  newYorkLocalDate,
   parseDisplayTime,
 } from "./time";
 
@@ -36,5 +39,23 @@ describe("New York local time helpers", () => {
   it("rejects malformed values", () => {
     expect(() => parseDisplayTime("noon")).toThrow("Invalid display time");
     expect(() => minutesSinceMidnight("24:00")).toThrow("Invalid local time");
+  });
+
+  it("derives today from New York rather than the browser timezone", () => {
+    expect(newYorkLocalDate(Date.parse("2026-08-12T03:59:00Z"))).toBe("2026-08-11");
+    expect(newYorkLocalDate(Date.parse("2026-08-12T04:00:00Z"))).toBe("2026-08-12");
+  });
+
+  it("selects New York today and safely clamps outside the published window", () => {
+    const dates = ["2026-08-12", "2026-08-13", "2026-08-14"];
+    expect(defaultScheduleDate(dates, dates[0], Date.parse("2026-08-13T16:00:00Z"))).toBe("2026-08-13");
+    expect(defaultScheduleDate(dates, dates[0], Date.parse("2026-08-10T16:00:00Z"))).toBe("2026-08-12");
+    expect(defaultScheduleDate(dates, dates[0], Date.parse("2026-08-16T16:00:00Z"))).toBe("2026-08-14");
+  });
+
+  it("treats a showing as hidden from its exact start time", () => {
+    const startsAt = "2026-08-12T19:00:00-04:00";
+    expect(hasShowingStarted(startsAt, Date.parse("2026-08-12T22:59:59Z"))).toBe(false);
+    expect(hasShowingStarted(startsAt, Date.parse("2026-08-12T23:00:00Z"))).toBe(true);
   });
 });

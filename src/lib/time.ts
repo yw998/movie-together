@@ -31,3 +31,32 @@ export function getTimeCluster(localTime: string): TimeCluster {
   if (minutes < 21 * 60) return "晚间";
   return "深夜";
 }
+
+export function newYorkLocalDate(now = Date.now()): string {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date(now));
+  const value = (type: Intl.DateTimeFormatPartTypes) =>
+    parts.find((part) => part.type === type)?.value ?? "";
+  return `${value("year")}-${value("month")}-${value("day")}`;
+}
+
+export function defaultScheduleDate(
+  availableDates: string[],
+  fallbackDate: string,
+  now = Date.now(),
+): string {
+  const today = newYorkLocalDate(now);
+  if (availableDates.includes(today)) return today;
+  return availableDates.find((date) => date > today)
+    ?? availableDates.at(-1)
+    ?? fallbackDate;
+}
+
+export function hasShowingStarted(startsAt: string, now = Date.now()): boolean {
+  const start = Date.parse(startsAt);
+  return Number.isFinite(start) && start <= now;
+}
