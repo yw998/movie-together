@@ -4,6 +4,7 @@ html { background: var(--paper); }
 body { color: var(--ink); background: var(--paper); margin: 0; font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif; }
 .app-shell { min-height: 100vh; }
 .site-shell { min-width: 0; margin-left: 360px; }
+.personal-home .site-shell { margin-left: 72px; }
 button, input { font: inherit; }
 button { cursor: pointer; }
 a { color: inherit; }
@@ -131,6 +132,8 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .guest-view article { border: 1px solid var(--line); justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0; padding: 10px; display: flex; }
 .guest-view .mark-avatars span { border-color: var(--paper); }
 .channel-panel { background: #20211d; grid-template-columns: 72px minmax(0, 1fr); width: 360px; padding: 0; display: grid; overflow: hidden; }
+.channel-panel:not(.context-open) { grid-template-columns: 72px; width: 72px; }
+.channel-panel:not(.context-open) .channel-context { display: none; }
 .channel-rail-nav { background: #171813; border-right: 1px solid #34352f; align-items: center; gap: 9px; height: 100dvh; padding: 12px 8px; display: flex; flex-direction: column; }
 .channel-rail-nav button { color: #e9e4d9; background: #30312b; border: 0; border-radius: 50%; align-items: center; justify-content: center; width: 48px; min-height: 48px; padding: 5px; font-size: 12px; font-weight: 800; line-height: 1.05; display: flex; transition: border-radius .15s, background .15s; overflow: hidden; }
 .channel-rail-nav button:hover, .channel-rail-nav button.active { color: #171813; background: #eee9dd; border-radius: 15px; }
@@ -211,6 +214,7 @@ footer a { color: #e5e0d5; text-decoration: none; }
   .hero::after { opacity: .45; }
   .account-control { top: 16px; right: 18px; }
   .channel-panel { grid-template-columns: 64px minmax(0, 1fr); width: min(94vw, 360px); transform: translateX(-102%); transition: transform .22s ease; box-shadow: 18px 0 50px #0006; }
+  .channel-panel:not(.context-open) { grid-template-columns: 64px; width: 64px; }
   .channel-panel.open { transform: translateX(0); }
   .channel-mobile-toggle { color: #fff; background: #2c2e27; border: 1px solid #65675b; border-radius: 99px; padding: 8px 12px; position: fixed; z-index: 22; left: 16px; bottom: 16px; display: block; box-shadow: 0 5px 18px #0004; }
   .channel-mobile-close { color: #ddd8cd !important; background: transparent !important; padding: 0 5px !important; font-size: 24px !important; display: block; }

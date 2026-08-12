@@ -600,8 +600,10 @@ two-account acceptance test.
 Channel navigation uses a Discord-like two-level left rail. The product title is
 “一起看”. The far-left rail starts with the personal home page, lists every joined
 Channel below it, and keeps the create-Channel entry at the bottom. Selecting home
-shows the normal personal schedule; selecting a Channel replaces the main content
-with that Channel's members and shared watchlist. The second rail holds contextual
+shows the normal personal schedule and collapses the contextual second rail so only
+the narrow primary rail remains. Selecting a Channel replaces the main content
+with that Channel's members and shared watchlist and opens the second rail. The
+create entry may temporarily open that rail for its form. The second rail holds contextual
 Channel settings. On narrow screens both rails become a button-triggered drawer
 with a backdrop, preserving the full width of film cards. The signed-in account's
 Friend ID is pinned to the bottom-left account area in every personal or Channel

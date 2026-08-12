@@ -294,12 +294,12 @@ export function ChannelPanel({ activeChannelId, onNavigate }: ChannelPanelProps)
       onClick={() => setMobileOpen(false)}
       type="button"
     />
-    <aside className={`channel-panel${mobileOpen ? " open" : ""}`}>
+    <aside className={`channel-panel${mobileOpen ? " open" : ""}${selected || showCreate ? " context-open" : ""}`}>
       <nav className="channel-rail-nav" aria-label="一起看导航">
         <button
           aria-label="个人主页"
           className={`channel-rail-home${selected === null ? " active" : ""}`}
-          onClick={() => { onNavigate(null); setMobileOpen(false); }}
+          onClick={() => { onNavigate(null); setShowCreate(false); setMobileOpen(false); }}
           title="个人主页"
           type="button"
         >我</button>
@@ -309,7 +309,7 @@ export function ChannelPanel({ activeChannelId, onNavigate }: ChannelPanelProps)
             aria-label={channel.name}
             className={selected === channel.id ? "active" : ""}
             key={channel.id}
-            onClick={() => { onNavigate(channel.id); setMobileOpen(false); }}
+            onClick={() => { onNavigate(channel.id); setShowCreate(false); setMobileOpen(false); }}
             title={channel.name}
             type="button"
           >{channel.name.trim().slice(0, 2)}</button>)}

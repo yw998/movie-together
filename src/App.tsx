@@ -101,7 +101,7 @@ export default function App() {
   }
 
   return (
-    <main className="app-shell">
+    <main className={`app-shell${activeChannelId ? "" : " personal-home"}`}>
       <ChannelPanel
         activeChannelId={activeChannelId}
         onNavigate={navigateTogether}
