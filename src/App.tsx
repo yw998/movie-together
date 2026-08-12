@@ -1,4 +1,4 @@
-import { useMemo, useState, type CSSProperties } from "react";
+import { useCallback, useMemo, useState, type CSSProperties } from "react";
 import { scheduleData, scheduleValidation } from "./data/schedule";
 import {
   formatDisplayTime,
@@ -12,6 +12,7 @@ import { availabilityLabel } from "./lib/showing-labels";
 import { AccountControl } from "./auth/AccountControl";
 import { useWatchMarks } from "./watch-marks/useWatchMarks";
 import { ChannelPanel } from "./channels/ChannelPanel";
+import { ChannelMainView } from "./channels/ChannelMainView";
 import { ShareMarkPopover } from "./watch-marks/ShareMarkDialog";
 
 const timeClusters: TimeCluster[] = ["上午", "下午", "晚间", "深夜"];
@@ -26,12 +27,17 @@ export default function App() {
   );
   const [query, setQuery] = useState("");
   const [scheduleView, setScheduleView] = useState<"all" | "personal">("all");
+  const [activeChannelId, setActiveChannelId] = useState<string | null>(null);
   const [sharePrompt, setSharePrompt] = useState<{
     markId: string;
     filmTitle: string;
     anchor: { left: number; top: number; maxHeight: number; placement: "above" | "below" };
   } | null>(null);
   const watchMarks = useWatchMarks(metadata.windowStart);
+  const navigateTogether = useCallback((channelId: string | null) => {
+    setActiveChannelId(channelId);
+    setSharePrompt(null);
+  }, []);
 
   const cinemaById = useMemo(
     () => new Map(cinemas.map((cinema) => [cinema.id, cinema])),
@@ -96,8 +102,12 @@ export default function App() {
 
   return (
     <main className="app-shell">
-      <ChannelPanel />
+      <ChannelPanel
+        activeChannelId={activeChannelId}
+        onNavigate={navigateTogether}
+      />
       <div className="site-shell">
+      {activeChannelId ? <ChannelMainView channelId={activeChannelId} /> : <>
       <header className="hero">
         <AccountControl />
         <div className="eyebrow">
@@ -234,6 +244,7 @@ export default function App() {
           ))}
         </div>
       </footer>
+      </>}
       </div>
       {sharePrompt && <ShareMarkPopover
         anchor={sharePrompt.anchor}

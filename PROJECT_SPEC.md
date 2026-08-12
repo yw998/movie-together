@@ -597,11 +597,16 @@ and colored username initials are implemented. User-created events are not yet
 implemented; a second registered test identity is still required for a complete
 two-account acceptance test.
 
-Channel navigation uses a Discord-like left rail on desktop so shared planning
-remains available beside the weekly schedule. On narrow screens it becomes a
-button-triggered drawer with a backdrop, preserving the full width of film cards.
-The account's Friend ID has an adjacent clipboard button with explicit copied or
-permission-failure feedback.
+Channel navigation uses a Discord-like two-level left rail. The product title is
+“一起看”. The far-left rail starts with the personal home page, lists every joined
+Channel below it, and keeps the create-Channel entry at the bottom. Selecting home
+shows the normal personal schedule; selecting a Channel replaces the main content
+with that Channel's members and shared watchlist. The second rail holds contextual
+Channel settings. On narrow screens both rails become a button-triggered drawer
+with a backdrop, preserving the full width of film cards. The signed-in account's
+Friend ID is pinned to the bottom-left account area in every personal or Channel
+view, with an adjacent clipboard button and explicit copied or permission-failure
+feedback.
 Channel creation gives immediate progress/success/error feedback and rejects
 case-insensitive duplicate names owned by the same user, including concurrent
 double submissions. Existing duplicates are never deleted automatically; owners

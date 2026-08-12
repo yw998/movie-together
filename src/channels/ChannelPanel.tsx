@@ -3,8 +3,6 @@ import { requestAccountDialog } from "../auth/account-events";
 import { supabase } from "../auth/supabase";
 import { useAuth } from "../auth/AuthContext";
 import { scheduleData } from "../data/schedule";
-import { formatDisplayTime } from "../lib/time";
-import { WATCH_MARKS_CHANGED_EVENT } from "../watch-marks/useWatchMarks";
 import {
   callInvitationFunction,
   clearInviteToken,
@@ -14,9 +12,9 @@ import {
   type ChannelInvitation,
   type InvitePreview,
 } from "./channel-api";
+import { avatarColor } from "./avatar";
 
 type Member = { user_id: string; role: "owner" | "member"; auto_share_new_marks: boolean; profiles: { username: string } | null };
-type SharedMark = { mark_id: string; window_start: string; showing_id: string; user_id: string; username: string; shared_at: string };
 type GuestView = {
   channel: { id: string; name: string };
   members: { username: string; role: string }[];
@@ -24,24 +22,20 @@ type GuestView = {
   sharedMarks: { windowStart: string; showingId: string; username: string }[];
 };
 
-function avatarColor(username: string): string {
-  const palette = ["#c75b4b", "#4d83b8", "#6d9852", "#9b62a5", "#c18a3f", "#4f9a92"];
-  let hash = 0;
-  for (const character of username) hash = ((hash << 5) - hash + character.charCodeAt(0)) | 0;
-  return palette[Math.abs(hash) % palette.length];
-}
+type ChannelPanelProps = {
+  activeChannelId: string | null;
+  onNavigate: (channelId: string | null) => void;
+};
 
-export function ChannelPanel() {
+export function ChannelPanel({ activeChannelId, onNavigate }: ChannelPanelProps) {
   const client = supabase;
-  const { user } = useAuth();
+  const { user, username } = useAuth();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const creatingRef = useRef(false);
   const [channels, setChannels] = useState<Channel[]>([]);
   const [invitations, setInvitations] = useState<ChannelInvitation[]>([]);
   const [friendId, setFriendId] = useState<string | null>(null);
-  const [selected, setSelected] = useState<string | null>(null);
   const [members, setMembers] = useState<Member[]>([]);
-  const [sharedMarks, setSharedMarks] = useState<SharedMark[]>([]);
   const [message, setMessage] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [invitePreview, setInvitePreview] = useState<InvitePreview | null>(null);
@@ -49,6 +43,8 @@ export function ChannelPanel() {
   const [guestView, setGuestView] = useState<GuestView | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [friendIdCopied, setFriendIdCopied] = useState(false);
+  const [showCreate, setShowCreate] = useState(false);
+  const selected = activeChannelId;
 
   const load = useCallback(async () => {
     if (!client || !user) {
@@ -70,10 +66,8 @@ export function ChannelPanel() {
     setChannels(nextChannels);
     setInvitations(invitationResult.data as ChannelInvitation[]);
     setFriendId(friendResult.data as string);
-    setSelected((current) => current && nextChannels.some((channel) => channel.id === current)
-      ? current
-      : nextChannels[0]?.id ?? null);
-  }, [client, user]);
+    if (activeChannelId && !nextChannels.some((channel) => channel.id === activeChannelId)) onNavigate(null);
+  }, [activeChannelId, client, onNavigate, user]);
 
   useEffect(() => { void load(); }, [load]);
 
@@ -104,24 +98,6 @@ export function ChannelPanel() {
       });
   }, [client, selected]);
 
-  const loadSharedMarks = useCallback(() => {
-    if (!client || !selected) {
-      setSharedMarks([]);
-      return;
-    }
-    void client.rpc("list_channel_shared_marks", { target_channel_id: selected })
-      .then(({ data, error }) => {
-        if (error) setMessage("无法读取 Channel 想看活动。");
-        else setSharedMarks((data ?? []) as SharedMark[]);
-      });
-  }, [client, selected]);
-
-  useEffect(() => {
-    loadSharedMarks();
-    window.addEventListener(WATCH_MARKS_CHANGED_EVENT, loadSharedMarks);
-    return () => window.removeEventListener(WATCH_MARKS_CHANGED_EVENT, loadSharedMarks);
-  }, [loadSharedMarks]);
-
   useEffect(() => {
     const token = readInviteToken();
     if (!client || !token) return;
@@ -140,16 +116,6 @@ export function ChannelPanel() {
   const selectedChannel = channels.find((channel) => channel.id === selected) ?? null;
   const owner = selectedChannel?.owner_user_id === user?.id;
   const myMembership = members.find((member) => member.user_id === user?.id);
-  const sharedActivities = [...new Set(sharedMarks.map((mark) => mark.showing_id))].map((showingId) => {
-    const showing = scheduleData.showings.find((row) => row.id === showingId);
-    const film = showing ? scheduleData.films.find((row) => row.id === showing.filmId) : null;
-    return {
-      showingId,
-      showing,
-      film,
-      usernames: sharedMarks.filter((mark) => mark.showing_id === showingId).map((mark) => mark.username),
-    };
-  });
 
   async function createChannel(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -170,7 +136,8 @@ export function ChannelPanel() {
     if (error) return setMessage(error.code === "23505" ? "你已经有一个同名 Channel。" : "无法创建 Channel，请稍后重试。");
     formElement.reset();
     await load();
-    setSelected(data as string);
+    onNavigate(data as string);
+    setShowCreate(false);
     setMessage(`已创建「${name}」。`);
   }
 
@@ -206,7 +173,7 @@ export function ChannelPanel() {
     setBusy(false);
     if (error) return setMessage("无法删除 Channel，请稍后重试。");
     setMessage(`已删除「${selectedChannel.name}」。`);
-    setSelected(null);
+    onNavigate(null);
     await load();
   }
 
@@ -328,63 +295,91 @@ export function ChannelPanel() {
       type="button"
     />
     <aside className={`channel-panel${mobileOpen ? " open" : ""}`}>
-      <div className="channel-heading">
-        <div><span className="eyebrow dark">PRIVATE CHANNELS</span><h2>和朋友一起看</h2></div>
-        <button className="channel-mobile-close" onClick={() => setMobileOpen(false)} type="button">×</button>
-        {!user && <div className="channel-heading-actions">
-          <button onClick={() => { setInvitePreview(null); setGuestView(null); dialogRef.current?.showModal(); }} type="button">使用访客代码</button>
-          <button onClick={requestAccountDialog} type="button">登录后创建</button>
-        </div>}
-      </div>
-      {user && <>
-        <div className="friend-id">
-          <span>你的 Friend ID</span>
-          <div className="friend-id-value">
-            <code>{friendId ?? "读取中…"}</code>
-            <button disabled={!friendId} onClick={() => void copyFriendId()} type="button">
-              {friendIdCopied ? "已复制" : "复制"}
-            </button>
-          </div>
+      <nav className="channel-rail-nav" aria-label="一起看导航">
+        <button
+          aria-label="个人主页"
+          className={`channel-rail-home${selected === null ? " active" : ""}`}
+          onClick={() => { onNavigate(null); setMobileOpen(false); }}
+          title="个人主页"
+          type="button"
+        >我</button>
+        <span className="channel-rail-divider" />
+        <div className="channel-rail-list">
+          {channels.map((channel) => <button
+            aria-label={channel.name}
+            className={selected === channel.id ? "active" : ""}
+            key={channel.id}
+            onClick={() => { onNavigate(channel.id); setMobileOpen(false); }}
+            title={channel.name}
+            type="button"
+          >{channel.name.trim().slice(0, 2)}</button>)}
         </div>
-        {invitations.map((invitation) => <div className="channel-notice" key={invitation.invitation_id}>
-          <span>@{invitation.inviter_username} 邀请你加入「{invitation.channel_name}」</span>
-          <button disabled={busy} onClick={() => void acceptDirect(invitation.invitation_id)} type="button">接受</button>
-        </div>)}
-        <form className="channel-create" onSubmit={createChannel}>
-          <input maxLength={80} name="name" placeholder="新 Channel 名称" required />
-          <button disabled={busy} type="submit">{busy ? "处理中…" : "创建"}</button>
-        </form>
-        {channels.length > 0 && <div className="channel-workspace">
-          <nav>{channels.map((channel) => <button className={selected === channel.id ? "active" : ""} key={channel.id} onClick={() => setSelected(channel.id)} type="button">{channel.name}</button>)}</nav>
-          {selectedChannel && <div className="channel-detail">
-            <h3>{selectedChannel.name}</h3>
-            <p>{members.map((member) => `@${member.profiles?.username ?? "member"}${member.role === "owner" ? "（owner）" : ""}`).join(" · ")}</p>
-            <label className="auto-share-setting">
-              <input checked={myMembership?.auto_share_new_marks ?? false} onChange={(event) => void setAutoShare(event.target.checked)} type="checkbox" />
-              新标记默认同步到这里
-            </label>
-            <div className="channel-activity">
-              <b>大家想看</b>
-              {sharedActivities.length === 0 ? <p>还没有成员分享想看场次。</p> : sharedActivities.map((activity) => <article key={activity.showingId}>
-                <div><strong>{activity.film?.displayTitle ?? "已下架场次"}</strong>{activity.showing && <small>{activity.showing.localDate} · {formatDisplayTime(activity.showing.localTime)}</small>}</div>
-                <div className="mark-avatars" aria-label={activity.usernames.map((name) => `@${name}`).join("、")}>
-                  {activity.usernames.map((name) => <span key={name} style={{ background: avatarColor(name) }} title={`@${name}`}>{name[0]?.toUpperCase()}</span>)}
-                </div>
-              </article>)}
-            </div>
-            {owner && <>
-              <form className="channel-invite" onSubmit={inviteUser}>
-                <select name="kind"><option value="friend_id">Friend ID</option><option value="email">邮箱</option></select>
-                <input name="identifier" placeholder="输入准确账号标识" required />
-                <button disabled={busy} type="submit">邀请</button>
-              </form>
-              <button className="copy-invite" disabled={busy} onClick={() => void createLink()} type="button">复制分享链接</button>
-              <button className="delete-channel" disabled={busy} onClick={() => void deleteSelectedChannel()} type="button">删除 Channel</button>
-            </>}
+        {user && <button
+          aria-label="新建 Channel"
+          className="channel-rail-create"
+          onClick={() => setShowCreate((current) => !current)}
+          title="新建 Channel"
+          type="button"
+        >＋</button>}
+      </nav>
+
+      <section className="channel-context">
+        <div className="channel-heading">
+          <h2>一起看</h2>
+          <button className="channel-mobile-close" onClick={() => setMobileOpen(false)} type="button">×</button>
+        </div>
+        <div className="channel-context-scroll">
+          {!user && <div className="channel-heading-actions">
+            <button onClick={() => { setInvitePreview(null); setGuestView(null); dialogRef.current?.showModal(); }} type="button">使用访客代码</button>
+            <button onClick={requestAccountDialog} type="button">登录后创建</button>
           </div>}
+          {user && <>
+            {invitations.map((invitation) => <div className="channel-notice" key={invitation.invitation_id}>
+              <span>@{invitation.inviter_username} 邀请你加入「{invitation.channel_name}」</span>
+              <button disabled={busy} onClick={() => void acceptDirect(invitation.invitation_id)} type="button">接受</button>
+            </div>)}
+            {showCreate && <form className="channel-create" onSubmit={createChannel}>
+              <input autoFocus maxLength={80} name="name" placeholder="新 Channel 名称" required />
+              <button disabled={busy} type="submit">{busy ? "处理中…" : "创建"}</button>
+            </form>}
+            {!selectedChannel ? <div className="channel-personal-summary">
+              <span className="eyebrow dark">PERSONAL</span>
+              <h3>个人主页</h3>
+              <p>这里会显示全部排片和你标记过的想看场次。</p>
+            </div> : <div className="channel-detail">
+              <span className="eyebrow dark">CHANNEL</span>
+              <h3>{selectedChannel.name}</h3>
+              <p>{members.map((member) => `@${member.profiles?.username ?? "member"}${member.role === "owner" ? "（owner）" : ""}`).join(" · ")}</p>
+              <label className="auto-share-setting">
+                <input checked={myMembership?.auto_share_new_marks ?? false} onChange={(event) => void setAutoShare(event.target.checked)} type="checkbox" />
+                新标记默认同步到这里
+              </label>
+              {owner && <>
+                <form className="channel-invite" onSubmit={inviteUser}>
+                  <select name="kind"><option value="friend_id">Friend ID</option><option value="email">邮箱</option></select>
+                  <input name="identifier" placeholder="输入准确账号标识" required />
+                  <button disabled={busy} type="submit">邀请</button>
+                </form>
+                <button className="copy-invite" disabled={busy} onClick={() => void createLink()} type="button">复制分享链接</button>
+                <button className="delete-channel" disabled={busy} onClick={() => void deleteSelectedChannel()} type="button">删除 Channel</button>
+              </>}
+            </div>}
+            {message && <p className="channel-message" role="status">{message}</p>}
+          </>}
+        </div>
+        {user && <div className="channel-user-footer">
+          <strong>@{username ?? "user"}</strong>
+          <div className="friend-id">
+            <span>Friend ID</span>
+            <div className="friend-id-value">
+              <code>{friendId ?? "读取中…"}</code>
+              <button disabled={!friendId} onClick={() => void copyFriendId()} type="button">
+                {friendIdCopied ? "已复制" : "复制"}
+              </button>
+            </div>
+          </div>
         </div>}
-      </>}
-      {message && <p className="channel-message" role="status">{message}</p>}
+      </section>
 
       <dialog className="auth-dialog invite-dialog" ref={dialogRef}>
         <form className="dialog-close" method="dialog"><button aria-label="关闭" type="submit">×</button></form>
