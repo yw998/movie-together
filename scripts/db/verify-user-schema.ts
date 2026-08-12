@@ -204,7 +204,41 @@ try {
     throw new Error("Channel watch-mark sharing schema is incomplete.");
   }
 
-  console.log("Verified accounts, watch marks, channel invitations, defaults, and RLS policies.");
+  const [notificationSchema] = await sql<{ reads: string | null; rls: boolean; function_count: number; policy_count: number }[]>`
+    select
+      to_regclass('public.channel_notification_reads')::text as reads,
+      coalesce((
+        select relrowsecurity from pg_class
+        where oid = to_regclass('public.channel_notification_reads')
+      ), false) as rls,
+      (
+        select count(*)::integer from pg_proc
+        where oid in (
+          'public.list_my_channel_notifications()'::regprocedure,
+          'public.mark_my_channel_notifications_read()'::regprocedure
+        )
+      ) as function_count,
+      (
+        select count(*)::integer from pg_policies
+        where schemaname = 'public'
+          and tablename = 'channel_notification_reads'
+          and policyname in (
+            'channel_notification_reads_select_own',
+            'channel_notification_reads_insert_own',
+            'channel_notification_reads_update_own'
+          )
+      ) as policy_count
+  `;
+  if (
+    notificationSchema.reads !== "channel_notification_reads" ||
+    !notificationSchema.rls ||
+    notificationSchema.function_count !== 2 ||
+    notificationSchema.policy_count !== 3
+  ) {
+    throw new Error("Channel notification schema is incomplete.");
+  }
+
+  console.log("Verified accounts, watch marks, channel invitations, reminders, defaults, and RLS policies.");
 } finally {
   await sql.end();
 }

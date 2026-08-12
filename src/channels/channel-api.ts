@@ -14,6 +14,17 @@ export type ChannelInvitation = {
   expires_at: string;
 };
 
+export type ChannelNotification = {
+  channel_id: string;
+  channel_name: string;
+  mark_id: string;
+  window_start: string;
+  showing_id: string;
+  actor_username: string;
+  shared_at: string;
+  is_new: boolean;
+};
+
 export type InvitePreview = {
   channelId: string;
   channelName: string;

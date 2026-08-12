@@ -13,6 +13,7 @@ import { useWatchMarks } from "./watch-marks/useWatchMarks";
 import { ChannelPanel } from "./channels/ChannelPanel";
 import { ChannelMainView } from "./channels/ChannelMainView";
 import { ShareMarkPopover } from "./watch-marks/ShareMarkDialog";
+import { NotificationsView } from "./notifications/NotificationsView";
 
 const timeClusters: TimeCluster[] = ["上午", "下午", "晚间", "深夜"];
 
@@ -27,6 +28,8 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [scheduleView, setScheduleView] = useState<"all" | "personal">("all");
   const [activeChannelId, setActiveChannelId] = useState<string | null>(null);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [notificationRefreshKey, setNotificationRefreshKey] = useState(0);
   const [sharePrompt, setSharePrompt] = useState<{
     markId: string;
     filmTitle: string;
@@ -35,6 +38,12 @@ export default function App() {
   const watchMarks = useWatchMarks(showings);
   const navigateTogether = useCallback((channelId: string | null) => {
     setActiveChannelId(channelId);
+    setNotificationsOpen(false);
+    setSharePrompt(null);
+  }, []);
+  const openNotifications = useCallback(() => {
+    setActiveChannelId(null);
+    setNotificationsOpen(true);
     setSharePrompt(null);
   }, []);
 
@@ -103,10 +112,16 @@ export default function App() {
     <main className={`app-shell${activeChannelId ? "" : " personal-home"}`}>
       <ChannelPanel
         activeChannelId={activeChannelId}
+        notificationRefreshKey={notificationRefreshKey}
+        notificationsOpen={notificationsOpen}
         onNavigate={navigateTogether}
+        onOpenNotifications={openNotifications}
       />
       <div className="site-shell">
-      {activeChannelId ? <ChannelMainView channelId={activeChannelId} /> : <>
+      {activeChannelId ? <ChannelMainView channelId={activeChannelId} /> : notificationsOpen ? <NotificationsView
+        onNotificationsChanged={() => setNotificationRefreshKey((current) => current + 1)}
+        onOpenChannel={(channelId) => navigateTogether(channelId)}
+      /> : <>
       <header className="hero">
         <AccountControl />
         <div className="eyebrow">

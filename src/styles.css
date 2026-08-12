@@ -136,6 +136,8 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-rail-nav button { color: #e9e4d9; background: #30312b; border: 0; border-radius: 50%; align-items: center; justify-content: center; width: 48px; min-height: 48px; padding: 5px; font-size: 12px; font-weight: 800; line-height: 1.05; display: flex; transition: border-radius .15s, background .15s; overflow: hidden; }
 .channel-rail-nav button:hover, .channel-rail-nav button.active { color: #171813; background: #eee9dd; border-radius: 15px; }
 .channel-rail-nav .channel-rail-home { color: #171813; background: #d5cfbf; font-size: 15px; }
+.channel-rail-nav .channel-rail-reminders { position: relative; font-size: 12px; }
+.channel-rail-reminders > b { color: #fff; background: #a63f32; border: 2px solid #171813; border-radius: 99px; min-width: 19px; height: 19px; padding: 0 4px; position: absolute; top: -3px; right: -3px; font: 700 9px/15px Arial, sans-serif; }
 .channel-rail-nav .channel-rail-create { color: #9fc589; background: #292b25; margin-top: auto; font-size: 25px; font-weight: 400; }
 .channel-rail-nav .channel-rail-create:hover { color: #171813; background: #9fc589; }
 .channel-rail-divider { background: #3e4038; width: 34px; height: 1px; }
@@ -168,6 +170,27 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-user-footer .friend-id-value { margin-top: 5px; }
 .channel-user-footer .friend-id code { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 .channel-main-view { background: var(--paper); min-height: 100vh; }
+.notifications-view { max-width: 980px; min-height: 100vh; margin: auto; padding: 68px 34px 100px; }
+.notifications-header { border-bottom: 1px solid var(--line); align-items: flex-end; justify-content: space-between; gap: 20px; padding-bottom: 25px; display: flex; }
+.notifications-header h1, .notifications-signed-out h1 { margin: 13px 0 0; font: 700 clamp(44px, 7vw, 76px)/.95 Georgia, "Songti SC", serif; }
+.notifications-header > button, .notifications-signed-out > button, .notification-row > button { color: #fff; background: var(--ink); border: 0; border-radius: 4px; padding: 10px 13px; font-size: 11px; font-weight: 700; }
+.notifications-header > button:disabled, .notification-row > button:disabled { opacity: .55; }
+.notifications-section { margin-top: 38px; }
+.notifications-section-title { align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 14px; display: flex; }
+.notifications-section-title h2 { margin: 0; font: 700 24px Georgia, "Songti SC", serif; }
+.notifications-section-title b { color: var(--muted); font: 700 11px monospace; }
+.notifications-empty { color: var(--muted); border: 1px dashed #bdb6a8; margin: 0; padding: 28px; font-size: 12px; }
+.notification-row { border: 1px solid var(--line); background: #faf7ef; align-items: center; gap: 16px; min-height: 90px; margin-top: -1px; padding: 18px 20px; display: flex; }
+.notification-row.unread { background: #fffdf7; border-left: 4px solid #6d8d5a; padding-left: 17px; }
+.notification-row > div { min-width: 0; flex: 1; }
+.notification-row p { margin: 0 0 7px; font-size: 12px; }
+.notification-row strong { font: 700 17px Georgia, "Songti SC", serif; }
+.notification-row small { color: var(--muted); margin-top: 7px; font-size: 10px; display: block; }
+.notification-dot { background: #c5c1b7; border-radius: 50%; width: 8px; height: 8px; flex: 0 0 auto; }
+.notification-row.unread .notification-dot { background: #6d8d5a; box-shadow: 0 0 0 4px #dfe8d8; }
+.notification-channel-link { color: #4f6642; background: transparent; border: 0; padding: 0; font-weight: 700; text-decoration: underline; }
+.notifications-message { color: #683516; background: #fff2df; border: 1px solid #d9bea0; margin: 18px 0 0; padding: 10px 13px; font-size: 12px; }
+.notifications-signed-out p { color: var(--muted); margin: 18px 0 24px; }
 .channel-main-hero { color: #f8f3e9; background: #171813; min-height: 280px; padding: 62px max(28px, calc(50vw - 590px)); position: relative; overflow: hidden; }
 .channel-main-hero::after { content: ""; border: 1px solid #4d5045; border-radius: 50%; width: 360px; height: 360px; position: absolute; top: -145px; right: -70px; box-shadow: 0 0 0 38px #25271f, 0 0 0 39px #4d5045; }
 .channel-main-hero h1 { max-width: 760px; margin: 14px 0 9px; font: 700 clamp(42px, 7vw, 78px)/.95 Georgia, "Songti SC", serif; position: relative; z-index: 1; }
@@ -232,4 +255,8 @@ footer a { color: #e5e0d5; text-decoration: none; }
   .channel-date-group { grid-template-columns: 58px minmax(0, 1fr); gap: 10px; }
   .channel-card-actions { align-items: flex-end; flex-direction: column; }
   .channel-main-hero { min-height: 245px; padding-top: 72px; }
+  .notifications-view { padding: 68px 18px 80px; }
+  .notifications-header { align-items: flex-start; flex-direction: column; }
+  .notification-row { align-items: flex-start; flex-wrap: wrap; padding: 15px; }
+  .notification-row > button { margin-left: auto; }
 }
