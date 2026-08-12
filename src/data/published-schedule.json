@@ -81,7 +81,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "泽西城少年踏入 1979 年 Studio 54 的炫目与代价，映后主创问答。",
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/54-directors-cut-qa/"
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/54-directors-cut-qa-2/"
     },
     {
       "id": "a-child-of-my-own",
@@ -632,6 +632,16 @@
       "runtimeMinutes": null,
       "descriptionZh": "以诗歌与自然走近诗人 Mary Oliver 的纪录片。",
       "descriptionSource": "https://www.ifccenter.com/films/mary-oliver-saved-by-the-beauty-of-the-world/"
+    },
+    {
+      "id": "members-only-girl-with-a-suitcase-with-james-gray",
+      "canonicalTitle": "Members Only: Girl with a Suitcase with James Gray",
+      "displayTitle": "Members Only: Girl with a Suitcase with James Gray",
+      "year": null,
+      "director": null,
+      "runtimeMinutes": null,
+      "descriptionZh": "被遗弃的歌女与少年相遇；映后 James Gray 对谈（会员场）。",
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004980"
     },
     {
       "id": "michael-mann-s-manhunter-the-final-cut",
@@ -1189,7 +1199,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572020~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1206,7 +1216,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=571528~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1223,7 +1233,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572022~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1240,7 +1250,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572021~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1257,7 +1267,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572023~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1274,7 +1284,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83937",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -1291,7 +1301,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572024~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1308,7 +1318,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/51727",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1325,7 +1335,7 @@
       "ticketUrl": "https://my.filmforum.org/white-nights/52156",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1342,7 +1352,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572025~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1359,7 +1369,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572026~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1376,7 +1386,7 @@
       "ticketUrl": "https://my.filmforum.org/remake/52183",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1393,7 +1403,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=571530~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1410,7 +1420,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83310/83916",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -1427,7 +1437,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/51839",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1444,7 +1454,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83655",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -1461,7 +1471,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=571746~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1478,7 +1488,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/51731",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1495,7 +1505,7 @@
       "ticketUrl": "https://my.filmforum.org/white-nights/52162",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1512,7 +1522,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572027~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1529,7 +1539,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83941",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -1546,7 +1556,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572030~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1563,7 +1573,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572028~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1580,7 +1590,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30686",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -1597,7 +1607,7 @@
       "ticketUrl": "https://my.filmforum.org/shermans-march/52188",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1614,7 +1624,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83310/83917",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -1631,7 +1641,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572029~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1648,7 +1658,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83656",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -1665,7 +1675,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572031~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1682,7 +1692,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/51841",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1699,7 +1709,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30691",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -1716,7 +1726,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/51735",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1733,7 +1743,7 @@
       "ticketUrl": "https://my.filmforum.org/white-nights/52166",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1750,7 +1760,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572032~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1767,7 +1777,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=571532~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1784,7 +1794,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572034~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1801,7 +1811,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83944",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -1818,7 +1828,24 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83657",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "metrograph-sold-out-members-only-girl-with-a-suitcase-with-james-gray-2026-08-12-1830",
+      "cinemaId": "metrograph",
+      "filmId": "members-only-girl-with-a-suitcase-with-james-gray",
+      "startsAt": "2026-08-12T18:30:00-04:00",
+      "localDate": "2026-08-12",
+      "localTime": "18:30",
+      "format": "DCP",
+      "eventType": "members_only",
+      "eventNote": null,
+      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004980",
+      "ticketUrl": null,
+      "availability": "sold_out",
+      "sourceUrl": "https://metrograph.com/film/",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -1835,7 +1862,7 @@
       "ticketUrl": "https://my.filmforum.org/shermans-march/52195",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1852,7 +1879,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572033~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1869,7 +1896,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7669?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -1886,7 +1913,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/51745",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1903,7 +1930,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83543/83544",
       "availability": "sold_out",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -1920,7 +1947,7 @@
       "ticketUrl": "https://my.filmforum.org/riverdogs/51828",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -1937,7 +1964,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572035~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1954,7 +1981,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572036~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -1971,11 +1998,11 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/51843",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
-      "id": "metrograph-30690",
+      "id": "metrograph-sold-out-take-care-of-my-cat-2026-08-12-1920",
       "cinemaId": "metrograph",
       "filmId": "take-care-of-my-cat",
       "startsAt": "2026-08-12T19:20:00-04:00",
@@ -1985,10 +2012,10 @@
       "eventType": "standard",
       "eventNote": null,
       "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004614",
-      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30690",
-      "availability": "available",
+      "ticketUrl": null,
+      "availability": "sold_out",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -2005,7 +2032,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=571534~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2022,7 +2049,7 @@
       "ticketUrl": "https://my.filmforum.org/riverdogs/51829",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2039,7 +2066,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83658",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -2056,7 +2083,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83945",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -2073,7 +2100,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/51749",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2090,7 +2117,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572038~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2107,7 +2134,7 @@
       "ticketUrl": "https://my.filmforum.org/dread-beat-an-blood/52150",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2124,7 +2151,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572040~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2141,7 +2168,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7694?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -2158,7 +2185,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=571753~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2175,7 +2202,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572039~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2192,7 +2219,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30689",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -2209,7 +2236,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572037~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2226,7 +2253,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30688",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -2243,7 +2270,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572042~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2260,7 +2287,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=571529~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2277,7 +2304,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572043~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2294,7 +2321,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572041~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2311,7 +2338,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83943",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -2328,7 +2355,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/51728",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2345,7 +2372,7 @@
       "ticketUrl": "https://my.filmforum.org/white-nights/52157",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2362,7 +2389,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572045~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2379,7 +2406,7 @@
       "ticketUrl": "https://my.filmforum.org/remake/52184",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2396,7 +2423,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=571531~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2413,7 +2440,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83310/83918",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -2430,7 +2457,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/51840",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2447,7 +2474,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572044~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2464,7 +2491,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83659",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -2481,7 +2508,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=571747~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2498,7 +2525,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30692",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -2515,7 +2542,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30697",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -2532,7 +2559,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/51732",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2549,7 +2576,7 @@
       "ticketUrl": "https://my.filmforum.org/white-nights/52163",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2566,7 +2593,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572047~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2583,7 +2610,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83942",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -2600,7 +2627,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572050~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2617,7 +2644,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572048~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2634,7 +2661,7 @@
       "ticketUrl": "https://my.filmforum.org/shermans-march/52189",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2651,7 +2678,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83310/83919",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -2668,7 +2695,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572049~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2685,7 +2712,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83660",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -2702,7 +2729,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572046~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2719,7 +2746,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30693",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -2736,7 +2763,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/51842",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2753,7 +2780,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30696",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -2770,7 +2797,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/51736",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2787,7 +2814,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7633?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -2804,7 +2831,7 @@
       "ticketUrl": "https://my.filmforum.org/white-nights/52167",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2821,7 +2848,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572051~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2838,7 +2865,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=571533~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2855,7 +2882,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572053~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2872,7 +2899,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83946",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -2889,7 +2916,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30695",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -2906,7 +2933,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83661",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -2923,7 +2950,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30694",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -2940,7 +2967,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83557/83558",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -2952,12 +2979,12 @@
       "localTime": "18:30",
       "format": null,
       "eventType": "other",
-      "eventNote": null,
+      "eventNote": "Sold Out!",
       "detailUrl": "https://my.filmforum.org/same-river-twice",
       "ticketUrl": "https://my.filmforum.org/same-river-twice/51752",
-      "availability": "available",
+      "availability": "sold_out",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -2974,7 +3001,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572052~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -2991,7 +3018,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/51746",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3008,7 +3035,7 @@
       "ticketUrl": "https://my.filmforum.org/white-nights/52173",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3025,7 +3052,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569493~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "sold_out",
       "sourceUrl": "https://www.ifccenter.com/films/union-county/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3042,7 +3069,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572059~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3059,7 +3086,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572055~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3076,7 +3103,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7675?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -3093,7 +3120,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/51844",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3110,7 +3137,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=571535~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3127,7 +3154,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30698",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -3144,7 +3171,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83662",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -3161,7 +3188,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83545/83546",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -3178,7 +3205,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83947",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -3195,7 +3222,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/51750",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3212,7 +3239,7 @@
       "ticketUrl": "https://my.filmforum.org/dread-beat-an-blood/52149",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3229,7 +3256,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572056~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3246,7 +3273,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572054~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3263,7 +3290,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572058~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3280,7 +3307,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7696?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -3297,7 +3324,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=571754~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3314,7 +3341,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572057~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3331,7 +3358,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573200~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3348,7 +3375,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573202~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3365,7 +3392,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573199~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3382,7 +3409,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573201~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3399,7 +3426,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573198~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3416,7 +3443,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83976",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -3433,7 +3460,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52230",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3450,7 +3477,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51754",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3467,7 +3494,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573206~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3484,7 +3511,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51852",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3501,7 +3528,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573204~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3518,7 +3545,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573205~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3535,7 +3562,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83310/84004",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -3552,7 +3579,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52209",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3569,7 +3596,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83948",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -3586,7 +3613,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569187~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3603,7 +3630,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30545",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -3620,7 +3647,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30546",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -3637,7 +3664,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573203~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3654,7 +3681,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51755",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3671,7 +3698,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573211~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3688,7 +3715,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52237",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3705,7 +3732,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573208~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3722,7 +3749,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51859",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3739,7 +3766,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83977",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -3756,7 +3783,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83310/84005",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -3773,7 +3800,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83949",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -3790,7 +3817,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573210~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3807,7 +3834,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30548",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -3824,7 +3851,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7641?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -3841,7 +3868,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573209~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3858,7 +3885,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51757",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3875,7 +3902,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52216",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3892,7 +3919,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30547",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -3909,7 +3936,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573212~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3926,7 +3953,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573214~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3943,7 +3970,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52238",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3960,7 +3987,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573207~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -3977,7 +4004,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51860",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -3994,7 +4021,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83978",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -4011,7 +4038,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51758",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -4028,7 +4055,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83950",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -4045,7 +4072,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30549",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -4062,7 +4089,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573213~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4079,7 +4106,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30550",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -4096,7 +4123,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83549/83550",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -4113,7 +4140,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52239",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -4130,7 +4157,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569195~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4147,7 +4174,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51868",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -4164,7 +4191,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569494~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "sold_out",
       "sourceUrl": "https://www.ifccenter.com/films/union-county/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4181,7 +4208,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2985/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-12T08:44:03.487Z",
+      "fetchedAt": "2026-08-12T15:20:53.075Z",
       "extractionStatus": "verified"
     },
     {
@@ -4198,7 +4225,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7647?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -4215,7 +4242,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=570449~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "sold_out",
       "sourceUrl": "https://www.ifccenter.com/films/mysterious-skin/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4232,7 +4259,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52221",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -4249,7 +4276,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573216~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4266,7 +4293,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51759",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -4283,7 +4310,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573215~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4300,11 +4327,11 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83951",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
-      "id": "metrograph-30551",
+      "id": "metrograph-sold-out-the-hunger-2026-08-14-2045",
       "cinemaId": "metrograph",
       "filmId": "the-hunger",
       "startsAt": "2026-08-14T20:45:00-04:00",
@@ -4314,10 +4341,10 @@
       "eventType": "standard",
       "eventNote": null,
       "detailUrl": "https://metrograph.com/film/?vista_film_id=9999001195",
-      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30551",
-      "availability": "available",
+      "ticketUrl": null,
+      "availability": "sold_out",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -4334,7 +4361,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30552",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -4351,7 +4378,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83573/83574",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -4368,7 +4395,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83980",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -4385,7 +4412,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52240",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -4402,7 +4429,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7730?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -4419,7 +4446,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51869",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -4436,7 +4463,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573217~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4453,7 +4480,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2986/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-12T08:44:03.487Z",
+      "fetchedAt": "2026-08-12T15:20:53.075Z",
       "extractionStatus": "verified"
     },
     {
@@ -4470,7 +4497,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573219~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4487,7 +4514,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569202~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4504,7 +4531,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572218~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/films/mysterious-skin/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4521,11 +4548,11 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30553",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
-      "id": "metrograph-30554",
+      "id": "metrograph-sold-out-irreversible-2026-08-14-2300",
       "cinemaId": "metrograph",
       "filmId": "irreversible",
       "startsAt": "2026-08-14T23:00:00-04:00",
@@ -4535,10 +4562,10 @@
       "eventType": "standard",
       "eventNote": null,
       "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004959",
-      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30554",
-      "availability": "available",
+      "ticketUrl": null,
+      "availability": "sold_out",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -4555,7 +4582,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573220~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4572,7 +4599,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573431~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4589,7 +4616,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573218~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4606,7 +4633,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573423~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4623,7 +4650,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573426~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4640,7 +4667,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573221~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4657,7 +4684,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573223~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4674,7 +4701,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573222~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4691,7 +4718,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572465~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4708,7 +4735,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573433~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4725,7 +4752,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2988/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-12T08:44:03.487Z",
+      "fetchedAt": "2026-08-12T15:20:53.075Z",
       "extractionStatus": "verified"
     },
     {
@@ -4742,7 +4769,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83981",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -4759,7 +4786,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30555",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -4776,7 +4803,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52231",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -4793,7 +4820,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51760",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -4810,7 +4837,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573444~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4827,7 +4854,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51853",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -4844,7 +4871,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30556",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -4861,7 +4888,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573224~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4878,7 +4905,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573226~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4895,7 +4922,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52210",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -4912,7 +4939,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83952",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -4929,7 +4956,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573225~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4946,7 +4973,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83573/83575",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -4963,7 +4990,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2987/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-12T08:44:03.487Z",
+      "fetchedAt": "2026-08-12T15:20:53.075Z",
       "extractionStatus": "verified"
     },
     {
@@ -4980,7 +5007,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=570450~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "sold_out",
       "sourceUrl": "https://www.ifccenter.com/films/mysterious-skin/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -4997,7 +5024,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51786",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5014,7 +5041,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7765?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -5031,7 +5058,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573230~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5048,7 +5075,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52261",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5065,7 +5092,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573228~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5082,7 +5109,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51881",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5099,7 +5126,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83982",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -5116,7 +5143,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30558",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -5133,7 +5160,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30557",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -5150,7 +5177,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83953",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -5167,7 +5194,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573229~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5184,7 +5211,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83571/83572",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -5201,7 +5228,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569210~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5218,7 +5245,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51787",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5235,7 +5262,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52228",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5252,7 +5279,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573233~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5269,7 +5296,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2990/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-12T08:44:03.487Z",
+      "fetchedAt": "2026-08-12T15:20:53.075Z",
       "extractionStatus": "verified"
     },
     {
@@ -5286,7 +5313,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7671?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -5303,7 +5330,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573231~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5320,7 +5347,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52263",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5337,7 +5364,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=570451~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/films/three-bewildered-people-in-the-night/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5354,7 +5381,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51883",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5371,7 +5398,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30559",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -5388,7 +5415,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30560",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -5405,7 +5432,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83983",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -5422,7 +5449,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51774",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5439,7 +5466,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83954",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -5456,7 +5483,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573232~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5473,7 +5500,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83554/83555",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -5490,7 +5517,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52241",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5507,7 +5534,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569196~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5524,7 +5551,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51876",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5541,7 +5568,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=570282~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5558,7 +5585,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2989/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-12T08:44:03.487Z",
+      "fetchedAt": "2026-08-12T15:20:53.075Z",
       "extractionStatus": "verified"
     },
     {
@@ -5575,7 +5602,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573235~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5592,7 +5619,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52222",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5609,7 +5636,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573237~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5626,7 +5653,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7754?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -5643,7 +5670,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30561",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -5660,7 +5687,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30562",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -5677,7 +5704,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573236~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5694,7 +5721,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83955",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -5711,7 +5738,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51780",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5728,7 +5755,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83984",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -5745,7 +5772,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52247",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5762,7 +5789,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51870",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -5779,7 +5806,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83561/83562",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -5796,7 +5823,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573234~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5813,7 +5840,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2991/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-12T08:44:03.487Z",
+      "fetchedAt": "2026-08-12T15:20:53.075Z",
       "extractionStatus": "verified"
     },
     {
@@ -5830,7 +5857,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573240~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5847,7 +5874,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569203~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5864,7 +5891,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573238~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5881,7 +5908,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7729?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -5898,7 +5925,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30564",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -5915,7 +5942,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30563",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -5932,7 +5959,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573241~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5949,7 +5976,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573432~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5966,7 +5993,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573239~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -5983,7 +6010,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573424~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6000,7 +6027,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573427~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6017,7 +6044,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573242~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6034,7 +6061,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573244~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6051,7 +6078,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573243~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6068,7 +6095,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572466~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6085,7 +6112,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30565",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -6102,7 +6129,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30566",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -6119,7 +6146,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573434~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6136,7 +6163,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83985",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -6153,7 +6180,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2948/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-12T08:44:03.487Z",
+      "fetchedAt": "2026-08-12T15:20:53.075Z",
       "extractionStatus": "verified"
     },
     {
@@ -6170,7 +6197,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52232",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6187,7 +6214,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51761",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6204,7 +6231,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573247~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6221,7 +6248,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51854",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6238,7 +6265,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573245~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6255,7 +6282,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573246~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6272,7 +6299,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7753?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -6289,7 +6316,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30567",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -6306,7 +6333,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52211",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6323,7 +6350,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30568",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -6340,7 +6367,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83956",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -6357,7 +6384,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569180~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6374,7 +6401,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=570283~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6391,7 +6418,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51788",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6408,7 +6435,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573251~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6425,7 +6452,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52262",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6442,7 +6469,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573249~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6459,7 +6486,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51882",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6476,7 +6503,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83986",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -6493,7 +6520,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30569",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -6510,7 +6537,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7672?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -6527,7 +6554,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30576",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -6544,7 +6571,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2994/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-12T08:44:03.487Z",
+      "fetchedAt": "2026-08-12T15:20:53.075Z",
       "extractionStatus": "verified"
     },
     {
@@ -6561,7 +6588,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83569/83570",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -6578,7 +6605,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83957",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -6595,7 +6622,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573250~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6612,7 +6639,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569211~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6629,7 +6656,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51789",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6646,7 +6673,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52229",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6663,7 +6690,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573248~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6680,7 +6707,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573255~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6697,7 +6724,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52264",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6714,7 +6741,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51884",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6731,7 +6758,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573253~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6748,7 +6775,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30570",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -6765,7 +6792,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30575",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -6782,7 +6809,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7716?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -6799,7 +6826,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83987",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -6816,7 +6843,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2992/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-12T08:44:03.487Z",
+      "fetchedAt": "2026-08-12T15:20:53.075Z",
       "extractionStatus": "verified"
     },
     {
@@ -6833,7 +6860,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51775",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6850,7 +6877,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83958",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -6867,7 +6894,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573254~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6884,7 +6911,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83552/83553",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -6901,7 +6928,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52242",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6918,7 +6945,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569197~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6935,7 +6962,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51877",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -6952,7 +6979,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573252~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -6969,7 +6996,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30571",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -6986,7 +7013,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52223",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -7003,7 +7030,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573257~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -7020,7 +7047,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573445~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -7037,7 +7064,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30574",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -7054,7 +7081,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7621?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:44:03.484Z",
+      "fetchedAt": "2026-08-12T15:20:53.073Z",
       "extractionStatus": "verified"
     },
     {
@@ -7071,7 +7098,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51781",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -7088,7 +7115,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2993/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-12T08:44:03.487Z",
+      "fetchedAt": "2026-08-12T15:20:53.075Z",
       "extractionStatus": "verified"
     },
     {
@@ -7105,7 +7132,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573259~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -7122,7 +7149,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83563/83564",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -7139,7 +7166,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83959",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -7156,7 +7183,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83988",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:44:03.488Z",
+      "fetchedAt": "2026-08-12T15:20:53.076Z",
       "extractionStatus": "verified"
     },
     {
@@ -7173,7 +7200,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52248",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -7190,7 +7217,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51871",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:44:03.470Z",
+      "fetchedAt": "2026-08-12T15:20:53.058Z",
       "extractionStatus": "verified"
     },
     {
@@ -7207,7 +7234,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573256~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -7224,7 +7251,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573262~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -7241,7 +7268,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573258~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -7258,7 +7285,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573261~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:44:03.476Z",
+      "fetchedAt": "2026-08-12T15:20:53.064Z",
       "extractionStatus": "verified"
     },
     {
@@ -7275,11 +7302,11 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30572",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
-      "id": "metrograph-30573",
+      "id": "metrograph-sold-out-the-hunger-2026-08-16-2150",
       "cinemaId": "metrograph",
       "filmId": "the-hunger",
       "startsAt": "2026-08-16T21:50:00-04:00",
@@ -7289,10 +7316,10 @@
       "eventType": "standard",
       "eventNote": null,
       "detailUrl": "https://metrograph.com/film/?vista_film_id=9999001195",
-      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30573",
-      "availability": "available",
+      "ticketUrl": null,
+      "availability": "sold_out",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:44:03.485Z",
+      "fetchedAt": "2026-08-12T15:20:53.074Z",
       "extractionStatus": "verified"
     },
     {
@@ -7309,7 +7336,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573265~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7326,7 +7353,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573267~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7343,7 +7370,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573263~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7360,7 +7387,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573264~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7377,7 +7404,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573266~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7394,7 +7421,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83989",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -7411,7 +7438,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52233",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -7428,7 +7455,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51762",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -7445,7 +7472,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573272~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7462,7 +7489,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51855",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -7479,7 +7506,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573269~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7496,7 +7523,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573268~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7513,7 +7540,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83310/84007",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -7530,7 +7557,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52212",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -7547,7 +7574,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83960",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -7564,7 +7591,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573270~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7581,7 +7608,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573271~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7598,7 +7625,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51766",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -7615,7 +7642,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573276~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7632,7 +7659,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52253",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -7649,7 +7676,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573274~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7666,7 +7693,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51861",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -7683,7 +7710,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83990",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -7700,7 +7727,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30705",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -7717,7 +7744,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30712",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -7734,7 +7761,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83310/84006",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -7751,7 +7778,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83961",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -7768,7 +7795,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573273~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7785,7 +7812,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569212~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7802,7 +7829,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51770",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -7819,7 +7846,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52217",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -7836,7 +7863,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573279~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7853,7 +7880,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52257",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -7870,7 +7897,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573275~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7887,7 +7914,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573277~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -7904,7 +7931,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51865",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -7921,7 +7948,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30706",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -7938,7 +7965,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30711",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -7955,7 +7982,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83991",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -7972,7 +7999,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51776",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -7989,7 +8016,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83962",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -8006,7 +8033,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83576/83577",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -8023,7 +8050,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572468~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8040,7 +8067,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52243",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8057,7 +8084,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569198~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8074,7 +8101,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51878",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8091,7 +8118,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7679?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:39:26.991Z",
+      "fetchedAt": "2026-08-12T15:21:24.053Z",
       "extractionStatus": "verified"
     },
     {
@@ -8108,7 +8135,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573281~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8125,7 +8152,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573278~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8142,7 +8169,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52224",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8159,7 +8186,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573283~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8176,7 +8203,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30710",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -8193,7 +8220,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30707",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -8210,7 +8237,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51782",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8227,7 +8254,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83963",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -8244,7 +8271,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83549/83551",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -8261,7 +8288,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83992",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -8278,7 +8305,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52249",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8295,7 +8322,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7731?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:39:26.991Z",
+      "fetchedAt": "2026-08-12T15:21:24.053Z",
       "extractionStatus": "verified"
     },
     {
@@ -8312,7 +8339,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51872",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8329,7 +8356,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573280~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8346,7 +8373,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573285~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8363,7 +8390,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573284~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8380,7 +8407,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569205~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8397,7 +8424,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573282~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8414,7 +8441,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30709",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -8431,7 +8458,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30708",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -8448,7 +8475,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573287~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8465,7 +8492,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573288~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8482,7 +8509,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573291~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8499,7 +8526,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573286~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8516,7 +8543,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83993",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -8533,7 +8560,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52234",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8550,7 +8577,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51763",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8567,7 +8594,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573292~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8584,7 +8611,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573290~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8601,7 +8628,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573295~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8618,7 +8645,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51856",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8635,7 +8662,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52213",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8652,7 +8679,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83964",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -8669,7 +8696,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569182~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8686,7 +8713,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573289~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8703,7 +8730,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51767",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8720,7 +8747,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573297~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8737,7 +8764,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52254",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8754,7 +8781,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573294~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8771,7 +8798,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83994",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -8788,7 +8815,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30713",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -8805,7 +8832,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30714",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -8822,7 +8849,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83310/84008",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -8839,7 +8866,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51862",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8856,7 +8883,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83965",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -8873,7 +8900,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573300~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8890,7 +8917,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573296~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8907,7 +8934,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51771",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8924,7 +8951,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52218",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8941,7 +8968,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573301~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8958,7 +8985,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52258",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -8975,7 +9002,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573293~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -8992,7 +9019,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573299~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -9009,7 +9036,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30715",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -9026,7 +9053,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30716",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -9043,7 +9070,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83995",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -9060,7 +9087,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/51873",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -9077,7 +9104,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51777",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -9094,7 +9121,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83559/83560",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -9111,7 +9138,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83966",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -9128,7 +9155,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573304~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -9145,7 +9172,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52244",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -9162,7 +9189,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569199~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -9179,7 +9206,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7683?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:39:26.991Z",
+      "fetchedAt": "2026-08-12T15:21:24.053Z",
       "extractionStatus": "verified"
     },
     {
@@ -9196,7 +9223,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573303~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -9213,7 +9240,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30718",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -9230,7 +9257,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573298~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -9247,7 +9274,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52225",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -9264,7 +9291,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30717",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -9281,7 +9308,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573305~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -9298,7 +9325,7 @@
       "ticketUrl": "https://my.filmforum.org/the-bend-in-the-river/51783",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -9315,7 +9342,7 @@
       "ticketUrl": "https://my.filmforum.org/pelham-123-transit/51848",
       "availability": "sold_out",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -9332,7 +9359,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83634/83967",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -9349,7 +9376,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83373/83996",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -9366,7 +9393,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52250",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-12T08:39:26.977Z",
+      "fetchedAt": "2026-08-12T15:21:24.038Z",
       "extractionStatus": "verified"
     },
     {
@@ -9383,7 +9410,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573307~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -9400,7 +9427,7 @@
       "ticketUrl": "https://purchase.filmlinc.org/83541/83542",
       "availability": "available",
       "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-12T08:39:26.995Z",
+      "fetchedAt": "2026-08-12T15:21:24.057Z",
       "extractionStatus": "verified"
     },
     {
@@ -9417,7 +9444,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573308~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -9434,7 +9461,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7651?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-12T08:39:26.991Z",
+      "fetchedAt": "2026-08-12T15:21:24.053Z",
       "extractionStatus": "verified"
     },
     {
@@ -9451,7 +9478,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573306~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -9468,7 +9495,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=569206~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -9485,7 +9512,7 @@
       "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573302~8722a542-64c1-4c0b-af02-c3e8a239d769&",
       "availability": "unknown",
       "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-12T08:39:26.983Z",
+      "fetchedAt": "2026-08-12T15:21:24.044Z",
       "extractionStatus": "verified"
     },
     {
@@ -9502,7 +9529,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30720",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     },
     {
@@ -9519,7 +9546,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30719",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-12T08:39:26.993Z",
+      "fetchedAt": "2026-08-12T15:21:24.055Z",
       "extractionStatus": "verified"
     }
   ],
