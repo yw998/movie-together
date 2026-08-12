@@ -59,6 +59,9 @@ built-in email provider is intended for initial testing and is rate-limited; an
 earlier confirmation link remains usable for its configured validity period.
 Production growth requires custom SMTP plus CAPTCHA rather than encouraging
 users to submit the signup form repeatedly.
+An `otp_expired` redirect is consumed by the account UI, shown as a recovery
+message, and removed from the address bar. The user is routed to the resend form
+instead of seeing an unexplained URL fragment.
 
 Official films/showings and user-created events must remain separate. A user
 event is never official source evidence and must be visibly labeled as

@@ -17,6 +17,13 @@ export function AccountControl() {
   useEffect(() => {
     if (!client) return;
     let active = true;
+    const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+    if (hash.get("error_code") === "otp_expired") {
+      setMode("resend");
+      setMessage("验证链接已失效或已被使用。请输入注册邮箱重新发送；若刚请求过邮件，请等待发送限制解除。");
+      dialogRef.current?.showModal();
+      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    }
     const loadProfile = async (nextUser: User | null) => {
       if (!active) return;
       setUser(nextUser);
