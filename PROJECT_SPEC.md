@@ -533,6 +533,9 @@ profiles or channel views. The application does not collect real name, phone,
 birthday, contacts, or address. Passwords require at least eight characters and
 are hashed and verified by Supabase Auth. Channel invitations will use revocable
 links so members do not need to disclose email addresses to one another.
+Signed-in users can change their password by providing the current password and
+a distinct confirmed new password of at least eight characters. Password values
+are sent only to Supabase Auth and are never stored in application tables.
 
 ## 11. 第一轮 Codex 任务清单
 
