@@ -72,6 +72,18 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
   }
 
   const unreadCount = activities.filter((activity) => activity.is_new).length;
+  const reminders = useMemo(() => [
+    ...invitations.map((invitation) => ({
+      kind: "invitation" as const,
+      invitation,
+      sortAt: Date.parse(invitation.expires_at) - 7 * 24 * 60 * 60 * 1000,
+    })),
+    ...activities.map((activity) => ({
+      kind: "activity" as const,
+      activity,
+      sortAt: Date.parse(activity.shared_at),
+    })),
+  ].sort((left, right) => right.sortAt - left.sortAt), [activities, invitations]);
 
   if (!user) return <section className="notifications-view notifications-signed-out">
     <span className="eyebrow dark">REMINDERS</span>
@@ -86,18 +98,18 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
       {unreadCount > 0 && <button disabled={busy} onClick={() => void markAllRead()} type="button">全部标为已读</button>}
     </header>
     {message && <p className="notifications-message" role="status">{message}</p>}
-    {loading ? <p className="notifications-empty">正在读取提醒…</p> : <>
-      <section className="notifications-section">
-        <div className="notifications-section-title"><h2>Channel 邀请</h2><b>{invitations.length}</b></div>
-        {invitations.length === 0 ? <p className="notifications-empty">目前没有待处理邀请。</p> : invitations.map((invitation) =>
-          <article className="notification-row invitation-row" key={invitation.invitation_id}>
-            <div><b>@{invitation.inviter_username}</b> 邀请你加入 <strong>「{invitation.channel_name}」</strong><small>有效期至 {formatDateTime(invitation.expires_at)}</small></div>
+    {loading ? <p className="notifications-empty">正在读取提醒…</p> : reminders.length === 0
+      ? <p className="notifications-empty">目前没有提醒。</p>
+      : <div className="notifications-list">{reminders.map((reminder) => {
+        if (reminder.kind === "invitation") {
+          const { invitation } = reminder;
+          return <article className="notification-row invitation-row unread" key={invitation.invitation_id}>
+            <span className="notification-dot" aria-label="待处理" />
+            <div><p><b>@{invitation.inviter_username}</b> 邀请你加入</p><strong>「{invitation.channel_name}」</strong><small>有效期至 {formatDateTime(invitation.expires_at)}</small></div>
             <button disabled={busy} onClick={() => void acceptInvitation(invitation)} type="button">接受邀请</button>
-          </article>)}
-      </section>
-      <section className="notifications-section">
-        <div className="notifications-section-title"><h2>朋友新想看</h2><b>{unreadCount} 条未读</b></div>
-        {activities.length === 0 ? <p className="notifications-empty">加入 Channel 后，这里会显示其他成员新分享的想看场次。</p> : activities.map((activity) => {
+          </article>;
+        }
+        const { activity } = reminder;
           const showing = showingById.get(activity.showing_id);
           const film = showing ? filmById.get(showing.filmId) : null;
           const cinema = showing ? cinemaById.get(showing.cinemaId) : null;
@@ -109,9 +121,7 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
               <small>{showing ? `${showing.localDate} · ${formatDisplayTime(showing.localTime)} · ${cinema?.name ?? ""}` : `场次 ID：${activity.showing_id}`} · {formatDateTime(activity.shared_at)}</small>
             </div>
           </article>;
-        })}
-      </section>
-    </>}
+        })}</div>}
   </section>;
 }
 

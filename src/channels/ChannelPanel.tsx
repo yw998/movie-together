@@ -234,7 +234,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }:
     inviteCopyTimerRef.current = window.setTimeout(() => {
       setInviteNotice(null);
       inviteCopyTimerRef.current = null;
-    }, 5000);
+    }, 3000);
   }
 
   async function acceptLink() {

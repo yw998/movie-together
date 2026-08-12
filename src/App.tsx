@@ -116,12 +116,12 @@ export default function App() {
         onNavigate={navigateTogether}
       />
       <div className="site-shell">
-      {!activeChannelId && <AccountControl
+      <AccountControl
         lightBackground={notificationsOpen}
         notificationRefreshKey={notificationRefreshKey}
         notificationsOpen={notificationsOpen}
         onOpenNotifications={openNotifications}
-      />}
+      />
       {activeChannelId ? <ChannelMainView channelId={activeChannelId} /> : notificationsOpen ? <NotificationsView
         onNotificationsChanged={() => setNotificationRefreshKey((current) => current + 1)}
         onOpenChannel={(channelId) => navigateTogether(channelId)}

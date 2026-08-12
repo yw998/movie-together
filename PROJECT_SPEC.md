@@ -626,11 +626,11 @@ Friend ID is pinned to the bottom-left account area in every personal or Channel
 view, with an adjacent clipboard button and explicit copied or permission-failure
 feedback.
 After an owner copies a Channel invitation link, its success notice appears
-directly below the copy button, stays readable for roughly four seconds, fades
-during the final second, and is removed after five seconds. Repeated copying
+directly below the copy button, stays readable for roughly two seconds, fades
+during the final second, and is removed after three seconds. Repeated copying
 restarts the notice timer and animation; clipboard failures use error feedback.
 Friend-ID and email invitation results, link-generation failures, and clipboard
-failures use this same notice position and five-second lifecycle instead of
+failures use this same notice position and three-second lifecycle instead of
 appearing in the scrollable Channel settings area.
 Inside a Channel, members are shown as individual rows in the contextual rail,
 while owner invitation controls are pinned above the persistent account/Friend-ID
@@ -655,9 +655,10 @@ Async Channel forms retain their form element before awaiting Supabase so a
 successful write always proceeds to local reset, refresh, selection, and visible
 confirmation without requiring a page reload.
 
-The top-right account controls contain a bell-only reminder entry with a combined
-unread badge; it is not part of the Channel rail. Its full-width page shows pending
-direct Channel invitations and the last 30 days
+Every signed-in page shows the account controls in the top-right. They contain a
+bell-only reminder entry with a combined unread badge; it is not part of the
+Channel rail. Its full-width page shows pending direct Channel invitations and
+the last 30 days
 of watch marks newly shared by other members in Channels the user currently belongs
 to. Invitation acceptance remains explicit. Watch-mark activity includes only the
 public username, Channel, and official showing identity; account email is never
@@ -666,6 +667,8 @@ the membership join time, and advance only when the user chooses “全部标为
 Removing a membership cascades its read cursor. Reminder rows link to the relevant
 Channel, and events outside the current rolling schedule use a non-factual fallback
 instead of inventing title or time details.
+Invitation and watch-mark reminders share one reverse-chronological vertical card
+list; the page does not divide them into separate reminder-type sections.
 
 Authentication decision confirmed 2026-08-11: v1 uses a unique public username
 plus a private email-and-password Supabase Auth identity. Email is used only for

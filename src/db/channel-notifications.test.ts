@@ -38,4 +38,13 @@ describe("channel reminders", () => {
     expect(accountControl).toContain('<svg aria-hidden="true"');
     expect(channelPanel).not.toContain("channel-rail-reminders");
   });
+
+  it("renders invitations and mark activity in one vertical card list", async () => {
+    const view = await readFile(viewPath, "utf8");
+
+    expect(view).toContain('className="notifications-list"');
+    expect(view).not.toContain("notifications-section-title");
+    expect(view).toContain('kind: "invitation"');
+    expect(view).toContain('kind: "activity"');
+  });
 });
