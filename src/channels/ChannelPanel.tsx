@@ -9,7 +9,6 @@ import {
   invitationUrl,
   readInviteToken,
   type Channel,
-  type ChannelNotification,
   type InvitePreview,
 } from "./channel-api";
 import { avatarColor } from "./avatar";
@@ -25,19 +24,16 @@ type GuestView = {
 type ChannelPanelProps = {
   activeChannelId: string | null;
   notificationsOpen: boolean;
-  notificationRefreshKey: number;
   onNavigate: (channelId: string | null) => void;
-  onOpenNotifications: () => void;
 };
 
-export function ChannelPanel({ activeChannelId, notificationsOpen, notificationRefreshKey, onNavigate, onOpenNotifications }: ChannelPanelProps) {
+export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate }: ChannelPanelProps) {
   const client = supabase;
   const { user, username } = useAuth();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const creatingRef = useRef(false);
   const inviteCopyTimerRef = useRef<number | null>(null);
   const [channels, setChannels] = useState<Channel[]>([]);
-  const [reminderCount, setReminderCount] = useState(0);
   const [friendId, setFriendId] = useState<string | null>(null);
   const [members, setMembers] = useState<Member[]>([]);
   const [message, setMessage] = useState<string | null>(null);
@@ -54,40 +50,24 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, notificationR
   const load = useCallback(async () => {
     if (!client || !user) {
       setChannels([]);
-      setReminderCount(0);
       setFriendId(null);
       return;
     }
-    const [channelResult, invitationResult, notificationResult, friendResult] = await Promise.all([
+    const [channelResult, friendResult] = await Promise.all([
       client.from("channels").select("id,name,owner_user_id").order("created_at"),
-      client.rpc("list_my_channel_invitations"),
-      client.rpc("list_my_channel_notifications"),
       client.rpc("get_my_friend_id"),
     ]);
-    if (channelResult.error || invitationResult.error || notificationResult.error || friendResult.error) {
+    if (channelResult.error || friendResult.error) {
       setMessage("无法读取 Channel，请稍后重试。");
       return;
     }
     const nextChannels = channelResult.data as Channel[];
     setChannels(nextChannels);
-    const newMarkCount = ((notificationResult.data ?? []) as ChannelNotification[]).filter((row) => row.is_new).length;
-    setReminderCount((invitationResult.data?.length ?? 0) + newMarkCount);
     setFriendId(friendResult.data as string);
     if (activeChannelId && !nextChannels.some((channel) => channel.id === activeChannelId)) onNavigate(null);
-  }, [activeChannelId, client, notificationRefreshKey, onNavigate, user]);
+  }, [activeChannelId, client, onNavigate, user]);
 
   useEffect(() => { void load(); }, [load]);
-
-  useEffect(() => {
-    if (!user) return;
-    const refresh = () => { void load(); };
-    const timer = window.setInterval(refresh, 60_000);
-    window.addEventListener("focus", refresh);
-    return () => {
-      window.clearInterval(timer);
-      window.removeEventListener("focus", refresh);
-    };
-  }, [load, user]);
 
   useEffect(() => () => {
     if (inviteCopyTimerRef.current !== null) window.clearTimeout(inviteCopyTimerRef.current);
@@ -332,13 +312,6 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, notificationR
           title="个人主页"
           type="button"
         >我</button>
-        {user && <button
-          aria-label={reminderCount > 0 ? `提醒，${reminderCount} 条未读` : "提醒"}
-          className={`channel-rail-reminders${notificationsOpen ? " active" : ""}`}
-          onClick={() => { onOpenNotifications(); setShowCreate(false); setMobileOpen(false); }}
-          title="提醒"
-          type="button"
-        ><span aria-hidden="true">铃</span>{reminderCount > 0 && <b>{reminderCount > 99 ? "99+" : reminderCount}</b>}</button>}
         <span className="channel-rail-divider" />
         <div className="channel-rail-list">
           {channels.map((channel) => <button

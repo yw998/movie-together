@@ -112,18 +112,21 @@ export default function App() {
     <main className={`app-shell${activeChannelId ? "" : " personal-home"}`}>
       <ChannelPanel
         activeChannelId={activeChannelId}
-        notificationRefreshKey={notificationRefreshKey}
         notificationsOpen={notificationsOpen}
         onNavigate={navigateTogether}
-        onOpenNotifications={openNotifications}
       />
       <div className="site-shell">
+      {!activeChannelId && <AccountControl
+        lightBackground={notificationsOpen}
+        notificationRefreshKey={notificationRefreshKey}
+        notificationsOpen={notificationsOpen}
+        onOpenNotifications={openNotifications}
+      />}
       {activeChannelId ? <ChannelMainView channelId={activeChannelId} /> : notificationsOpen ? <NotificationsView
         onNotificationsChanged={() => setNotificationRefreshKey((current) => current + 1)}
         onOpenChannel={(channelId) => navigateTogether(channelId)}
       /> : <>
       <header className="hero">
-        <AccountControl />
         <div className="eyebrow">
           NEW YORK · {formatWindowYears(metadata.windowStart, metadata.windowEnd)}
         </div>

@@ -3,6 +3,8 @@ import { describe, expect, it } from "vitest";
 
 const migrationPath = new URL("../../db/migrations/013_channel_notifications.sql", import.meta.url);
 const viewPath = new URL("../notifications/NotificationsView.tsx", import.meta.url);
+const accountControlPath = new URL("../auth/AccountControl.tsx", import.meta.url);
+const channelPanelPath = new URL("../channels/ChannelPanel.tsx", import.meta.url);
 
 describe("channel reminders", () => {
   it("stores a private per-channel read cursor", async () => {
@@ -26,5 +28,14 @@ describe("channel reminders", () => {
     expect(view).toContain('rpc("accept_channel_invitation"');
     expect(view).toContain('rpc("mark_my_channel_notifications_read"');
     expect(view).toContain("全部标为已读");
+  });
+
+  it("places the reminder bell beside the account instead of in the Channel rail", async () => {
+    const accountControl = await readFile(accountControlPath, "utf8");
+    const channelPanel = await readFile(channelPanelPath, "utf8");
+
+    expect(accountControl).toContain('className={`account-reminders');
+    expect(accountControl).toContain('<svg aria-hidden="true"');
+    expect(channelPanel).not.toContain("channel-rail-reminders");
   });
 });

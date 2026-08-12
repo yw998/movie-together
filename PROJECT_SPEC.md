@@ -652,8 +652,9 @@ Async Channel forms retain their form element before awaiting Supabase so a
 successful write always proceeds to local reset, refresh, selection, and visible
 confirmation without requiring a page reload.
 
-The primary left rail also contains a reminder entry with a combined unread badge.
-Its full-width page shows pending direct Channel invitations and the last 30 days
+The top-right account controls contain a bell-only reminder entry with a combined
+unread badge; it is not part of the Channel rail. Its full-width page shows pending
+direct Channel invitations and the last 30 days
 of watch marks newly shared by other members in Channels the user currently belongs
 to. Invitation acceptance remains explicit. Watch-mark activity includes only the
 public username, Channel, and official showing identity; account email is never
@@ -718,7 +719,7 @@ the source.
 9. 未登录访客可选择注册，或用临时名字成为仅限该 Channel 的 guest，并获得只访问该 Channel 的独立代码。
 10. Guest 首版只读；邀请链接默认 7 天后过期，最多允许 20 人成功加入，owner 可随时提前撤销。
 11. 账号内部邀请只允许 Friend ID 或私密邮箱；邀请保持 pending，必须由被邀请者明确接受后才加入 Channel。
-12. 左侧提醒页显示待处理 Channel 邀请和共同 Channel 中其他成员新分享的想看场次；用户明确标为已读后才推进私有已读状态。
+12. 账号旁的右上角铃铛进入提醒页，显示待处理 Channel 邀请和共同 Channel 中其他成员新分享的想看场次；用户明确标为已读后才推进私有已读状态。
 
 尚未确定、需要向用户确认：
 

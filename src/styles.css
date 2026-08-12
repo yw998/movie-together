@@ -13,6 +13,13 @@ a { color: inherit; }
 .account-control { z-index: 2; align-items: center; gap: 10px; position: absolute; top: 24px; right: max(28px, calc(50vw - 590px)); display: flex; }
 .account-control > span { color: #d1cdc3; font: 700 12px monospace; }
 .account-control > button { border: 1px solid #64655b; color: #f8f3e9; background: #24261f; border-radius: 99px; padding: 8px 13px; font-size: 12px; }
+.account-control .account-reminders { border-radius: 50%; width: 34px; height: 34px; padding: 7px; position: relative; }
+.account-reminders svg { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; width: 18px; height: 18px; display: block; }
+.account-reminders > b { color: #fff; background: #a63f32; border: 2px solid #171813; border-radius: 99px; min-width: 18px; height: 18px; padding: 0 3px; position: absolute; top: -5px; right: -5px; font: 700 9px/14px Arial, sans-serif; }
+.account-control .account-reminders.active { color: #171813; background: #f4f0e6; }
+.account-control.on-light > span { color: #56574f; }
+.account-control.on-light > button { color: var(--ink); background: #faf7ef; border-color: #aaa69c; }
+.account-control.on-light .account-reminders.active { color: #fff; background: var(--ink); }
 .auth-dialog { color: var(--ink); border: 1px solid var(--line); background: var(--paper); width: min(92vw, 430px); padding: 28px; box-shadow: 0 24px 80px #0007; }
 .auth-dialog::backdrop { background: #0c0d0aa8; backdrop-filter: blur(4px); }
 .dialog-close { position: absolute; top: 10px; right: 12px; }
@@ -136,8 +143,6 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-rail-nav button { color: #e9e4d9; background: #30312b; border: 0; border-radius: 50%; align-items: center; justify-content: center; width: 48px; min-height: 48px; padding: 5px; font-size: 12px; font-weight: 800; line-height: 1.05; display: flex; transition: border-radius .15s, background .15s; overflow: hidden; }
 .channel-rail-nav button:hover, .channel-rail-nav button.active { color: #171813; background: #eee9dd; border-radius: 15px; }
 .channel-rail-nav .channel-rail-home { color: #171813; background: #d5cfbf; font-size: 15px; }
-.channel-rail-nav .channel-rail-reminders { position: relative; font-size: 12px; }
-.channel-rail-reminders > b { color: #fff; background: #a63f32; border: 2px solid #171813; border-radius: 99px; min-width: 19px; height: 19px; padding: 0 4px; position: absolute; top: -3px; right: -3px; font: 700 9px/15px Arial, sans-serif; }
 .channel-rail-nav .channel-rail-create { color: #9fc589; background: #292b25; margin-top: auto; font-size: 25px; font-weight: 400; }
 .channel-rail-nav .channel-rail-create:hover { color: #171813; background: #9fc589; }
 .channel-rail-divider { background: #3e4038; width: 34px; height: 1px; }

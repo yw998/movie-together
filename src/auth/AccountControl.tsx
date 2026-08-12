@@ -6,13 +6,45 @@ import { useAuth } from "./AuthContext";
 import { OPEN_ACCOUNT_EVENT } from "./account-events";
 
 type Mode = "login" | "signup" | "resend" | "reset" | "update_password" | "change_password";
-export function AccountControl() {
+type AccountControlProps = {
+  lightBackground?: boolean;
+  notificationRefreshKey?: number;
+  notificationsOpen?: boolean;
+  onOpenNotifications?: () => void;
+};
+
+export function AccountControl({ lightBackground = false, notificationRefreshKey = 0, notificationsOpen = false, onOpenNotifications }: AccountControlProps) {
   const client = supabase;
   const { loading, user, username } = useAuth();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [mode, setMode] = useState<Mode>("login");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [reminderCount, setReminderCount] = useState(0);
+
+  useEffect(() => {
+    if (!client || !user) {
+      setReminderCount(0);
+      return;
+    }
+    const loadReminderCount = async () => {
+      const [invitationResult, notificationResult] = await Promise.all([
+        client.rpc("list_my_channel_invitations"),
+        client.rpc("list_my_channel_notifications"),
+      ]);
+      if (invitationResult.error || notificationResult.error) return;
+      const newMarkCount = (notificationResult.data ?? []).filter((row: { is_new: boolean }) => row.is_new).length;
+      setReminderCount((invitationResult.data?.length ?? 0) + newMarkCount);
+    };
+    void loadReminderCount();
+    const timer = window.setInterval(() => void loadReminderCount(), 60_000);
+    const refreshOnFocus = () => void loadReminderCount();
+    window.addEventListener("focus", refreshOnFocus);
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener("focus", refreshOnFocus);
+    };
+  }, [client, notificationRefreshKey, user]);
 
   useEffect(() => {
     if (!client) return;
@@ -147,9 +179,20 @@ export function AccountControl() {
   }
 
   return (
-    <div className="account-control">
+    <div className={`account-control${lightBackground ? " on-light" : ""}`}>
       {loading ? null : user ? (
         <>
+          {onOpenNotifications && <button
+            aria-label={reminderCount > 0 ? `提醒，${reminderCount} 条未读` : "提醒"}
+            aria-pressed={notificationsOpen}
+            className={`account-reminders${notificationsOpen ? " active" : ""}`}
+            onClick={onOpenNotifications}
+            title="提醒"
+            type="button"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
+            {reminderCount > 0 && <b>{reminderCount > 99 ? "99+" : reminderCount}</b>}
+          </button>}
           <span>@{username ?? "account"}</span>
           <button onClick={() => { setMode("change_password"); setMessage(null); dialogRef.current?.showModal(); }} type="button">修改密码</button>
           <button disabled={busy} onClick={signOut} type="button">退出</button>
