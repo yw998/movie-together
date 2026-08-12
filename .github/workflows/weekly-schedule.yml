@@ -1,18 +1,18 @@
-name: Weekly schedule publication
+name: Daily rolling schedule publication
 
 on:
   schedule:
-    - cron: "0 0 * * 1"
+    - cron: "0 5 * * *"
       timezone: "America/New_York"
   workflow_dispatch:
     inputs:
       anchor_date:
-        description: "Optional New York local date (YYYY-MM-DD)"
+        description: "Optional rolling-window start in New York (YYYY-MM-DD)"
         required: false
         type: string
 
 concurrency:
-  group: weekly-schedule-publication
+  group: rolling-schedule-publication
   cancel-in-progress: false
 
 permissions:
@@ -22,7 +22,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -41,7 +41,7 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      - name: Prepare calendar-week paths
+      - name: Prepare rolling-window paths
         id: context
         shell: bash
         run: |
@@ -49,92 +49,53 @@ jobs:
           if [ -z "$ANCHOR" ]; then
             ANCHOR="$(TZ=America/New_York date +%F)"
           fi
-          INFO="$(npm run --silent automation:week-info -- "$ANCHOR")"
-          WINDOW_START="$(printf '%s' "$INFO" | jq -r .windowStart)"
-          RUN_DIR="data/runs/$WINDOW_START/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          INFO="$(npm run --silent automation:rolling-info -- "$ANCHOR")"
+          RUN_DIR="data/runs/rolling-$ANCHOR/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
           mkdir -p "$RUN_DIR"
+          echo "$INFO" > "$RUN_DIR/rolling-context.json"
           echo "anchor=$ANCHOR" >> "$GITHUB_OUTPUT"
-          echo "window_start=$WINDOW_START" >> "$GITHUB_OUTPUT"
+          echo "current_start=$(printf '%s' "$INFO" | jq -r '.weekStarts[0]')" >> "$GITHUB_OUTPUT"
+          echo "next_start=$(printf '%s' "$INFO" | jq -r '.weekStarts[1] // ""')" >> "$GITHUB_OUTPUT"
           echo "run_dir=$RUN_DIR" >> "$GITHUB_OUTPUT"
 
       - name: Apply database migrations
         run: npm run db:migrate
 
-      - name: Export previous approved review bundle
-        run: >-
-          npm run db:export-artifact -- review_bundle
-          "${{ steps.context.outputs.run_dir }}/previous-review-bundle.json"
-
-      - name: Create week-scoped empty override
-        run: >-
-          npm run automation:create-override --
-          "${{ steps.context.outputs.anchor }}"
-          "${{ steps.context.outputs.run_dir }}/overrides.json"
-
-      - name: Pull official cinema schedules
-        id: ingest
-        continue-on-error: true
-        run: >-
-          npm run ingest:week --
-          "${{ steps.context.outputs.anchor }}"
-          "${{ steps.context.outputs.run_dir }}/candidate.json"
-
-      - name: Enrich and cache Chinese descriptions
-        id: descriptions
-        run: >-
-          npm run enrich:descriptions --
-          "${{ steps.context.outputs.run_dir }}/candidate.json"
-          "${{ steps.context.outputs.run_dir }}/candidate-enriched.json"
-
-      - name: Compile normalized candidate
-        id: compile
-        run: >-
-          npm run compile:candidate --
-          "${{ steps.context.outputs.run_dir }}/candidate-enriched.json"
-          "${{ steps.context.outputs.run_dir }}/compiled-schedule.json"
-          "${{ steps.context.outputs.run_dir }}/review-bundle.json"
-          "${{ steps.context.outputs.run_dir }}/overrides.json"
-
-      - name: Compare with current publication
-        id: review
-        continue-on-error: true
-        run: >-
-          npm run review:schedule --
-          "${{ steps.context.outputs.run_dir }}/previous-review-bundle.json"
-          "${{ steps.context.outputs.run_dir }}/review-bundle.json"
-          "${{ steps.context.outputs.run_dir }}/review-report.json"
-          "${{ steps.context.outputs.run_dir }}/review-report.md"
-
-      - name: Stop on ambiguous or questionable changes
-        if: steps.review.outcome == 'failure'
+      - name: Ingest, review, and import both calendar weeks
+        shell: bash
         run: |
-          echo "Review contains concerns; database publication and deployment are blocked."
-          exit 1
+          set -euo pipefail
+          RUN_DIR="${{ steps.context.outputs.run_dir }}"
+          mapfile -t WEEK_ANCHORS < <(jq -r '.weekAnchors[]' "$RUN_DIR/rolling-context.json")
+          for WEEK_ANCHOR in "${WEEK_ANCHORS[@]}"; do
+            WEEK_INFO="$(npm run --silent automation:week-info -- "$WEEK_ANCHOR")"
+            WINDOW_START="$(printf '%s' "$WEEK_INFO" | jq -r .windowStart)"
+            WEEK_DIR="$RUN_DIR/$WINDOW_START"
+            mkdir -p "$WEEK_DIR"
 
-      - name: Automatically approve clean report
-        run: >-
-          npm run auto-approve:schedule --
-          "${{ steps.context.outputs.run_dir }}/review-report.json"
-          "${{ steps.context.outputs.run_dir }}/approval.json"
+            npm run db:export-artifact -- review_bundle "$WEEK_DIR/previous-review-bundle.json" "$WINDOW_START" --allow-empty
+            npm run automation:create-override -- "$WEEK_ANCHOR" "$WEEK_DIR/overrides.json"
+            npm run ingest:week -- "$WEEK_ANCHOR" "$WEEK_DIR/candidate.json"
+            npm run enrich:descriptions -- "$WEEK_DIR/candidate.json" "$WEEK_DIR/candidate-enriched.json"
+            npm run compile:candidate -- "$WEEK_DIR/candidate-enriched.json" "$WEEK_DIR/compiled-schedule.json" "$WEEK_DIR/review-bundle.json" "$WEEK_DIR/overrides.json"
+            npm run review:schedule -- "$WEEK_DIR/previous-review-bundle.json" "$WEEK_DIR/review-bundle.json" "$WEEK_DIR/review-report.json" "$WEEK_DIR/review-report.md"
+            npm run auto-approve:schedule -- "$WEEK_DIR/review-report.json" "$WEEK_DIR/approval.json"
+            npm run db:import -- "$WEEK_DIR/candidate-enriched.json" "$WEEK_DIR/compiled-schedule.json" "$WEEK_DIR/review-bundle.json" "$WEEK_DIR/overrides.json" "$WEEK_DIR/review-report.json" "$WEEK_DIR/approval.json"
+          done
 
-      - name: Import approved week into Supabase
-        run: >-
-          npm run db:import --
-          "${{ steps.context.outputs.run_dir }}/candidate-enriched.json"
-          "${{ steps.context.outputs.run_dir }}/compiled-schedule.json"
-          "${{ steps.context.outputs.run_dir }}/review-bundle.json"
-          "${{ steps.context.outputs.run_dir }}/overrides.json"
-          "${{ steps.context.outputs.run_dir }}/review-report.json"
-          "${{ steps.context.outputs.run_dir }}/approval.json"
+      - name: Export today plus six days
+        run: npm run db:export -- src/data/published-schedule.json "${{ steps.context.outputs.anchor }}"
 
-      - name: Export current database publication for frontend
-        run: npm run db:export -- src/data/published-schedule.json
-
-      - name: Verify database round trip
-        run: >-
-          npm run db:verify-export --
-          "${{ steps.context.outputs.run_dir }}/compiled-schedule.json"
-          src/data/published-schedule.json
+      - name: Verify rolling database round trip
+        shell: bash
+        run: |
+          RUN_DIR="${{ steps.context.outputs.run_dir }}"
+          mapfile -t WEEK_STARTS < <(jq -r '.weekStarts[]' "$RUN_DIR/rolling-context.json")
+          COMPILED=()
+          for WINDOW_START in "${WEEK_STARTS[@]}"; do
+            COMPILED+=("$RUN_DIR/$WINDOW_START/compiled-schedule.json")
+          done
+          npm run db:verify-rolling -- src/data/published-schedule.json "${{ steps.context.outputs.anchor }}" "${COMPILED[@]}"
 
       - name: Run tests
         run: npm test
@@ -142,24 +103,24 @@ jobs:
       - name: Build production site
         run: npm run build
 
-      - name: Commit validated public data
+      - name: Commit validated rolling public data
         shell: bash
         run: |
           if git diff --quiet -- src/data/published-schedule.json; then
-            echo "Published JSON is unchanged; no deployment commit is needed."
+            echo "Rolling public JSON is unchanged; no deployment commit is needed."
             exit 0
           fi
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
           git add src/data/published-schedule.json
-          git commit -m "data: publish week ${{ steps.context.outputs.window_start }}"
+          git commit -m "data: publish rolling window ${{ steps.context.outputs.anchor }}"
           git push
 
-      - name: Upload review artifacts
+      - name: Upload private review artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: schedule-${{ steps.context.outputs.window_start }}-${{ github.run_id }}
+          name: rolling-${{ steps.context.outputs.anchor }}-${{ github.run_id }}
           path: ${{ steps.context.outputs.run_dir }}
           if-no-files-found: warn
           retention-days: 30
@@ -172,27 +133,14 @@ jobs:
         run: |
           ISSUE_BODY="${RUNNER_TEMP}/schedule-issue.md"
           {
-            echo "The automated schedule publication stopped before deployment."
+            echo "The daily rolling schedule publication stopped before deployment."
             echo
-            echo "- Week: ${{ steps.context.outputs.window_start }}"
+            echo "- Rolling start: ${{ steps.context.outputs.anchor }}"
             echo "- Workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            echo "- Ingestion outcome: ${{ steps.ingest.outcome }}"
-            echo "- Description outcome: ${{ steps.descriptions.outcome }}"
-            echo "- Compile outcome: ${{ steps.compile.outcome }}"
-            echo "- Review outcome: ${{ steps.review.outcome }}"
+            echo "- Calendar weeks: ${{ steps.context.outputs.current_start }} and ${{ steps.context.outputs.next_start }}"
             echo
-            echo "The previous production schedule remains active. Download the workflow artifact for candidate and review evidence."
-            REPORT="${{ steps.context.outputs.run_dir }}/review-report.md"
-            if [ -f "$REPORT" ]; then
-              echo
-              echo "## Review concerns"
-              grep "CONCERN:" "$REPORT" || true
-            fi
+            echo "The previous production schedule remains active. Download the private workflow artifact for source evidence and review details."
+            find "${{ steps.context.outputs.run_dir }}" -name review-report.md -print0 2>/dev/null | xargs -0 grep "CONCERN:" 2>/dev/null || true
           } > "$ISSUE_BODY"
-          gh issue create \
-            --title "Schedule review required: ${{ steps.context.outputs.window_start }}" \
-            --body-file "$ISSUE_BODY" \
-            --label "schedule-review" || \
-          gh issue create \
-            --title "Schedule review required: ${{ steps.context.outputs.window_start }}" \
-            --body-file "$ISSUE_BODY"
+          gh issue create --title "Rolling schedule review required: ${{ steps.context.outputs.anchor }}" --body-file "$ISSUE_BODY" --label "schedule-review" || \
+          gh issue create --title "Rolling schedule review required: ${{ steps.context.outputs.anchor }}" --body-file "$ISSUE_BODY"

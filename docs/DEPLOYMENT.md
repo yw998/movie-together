@@ -2,7 +2,7 @@
 
 ## Target architecture
 
-- GitHub stores code and runs CI plus the weekly schedule workflow.
+- GitHub stores code and runs CI plus the daily rolling schedule workflow.
 - Supabase PostgreSQL stores normalized schedules and audit history.
 - Vercel builds and serves the Vite frontend from the `main` branch.
 - The frontend reads `src/data/published-schedule.json`; it never receives
@@ -72,18 +72,21 @@ Pull requests receive Vercel preview deployments.
 On Vercel Hobby, automated commits use the GitHub workflow actor as the commit
 author so the deployment remains associated with the repository owner.
 
-## 4. Weekly automation behavior
+## 4. Daily rolling automation behavior
 
-`.github/workflows/weekly-schedule.yml` runs at the end of every Sunday—Monday
-00:00 in `America/New_York`—and supports manual runs with an optional anchor
-date. The Monday execution date becomes the anchor for the new Monday–Sunday
-calendar week.
+`.github/workflows/weekly-schedule.yml` runs every day at 05:00 in
+`America/New_York` and supports manual runs with an optional rolling-window
+start date. The public window is that New York date plus the following six days.
+Storage and review remain Monday–Sunday: the job processes the one or two full
+calendar weeks touched by the rolling window, then exports only the seven public
+dates. This preserves stable watch-mark references across daily window changes.
 
 The job:
 
 1. Applies database migrations.
 2. Loads the current approved review bundle from PostgreSQL.
-3. Pulls the official Monday–Sunday schedule from all six implemented cinemas.
+3. Pulls the official schedule for each complete calendar week touched by the
+   rolling seven-day window from all six implemented cinemas.
 4. Reuses cached Chinese descriptions and generates copy only for genuinely new
    films whose official detail pages contain sufficient evidence.
 5. Compiles, validates, deduplicates, and reviews changes.
@@ -109,7 +112,7 @@ next run can safely export the database's current publication again.
 After pushing the repository:
 
 1. Open **Actions → Code quality** and confirm the test/build job passes.
-2. Open **Actions → Weekly schedule publication → Run workflow**.
+2. Open **Actions → Daily rolling schedule publication → Run workflow**.
 3. Enter a known anchor date or leave it empty for the current New York date.
 4. Confirm a clean run updates Supabase and creates a Vercel deployment.
 5. Test the Vercel URL on desktop and mobile before attaching a custom domain.

@@ -12,7 +12,7 @@ type Member = { user_id: string; role: "owner" | "member"; username: string };
 export function ChannelMainView({ channelId }: { channelId: string }) {
   const client = supabase;
   const { user } = useAuth();
-  const watchMarks = useWatchMarks(scheduleData.metadata.windowStart);
+  const watchMarks = useWatchMarks(scheduleData.showings);
   const [name, setName] = useState("Channel");
   const [members, setMembers] = useState<Member[]>([]);
   const [sharedMarks, setSharedMarks] = useState<SharedMark[]>([]);

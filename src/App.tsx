@@ -33,7 +33,7 @@ export default function App() {
     filmTitle: string;
     anchor: { left: number; top: number; maxHeight: number; placement: "above" | "below" };
   } | null>(null);
-  const watchMarks = useWatchMarks(metadata.windowStart);
+  const watchMarks = useWatchMarks(showings);
   const navigateTogether = useCallback((channelId: string | null) => {
     setActiveChannelId(channelId);
     setSharePrompt(null);
@@ -113,7 +113,7 @@ export default function App() {
         <div className="eyebrow">
           NEW YORK · {formatWindowYears(metadata.windowStart, metadata.windowEnd)}
         </div>
-        <h1>这周看什么？</h1>
+        <h1>未来七天看什么？</h1>
         <p>
           {cinemas.length} 家纽约艺术影院 · {formatWindowZh(metadata.windowStart, metadata.windowEnd)}
         </p>

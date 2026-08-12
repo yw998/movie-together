@@ -54,10 +54,11 @@ showing count falls by more than 25%. Finished events that disappear remain list
 as removals but do not trigger the volume alarm. Additions, removals, and factual changes are always
 listed for human review.
 
-Schedule windows are Monday through Sunday. A concern-free report is only
-`READY FOR APPROVAL`; it is never automatic permission to publish. Approval
-requires a named reviewer and produces a new audit artifact without overwriting
-an existing file. Sold-out screenings remain in public data and are displayed
+Source ingestion and database identities remain Monday through Sunday. The
+public homepage is a rolling New York today-plus-six-days window assembled from
+the one or two approved calendar weeks it overlaps. A concern-free automated
+report may publish; any warning or questionable change stops publication and
+opens manual review. Sold-out screenings remain in public data and are displayed
 with an `已售罄` label.
 
 The August 10–16 review is at

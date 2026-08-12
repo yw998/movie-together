@@ -184,10 +184,10 @@ If any constraint or digest check fails, the transaction is rolled back.
 
 ## Frontend export
 
-Export the database's current approved week:
+Export an approved rolling seven-day window (the date is interpreted in New York):
 
 ```text
-npm run db:export -- src/data/published-schedule.json
+npm run db:export -- src/data/published-schedule.json YYYY-MM-DD
 ```
 
 Verify a newly generated export against its approved compiled schedule:

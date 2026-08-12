@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { requestAccountDialog } from "../auth/account-events";
 import { supabase } from "../auth/supabase";
+import { calendarWeekFor } from "../lib/calendar-week";
 
 type WatchMarkRow = { id: string; window_start: string; showing_id: string };
 export const WATCH_MARKS_CHANGED_EVENT = "movie-together:watch-marks-changed";
@@ -14,17 +15,32 @@ export function showingMarkKey(windowStart: string, showingId: string): string {
   return `${windowStart}:${showingId}`;
 }
 
-export function useWatchMarks(windowStart: string) {
+export function showingStorageWindow(localDate: string): string {
+  return calendarWeekFor(localDate).start;
+}
+
+export function useWatchMarks(showings: readonly { id: string; localDate: string }[]) {
   const { user } = useAuth();
   const [marks, setMarks] = useState<Map<string, string>>(new Map());
   const [busy, setBusy] = useState<Set<string>>(new Set());
   const [shareCounts, setShareCounts] = useState<Map<string, number>>(new Map());
   const [mutualCounts, setMutualCounts] = useState<Map<string, number>>(new Map());
   const [error, setError] = useState<string | null>(null);
+  const showingWindows = useMemo(() => new Map(showings.map((showing) => [
+    showing.id,
+    showingStorageWindow(showing.localDate),
+  ])), [showings]);
+  const windowStarts = useMemo(() => [...new Set(showingWindows.values())].sort(), [showingWindows]);
+  const windowSignature = windowStarts.join(",");
+
+  const keyFor = useCallback((showingId: string) => {
+    const windowStart = showingWindows.get(showingId);
+    return windowStart ? showingMarkKey(windowStart, showingId) : null;
+  }, [showingWindows]);
 
   useEffect(() => {
     const client = supabase;
-    if (!client || !user) {
+    if (!client || !user || windowStarts.length === 0) {
       setMarks(new Map());
       setShareCounts(new Map());
       setError(null);
@@ -34,7 +50,7 @@ export function useWatchMarks(windowStart: string) {
     void client
       .from("watch_marks")
       .select("id,window_start,showing_id")
-      .eq("window_start", windowStart)
+      .in("window_start", windowStarts)
       .then(async ({ data, error: queryError }) => {
         if (!active) return;
         if (queryError) {
@@ -60,7 +76,7 @@ export function useWatchMarks(windowStart: string) {
         setError(null);
       });
     return () => { active = false; };
-  }, [user, windowStart]);
+  }, [user, windowSignature]);
 
   const loadMutualCounts = useCallback(async () => {
     const client = supabase;
@@ -84,14 +100,14 @@ export function useWatchMarks(windowStart: string) {
     for (const result of results) {
       if (result.error) continue;
       for (const mark of result.data ?? []) {
-        if (mark.user_id === user.id || mark.window_start !== windowStart) continue;
+        if (mark.user_id === user.id || !windowStarts.includes(mark.window_start)) continue;
         const people = peopleByShowing.get(mark.showing_id) ?? new Set<string>();
         people.add(mark.user_id);
         peopleByShowing.set(mark.showing_id, people);
       }
     }
     setMutualCounts(new Map([...peopleByShowing].map(([showingId, people]) => [showingId, people.size])));
-  }, [user, windowStart]);
+  }, [user, windowSignature]);
 
   useEffect(() => {
     void loadMutualCounts();
@@ -105,7 +121,9 @@ export function useWatchMarks(windowStart: string) {
       requestAccountDialog();
       return null;
     }
-    const key = showingMarkKey(windowStart, showingId);
+    const key = keyFor(showingId);
+    const windowStart = showingWindows.get(showingId);
+    if (!key || !windowStart) return null;
     if (busy.has(key)) return null;
     setBusy((current) => new Set(current).add(key));
     setError(null);
@@ -150,7 +168,7 @@ export function useWatchMarks(windowStart: string) {
       return next;
     });
     return result;
-  }, [busy, marks, user, windowStart]);
+  }, [busy, keyFor, marks, showingWindows, user]);
 
   const updateSharing = useCallback(async (markId: string, channelIds: string[]) => {
     const client = supabase;
@@ -174,7 +192,9 @@ export function useWatchMarks(windowStart: string) {
       requestAccountDialog();
       return false;
     }
-    const key = showingMarkKey(windowStart, showingId);
+    const key = keyFor(showingId);
+    const windowStart = showingWindows.get(showingId);
+    if (!key || !windowStart) return false;
     if (busy.has(key)) return false;
     setBusy((current) => new Set(current).add(key));
     setError(null);
@@ -208,12 +228,13 @@ export function useWatchMarks(windowStart: string) {
     }
     setBusy((current) => { const next = new Set(current); next.delete(key); return next; });
     return !shareError;
-  }, [busy, marks, user, windowStart]);
+  }, [busy, keyFor, marks, showingWindows, user]);
 
   const removeFromChannel = useCallback(async (showingId: string, channelId: string) => {
     const client = supabase;
     if (!client || !user) return false;
-    const key = showingMarkKey(windowStart, showingId);
+    const key = keyFor(showingId);
+    if (!key) return false;
     const markId = marks.get(key);
     if (!markId || busy.has(key)) return false;
     setBusy((current) => new Set(current).add(key));
@@ -236,17 +257,18 @@ export function useWatchMarks(windowStart: string) {
     }
     setBusy((current) => { const next = new Set(current); next.delete(key); return next; });
     return !shareError;
-  }, [busy, marks, user, windowStart]);
+  }, [busy, keyFor, marks, user]);
 
   return {
     error,
     markedCount: marks.size,
     signedIn: Boolean(user),
-    isMarked: (showingId: string) => marks.has(showingMarkKey(windowStart, showingId)),
-    isBusy: (showingId: string) => busy.has(showingMarkKey(windowStart, showingId)),
-    markId: (showingId: string) => marks.get(showingMarkKey(windowStart, showingId)) ?? null,
+    isMarked: (showingId: string) => { const key = keyFor(showingId); return key ? marks.has(key) : false; },
+    isBusy: (showingId: string) => { const key = keyFor(showingId); return key ? busy.has(key) : false; },
+    markId: (showingId: string) => { const key = keyFor(showingId); return key ? marks.get(key) ?? null : null; },
     shareCount: (showingId: string) => {
-      const markId = marks.get(showingMarkKey(windowStart, showingId));
+      const key = keyFor(showingId);
+      const markId = key ? marks.get(key) : null;
       return markId ? shareCounts.get(markId) ?? 0 : 0;
     },
     mutualCount: (showingId: string) => mutualCounts.get(showingId) ?? 0,

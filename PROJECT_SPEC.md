@@ -344,12 +344,14 @@ trigger the volume alarm when an official site stops returning past events. The
 threshold is a review trigger, not an automatic factual judgment.
 
 The public header derives its year, cinema count, and localized date range from
-schedule metadata. Newly generated bundles use the confirmed Monday–Sunday
-calendar-week rule.
+schedule metadata. Source bundles and database identities retain Monday–Sunday
+calendar weeks; the public export combines the approved weeks and exposes the
+New York today-plus-six-days rolling window.
 
 Product decisions confirmed 2026-08-11:
 
-- “This week” is the New York calendar week from Monday through Sunday.
+- Historical decision: “This week” was originally the New York calendar week.
+  It was superseded on 2026-08-12 by the rolling seven-day homepage decision.
 - A successful review report requires explicit named human approval before any
   publication step. There is no automatic publication.
 - Sold-out events remain visible and carry a clear sold-out label.
@@ -358,7 +360,7 @@ The recovered August 11–17 prototype bundle predates the calendar-week decisio
 and remains unchanged as historical evidence. Newly generated bundles must use
 the Monday–Sunday rule.
 
-The weekly candidate command accepts any New York local anchor date, computes
+The calendar-week candidate command accepts any New York local anchor date, computes
 its Monday–Sunday window, runs all six implemented official adapters, and
 writes a new file without overwriting an existing candidate. It does not review,
 approve, or publish; those remain explicit subsequent stages.
@@ -391,9 +393,11 @@ keeps the previous site active, uploads private review artifacts, and creates a
 GitHub Issue for manual investigation. This replaces mandatory human approval
 for every clean week; manual approval remains available for reviewed exceptions.
 
-Schedule decision updated 2026-08-11: the weekly workflow runs at the end of
-Sunday, expressed as Monday 00:00 in `America/New_York`. The Monday execution
-date anchors the new Monday–Sunday calendar week.
+Schedule decision updated 2026-08-12: the public homepage is a rolling seven-day
+window starting on the current New York date. Automation runs daily at 05:00,
+reviews the one or two complete calendar weeks touched by that window, and
+publishes only after every involved source is clean. This supersedes the former
+Sunday-end weekly schedule while retaining calendar-week storage internally.
 
 Chinese-description decision confirmed 2026-08-11: concise AI-assisted Chinese
 copy may be used when it is grounded in an official cinema detail page or a
@@ -676,7 +680,9 @@ showing. No mark is shared to a channel in this phase.
 
 已确认：
 
-1. “本周”是自然周（周一至周日）。
+1. 主页完全使用纽约“今天起连续七天”的滚动窗口，不保留自然周切换入口。底层
+   仍按周一至周日保存和审核场次，以维持稳定场次身份与想看标记；跨周主页合并
+   当前周和下一周的已批准数据。此决定于 2026-08-12 取代此前自然周主页决定。
 2. 每周更新必须先生成 review report，再由具名用户明确批准；不自动发布。
 3. 已售罄场次继续显示并明确标注。
 4. 产品需要用户账号、私人想看标记、受邀请成员可见的共享频道，以及可选择共享的用户自建活动。

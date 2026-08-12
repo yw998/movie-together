@@ -4,10 +4,19 @@ import { zonedLocalDateTimeToIso } from "../../src/lib/timezone";
 import { validateScheduleData } from "../../src/lib/schedule-validation";
 import type { Cinema, Film, ScheduleData, Showing } from "../../src/types/schedule";
 
-const [, , outputPath] = process.argv;
-if (!outputPath) {
-  console.error("Usage: npm run db:export -- output.json");
+const [, , outputPath, anchorLocalDate] = process.argv;
+if (!outputPath || !/^\d{4}-\d{2}-\d{2}$/.test(anchorLocalDate ?? "")) {
+  console.error("Usage: npm run db:export -- output.json YYYY-MM-DD");
   process.exit(2);
+}
+
+function addDays(localDate: string, days: number): string {
+  const value = new Date(`${localDate}T12:00:00Z`);
+  if (Number.isNaN(value.getTime()) || value.toISOString().slice(0, 10) !== localDate) {
+    throw new Error(`Invalid rolling-window anchor: ${localDate}`);
+  }
+  value.setUTCDate(value.getUTCDate() + days);
+  return value.toISOString().slice(0, 10);
 }
 
 function dateText(value: unknown): string {
@@ -32,28 +41,31 @@ function labels(start: string, end: string): Record<string, string> {
 
 const sql = createDatabaseClient();
 try {
+  const rollingStart = anchorLocalDate!;
+  const rollingEnd = addDays(rollingStart, 6);
   const weeks = await sql`
     select sw.* from schedule_weeks sw
     join published_weeks pw on pw.window_start = sw.window_start
-    where pw.is_current = true
+    where sw.window_start <= ${rollingEnd}
+      and sw.window_end >= ${rollingStart}
+    order by sw.window_start
   `;
-  if (weeks.length !== 1) throw new Error(`Expected one current published week, found ${weeks.length}.`);
-  const week = weeks[0];
-  const windowStart = dateText(week.window_start);
-  const windowEnd = dateText(week.window_end);
+  if (weeks.length === 0) throw new Error(`No approved publication overlaps ${rollingStart} through ${rollingEnd}.`);
   const cinemaRows = await sql`select * from cinemas where enabled = true order by sort_order`;
   const filmRows = await sql`
     select distinct f.* from films f
     join showings s on s.film_id = f.id
-    where s.window_start = ${windowStart}
+    join published_weeks pw on pw.window_start = s.window_start
+    where s.local_date between ${rollingStart} and ${rollingEnd}
       and s.publication_status = 'active'
     order by f.display_title, f.id
   `;
   const showingRows = await sql`
-    select * from showings
-    where window_start = ${windowStart}
-      and publication_status = 'active'
-    order by starts_at, id
+    select s.* from showings s
+    join published_weeks pw on pw.window_start = s.window_start
+    where s.local_date between ${rollingStart} and ${rollingEnd}
+      and s.publication_status = 'active'
+    order by s.starts_at, s.id
   `;
   const cinemas: Cinema[] = cinemaRows.map((row) => ({
     id: row.id, name: row.name, officialUrl: row.official_url,
@@ -79,16 +91,16 @@ try {
   });
   const schedule: ScheduleData = {
     metadata: {
-      timezone: week.timezone,
-      windowStart,
-      windowEnd,
-      refreshedLocalDate: dateText(week.refreshed_local_date),
-      provenanceNote: week.provenance_note,
+      timezone: "America/New_York",
+      windowStart: rollingStart,
+      windowEnd: rollingEnd,
+      refreshedLocalDate: weeks.map((week) => dateText(week.refreshed_local_date)).sort().at(-1)!,
+      provenanceNote: "Rolling seven-day publication assembled from approved New York calendar-week sources.",
     },
     cinemas,
     films,
     showings,
-    dateLabels: labels(windowStart, windowEnd),
+    dateLabels: labels(rollingStart, rollingEnd),
   };
   const validation = validateScheduleData(schedule, { staleAfterHours: Number.POSITIVE_INFINITY });
   if (validation.errors > 0) {

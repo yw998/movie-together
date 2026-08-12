@@ -15,6 +15,7 @@
     "src/db",
     "src/ingestion",
     "src/lib/calendar-week.ts",
+    "src/lib/rolling-window.ts",
     "src/lib/schedule-validation.ts",
     "src/lib/time.ts",
     "src/lib/timezone.ts",
