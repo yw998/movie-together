@@ -216,3 +216,6 @@ Always run `npm test` and `npm run build` after exporting public data.
 - Channel, membership, direct-invitation, link-invitation, Friend ID, and guest
   credential tables/functions are deployed; the production UI remains disabled
   until multi-user RLS tests and trusted email/guest endpoints are complete
+- Trusted guest join/access and private-email invitation database functions are
+  deployed with server-only rate-limit tables; Edge Function source is ready but
+  requires a local Supabase CLI personal access token for its first deployment

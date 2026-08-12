@@ -1,0 +1,2 @@
+[functions.channel-invitations]
+verify_jwt = false

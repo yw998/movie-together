@@ -114,11 +114,39 @@ After pushing the repository:
 4. Confirm a clean run updates Supabase and creates a Vercel deployment.
 5. Test the Vercel URL on desktop and mobile before attaching a custom domain.
 
-## Future accounts
+## 6. Channel invitation Edge Function
 
-The Vite frontend can later use Supabase Auth with a browser-safe project URL
-and publishable key. User tables such as `profiles` and `favorites` must have
-separate RLS policies keyed to `auth.uid()`. The server-only schedule and audit
-tables remain inaccessible to browser roles. If authenticated SSR becomes
-necessary, the frontend can migrate to Next.js on the same Vercel project while
-retaining the existing Supabase database.
+Guest access and private-email lookup run in the `channel-invitations` Supabase
+Edge Function. Supabase supplies its publishable and secret keys to the hosted
+function; the secret key must never be copied to Vercel or a `VITE_*` variable.
+The browser can call the function, but only its server-only database functions
+can create guests, validate guest codes, or resolve Auth email addresses.
+
+For a local deployment, create a Supabase personal access token at
+`https://supabase.com/dashboard/account/tokens`, then add these to the ignored
+`.env.local` file:
+
+```env
+SUPABASE_PROJECT_REF=YOUR_20_CHARACTER_PROJECT_REF
+SUPABASE_ACCESS_TOKEN=sbp_YOUR_PERSONAL_ACCESS_TOKEN
+```
+
+Deploy without printing or passing the token on the command line:
+
+```text
+npm run functions:deploy
+```
+
+The function has JWT gateway verification disabled because invitation preview
+and guest access are intentionally unauthenticated. It validates the bearer JWT
+inside the function for private-email invitations, and the database grants all
+four trusted functions only to `service_role`. Guest code and join attempts are
+rate-limited in server-only tables.
+
+## Future account rendering
+
+The Vite frontend now uses Supabase Auth with a browser-safe project URL and
+publishable key. User tables have explicit RLS policies keyed to `auth.uid()`;
+the server-only schedule and audit tables remain inaccessible to browser roles.
+If authenticated SSR becomes necessary, the frontend can migrate to Next.js on
+the same Vercel project while retaining the existing Supabase database.

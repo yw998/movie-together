@@ -569,8 +569,12 @@ private showing-level marks are implemented. The channel database foundation is
 also deployed: random Friend IDs, owner/member membership, direct username or
 Friend-ID invitations, hashed seven-day/20-use links, and hashed channel-scoped
 guest credentials all use deny-by-default RLS and controlled functions. Channel
-UI, trusted email/guest endpoints, sharing, and user-created events are not yet
-enabled; multi-user authorization tests are required before the UI is exposed.
+guest/email database endpoints and database-backed attempt limits are deployed,
+and the matching Edge Function source is ready for deployment. Owner/outsider
+and service-role authorization tests pass with all test data rolled back.
+Channel UI, the Edge deployment, sharing, and user-created events are not yet
+enabled; a second registered test identity is still required before the UI is
+exposed broadly.
 
 Authentication decision confirmed 2026-08-11: v1 uses a unique public username
 plus a private email-and-password Supabase Auth identity. Email is used only for

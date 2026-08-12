@@ -12,6 +12,7 @@
     "db:status": "node --env-file-if-exists=.env.local --import tsx scripts/db/status.ts",
     "db:verify-user-schema": "node --env-file-if-exists=.env.local --import tsx scripts/db/verify-user-schema.ts",
     "db:test-channel-rls": "node --env-file-if-exists=.env.local --import tsx scripts/db/test-channel-rls.ts",
+    "functions:deploy": "node --env-file-if-exists=.env.local scripts/deploy-channel-function.mjs",
     "db:verify-export": "node --import tsx scripts/db/verify-export.ts",
     "build": "tsc -b && vite build",
     "automation:week-info": "tsx scripts/automation/week-info.ts",

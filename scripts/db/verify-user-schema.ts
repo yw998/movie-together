@@ -141,6 +141,28 @@ try {
     throw new Error("Invite links do not use the confirmed seven-day/20-use defaults.");
   }
 
+  const [trustedEndpoints] = await sql<{ attempts: string | null; joins: string | null; function_count: number }[]>`
+    select
+      to_regclass('public.channel_guest_access_attempts')::text as attempts,
+      to_regclass('public.channel_guest_join_attempts')::text as joins,
+      (
+        select count(*)::integer from pg_proc
+        where oid in (
+          'public.preview_channel_invite(text)'::regprocedure,
+          'public.create_channel_guest_limited(text,text,text)'::regprocedure,
+          'public.read_channel_as_guest(uuid,text)'::regprocedure,
+          'public.invite_channel_user_by_email(uuid,uuid,text)'::regprocedure
+        )
+      ) as function_count
+  `;
+  if (
+    trustedEndpoints.attempts !== "channel_guest_access_attempts" ||
+    trustedEndpoints.joins !== "channel_guest_join_attempts" ||
+    trustedEndpoints.function_count !== 4
+  ) {
+    throw new Error("Trusted guest/email endpoint database support is incomplete.");
+  }
+
   console.log("Verified accounts, watch marks, channel invitations, defaults, and RLS policies.");
 } finally {
   await sql.end();
