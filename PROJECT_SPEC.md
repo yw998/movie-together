@@ -317,13 +317,23 @@ Paris Theater: manual review required
 
 **完成标准：** 五家影院均能输出已验证数据，失败时不会发布虚假或空白结果。
 
-Implementation note (2026-08-11): the first five official-source adapters are
+Implementation note (2026-08-11): the first six official-source adapters are
 now implemented. Paris Theater showtimes come from its official digital API
 and are joined to its official CMS by Vista film ID. The adapter discovers the
 current public client configuration from the theater's own layout bundle at
 runtime and never persists or logs those values. Special-event copy is joined
 only when the CMS ticket link contains the exact showtime ID; failed joins are
 excluded or flagged for review rather than inferred from a shared date.
+
+Film at Lincoln Center uses its official `api.filmlinc.org/showtimes` feed for
+offset-bearing New York datetimes, performance and production IDs, venues,
+ticket URLs, accessibility, and ticket status. Each in-window film is joined by
+official slug to its WordPress GraphQL record for director, year, runtime,
+presentation format, synopsis evidence, and performance-ID-scoped Q&A/intro
+metadata. Standby-only screenings remain visible with a sold-out label and
+explicit standby note. Synthetic pass products are excluded. A missing detail
+join, inconsistent ID/time/link, or empty feed becomes a visible partial/failed
+result and blocks publication.
 
 The pre-publication review report compares serialized ingestion bundles by
 stable showing ID. It lists new, removed, and factually changed records, and
@@ -347,7 +357,7 @@ and remains unchanged as historical evidence. Newly generated bundles must use
 the Monday–Sunday rule.
 
 The weekly candidate command accepts any New York local anchor date, computes
-its Monday–Sunday window, runs all five implemented official adapters, and
+its Monday–Sunday window, runs all six implemented official adapters, and
 writes a new file without overwriting an existing candidate. It does not review,
 approve, or publish; those remain explicit subsequent stages.
 

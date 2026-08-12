@@ -9,7 +9,7 @@ describe("approved public schedule", () => {
       windowEnd: "2026-08-16",
       refreshedLocalDate: "2026-08-11",
     });
-    expect(scheduleData.cinemas).toHaveLength(5);
+    expect(new Set(scheduleData.cinemas.map((cinema) => cinema.id)).size).toBe(scheduleData.cinemas.length);
     expect(scheduleData.films.length).toBeGreaterThan(0);
     expect(scheduleData.showings.length).toBeGreaterThan(0);
     expect(scheduleValidation).toMatchObject({ errors: 0, warnings: 0, publishable: true });

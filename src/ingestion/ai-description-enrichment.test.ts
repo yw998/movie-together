@@ -71,6 +71,24 @@ describe("automatic Chinese description enrichment", () => {
     expect(evidence).not.toContain("ignore all previous instructions");
   });
 
+  it("uses Film at Lincoln Center's official content API instead of its protected page", async () => {
+    const fetcher = vi.fn(async (input: string | URL | Request) => {
+      expect(String(input)).toBe("https://api.filmlinc.org/wordpress/graphql");
+      return new Response(JSON.stringify({
+        data: { film: {
+          excerpt: "<p>An official synopsis follows a filmmaker through a strange and dangerous production.</p>",
+          content: "<p>The feature expands that conflict into a story about identity and control.</p>",
+        } },
+      }), { status: 200, headers: { "Content-Type": "application/json" } });
+    });
+    const { fetchOfficialDescriptionEvidence } = await import("./ai-description-enrichment");
+    const evidence = await fetchOfficialDescriptionEvidence(
+      "buddy", "Buddy", "https://www.filmlinc.org/films/buddy/", fetcher,
+    );
+    expect(evidence.evidenceText).toContain("official synopsis");
+    expect(fetcher).toHaveBeenCalledOnce();
+  });
+
   it("uses the database cache without fetching evidence or calling OpenAI", async () => {
     const fetchEvidence = vi.fn();
     const generate = vi.fn();

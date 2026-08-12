@@ -3,6 +3,7 @@ import { fetchFilmForumSchedule } from "./adapters/film-forum";
 import { fetchIfcCenterSchedule } from "./adapters/ifc-center";
 import { fetchMetrographSchedule } from "./adapters/metrograph";
 import { fetchParisTheaterSchedule } from "./adapters/paris-theater";
+import { fetchFilmAtLincolnCenterSchedule } from "./adapters/film-at-lincoln-center";
 import { fetchRoxyCinemaSchedule } from "./adapters/roxy-cinema";
 import type { ReviewBundle } from "./review-report";
 import type { AdapterResult } from "./types";
@@ -22,6 +23,7 @@ export const officialScheduleFetchers: ScheduleFetcher[] = [
   fetchRoxyCinemaSchedule,
   fetchMetrographSchedule,
   fetchParisTheaterSchedule,
+  fetchFilmAtLincolnCenterSchedule,
 ];
 
 export async function fetchWeeklyIngestionBundle(

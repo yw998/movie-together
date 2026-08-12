@@ -20,7 +20,7 @@ const showing: Showing = {
   availability: "available", sourceUrl: "https://my.filmforum.org/api",
   fetchedAt: "2026-08-10T14:00:00Z", extractionStatus: "verified",
 };
-const cinemaIds = ["metrograph", "film-forum", "ifc-center", "roxy-cinema", "paris-theater"];
+const cinemaIds = ["metrograph", "film-forum", "ifc-center", "roxy-cinema", "paris-theater", "film-at-lincoln-center"];
 
 function adapter(cinemaId: string): AdapterResult {
   return {

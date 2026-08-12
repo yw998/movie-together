@@ -26,4 +26,9 @@ export const cinemaCatalog: Cinema[] = [
     scheduleUrl: "https://www.paristheaternyc.com/", timezone: NEW_YORK_TIMEZONE,
     enabled: true, color: "#3182ce",
   },
+  {
+    id: "film-at-lincoln-center", name: "Film at Lincoln Center", officialUrl: "https://www.filmlinc.org/",
+    scheduleUrl: "https://www.filmlinc.org/now-playing/?tab=schedule", timezone: NEW_YORK_TIMEZONE,
+    enabled: true, color: "#b83280",
+  },
 ];

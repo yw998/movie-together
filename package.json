@@ -19,6 +19,7 @@
     "compile:candidate": "tsx scripts/compile-candidate.ts",
     "enrich:descriptions": "node --env-file-if-exists=.env.local --import tsx scripts/enrich-descriptions.ts",
     "ingest:film-forum": "tsx scripts/ingest-film-forum.ts",
+    "ingest:film-at-lincoln-center": "tsx scripts/ingest-film-at-lincoln-center.ts",
     "ingest:week": "tsx scripts/ingest-week.ts",
     "ingest:ifc-center": "tsx scripts/ingest-ifc-center.ts",
     "ingest:metrograph": "tsx scripts/ingest-metrograph.ts",

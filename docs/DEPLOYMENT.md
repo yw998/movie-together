@@ -83,7 +83,7 @@ The job:
 
 1. Applies database migrations.
 2. Loads the current approved review bundle from PostgreSQL.
-3. Pulls the official Monday–Sunday schedule.
+3. Pulls the official Monday–Sunday schedule from all six implemented cinemas.
 4. Reuses cached Chinese descriptions and generates copy only for genuinely new
    films whose official detail pages contain sufficient evidence.
 5. Compiles, validates, deduplicates, and reviews changes.

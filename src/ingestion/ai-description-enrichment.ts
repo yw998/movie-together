@@ -90,6 +90,37 @@ export async function fetchOfficialDescriptionEvidence(
   sourceUrl: string,
   fetcher: FetchLike = fetch,
 ): Promise<DescriptionEvidence> {
+  const parsedSource = new URL(sourceUrl);
+  if (
+    (parsedSource.hostname === "filmlinc.org" || parsedSource.hostname === "www.filmlinc.org") &&
+    /^\/films\/[a-z0-9-]+\/$/.test(parsedSource.pathname)
+  ) {
+    const response = await fetcher("https://api.filmlinc.org/wordpress/graphql", {
+      method: "POST",
+      headers: { Accept: "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: `query FilmEvidence($id: ID!) {
+          film(id: $id, idType: URI) { excerpt content }
+        }`,
+        variables: { id: parsedSource.pathname },
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`official Film at Lincoln Center content API returned HTTP ${response.status}`);
+    }
+    const payload = await response.json() as {
+      data?: { film?: { excerpt?: unknown; content?: unknown } };
+    };
+    const film = payload.data?.film;
+    const html = [film?.excerpt, film?.content]
+      .filter((value): value is string => typeof value === "string")
+      .join("\n");
+    const evidenceText = normalizeText(load(html).text()).slice(0, 12_000);
+    if (evidenceText.length < 80) {
+      throw new Error("official Film at Lincoln Center content API did not contain enough synopsis evidence");
+    }
+    return { filmId, title, sourceUrl, evidenceText };
+  }
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15_000);
   try {

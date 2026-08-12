@@ -43,7 +43,8 @@ five cinemas. The recovered prototype remains separately archived in
 - Roxy Cinema: official Now Showing HTML adapter implemented. It uses offset-bearing screening datetimes and Veezi purchase IDs, preserves film-format labels, and applies dated introductions only to matching dates.
 - Metrograph: official film-page HTML adapter implemented. It resolves yearless official date labels only within the requested window, retains Vista session IDs and film formats, and preserves sold-out sessions without inventing ticket URLs.
 - Paris Theater: official digital showtime API plus CMS adapter implemented. It discovers the current public client contract at runtime (without persisting its client values), joins stable showtime IDs to official film metadata, and retains sold-out and accessibility/event labels.
-- Remaining cinema adapters: Lincoln Center and Syndicated are not yet implemented.
+- Film at Lincoln Center: official `api.filmlinc.org/showtimes` plus official WordPress GraphQL adapter implemented. It joins Tessitura performance IDs to film metadata and exact Q&A/intro labels, preserves 35mm/70mm/DCP, open captions, standby-only availability, venues, and direct purchase links. Synthetic pass products are excluded.
+- Remaining cinema adapter: Syndicated is not yet implemented.
 
 The review command expects each JSON file to contain `generatedAt` and an
 `adapters` array of serialized adapter results. It exits non-zero when a feed
