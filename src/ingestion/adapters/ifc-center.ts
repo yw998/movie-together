@@ -5,13 +5,14 @@ import type { Film, Showing } from "../../types/schedule";
 import type { AdapterResult, SourceSnapshot } from "../types";
 
 export const IFC_CENTER_SOURCE_URL = "https://www.ifccenter.com/";
-export const IFC_CENTER_PARSER_VERSION = "ifc-center-html-v1";
+export const IFC_CENTER_PARSER_VERSION = "ifc-center-html-v2";
 
 type ParseOptions = {
   fetchedAt: string;
   contentHash: string;
   windowStart: string;
   windowEnd: string;
+  detailPages?: ReadonlyMap<string, string>;
 };
 
 function slugify(value: string): string {
@@ -90,6 +91,37 @@ function getEventType(note: string): Showing["eventType"] {
   if (/q\s*&\s*a/i.test(note)) return "qa";
   if (/\bintro(?:duction|duced)?\b/i.test(note)) return "intro";
   return "other";
+}
+
+function getDetailEventTickets(
+  html: string | undefined,
+  dateText: string,
+  note: string,
+): Array<{ ticketId: string; soldOut: boolean }> {
+  if (!html) return [];
+  const detailPage = load(html);
+  const normalizedDate = normalizeDateLabel(dateText);
+  const normalizedNote = cleanText(note).toLowerCase();
+  const tickets: Array<{ ticketId: string; soldOut: boolean }> = [];
+  detailPage("li").each((_index, element) => {
+    const item = detailPage(element);
+    const details = cleanText(item.find(".details").text());
+    if (
+      !normalizeDateLabel(details).includes(normalizedDate) ||
+      !details.toLowerCase().includes(normalizedNote)
+    ) {
+      return;
+    }
+    item.find('a[href*="tickets.ifccenter.com"]').each((_linkIndex, anchor) => {
+      const ticketId = getTicketId(detailPage(anchor).attr("href") ?? "");
+      if (!ticketId) return;
+      tickets.push({
+        ticketId,
+        soldOut: /sold\s*out/i.test(cleanText(detailPage(anchor).text())),
+      });
+    });
+  });
+  return tickets;
 }
 
 function snapshot(
@@ -221,30 +253,68 @@ export function parseIfcCenterHtml(
     seenSpecialEvents.add(eventIdentity);
     const localDate = resolveDate(dateText, options);
     if (!localDate && resolveNearbyDate(dateText, options)) return;
+    const eventDetailUrl = event.find(".ipe-title a").first().attr("href")?.trim() ?? "";
+    const detailEventTickets = getDetailEventTickets(
+      options.detailPages?.get(eventDetailUrl),
+      dateText,
+      note,
+    );
+    const filmId = slugify(title);
+    const datedFilmShowings = showings.filter(
+      (showing) => showing.localDate === localDate && showing.filmId === filmId,
+    );
     const clockMatches = [...note.matchAll(/\b(\d{1,2}:\d{2})(?:\s*(AM|PM))?\b/gi)];
-    if (!localDate || clockMatches.length === 0) {
+    const linkedTicketIds = new Set([
+      ...event
+        .find('a[href*="tickets.ifccenter.com"]')
+        .toArray()
+        .map((anchor) => getTicketId($(anchor).attr("href") ?? ""))
+        .filter((ticketId): ticketId is string => ticketId !== null),
+      ...detailEventTickets.map(({ ticketId }) => ticketId),
+    ]);
+    if (!localDate || (clockMatches.length === 0 && linkedTicketIds.size === 0)) {
       warnings.push(`special-event[${eventIndex}] could not be tied to one showtime: ${dateText} ${title}`);
       return;
     }
 
-    const filmId = slugify(title);
-    const candidates = showings.filter((showing) => {
-      if (showing.localDate !== localDate || showing.filmId !== filmId) return false;
-      return clockMatches.some((match) => {
+    const timeCandidates = datedFilmShowings.filter((showing) =>
+      clockMatches.some((match) => {
         if (match[2]) {
           return parseDisplayTime(`${match[1]} ${match[2].toUpperCase()}`) === showing.localTime;
         }
         const [hour, minute] = showing.localTime.split(":").map(Number);
         const hour12 = hour % 12 || 12;
         return `${hour12}:${String(minute).padStart(2, "0")}` === match[1];
-      });
-    });
+      }),
+    );
+    const linkedCandidates = datedFilmShowings.filter((showing) =>
+      linkedTicketIds.has(showing.id.replace(/^ifc-center-/, "")),
+    );
+    const candidates =
+      clockMatches.length > 0 && linkedTicketIds.size > 0
+        ? timeCandidates.filter((showing) => linkedCandidates.includes(showing))
+        : clockMatches.length > 0
+          ? timeCandidates
+          : linkedCandidates;
     if (candidates.length !== 1) {
       warnings.push(`special-event[${eventIndex}] matched ${candidates.length} showtimes: ${dateText} ${title}`);
       return;
     }
     candidates[0].eventType = getEventType(note);
     candidates[0].eventNote = note;
+    candidates[0].sourceUrl = eventDetailUrl || candidates[0].detailUrl;
+    const soldOutTicketIds = new Set([
+      ...event
+        .find('a[href*="tickets.ifccenter.com"]')
+        .toArray()
+        .filter((anchor) => /sold\s*out/i.test(cleanText($(anchor).text())))
+        .map((anchor) => getTicketId($(anchor).attr("href") ?? ""))
+        .filter((ticketId): ticketId is string => ticketId !== null),
+      ...detailEventTickets.filter(({ soldOut }) => soldOut).map(({ ticketId }) => ticketId),
+    ]);
+    if (soldOutTicketIds.has(candidates[0].id.replace(/^ifc-center-/, ""))) {
+      candidates[0].availability = "sold_out";
+    }
   });
 
   if (showings.length === 0) {
@@ -290,7 +360,41 @@ export async function fetchIfcCenterSchedule(
     const html = await response.text();
     const contentHash = await sha256(html);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    return parseIfcCenterHtml(html, { ...baseOptions, contentHash });
+    const initialResult = parseIfcCenterHtml(html, { ...baseOptions, contentHash });
+    if (initialResult.snapshot.result === "success") return initialResult;
+
+    const page = load(html);
+    const detailUrls = [
+      ...new Set(
+        page(".ipe-single-container .ipe-title a")
+          .toArray()
+          .map((anchor) => page(anchor).attr("href")?.trim() ?? "")
+          .filter((url) => url.startsWith("https://www.ifccenter.com/films/")),
+      ),
+    ];
+    const detailPages = new Map<string, string>();
+    await Promise.all(
+      detailUrls.map(async (url) => {
+        try {
+          const detailResponse = await fetch(url, {
+            headers: {
+              Accept: "text/html",
+              "User-Agent":
+                "NYC-Repertory-Cinema-Week/0.1 (official schedule ingestion)",
+            },
+          });
+          if (detailResponse.ok) detailPages.set(url, await detailResponse.text());
+        } catch {
+          // The second parse retains the original visible warning when evidence
+          // from a detail page is unavailable.
+        }
+      }),
+    );
+    return parseIfcCenterHtml(html, {
+      ...baseOptions,
+      contentHash,
+      detailPages,
+    });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     return {

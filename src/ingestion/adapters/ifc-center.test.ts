@@ -24,7 +24,7 @@ const fixture = `
     </div>
   </div>
   <li class="ipe-single-container">
-    <p><span>Tue Aug 11:</span><span class="ipe-title"><a>Union County</a></span>
+    <p><span>Tue Aug 11:</span><span class="ipe-title"><a href="https://www.ifccenter.com/films/union-county/">Union County</a></span>
     <span class="ipe-caption">Q&amp;A with director after the 7:00 show</span></p>
   </li>`;
 
@@ -33,7 +33,7 @@ describe("IFC Center official HTML adapter", () => {
     const result = parseIfcCenterHtml(fixture, options);
     expect(result.snapshot).toMatchObject({
       result: "success",
-      parserVersion: "ifc-center-html-v1",
+      parserVersion: "ifc-center-html-v2",
       contentHash: "fixture-hash",
     });
     expect(result.showings).toHaveLength(2);
@@ -58,6 +58,34 @@ describe("IFC Center official HTML adapter", () => {
       expect.stringContaining("could not be tied to one showtime"),
     ]);
     expect(result.showings.every((showing) => showing.eventNote === null)).toBe(true);
+  });
+
+  it("uses a unique detail-page ticket link when an event caption omits the time", () => {
+    const eventWithoutTime = fixture.replace(
+      "Q&amp;A with director after the 7:00 show</span>",
+      "Q&amp;A with director</span>",
+    );
+    const detailPage = `
+      <li>
+        <div class="details">
+          <span><strong>Tue Aug 11:</strong></span>
+          <p><strong>Q&amp;A with director</strong></p>
+        </div>
+        <a href="https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=572001~venue&amp;">Sold Out</a>
+      </li>`;
+    const result = parseIfcCenterHtml(eventWithoutTime, {
+      ...options,
+      detailPages: new Map([
+        ["https://www.ifccenter.com/films/union-county/", detailPage],
+      ]),
+    });
+    expect(result.snapshot.result).toBe("success");
+    expect(result.showings[1]).toMatchObject({
+      id: "ifc-center-572001",
+      eventType: "qa",
+      eventNote: "Q&A with director",
+      availability: "sold_out",
+    });
   });
 
   it("deduplicates repeated desktop and mobile special-event widgets", () => {
