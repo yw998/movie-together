@@ -25,7 +25,6 @@ describe("rolling seven-day publication", () => {
 
   it("labels the homepage as a future-seven-day view", async () => {
     const app = await readFile(appPath, "utf8");
-    expect(app).toContain("未来七天看什么？");
+    expect(app).toContain("这周看什么？");
   });
 });
-

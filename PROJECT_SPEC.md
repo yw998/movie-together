@@ -347,12 +347,17 @@ threshold is a review trigger, not an automatic factual judgment.
 The public header derives its year, cinema count, and localized date range from
 schedule metadata. Source bundles and database identities retain Monday–Sunday
 calendar weeks; the public export combines the approved weeks and exposes the
-New York today-plus-six-days rolling window.
+New York today-plus-six-days rolling window. The homepage headline remains the
+short editorial label `这周看什么？`; it does not redefine the rolling date
+window shown directly below it.
 
 Automation alerting note (2026-08-12): a failed or ambiguous publication keeps
 the previous public data active. If a `schedule-review` issue is already open,
 later failures append their run details to that issue instead of creating
-duplicate alerts.
+duplicate alerts. The alert embeds an actionable report excerpt grouped by
+cinema, including added/removed/changed films, local date and time, format or
+event details, stable showing ID, and official detail/source links. Complete
+JSON and Markdown reports remain available in the private workflow artifact.
 
 Product decisions confirmed 2026-08-11:
 

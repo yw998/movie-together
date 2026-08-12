@@ -141,8 +141,14 @@ jobs:
             echo "- Workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             echo "- Calendar weeks: ${{ steps.context.outputs.current_start }} and ${{ steps.context.outputs.next_start }}"
             echo
-            echo "The previous production schedule remains active. Download the private workflow artifact for source evidence and review details."
-            find "${{ steps.context.outputs.run_dir }}" -name review-report.md -print0 2>/dev/null | xargs -0 grep "CONCERN:" 2>/dev/null || true
+            echo "The previous production schedule remains active. [Open the workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) to download the private artifact and source evidence."
+            echo
+            echo "### Report excerpt"
+            find "${{ steps.context.outputs.run_dir }}" -name review-report.md -print0 2>/dev/null | while IFS= read -r -d '' REPORT; do
+              if grep -q "HOLD FOR REVIEW" "$REPORT"; then
+                sed -n '1,220p' "$REPORT"
+              fi
+            done
           } > "$ISSUE_BODY"
           EXISTING_ISSUE="$(gh issue list --state open --label schedule-review --limit 1 --json number --jq '.[0].number // empty')"
           if [ -n "$EXISTING_ISSUE" ]; then

@@ -112,7 +112,7 @@ export default function App() {
         <div className="eyebrow">
           NEW YORK · {formatWindowYears(metadata.windowStart, metadata.windowEnd)}
         </div>
-        <h1>未来七天看什么？</h1>
+        <h1>这周看什么？</h1>
         <p>
           {cinemas.length} 家纽约艺术影院 · {formatWindowZh(metadata.windowStart, metadata.windowEnd)}
         </p>

@@ -39,7 +39,15 @@ describe("ingestion review report", () => {
     const report = createReviewReport(previous, current, "a".repeat(64));
     expect(report.summary).toMatchObject({ added: 1, removed: 1, changed: 1, concerns: 0 });
     expect(report.cinemas[0].changes[0].changedFields).toEqual(["startsAt", "localTime"]);
-    expect(formatReviewReport(report)).toContain("Changed: kept (startsAt, localTime)");
+    expect(report.cinemas[0].removedShowings[0]).toMatchObject({
+      id: "removed",
+      filmTitle: "film",
+      localDate: "2026-08-11",
+      localTime: "19:00",
+    });
+    expect(formatReviewReport(report)).toContain("### 删除场次（需核对）");
+    expect(formatReviewReport(report)).toContain("changed: startsAt, localTime");
+    expect(formatReviewReport(report)).toContain("[detail](https://filmforum.org/film/film)");
   });
 
   it("holds publication for partial feeds, warnings, duplicates, and large drops", () => {
