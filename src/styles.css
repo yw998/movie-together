@@ -2,6 +2,8 @@
 * { box-sizing: border-box; }
 html { background: var(--paper); }
 body { color: var(--ink); background: var(--paper); margin: 0; font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif; }
+.app-shell { min-height: 100vh; }
+.site-shell { min-width: 0; margin-left: 320px; }
 button, input { font: inherit; }
 button { cursor: pointer; }
 a { color: inherit; }
@@ -75,25 +77,31 @@ footer { color: #aaa99f; background: #171813; justify-content: space-between; ga
 footer p { max-width: 500px; margin: 0; line-height: 1.6; }
 footer div { flex-wrap: wrap; gap: 16px; display: flex; }
 footer a { color: #e5e0d5; text-decoration: none; }
-.channel-panel { border-top: 1px solid var(--line); max-width: 1180px; margin: 0 auto; padding: 50px 20px 70px; }
-.channel-heading { justify-content: space-between; align-items: center; gap: 20px; display: flex; }
+.channel-panel { color: #efeadf; background: #22231e; border-right: 1px solid #3e4037; width: 320px; height: 100dvh; padding: 28px 18px 40px; position: fixed; z-index: 30; top: 0; left: 0; overflow-y: auto; }
+.channel-heading { justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; display: flex; }
 .channel-heading-actions { gap: 8px; display: flex; }
-.channel-heading h2 { margin: 8px 0 0; font: 700 34px Georgia, "Songti SC", serif; }
-.eyebrow.dark { color: #77766e; }
-.channel-heading button, .channel-create button, .channel-notice button, .channel-invite button, .copy-invite { color: #fff; background: var(--ink); border: 0; border-radius: 4px; padding: 10px 14px; font-weight: 700; }
-.friend-id { color: var(--muted); margin: 24px 0 12px; font-size: 12px; }
-.friend-id code { color: var(--ink); background: #fff; border: 1px solid var(--line); margin-left: 8px; padding: 6px 8px; }
-.channel-notice { border: 1px solid #a9a595; background: #fff; justify-content: space-between; align-items: center; gap: 14px; margin: 10px 0; padding: 12px; display: flex; }
-.channel-create, .channel-invite { gap: 8px; margin: 16px 0; display: flex; }
-.channel-create input, .channel-invite input, .channel-invite select { border: 1px solid #aaa69c; background: #fff; min-width: 0; padding: 10px 12px; }
+.channel-heading h2 { margin: 8px 0 0; font: 700 26px Georgia, "Songti SC", serif; }
+.eyebrow.dark { color: #aaa99e; }
+.channel-heading button, .channel-create button, .channel-notice button, .channel-invite button, .copy-invite { color: #1c1d19; background: #eee9dd; border: 0; border-radius: 4px; padding: 9px 11px; font-size: 12px; font-weight: 700; }
+.channel-heading-actions { flex: 1 0 100%; flex-direction: column; width: 100%; }
+.channel-heading-actions button { width: 100%; }
+.friend-id { color: #aaa99e; margin: 24px 0 12px; font-size: 11px; }
+.friend-id code { color: #f6f1e7; background: #303129; border: 1px solid #4a4c41; margin-top: 8px; padding: 7px 8px; display: block; }
+.channel-notice { color: #22231e; border: 1px solid #c9bfae; background: #fff4df; align-items: flex-start; gap: 10px; margin: 10px 0; padding: 10px; font-size: 12px; display: flex; }
+.channel-create, .channel-invite { gap: 7px; margin: 16px 0; display: flex; }
+.channel-create input, .channel-invite input, .channel-invite select { color: #f4f0e6; border: 1px solid #4a4c41; background: #303129; min-width: 0; padding: 9px 10px; }
+.channel-create input::placeholder, .channel-invite input::placeholder { color: #99998f; }
 .channel-create input { flex: 1; }
-.channel-workspace { border: 1px solid var(--line); background: #fff; grid-template-columns: 220px 1fr; min-height: 190px; display: grid; }
-.channel-workspace nav { border-right: 1px solid var(--line); padding: 10px; }
-.channel-workspace nav button { text-align: left; background: transparent; border: 0; width: 100%; padding: 10px; }
-.channel-workspace nav button.active { color: #fff; background: var(--ink); }
-.channel-detail { padding: 20px; }
-.channel-detail h3 { margin: 0 0 8px; font: 700 24px Georgia, "Songti SC", serif; }
-.channel-detail p { color: var(--muted); font-size: 12px; }
+.channel-workspace { border-top: 1px solid #3e4037; margin-top: 20px; padding-top: 12px; }
+.channel-workspace nav { gap: 4px; display: grid; }
+.channel-workspace nav button { text-align: left; color: #c9c5bb; background: transparent; border: 0; border-radius: 4px; width: 100%; padding: 10px; }
+.channel-workspace nav button::before { content: "#"; color: #77786e; margin-right: 8px; }
+.channel-workspace nav button.active { color: #fff; background: #3a3c33; }
+.channel-detail { border-top: 1px solid #3e4037; margin-top: 12px; padding-top: 18px; }
+.channel-detail h3 { color: #fff; margin: 0 0 8px; font: 700 21px Georgia, "Songti SC", serif; }
+.channel-detail p { color: #aaa99e; font-size: 11px; line-height: 1.5; }
+.channel-invite { flex-direction: column; }
+.copy-invite { width: 100%; }
 .channel-message { color: #683516; background: #fff2df; padding: 10px 13px; font-size: 12px; }
 .invite-dialog .auth-submit { width: 100%; margin: 12px 0; }
 .guest-form { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 18px; }
@@ -101,7 +109,9 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .guest-credential code { word-break: break-all; background: #fff; border: 1px solid var(--line); padding: 10px; }
 .guest-view { color: var(--muted); line-height: 1.5; }
 .guest-view b { color: var(--ink); }
+.channel-mobile-toggle, .channel-mobile-close, .channel-backdrop { display: none; }
 @media (max-width: 760px) {
+  .site-shell { margin-left: 0; }
   .hero { padding-top: 52px; }
   .filters { flex-direction: column; align-items: stretch; }
   .search { width: 100%; }
@@ -112,7 +122,11 @@ footer a { color: #e5e0d5; text-decoration: none; }
   footer { flex-direction: column; }
   .hero::after { opacity: .45; }
   .account-control { top: 16px; right: 18px; }
-  .channel-workspace { grid-template-columns: 1fr; }
-  .channel-workspace nav { border-right: 0; border-bottom: 1px solid var(--line); }
-  .channel-create, .channel-invite { flex-direction: column; }
+  .channel-panel { width: min(88vw, 340px); transform: translateX(-102%); transition: transform .22s ease; box-shadow: 18px 0 50px #0006; }
+  .channel-panel.open { transform: translateX(0); }
+  .channel-mobile-toggle { color: #fff; background: #2c2e27; border: 1px solid #65675b; border-radius: 99px; padding: 8px 12px; position: fixed; z-index: 22; left: 16px; bottom: 16px; display: block; box-shadow: 0 5px 18px #0004; }
+  .channel-mobile-close { color: #ddd8cd !important; background: transparent !important; padding: 0 5px !important; font-size: 24px !important; display: block; }
+  .channel-backdrop { cursor: default; background: #111a; border: 0; width: 100%; height: 100%; position: fixed; z-index: 29; inset: 0; }
+  .channel-backdrop.open { display: block; }
+  .channel-create { flex-direction: column; }
 }

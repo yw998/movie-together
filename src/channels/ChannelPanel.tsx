@@ -33,6 +33,7 @@ export function ChannelPanel() {
   const [invitePreview, setInvitePreview] = useState<InvitePreview | null>(null);
   const [guestCredential, setGuestCredential] = useState<{ id: string; code: string } | null>(null);
   const [guestView, setGuestView] = useState<GuestView | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const load = useCallback(async () => {
     if (!client || !user) {
@@ -224,9 +225,23 @@ export function ChannelPanel() {
   }
 
   return (
-    <section className="channel-panel">
+    <>
+    <button
+      aria-expanded={mobileOpen}
+      className="channel-mobile-toggle"
+      onClick={() => setMobileOpen(true)}
+      type="button"
+    >☰ 一起看</button>
+    <button
+      aria-label="关闭 Channel"
+      className={`channel-backdrop${mobileOpen ? " open" : ""}`}
+      onClick={() => setMobileOpen(false)}
+      type="button"
+    />
+    <aside className={`channel-panel${mobileOpen ? " open" : ""}`}>
       <div className="channel-heading">
         <div><span className="eyebrow dark">PRIVATE CHANNELS</span><h2>和朋友一起看</h2></div>
+        <button className="channel-mobile-close" onClick={() => setMobileOpen(false)} type="button">×</button>
         {!user && <div className="channel-heading-actions">
           <button onClick={() => { setInvitePreview(null); setGuestView(null); dialogRef.current?.showModal(); }} type="button">使用访客代码</button>
           <button onClick={requestAccountDialog} type="button">登录后创建</button>
@@ -284,6 +299,7 @@ export function ChannelPanel() {
           <button className="auth-submit" disabled={busy} type="submit">只读进入</button>
         </form>}
       </dialog>
-    </section>
+    </aside>
+    </>
   );
 }

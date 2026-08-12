@@ -580,6 +580,10 @@ later reopen only that channel. Sharing and user-created events are not yet
 implemented; a second registered test identity is still required for a complete
 two-account acceptance test.
 
+Channel navigation uses a Discord-like left rail on desktop so shared planning
+remains available beside the weekly schedule. On narrow screens it becomes a
+button-triggered drawer with a backdrop, preserving the full width of film cards.
+
 Authentication decision confirmed 2026-08-11: v1 uses a unique public username
 plus a private email-and-password Supabase Auth identity. Email is used only for
 authentication, verification, and account recovery; it is never exposed in

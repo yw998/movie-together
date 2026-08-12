@@ -81,7 +81,9 @@ export default function App() {
   }
 
   return (
-    <main>
+    <main className="app-shell">
+      <ChannelPanel />
+      <div className="site-shell">
       <header className="hero">
         <AccountControl />
         <div className="eyebrow">
@@ -177,8 +179,6 @@ export default function App() {
         )}
       </section>
 
-      <ChannelPanel />
-
       <footer>
         <p>
           排片整理于 {metadata.refreshedLocalDate}（纽约时间）。影院可能临时调整或售罄，购票前请以官方页面为准。
@@ -196,6 +196,7 @@ export default function App() {
           ))}
         </div>
       </footer>
+      </div>
     </main>
   );
 }
