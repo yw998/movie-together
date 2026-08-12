@@ -6,3 +6,5 @@ data/runs/
 .env
 .env.*
 !.env.example
+
+.vercel
