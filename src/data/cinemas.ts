@@ -27,7 +27,7 @@ export const cinemaCatalog: Cinema[] = [
     enabled: true, color: "#3182ce",
   },
   {
-    id: "film-at-lincoln-center", name: "Film at Lincoln Center", officialUrl: "https://www.filmlinc.org/",
+    id: "film-at-lincoln-center", name: "Film at Lincoln Center", officialUrl: "https://filmlinc.org/",
     scheduleUrl: "https://www.filmlinc.org/now-playing/?tab=schedule", timezone: NEW_YORK_TIMEZONE,
     enabled: true, color: "#b83280",
   },

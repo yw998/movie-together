@@ -64,6 +64,27 @@ describe("schedule validation", () => {
     expect(report).toMatchObject({ errors: 0, warnings: 0, publishable: true });
   });
 
+  it("accepts an official API subdomain when the cinema owns the parent domain", () => {
+    const data: ScheduleData = {
+      ...baseData,
+      cinemas: [
+        {
+          ...baseData.cinemas[0],
+          officialUrl: "https://filmlinc.org/",
+          scheduleUrl: "https://www.filmlinc.org/now-playing/",
+        },
+      ],
+      showings: [
+        {
+          ...baseShowing,
+          sourceUrl: "https://api.filmlinc.org/showtimes",
+        },
+      ],
+    };
+
+    expect(validateScheduleData(data).issues).toEqual([]);
+  });
+
   it("reports mismatched local time, untrusted domains, and stale evidence", () => {
     const data: ScheduleData = {
       ...baseData,
