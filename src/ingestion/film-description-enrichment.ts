@@ -63,6 +63,42 @@ const supplementalDescriptions: Record<string, DescriptionEntry> = {
     text: "四名劫匪劫持纽约地铁列车并索要赎金，市府与交通警察在限时威胁下展开营救。",
     source: "https://www.tcm.com/watchtcm/titles/92255",
   },
+  "dementia-13-director-s-cut": {
+    text: "路易丝企图骗取婆婆的遗产，却让家族秘事逐渐演变为一连串谋杀。",
+    source: "https://www.rialtopictures.com/catalogue/dementia-13-directors-cut",
+  },
+  "the-rain-people": {
+    text: "一名郊区主妇突然离家，独自驾车横越美国寻找生活的另一种可能。",
+    source: "https://www.tcm.com/watchtcm/titles/87618",
+  },
+  "the-conversation": {
+    text: "一名监听专家从受托录下的对话中察觉谋杀阴谋，也陷入日益加深的疑惧。",
+    source: "https://www.tcm.com/watchtcm/titles/71469",
+  },
+  "the-godfather": {
+    text: "纽约一个势力庞大的黑帮家族，在权力传承与暴力冲突中经历动荡。",
+    source: "https://www.tcm.com/watchtcm/titles/443184",
+  },
+  "new-york-stories": {
+    text: "三位导演以各自独立的篇章，描绘纽约人的爱情、家庭与城市生活。",
+    source: "https://catalog.afi.com/Film/58206-NEW-YORK-STORIES",
+  },
+  "the-godfather-ii": {
+    text: "影片交错讲述维托·柯里昂的崛起与儿子迈克尔掌权后的家族衰落。",
+    source: "https://www.tcm.com/articles/afi-top-100/140792/the-godfather-part-ii-1974",
+  },
+  "apocalypse-now-roadshow": {
+    text: "一名美军上尉奉命深入越战腹地执行秘密任务，航程逐渐化为疯狂之旅。",
+    source: "https://www.tcm.com/watchtcm/titles/67522",
+  },
+  "one-from-the-heart-reprise": {
+    text: "拉斯维加斯的一对恋人在周年纪念日争吵分手，各自踏上一夜浪漫奇遇。",
+    source: "https://catalog.afi.com/Film/68242-ONE-FROM-THE-HEART",
+  },
+  "the-son-of-the-sheik": {
+    text: "一名阿拉伯骑士在沙漠匪徒的威胁下，设法保护自己爱上的舞女。",
+    source: "https://www.tcm.com/watchtcm/titles/326475",
+  },
   "the-razor-s-edge-lebanese-hostage-of-their-city": {
     text: "围城中的贝鲁特见证艺术家与难民少年的友谊，并以前导短片凝视战火城市。",
   },
