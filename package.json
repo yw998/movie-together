@@ -17,6 +17,7 @@
     "approve:schedule": "tsx scripts/approve-schedule.ts",
     "auto-approve:schedule": "tsx scripts/auto-approve-schedule.ts",
     "compile:candidate": "tsx scripts/compile-candidate.ts",
+    "enrich:descriptions": "node --env-file-if-exists=.env.local --import tsx scripts/enrich-descriptions.ts",
     "ingest:film-forum": "tsx scripts/ingest-film-forum.ts",
     "ingest:week": "tsx scripts/ingest-week.ts",
     "ingest:ifc-center": "tsx scripts/ingest-ifc-center.ts",

@@ -20,6 +20,7 @@ Deployment and automation: [GitHub and Vercel deployment](docs/DEPLOYMENT.md)
 - `npm run db:export -- output.json` — export the current approved database week for the static frontend
 - `npm run db:verify-export -- approved.json exported.json` — verify relational round-trip equivalence
 - `npm run ingest:week -- YYYY-MM-DD candidate.json` — run all implemented official adapters for that Monday–Sunday week and save an immutable candidate
+- `npm run enrich:descriptions -- candidate.json enriched-candidate.json` — reuse PostgreSQL descriptions and call OpenAI only for new films with sufficient official-page evidence
 - `npm run compile:candidate -- candidate.json schedule.json review-bundle.json [overrides.json]` — compile normalized facts and review input without publishing
 - `npm run review:schedule -- previous.json current.json [report.json] [report.md]` — compare two compiled ingestion bundles and save approval/review artifacts
 - `npm run approve:schedule -- report.json reviewer approval.json` — record explicit human approval for a clean report

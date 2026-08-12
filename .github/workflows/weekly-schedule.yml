@@ -25,6 +25,8 @@ jobs:
     timeout-minutes: 30
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_DESCRIPTION_MODEL: ${{ vars.OPENAI_DESCRIPTION_MODEL }}
 
     steps:
       - name: Check out repository
@@ -77,11 +79,18 @@ jobs:
           "${{ steps.context.outputs.anchor }}"
           "${{ steps.context.outputs.run_dir }}/candidate.json"
 
+      - name: Enrich and cache Chinese descriptions
+        id: descriptions
+        run: >-
+          npm run enrich:descriptions --
+          "${{ steps.context.outputs.run_dir }}/candidate.json"
+          "${{ steps.context.outputs.run_dir }}/candidate-enriched.json"
+
       - name: Compile normalized candidate
         id: compile
         run: >-
           npm run compile:candidate --
-          "${{ steps.context.outputs.run_dir }}/candidate.json"
+          "${{ steps.context.outputs.run_dir }}/candidate-enriched.json"
           "${{ steps.context.outputs.run_dir }}/compiled-schedule.json"
           "${{ steps.context.outputs.run_dir }}/review-bundle.json"
           "${{ steps.context.outputs.run_dir }}/overrides.json"
@@ -111,7 +120,7 @@ jobs:
       - name: Import approved week into Supabase
         run: >-
           npm run db:import --
-          "${{ steps.context.outputs.run_dir }}/candidate.json"
+          "${{ steps.context.outputs.run_dir }}/candidate-enriched.json"
           "${{ steps.context.outputs.run_dir }}/compiled-schedule.json"
           "${{ steps.context.outputs.run_dir }}/review-bundle.json"
           "${{ steps.context.outputs.run_dir }}/overrides.json"
@@ -168,6 +177,7 @@ jobs:
             echo "- Week: ${{ steps.context.outputs.window_start }}"
             echo "- Workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             echo "- Ingestion outcome: ${{ steps.ingest.outcome }}"
+            echo "- Description outcome: ${{ steps.descriptions.outcome }}"
             echo "- Compile outcome: ${{ steps.compile.outcome }}"
             echo "- Review outcome: ${{ steps.review.outcome }}"
             echo

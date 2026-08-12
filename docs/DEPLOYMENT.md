@@ -32,10 +32,15 @@ In the repository, open **Settings → Secrets and variables → Actions** and a
 
 ```text
 DATABASE_URL
+OPENAI_API_KEY
 ```
 
 Use the Supabase Session Pooler URI. Do not add Supabase service-role or database
 credentials to Vercel; the deployed static frontend does not need them.
+`OPENAI_API_KEY` is read only by GitHub Actions. It is used only when a film has
+no approved Chinese description in PostgreSQL or the curated catalog. You may
+optionally add an Actions variable named `OPENAI_DESCRIPTION_MODEL`; otherwise
+the workflow uses `gpt-5-mini`.
 
 Under **Settings → Actions → General → Workflow permissions**, allow **Read and
 write permissions** so the clean weekly job can commit only the validated public
@@ -79,15 +84,19 @@ The job:
 1. Applies database migrations.
 2. Loads the current approved review bundle from PostgreSQL.
 3. Pulls the official Monday–Sunday schedule.
-4. Compiles, validates, deduplicates, and reviews changes.
-5. Stops on any failed feed, unresolved warning, questionable count change,
+4. Reuses cached Chinese descriptions and generates copy only for genuinely new
+   films whose official detail pages contain sufficient evidence.
+5. Compiles, validates, deduplicates, and reviews changes.
+6. Stops on any failed feed, unresolved warning, questionable count change,
    schema issue, database error, round-trip mismatch, test failure, or build
-   failure.
-6. Automatically approves only a report with zero concerns.
-7. Imports the approved run into PostgreSQL in one transaction.
-8. Exports the database publication to frontend JSON.
-9. Runs tests and builds the site.
-10. Commits the validated JSON; Vercel deploys that commit.
+   failure. Missing evidence, model refusal, or invalid Chinese copy also stops
+   publication and opens the same manual-review path.
+7. Automatically approves only a report with zero concerns.
+8. Imports the approved run into PostgreSQL in one transaction, caching newly
+   generated descriptions for later weeks.
+9. Exports the database publication to frontend JSON.
+10. Runs tests and builds the site.
+11. Commits the validated JSON; Vercel deploys that commit.
 
 Every run uploads its candidate and review files as a private GitHub Actions
 artifact for 30 days. A failed run opens a GitHub Issue and leaves the previous

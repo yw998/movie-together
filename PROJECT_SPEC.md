@@ -390,6 +390,15 @@ runs; every non-empty `descriptionZh` must carry a valid HTTPS
 `descriptionSource`. Description enrichment is separate from showtime facts and
 cannot modify dates, times, formats, events, availability, or ticket links.
 
+Description automation implemented 2026-08-11: the weekly workflow first reuses
+approved PostgreSQL or curated descriptions. Only uncached films are sent to the
+OpenAI Responses API, together with text extracted from their official cinema
+detail pages. Structured output must either return one bounded Chinese sentence
+or explicitly request review. Insufficient official evidence, an API failure,
+model refusal, missing results, or invalid copy blocks publication and opens the
+existing manual-review Issue path. Generated copy is persisted by the approved
+database import and is not regenerated on later weeks.
+
 ### Phase 3 — 每周工作流
 
 - 设置每周定时执行
