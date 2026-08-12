@@ -84,6 +84,16 @@ describe("schedule validation", () => {
     expect(codes).toContain("stale_showing");
   });
 
+  it("requires Chinese descriptions and provenance URLs to appear together", () => {
+    const data: ScheduleData = {
+      ...baseData,
+      films: [{ ...baseData.films[0], descriptionZh: "中文简介" }],
+    };
+    expect(validateScheduleData(data).issues.map((issue) => issue.code)).toContain(
+      "description_provenance",
+    );
+  });
+
   it("removes exact duplicates but preserves format and event variants", () => {
     const duplicate = { ...baseShowing, id: "duplicate" };
     const formatVariant: Showing = {

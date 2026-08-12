@@ -5,6 +5,7 @@ import { localPartsAtInstant } from "../lib/timezone";
 import { NEW_YORK_TIMEZONE, type Film, type ScheduleData, type Showing } from "../types/schedule";
 import type { ManualOverrideFile } from "./manual-overrides";
 import { validateManualOverrideFile } from "./manual-overrides";
+import { enrichFilmDescriptions } from "./film-description-enrichment";
 import type { WeeklyIngestionBundle } from "./weekly-ingestion";
 
 export type CompiledCandidate = {
@@ -138,6 +139,8 @@ export function compileWeeklyCandidate(
     throw new Error(`Candidate contains ${unique.duplicates.length} duplicate showing fact(s).`);
   }
   const referencedFilmIds = new Set(unique.showings.map((showing) => showing.filmId));
+  const referencedFilms = [...films.values()].filter((film) => referencedFilmIds.has(film.id));
+  const enrichedFilms = enrichFilmDescriptions(referencedFilms, unique.showings);
   const schedule: ScheduleData = {
     metadata: {
       timezone: NEW_YORK_TIMEZONE,
@@ -147,7 +150,7 @@ export function compileWeeklyCandidate(
       provenanceNote: "Compiled from reviewed official cinema adapters; publication requires a matching approval artifact.",
     },
     cinemas: cinemaCatalog,
-    films: [...films.values()].filter((film) => referencedFilmIds.has(film.id)).sort((a, b) => a.displayTitle.localeCompare(b.displayTitle)),
+    films: enrichedFilms.sort((a, b) => a.displayTitle.localeCompare(b.displayTitle)),
     showings: unique.showings.sort((a, b) => a.startsAt.localeCompare(b.startsAt) || a.id.localeCompare(b.id)),
     dateLabels: dateLabels(bundle.windowStart, bundle.windowEnd),
   };

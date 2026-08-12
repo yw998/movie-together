@@ -90,6 +90,31 @@ export function validateScheduleData(
     add("error", "invalid_window", "metadata", "Window start is after window end.");
   }
 
+  data.films.forEach((film, index) => {
+    const hasDescription = Boolean(film.descriptionZh?.trim());
+    const hasSource = Boolean(film.descriptionSource?.trim());
+    if (hasDescription !== hasSource) {
+      add(
+        "error",
+        "description_provenance",
+        `films[${index}]`,
+        "Chinese description and its source must be present together.",
+      );
+    } else if (hasSource) {
+      try {
+        const source = new URL(film.descriptionSource!);
+        if (source.protocol !== "https:") throw new Error("not HTTPS");
+      } catch {
+        add(
+          "error",
+          "description_source_url",
+          `films[${index}].descriptionSource`,
+          "Description source must be a valid HTTPS URL.",
+        );
+      }
+    }
+  });
+
   data.showings.forEach((showing, index) => {
     const path = `showings[${index}]`;
     const cinema = cinemaById.get(showing.cinemaId);

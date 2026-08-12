@@ -383,6 +383,13 @@ Schedule decision updated 2026-08-11: the weekly workflow runs at the end of
 Sunday, expressed as Monday 00:00 in `America/New_York`. The Monday execution
 date anchors the new Monday–Sunday calendar week.
 
+Chinese-description decision confirmed 2026-08-11: concise AI-assisted Chinese
+copy may be used when it is grounded in an official cinema detail page or a
+trusted film source. Approved copy is cached by film and reused across weekly
+runs; every non-empty `descriptionZh` must carry a valid HTTPS
+`descriptionSource`. Description enrichment is separate from showtime facts and
+cannot modify dates, times, formats, events, availability, or ticket links.
+
 ### Phase 3 — 每周工作流
 
 - 设置每周定时执行
@@ -432,9 +439,8 @@ date anchors the new Monday–Sunday calendar week.
 
 尚未确定、需要向用户确认：
 
-1. 中文简介是否允许引用 TMDB、Criterion 等可信外部电影资料？
-2. 下一批扩展影院的优先顺序是什么？
-3. 是否需要用户账号；若只做本地收藏，第一阶段无需账号或数据库。
+1. 下一批扩展影院的优先顺序是什么？
+2. 是否需要用户账号；若只做本地收藏，第一阶段无需账号或数据库。
 
 ## 13. 非目标
 
