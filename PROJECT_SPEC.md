@@ -583,6 +583,10 @@ two-account acceptance test.
 Channel navigation uses a Discord-like left rail on desktop so shared planning
 remains available beside the weekly schedule. On narrow screens it becomes a
 button-triggered drawer with a backdrop, preserving the full width of film cards.
+Channel creation gives immediate progress/success/error feedback and rejects
+case-insensitive duplicate names owned by the same user, including concurrent
+double submissions. Existing duplicates are never deleted automatically; owners
+can remove a channel through an explicit confirmed delete action.
 
 Authentication decision confirmed 2026-08-11: v1 uses a unique public username
 plus a private email-and-password Supabase Auth identity. Email is used only for

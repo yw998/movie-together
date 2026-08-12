@@ -102,6 +102,8 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-detail p { color: #aaa99e; font-size: 11px; line-height: 1.5; }
 .channel-invite { flex-direction: column; }
 .copy-invite { width: 100%; }
+.delete-channel { color: #f4b8ad; background: transparent; border: 1px solid #81483f; border-radius: 4px; width: 100%; margin-top: 8px; padding: 8px 10px; font-size: 11px; }
+.delete-channel:hover { color: #fff; background: #6e342c; }
 .channel-message { color: #683516; background: #fff2df; padding: 10px 13px; font-size: 12px; }
 .invite-dialog .auth-submit { width: 100%; margin: 12px 0; }
 .guest-form { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 18px; }

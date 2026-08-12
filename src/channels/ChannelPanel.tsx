@@ -23,6 +23,7 @@ export function ChannelPanel() {
   const client = supabase;
   const { user } = useAuth();
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const creatingRef = useRef(false);
   const [channels, setChannels] = useState<Channel[]>([]);
   const [invitations, setInvitations] = useState<ChannelInvitation[]>([]);
   const [friendId, setFriendId] = useState<string | null>(null);
@@ -110,15 +111,35 @@ export function ChannelPanel() {
   async function createChannel(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!user) return requestAccountDialog();
+    if (creatingRef.current) return;
     const name = String(new FormData(event.currentTarget).get("name") ?? "").trim();
     if (!name) return;
+    if (channels.some((channel) => channel.name.trim().toLocaleLowerCase() === name.toLocaleLowerCase())) {
+      setMessage("你已经有一个同名 Channel。");
+      return;
+    }
+    creatingRef.current = true;
     setBusy(true);
     const { data, error } = await client!.rpc("create_channel", { channel_name: name });
+    creatingRef.current = false;
     setBusy(false);
-    if (error) return setMessage("无法创建 Channel。");
+    if (error) return setMessage(error.code === "23505" ? "你已经有一个同名 Channel。" : "无法创建 Channel，请稍后重试。");
     event.currentTarget.reset();
     await load();
     setSelected(data as string);
+    setMessage(`已创建「${name}」。`);
+  }
+
+  async function deleteSelectedChannel() {
+    if (!selectedChannel || !owner || busy) return;
+    if (!window.confirm(`确定删除「${selectedChannel.name}」吗？成员、邀请与 guest 访问都会立即失效。`)) return;
+    setBusy(true);
+    const { error } = await client!.rpc("delete_channel", { target_channel_id: selectedChannel.id });
+    setBusy(false);
+    if (error) return setMessage("无法删除 Channel，请稍后重试。");
+    setMessage(`已删除「${selectedChannel.name}」。`);
+    setSelected(null);
+    await load();
   }
 
   async function inviteUser(event: FormEvent<HTMLFormElement>) {
@@ -255,7 +276,7 @@ export function ChannelPanel() {
         </div>)}
         <form className="channel-create" onSubmit={createChannel}>
           <input maxLength={80} name="name" placeholder="新 Channel 名称" required />
-          <button disabled={busy} type="submit">创建</button>
+          <button disabled={busy} type="submit">{busy ? "处理中…" : "创建"}</button>
         </form>
         {channels.length > 0 && <div className="channel-workspace">
           <nav>{channels.map((channel) => <button className={selected === channel.id ? "active" : ""} key={channel.id} onClick={() => setSelected(channel.id)} type="button">{channel.name}</button>)}</nav>
@@ -269,6 +290,7 @@ export function ChannelPanel() {
                 <button disabled={busy} type="submit">邀请</button>
               </form>
               <button className="copy-invite" disabled={busy} onClick={() => void createLink()} type="button">复制分享链接</button>
+              <button className="delete-channel" disabled={busy} onClick={() => void deleteSelectedChannel()} type="button">删除 Channel</button>
             </>}
           </div>}
         </div>}
