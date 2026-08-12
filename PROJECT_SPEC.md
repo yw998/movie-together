@@ -583,6 +583,8 @@ two-account acceptance test.
 Channel navigation uses a Discord-like left rail on desktop so shared planning
 remains available beside the weekly schedule. On narrow screens it becomes a
 button-triggered drawer with a backdrop, preserving the full width of film cards.
+The account's Friend ID has an adjacent clipboard button with explicit copied or
+permission-failure feedback.
 Channel creation gives immediate progress/success/error feedback and rejects
 case-insensitive duplicate names owned by the same user, including concurrent
 double submissions. Existing duplicates are never deleted automatically; owners

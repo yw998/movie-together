@@ -35,6 +35,7 @@ export function ChannelPanel() {
   const [guestCredential, setGuestCredential] = useState<{ id: string; code: string } | null>(null);
   const [guestView, setGuestView] = useState<GuestView | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [friendIdCopied, setFriendIdCopied] = useState(false);
 
   const load = useCallback(async () => {
     if (!client || !user) {
@@ -129,6 +130,17 @@ export function ChannelPanel() {
     await load();
     setSelected(data as string);
     setMessage(`已创建「${name}」。`);
+  }
+
+  async function copyFriendId() {
+    if (!friendId) return;
+    try {
+      await navigator.clipboard.writeText(friendId);
+      setFriendIdCopied(true);
+      window.setTimeout(() => setFriendIdCopied(false), 1800);
+    } catch {
+      setMessage("无法复制 Friend ID，请检查浏览器的剪贴板权限。");
+    }
   }
 
   async function deleteSelectedChannel() {
@@ -270,7 +282,15 @@ export function ChannelPanel() {
         </div>}
       </div>
       {user && <>
-        <div className="friend-id">你的 Friend ID <code>{friendId ?? "读取中…"}</code></div>
+        <div className="friend-id">
+          <span>你的 Friend ID</span>
+          <div className="friend-id-value">
+            <code>{friendId ?? "读取中…"}</code>
+            <button disabled={!friendId} onClick={() => void copyFriendId()} type="button">
+              {friendIdCopied ? "已复制" : "复制"}
+            </button>
+          </div>
+        </div>
         {invitations.map((invitation) => <div className="channel-notice" key={invitation.invitation_id}>
           <span>@{invitation.inviter_username} 邀请你加入「{invitation.channel_name}」</span>
           <button disabled={busy} onClick={() => void acceptDirect(invitation.invitation_id)} type="button">接受</button>
