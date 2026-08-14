@@ -335,7 +335,7 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
         action: "identity_login", publicChannelId, accessCode,
       });
       const accepted = window.confirm(
-        `确认把「${preview.view.identity.channelName}」中的 ${preview.view.identity.role === "owner" ? "owner" : "member"} 身份和 ${preview.view.marks.filter((mark) => mark.id === `identity:${preview.view.identity.id}`).length} 个标记合并到当前正式账号吗？此操作不可撤销。`,
+        `确认把「${preview.view.identity.channelName}」中的${preview.view.identity.role === "owner" ? "创建者" : "成员"}身份和 ${preview.view.marks.filter((mark) => mark.id === `identity:${preview.view.identity.id}`).length} 个想看合并到当前个人账号吗？原个人代码将立即失效，此操作不可撤销。`,
       );
       if (!accepted) {
         await callInvitationFunction(null, { action: "identity_logout", sessionToken: preview.sessionToken });

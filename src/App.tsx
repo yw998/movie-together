@@ -21,8 +21,11 @@ import { ShareMarkPopover } from "./watch-marks/ShareMarkDialog";
 import { NotificationsView } from "./notifications/NotificationsView";
 import { useChannelIdentity } from "./channels/ChannelIdentityContext";
 import { dateLabelsForWindow, rollingWindowFor } from "./lib/rolling-window";
+import { ProductGuide } from "./product/ProductGuide";
+import { requestAccountDialog, requestChannelCreateDialog, requestGroupPanel } from "./auth/account-events";
 
 const timeClusters: TimeCluster[] = ["上午", "下午", "晚间", "深夜"];
+const LAST_PERSONAL_GROUP_KEY = "movie-together:last-personal-group";
 
 type ColorStyle = CSSProperties & { "--c": string };
 
@@ -43,10 +46,12 @@ export default function App() {
   const [activeChannelId, setActiveChannelId] = useState<string | null>(null);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [notificationRefreshKey, setNotificationRefreshKey] = useState(0);
+  const [guideOpen, setGuideOpen] = useState(false);
   const channelIdentity = useChannelIdentity();
   const { user } = useAuth();
   const previousIdentityChannelRef = useRef<string | null>(null);
   const previousNotificationChannelRef = useRef<string | null>(null);
+  const previousUserRef = useRef<string | null>(null);
   const [identityBusy, setIdentityBusy] = useState<Set<string>>(new Set());
   const [sharePrompt, setSharePrompt] = useState<{
     markId: string;
@@ -78,15 +83,26 @@ export default function App() {
 
   useEffect(() => {
     const previousChannelId = previousIdentityChannelRef.current;
+    if (channelIdentity.identity) setActiveChannelId(channelIdentity.identity.channelId);
     if (!channelIdentity.identity && previousChannelId) {
       setActiveChannelId((current) => current === previousChannelId ? null : current);
     }
     previousIdentityChannelRef.current = channelIdentity.identity?.channelId ?? null;
   }, [channelIdentity.identity, channelIdentity.loading, channelIdentity.sessionToken]);
+
+  useEffect(() => {
+    const previousUserId = previousUserRef.current;
+    if (user && previousUserId !== user.id) {
+      const lastGroup = localStorage.getItem(LAST_PERSONAL_GROUP_KEY);
+      if (lastGroup) setActiveChannelId(lastGroup);
+    }
+    previousUserRef.current = user?.id ?? null;
+  }, [user]);
   const navigateTogether = useCallback((channelId: string | null) => {
     setActiveChannelId(channelId);
     setNotificationsOpen(false);
     setSharePrompt(null);
+    if (user && channelId) localStorage.setItem(LAST_PERSONAL_GROUP_KEY, channelId);
     if (!channelId) return;
     if (user && supabase) {
       void supabase.rpc("mark_my_channel_notifications_read", { target_channel_id: channelId })
@@ -108,6 +124,14 @@ export default function App() {
     setNotificationsOpen(true);
     setSharePrompt(null);
   }, [activeChannelId, notificationsOpen]);
+
+  const openGroups = useCallback(() => {
+    if (channelIdentity.identity) {
+      navigateTogether(channelIdentity.identity.channelId);
+      return;
+    }
+    requestGroupPanel();
+  }, [channelIdentity.identity, navigateTogether]);
 
   const cinemaById = useMemo(
     () => new Map(cinemas.map((cinema) => [cinema.id, cinema])),
@@ -196,6 +220,12 @@ export default function App() {
         notificationsOpen={notificationsOpen}
         onOpenNotifications={toggleNotifications}
       />
+      <nav aria-label="主要功能" className="primary-nav">
+        <button className={!activeChannelId && !notificationsOpen ? "active" : ""} onClick={() => navigateTogether(null)} type="button"><span>▤</span>排片</button>
+        <button className={activeChannelId ? "active" : ""} onClick={openGroups} type="button"><span>◎</span>观影小组</button>
+        <button className={notificationsOpen ? "active" : ""} onClick={toggleNotifications} type="button"><span>♢</span>通知</button>
+        <button onClick={requestAccountDialog} type="button"><span>○</span>账号</button>
+      </nav>
       {activeChannelId ? <ChannelMainView channelId={activeChannelId} nowMs={nowMs} /> : notificationsOpen ? <NotificationsView
         onNotificationsChanged={() => setNotificationRefreshKey((current) => current + 1)}
         onOpenChannel={(channelId) => navigateTogether(channelId)}
@@ -205,9 +235,15 @@ export default function App() {
           NEW YORK · {formatWindowYears(viewWindow.start, viewWindow.end)}
         </div>
         <h1>这周看什么？</h1>
-        <p>
+        <p className="hero-positioning">浏览纽约艺术影院未来七天排片，和朋友在观影小组里共同标记、分享具体场次。</p>
+        <p className="hero-window">
           {cinemas.length} 家纽约艺术影院 · {formatWindowZh(viewWindow.start, viewWindow.end)}
         </p>
+        <div className="hero-actions">
+          <button onClick={requestChannelCreateDialog} type="button">创建观影小组</button>
+          <button className="secondary" onClick={() => setGuideOpen(true)} type="button">如何使用</button>
+        </div>
+        <small className="hero-privacy">只有受邀成员可以看到小组内容。</small>
         <div className="stats">
           <b>{upcomingStats.showings}</b> 个场次 <span>·</span>{" "}
           <b>{upcomingStats.films}</b> 部影片
@@ -369,6 +405,7 @@ export default function App() {
         onClose={() => setSharePrompt(null)}
         onSaved={(channelIds) => watchMarks.updateSharing(sharePrompt.markId, channelIds)}
       />}
+      <ProductGuide open={guideOpen} onClose={() => setGuideOpen(false)} onCreateGroup={requestChannelCreateDialog} />
     </main>
   );
 }
@@ -405,10 +442,10 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
             "本周特别放映；点击查看影院官方介绍与最新票务状态。"}
         </p>
         {showing.eventNote && <small>{showing.eventNote}</small>}
-        {mutualCount > 0 && <small className="mutual-interest">共同 Channel 中有 {mutualCount} 人也想看</small>}
+        {mutualCount > 0 && <small className="mutual-interest">共同观影小组中有 {mutualCount} 人也想看</small>}
         {marked && (channelOnly
-          ? <small className="mutual-interest">已同步到当前 Channel</small>
-          : <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? `已分享至 ${shareCount} 个 Channel · 编辑` : "仅个人可见 · 设置分享"}</button>)}
+          ? <small className="mutual-interest">已同步到当前观影小组</small>
+          : <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? `已分享至 ${shareCount} 个观影小组 · 编辑` : "仅个人可见 · 设置分享"}</button>)}
         <div className="card-actions">
           <a href={showing.detailUrl} rel="noreferrer" target="_blank">
             官方详情 / 购票 ↗
@@ -418,7 +455,7 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
             className={`watch-mark${marked ? " marked" : ""}`}
             disabled={markBusy}
             onClick={(event) => onToggleMark(event.currentTarget)}
-            title={channelOnly ? "此标记会直接同步到当前 Channel" : signedIn ? "此标记目前仅自己可见" : "登录后标记具体场次"}
+            title={channelOnly ? "此标记会直接同步到当前观影小组" : signedIn ? "此标记目前仅自己可见" : "登录后标记具体场次"}
             type="button"
           >
             {markBusy ? "保存中…" : marked ? "✓ 想看" : "+ 想看"}

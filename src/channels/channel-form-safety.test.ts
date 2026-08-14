@@ -28,12 +28,12 @@ describe("async channel forms", () => {
     expect(styles).toContain("0%, 66%");
   });
 
-  it("opens Channel creation in an independent modal without expanding context navigation", async () => {
+  it("opens group creation in an independent modal and can reveal navigation on request", async () => {
     const source = await readFile(componentPath, "utf8");
 
     expect(source).toContain('className="channel-create-dialog"');
     expect(source).toContain("createDialogRef.current?.showModal()");
-    expect(source).toContain('${selected ? " context-open" : ""}');
+    expect(source).toContain('${selected || mobileOpen ? " context-open" : ""}');
     expect(source).not.toContain("showCreate");
     expect(source).not.toContain("已创建「");
   });
@@ -50,12 +50,12 @@ describe("async channel forms", () => {
     expect(styles).toContain("animation: channel-delete-toast 3s ease forwards");
   });
 
-  it("lets members leave while requiring owners to delete their Channel", async () => {
+  it("lets members leave while requiring owners to delete their group", async () => {
     const source = await readFile(componentPath, "utf8");
 
     expect(source).toContain('rpc("leave_channel"');
     expect(source).toContain("!owner && <button");
-    expect(source).toContain("退出 Channel</button>");
+    expect(source).toContain("退出观影小组</button>");
     expect(source).toContain("个人想看仍会保留");
   });
 });

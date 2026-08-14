@@ -34,7 +34,7 @@ describe("personal mark and channel share flow", () => {
     expect(app).toContain('scheduleView === "personal" || showing.localDate === selectedDate');
     expect(app).toContain('{scheduleView === "all" && <nav className="dates"');
     expect(app).toContain('scheduleView === "personal" ? "未来七天 · 我的想看"');
-    expect(app).toContain("已分享至 ${shareCount} 个 Channel");
+    expect(app).toContain("已分享至 ${shareCount} 个观影小组");
   });
 
   it("lets a member add their own mark from a shared Channel card", async () => {
@@ -60,8 +60,8 @@ describe("personal mark and channel share flow", () => {
 
     expect(hook).toContain("const removeFromChannel");
     expect(hook).toContain("existingChannelId !== channelId");
-    expect(channelView).toContain("仅从这个 Channel 取消");
-    expect(channelView).toContain("也会从所有 Channel 移除");
+    expect(channelView).toContain("仅从这个观影小组取消");
+    expect(channelView).toContain("也会从所有观影小组移除");
     expect(channelView).toContain("watchMarks.toggle(activity.showingId)");
   });
 
@@ -72,6 +72,6 @@ describe("personal mark and channel share flow", () => {
     expect(hook).toContain("const peopleByShowing = new Map<string, Set<string>>()");
     expect(hook).toContain("mark.user_id === user.id");
     expect(hook).toContain("people.add(mark.user_id)");
-    expect(app).toContain("共同 Channel 中有 {mutualCount} 人也想看");
+    expect(app).toContain("共同观影小组中有 {mutualCount} 人也想看");
   });
 });

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useChannelIdentity } from "./ChannelIdentityContext";
 import { avatarColor } from "./avatar";
 import { useTransientMessage } from "../lib/useTransientMessage";
+import { requestAccountDialog } from "../auth/account-events";
 
 type ChannelIdentityPanelProps = {
   activeChannelId: string | null;
@@ -40,7 +41,7 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
     setBusy(true);
     const ok = owner ? await channelIdentity.deleteChannel() : await channelIdentity.leave();
     setBusy(false);
-    if (!ok) setMessage(owner ? "无法删除 Channel。" : "无法退出 Channel。");
+    if (!ok) setMessage(owner ? "无法删除观影小组。" : "无法退出观影小组。");
   }
 
   async function renameChannel() {
@@ -63,10 +64,10 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
   const channelSelected = activeChannelId === identity.channelId;
 
   return <>
-    <button aria-expanded={mobileOpen} className="channel-mobile-toggle" onClick={() => setMobileOpen(true)} type="button">☰ 一起看</button>
-    <button aria-label="关闭 Channel" className={`channel-backdrop${mobileOpen ? " open" : ""}`} onClick={() => setMobileOpen(false)} type="button" />
+    <button aria-expanded={mobileOpen} className="channel-mobile-toggle" onClick={() => setMobileOpen(true)} type="button">☰ 观影小组</button>
+    <button aria-label="关闭观影小组" className={`channel-backdrop${mobileOpen ? " open" : ""}`} onClick={() => setMobileOpen(false)} type="button" />
     <aside className={`channel-panel${channelSelected ? " context-open" : ""}${mobileOpen ? " open" : ""}`}>
-      <nav className="channel-rail-nav" aria-label="Channel-only 导航">
+      <nav className="channel-rail-nav" aria-label="小组身份导航">
         <button aria-label="个人主页" className={`channel-rail-home${!channelSelected ? " active" : ""}`} onClick={() => { onNavigate(null); setMobileOpen(false); }} title="个人主页" type="button">我</button>
         <span className="channel-rail-divider" />
         <div className="channel-rail-list">
@@ -74,19 +75,20 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
         </div>
       </nav>
       <section className="channel-context">
-        <div className="channel-heading"><h2>一起看</h2><button className="channel-mobile-close" onClick={() => setMobileOpen(false)} type="button">×</button></div>
+        <div className="channel-heading"><h2>观影小组</h2><button className="channel-mobile-close" onClick={() => setMobileOpen(false)} type="button">×</button></div>
         <div className="channel-context-scroll">
           <div className="channel-detail">
-            <span className="eyebrow dark">CHANNEL-ONLY</span>
+            <span className="eyebrow dark">GROUP IDENTITY</span>
             <h3>{identity.channelName}</h3>
-            <p><code>{identity.publicChannelId}</code> · {identity.role === "owner" ? "OWNER" : "MEMBER"}</p>
+            <p>小组编号 <code>{identity.publicChannelId}</code> · {identity.role === "owner" ? "创建者" : "成员"}</p>
             {identity.role === "owner" && <button disabled={busy} onClick={() => void renameChannel()} type="button">重命名</button>}
             <div className="channel-member-list">
               <b>组内成员 · {channelIdentity.members.length}</b>
               {channelIdentity.members.map((member) => <div className="channel-member-row" key={member.id}>
                 <span style={{ background: avatarColor(member.displayName) }}>{member.displayName[0]?.toUpperCase()}</span>
                 <strong>{member.kind === "account" ? `@${member.displayName}` : member.displayName}</strong>
-                {member.kind === "channel_only" && <small>GUEST</small>}
+                {member.kind === "channel_only" && <small>小组身份</small>}
+                {member.role === "owner" && <small>创建者</small>}
                 {identity.role === "owner" && member.role === "member" && <>
                 <button
                   aria-label={`转让给 ${member.displayName}`}
@@ -105,14 +107,15 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
               </div>)}
             </div>
             {message && <p className="channel-message" role="status">{message}</p>}
+            {identity.role === "owner" && <button className="auth-link" onClick={requestAccountDialog} type="button">删除前先升级为个人账号，保留小组和想看</button>}
             <button className={identity.role === "owner" ? "delete-channel" : "leave-channel"} disabled={busy} onClick={() => void leaveOrDelete()} type="button">
-              {identity.role === "owner" ? "删除 Channel" : "退出 Channel"}
+              {identity.role === "owner" ? "删除观影小组" : "退出观影小组"}
             </button>
           </div>
         </div>
         {identity.role === "owner" && <div className="channel-invite-footer">
           <b>邀请成员</b>
-          <p>Channel-only owner 只能使用邀请链接。</p>
+          <p>小组身份的创建者通过私密链接邀请成员。</p>
           <button className="copy-invite" disabled={busy} onClick={() => void copyInvite()} type="button">复制邀请链接</button>
           {channelIdentity.inviteLinks.filter((link) => !link.revokedAt).map((link) => <div className="identity-invite-link" key={link.id}>
             <small>{link.useCount}/{link.maxUses} 次 · {new Date(link.expiresAt).toLocaleDateString("zh-CN")}</small>
@@ -121,7 +124,7 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
             })} type="button">撤销</button>
           </div>)}
         </div>}
-        <div className="channel-user-footer"><strong>{identity.displayName} · GUEST</strong></div>
+        <div className="channel-user-footer"><strong>{identity.displayName} · 小组身份</strong></div>
       </section>
     </aside>
   </>;

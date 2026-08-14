@@ -2,7 +2,7 @@
 * { box-sizing: border-box; }
 html { background: var(--paper); }
 body { color: var(--ink); background: var(--paper); margin: 0; font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif; }
-.app-shell { min-height: 100vh; }
+.app-shell { min-height: 100vh; padding-bottom: 70px; }
 .site-shell { min-width: 0; margin-left: 360px; }
 .personal-home .site-shell { margin-left: 72px; }
 button, input { font: inherit; }
@@ -53,9 +53,43 @@ a { color: inherit; }
 .auth-submit { color: #fff; background: var(--ink); border: 0; border-radius: 4px; padding: 12px 16px; font-weight: 700; }
 .auth-submit:disabled { opacity: .6; }
 .auth-link { color: #62635c; background: transparent; border: 0; justify-self: center; padding: 3px; font-size: 12px; text-decoration: underline; }
+.identity-choice { gap: 11px; display: grid; }
+.identity-choice > button:not(.auth-link) { text-align: left; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 15px; display: grid; gap: 5px; }
+.identity-choice > button:not(.auth-link):hover { border-color: #74766c; background: #faf7ef; }
+.identity-choice b { font: 700 16px Georgia, "Songti SC", serif; }
+.identity-choice span { color: var(--muted); font-size: 11px; line-height: 1.5; }
 .eyebrow { letter-spacing: .22em; color: #c9c4b7; font: 700 12px/1 monospace; }
 .hero h1 { letter-spacing: -.06em; z-index: 1; margin: 22px 0 16px; font-family: Georgia, "Songti SC", serif; font-size: clamp(54px, 8vw, 104px); line-height: .95; position: relative; }
 .hero p { color: #d1cdc3; margin: 0; font-size: 19px; }
+.hero .hero-positioning { max-width: 690px; position: relative; z-index: 1; font: 17px/1.65 Arial, "PingFang SC", sans-serif; }
+.hero .hero-window { color: #9fa095; margin-top: 10px; font-size: 12px; font-family: monospace; }
+.hero-actions { gap: 10px; margin-top: 25px; position: relative; z-index: 1; display: flex; }
+.hero-actions button, .product-guide-cta { color: #171813; background: #f4f0e6; border: 1px solid #f4f0e6; border-radius: 5px; padding: 11px 17px; font-size: 12px; font-weight: 800; }
+.hero-actions button.secondary { color: #f4f0e6; background: transparent; border-color: #686a5e; }
+.hero .hero-privacy { color: #888a80; margin-top: 10px; position: relative; z-index: 1; font-size: 10px; display: block; }
+.primary-nav { z-index: 24; background: #171813f2; border: 1px solid #4d4f46; border-radius: 12px; gap: 4px; padding: 5px; position: fixed; left: calc(50% + 180px); bottom: 14px; display: flex; transform: translateX(-50%); box-shadow: 0 9px 30px #0005; backdrop-filter: blur(10px); }
+.personal-home .primary-nav { left: calc(50% + 36px); }
+.primary-nav button { color: #aaa99f; background: transparent; border: 0; border-radius: 8px; min-width: 76px; padding: 7px 10px; font-size: 10px; display: grid; gap: 3px; justify-items: center; }
+.primary-nav button span { font-size: 17px; line-height: 1; }
+.primary-nav button:hover, .primary-nav button.active { color: #171813; background: #f4f0e6; }
+.product-guide-backdrop { background: #0c0d0ab8; padding: 24px; position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; backdrop-filter: blur(5px); }
+.product-guide { color: var(--ink); background: var(--paper); border: 1px solid #77766e; border-radius: 12px; width: min(920px, 96vw); max-height: 92vh; padding: 34px; position: relative; overflow-y: auto; box-shadow: 0 28px 90px #0009; }
+.product-guide-close { color: #777; background: transparent; border: 0; position: absolute; top: 12px; right: 14px; font-size: 26px; }
+.product-guide h2 { margin: 14px 0 8px; font: 700 clamp(31px, 5vw, 49px)/1 Georgia, "Songti SC", serif; }
+.product-guide-lead { color: var(--muted); max-width: 720px; margin: 0; font-size: 13px; line-height: 1.65; }
+.product-steps { grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 26px 0; padding: 0; counter-reset: steps; display: grid; }
+.product-steps li { border-top: 2px solid var(--ink); padding: 12px 5px 4px; list-style: none; counter-increment: steps; display: grid; gap: 7px; }
+.product-steps li::before { color: #8b8c83; content: "0" counter(steps); font: 10px monospace; }
+.product-steps b { font: 700 15px Georgia, "Songti SC", serif; }
+.product-steps span { color: var(--muted); font-size: 10px; line-height: 1.5; }
+.identity-comparison { grid-template-columns: 1fr 1fr; gap: 12px; display: grid; }
+.identity-comparison article { background: #fff; border: 1px solid var(--line); padding: 18px; }
+.identity-comparison h3 { margin: 0 0 8px; font: 700 20px Georgia, "Songti SC", serif; }
+.identity-comparison h3 small { color: #68785d; font: 700 9px monospace; }
+.identity-comparison p, .identity-comparison li, .product-guide-note { color: var(--muted); font-size: 11px; line-height: 1.55; }
+.identity-comparison ul { margin: 10px 0 0; padding-left: 18px; }
+.product-guide-note { margin: 14px 0; }
+.product-guide-cta { color: #fff; background: var(--ink); border-color: var(--ink); }
 .stats { color: #aead9f; margin-top: 34px; font: 13px monospace; }
 .stats b { color: #fff; font-size: 18px; }
 .stats span { margin: 0 10px; }
@@ -269,10 +303,14 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .share-channel-form small { color: #777; margin-left: 8px; font-size: 10px; }
 .channel-mobile-toggle, .channel-mobile-close, .channel-backdrop { display: none; }
 @media (max-width: 760px) {
+  .app-shell { padding-bottom: 72px; }
   .site-shell, .personal-home .site-shell { width: 100%; margin-left: 0; }
-  .hero { padding: 54px 18px 34px; }
+  .hero { padding: 64px 18px 34px; }
   .hero h1 { margin: 18px 0 12px; font-size: 52px; }
   .hero p { font-size: 15px; }
+  .hero .hero-positioning { font-size: 14px; line-height: 1.55; }
+  .hero-actions { align-items: stretch; flex-direction: column; }
+  .hero-actions button { width: 100%; }
   .stats { margin-top: 22px; }
   .sticky { position: static; backdrop-filter: none; }
   .dates { padding: 0 8px; scrollbar-width: none; }
@@ -305,7 +343,7 @@ footer a { color: #e5e0d5; text-decoration: none; }
   .channel-panel { grid-template-columns: 64px minmax(0, 1fr); width: min(94vw, 360px); transform: translateX(-102%); transition: transform .22s ease; box-shadow: 18px 0 50px #0006; }
   .channel-panel:not(.context-open) { grid-template-columns: 64px; width: 64px; }
   .channel-panel.open { transform: translateX(0); }
-  .channel-mobile-toggle { color: #fff; background: #2c2e27; border: 1px solid #65675b; border-radius: 99px; padding: 8px 12px; position: fixed; z-index: 22; left: 16px; bottom: 16px; display: block; box-shadow: 0 5px 18px #0004; }
+  .channel-mobile-toggle { display: none; }
   .channel-mobile-close { color: #ddd8cd !important; background: transparent !important; padding: 0 5px !important; font-size: 24px !important; display: block; }
   .channel-backdrop { cursor: default; background: #111a; border: 0; width: 100%; height: 100%; position: fixed; z-index: 29; inset: 0; }
   .channel-backdrop.open { display: block; }
@@ -318,4 +356,10 @@ footer a { color: #e5e0d5; text-decoration: none; }
   .notifications-header { align-items: flex-start; flex-direction: column; }
   .notification-row { align-items: flex-start; flex-wrap: wrap; padding: 15px; }
   .notification-row > button { margin-left: auto; }
+  .primary-nav, .personal-home .primary-nav { border: 0; border-top: 1px solid #484a42; border-radius: 0; justify-content: space-around; width: 100%; padding: 5px max(5px, env(safe-area-inset-right)) calc(5px + env(safe-area-inset-bottom)) max(5px, env(safe-area-inset-left)); left: 0; bottom: 0; transform: none; }
+  .primary-nav button { min-width: 0; flex: 1; }
+  .product-guide-backdrop { padding: 10px; align-items: end; }
+  .product-guide { border-radius: 12px 12px 0 0; width: 100%; max-height: 92vh; padding: 28px 18px; }
+  .product-steps { grid-template-columns: 1fr 1fr; }
+  .identity-comparison { grid-template-columns: 1fr; }
 }

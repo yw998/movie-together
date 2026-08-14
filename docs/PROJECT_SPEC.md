@@ -970,7 +970,7 @@ A Channel-only identity:
 * has no email address and cannot recover access through email;
 * has one immutable display name that is unique within the Channel without
   regard to case;
-* is visibly labelled `GUEST` in member-facing interfaces;
+* is visibly labelled `小组身份` in member-facing interfaces;
 * cannot discover, join, or operate on another Channel;
 * cannot query normal account profiles or use normal authenticated-account APIs.
 
@@ -1180,19 +1180,53 @@ Authorization behavior must be covered by tests before a new collaboration capab
 
 ---
 
-# 20. Navigation and layout
+# 20. Product positioning, navigation, and layout
 
-## 20.1 Product identity
+## 20.1 Product identity and user-facing language
 
-Signed-in product title:
+The public homepage title remains:
 
 ```text
-一起看
+这周看什么？
 ```
 
 ---
 
-## 20.2 Desktop navigation
+The positioning sentence explains that users can browse the next seven days of
+NYC arthouse schedules and collaboratively mark and share exact showings with
+friends. Schedule discovery is the entry point; private small-group
+collaboration is the differentiating feature. This is not an itinerary planner.
+
+Database, RPC, and source-code identifiers retain `Channel`. User-facing copy
+uses the following terms consistently:
+
+* `观影小组` for Channel;
+* `小组编号` for the public Channel locator;
+* `个人账号` for a Supabase Auth account;
+* `小组身份（无需邮箱）` for a Channel-only identity;
+* `创建者` and `成员` for the independent in-group role axis.
+
+Do not show `GUEST`, `OWNER`, `正式账号`, `Channel-only`, or `Channel` as
+user-facing identity or group labels.
+
+## 20.2 Primary navigation
+
+Desktop and mobile expose the same four primary destinations:
+
+* 排片;
+* 观影小组;
+* 通知;
+* 账号.
+
+An unauthenticated visitor starts on the schedule. A group identity starts in
+its unique group. A personal account restores its most recent location, while a
+new personal account without history starts on the schedule.
+
+The homepage primary call to action is `创建观影小组`, with `如何使用` as a
+secondary action. The guide explains the four-step flow and compares both
+identity types without blocking schedule browsing.
+
+## 20.3 Group navigation
 
 Use a two-level Channel navigation model.
 
@@ -1205,12 +1239,12 @@ Contains:
 * create-Channel control;
 * persistent account/Friend-ID area.
 
-This multi-Channel rail applies fully to formal accounts. A Channel-only session
+This multi-Channel rail applies fully to personal accounts. A Channel-only session
 retains a personal schedule home for browsing dates, filters, and films, plus its
 one Channel entry. Marks made from that home are immediately part of the bound
-Channel. It must not reveal unrelated Channels. The create control remains
-visible, but creating another Channel first ends the current Channel-only session
-and creates a separate identity and credential pair.
+Channel. It must not reveal unrelated Channels. It must not show a create-group
+control; users who need multiple groups are prompted to upgrade to a personal
+account.
 
 ### Contextual rail
 
@@ -1224,7 +1258,7 @@ Creating a Channel opens an independent modal rather than expanding the contextu
 
 ---
 
-## 20.3 Mobile navigation
+## 20.4 Mobile navigation
 
 On narrow screens:
 
@@ -1367,6 +1401,12 @@ Unless explicitly moved into scope, do not build:
 * followers;
 * private messaging;
 * comments;
+* group chat;
+* RSVP or attendance tracking;
+* polls;
+* itinerary planning;
+* public groups;
+* email, SMS, or operating-system push notifications;
 * ratings/reviews;
 * paid subscriptions;
 * complex social-network mechanics;
@@ -1421,8 +1461,7 @@ The following decisions remain unresolved:
 2. Whether user-created events require location.
 3. Whether user-created events require an end time.
 4. Whether user-created events may contain an external URL.
-5. Whether Channels should eventually support reactions or comments.
 
-Do not silently decide these when implementation reaches the relevant boundary.
+Do not silently decide the remaining items when implementation reaches the relevant boundary.
 
 Surface the decision to the user first.
