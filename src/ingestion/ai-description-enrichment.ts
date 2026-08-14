@@ -216,6 +216,37 @@ function responseOutputText(value: unknown): string | null {
   return texts.length > 0 ? texts.join("") : null;
 }
 
+function responseHasNoOutput(value: unknown): boolean {
+  if (!value || typeof value !== "object") return true;
+  const output = (value as { output?: unknown }).output;
+  return !Array.isArray(output) || output.length === 0;
+}
+
+function responseStatus(value: unknown): string | null {
+  if (!value || typeof value !== "object") return null;
+  const status = (value as { status?: unknown }).status;
+  return typeof status === "string" ? status : null;
+}
+
+function responseIncompleteReason(value: unknown): string | null {
+  if (!value || typeof value !== "object") return null;
+  const details = (value as { incomplete_details?: unknown }).incomplete_details;
+  if (!details || typeof details !== "object") return null;
+  const reason = (details as { reason?: unknown }).reason;
+  return typeof reason === "string" ? reason : null;
+}
+
+function missingOutputError(value: unknown, requestId: string | null): string {
+  const status = responseStatus(value);
+  const reason = responseIncompleteReason(value);
+  const details = [
+    status ? `status=${status}` : null,
+    reason ? `reason=${reason}` : null,
+    requestId ? `request_id=${requestId}` : null,
+  ].filter(Boolean);
+  return `OpenAI response contained no structured text output${details.length > 0 ? ` (${details.join(", ")})` : ""}.`;
+}
+
 function validDescription(value: string): boolean {
   const length = Array.from(value).length;
   return (
@@ -230,12 +261,12 @@ function validDescription(value: string): boolean {
 export async function generateChineseDescriptions(
   evidence: readonly DescriptionEvidence[],
   apiKey: string,
-  options: { model?: string; fetcher?: FetchLike } = {},
+  options: { model?: string; fetcher?: FetchLike; retryDelayMs?: number } = {},
 ): Promise<DescriptionDecision[]> {
   if (evidence.length === 0) return [];
   if (!apiKey.trim()) throw new Error("OPENAI_API_KEY is not configured.");
   const fetcher = options.fetcher ?? fetch;
-  const response = await fetcher("https://api.openai.com/v1/responses", {
+  const request = (maxOutputTokens: number) => fetcher("https://api.openai.com/v1/responses", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
@@ -255,7 +286,7 @@ export async function generateChineseDescriptions(
           evidenceText,
         })),
       ),
-      max_output_tokens: Math.max(800, evidence.length * 180),
+      max_output_tokens: maxOutputTokens,
       text: {
         format: {
           type: "json_schema",
@@ -286,15 +317,26 @@ export async function generateChineseDescriptions(
       },
     }),
   });
-  if (!response.ok) {
-    const requestId = response.headers.get("x-request-id");
-    throw new Error(
-      `OpenAI description request failed with HTTP ${response.status}${requestId ? ` (${requestId})` : ""}.`,
-    );
+  const initialOutputTokens = Math.max(2_000, evidence.length * 300);
+  let text: string | null = null;
+  let lastMissingOutputError = "OpenAI response contained no structured text output.";
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const response = await request(initialOutputTokens * 2 ** attempt);
+    if (!response.ok) {
+      const requestId = response.headers.get("x-request-id");
+      throw new Error(
+        `OpenAI description request failed with HTTP ${response.status}${requestId ? ` (${requestId})` : ""}.`,
+      );
+    }
+    const payload = await response.json() as unknown;
+    text = responseOutputText(payload);
+    if (text) break;
+    lastMissingOutputError = missingOutputError(payload, response.headers.get("x-request-id"));
+    const retryable = responseStatus(payload) === "incomplete" || responseHasNoOutput(payload);
+    if (!retryable || attempt === 2) throw new Error(lastMissingOutputError);
+    await wait((options.retryDelayMs ?? 500) * 2 ** attempt);
   }
-  const payload = await response.json() as unknown;
-  const text = responseOutputText(payload);
-  if (!text) throw new Error("OpenAI response contained no structured text output.");
+  if (!text) throw new Error(lastMissingOutputError);
 
   let parsed: unknown;
   try {
