@@ -62,6 +62,10 @@ function isAccessCode(value: unknown): value is string {
   return typeof value === "string" && /^[A-HJ-NP-Z2-9]{4}-?[A-HJ-NP-Z2-9]{4}$/i.test(value.trim());
 }
 
+function isParticipantKind(value: unknown): value is "account" | "channel_only" {
+  return value === "account" || value === "channel_only";
+}
+
 Deno.serve(async (request) => {
   if (request.method === "OPTIONS") return new Response("ok", { headers: corsHeaders(request) });
   if (request.method !== "POST") return json(request, { error: "Method not allowed." }, 405);
@@ -168,6 +172,32 @@ Deno.serve(async (request) => {
       return json(request, { ok: true });
     }
 
+    if (action === "identity_rename") {
+      const name = typeof body.name === "string" ? body.name.trim() : "";
+      if (!isIdentitySession(body.sessionToken) || name.length < 1 || name.length > 80) {
+        return json(request, { error: "请输入 1 至 80 个字符的小组名称。" }, 400);
+      }
+      const { data, error } = await admin.rpc("rename_channel_as_identity", {
+        session_token: body.sessionToken,
+        new_name: name,
+      });
+      if (error || !data) return json(request, { error: "只有创建者可以重命名观影小组。" }, 403);
+      return json(request, { ok: true });
+    }
+
+    if (action === "identity_transfer_owner") {
+      if (!isIdentitySession(body.sessionToken) || !isParticipantKind(body.participantKind) || !isUuid(body.participantId)) {
+        return json(request, { error: "请选择有效的小组成员。" }, 400);
+      }
+      const { data, error } = await admin.rpc("transfer_channel_ownership_as_identity", {
+        session_token: body.sessionToken,
+        target_kind: body.participantKind,
+        target_participant_id: body.participantId,
+      });
+      if (error || !data) return json(request, { error: "无法转让创建者身份。" }, 403);
+      return json(request, { ok: true });
+    }
+
     if (action === "identity_leave" || action === "identity_delete_channel") {
       if (!isIdentitySession(body.sessionToken)) return json(request, { error: "身份会话已失效。" }, 401);
       const rpcName = action === "identity_leave" ? "leave_channel_identity" : "delete_channel_as_identity";
@@ -177,10 +207,13 @@ Deno.serve(async (request) => {
     }
 
     if (action === "identity_remove_member") {
-      if (!isIdentitySession(body.sessionToken) || !isUuid(body.identityId)) return json(request, { error: "请求无效。" }, 400);
-      const { data, error } = await admin.rpc("remove_channel_identity", {
+      if (!isIdentitySession(body.sessionToken) || !isParticipantKind(body.participantKind) || !isUuid(body.participantId)) {
+        return json(request, { error: "请求无效。" }, 400);
+      }
+      const { data, error } = await admin.rpc("remove_channel_participant_as_identity", {
         session_token: body.sessionToken,
-        target_identity_id: body.identityId,
+        target_kind: body.participantKind,
+        target_participant_id: body.participantId,
       });
       if (error || !data) return json(request, { error: "无法移除这个成员。" }, 403);
       return json(request, { ok: true });

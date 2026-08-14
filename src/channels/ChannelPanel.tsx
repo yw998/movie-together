@@ -19,6 +19,7 @@ import { ChannelIdentityPanel } from "./ChannelIdentityPanel";
 
 type Member = { user_id: string; role: "owner" | "member"; auto_share_new_marks: boolean; kind: "account" | "channel_only"; profiles: { username: string } | null };
 type ParticipantRow = { participant_id: string; display_name: string; role: string; kind: string; auto_share_new_marks: boolean };
+type InviteLinkRow = { id: string; expires_at: string; use_count: number; max_uses: number; revoked_at: string | null };
 
 type ChannelPanelProps = {
   activeChannelId: string | null;
@@ -44,6 +45,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
   const [channels, setChannels] = useState<Channel[]>([]);
   const [friendId, setFriendId] = useState<string | null>(null);
   const [members, setMembers] = useState<Member[]>([]);
+  const [inviteLinks, setInviteLinks] = useState<InviteLinkRow[]>([]);
   const [message, setMessage] = useTransientMessage();
   const [busy, setBusy] = useState(false);
   const [invitePreview, setInvitePreview] = useState<InvitePreview | null>(null);
@@ -127,10 +129,26 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
       });
   }, [client, user]);
 
-  if (!client) return null;
   const selectedChannel = channels.find((channel) => channel.id === selected) ?? null;
   const owner = selectedChannel?.owner_user_id === user?.id;
   const myMembership = members.find((member) => member.user_id === user?.id);
+
+  useEffect(() => {
+    if (!client || !selected || !owner) {
+      setInviteLinks([]);
+      return;
+    }
+    void client.from("channel_invite_links")
+      .select("id,expires_at,use_count,max_uses,revoked_at")
+      .eq("channel_id", selected)
+      .order("created_at", { ascending: false })
+      .then(({ data, error }) => {
+        if (error) setMessage("无法读取邀请链接。");
+        else setInviteLinks((data ?? []) as InviteLinkRow[]);
+      });
+  }, [client, owner, selected]);
+
+  if (!client) return null;
 
   async function createChannel(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -193,6 +211,34 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
     showDeleteNotice(`已删除「${selectedChannel.name}」。`);
     onNavigate(null);
     await load();
+  }
+
+  async function renameSelectedChannel() {
+    if (!selectedChannel || !owner || busy) return;
+    const name = window.prompt("新的观影小组名称", selectedChannel.name)?.trim();
+    if (!name || name === selectedChannel.name) return;
+    setBusy(true);
+    const { error } = await client!.rpc("rename_channel", { target_channel_id: selectedChannel.id, new_name: name });
+    setBusy(false);
+    if (error) return setMessage("无法重命名观影小组。");
+    await load();
+    setMessage("观影小组名称已更新。");
+  }
+
+  async function transferOwnership(member: Member) {
+    if (!selectedChannel || !owner || busy) return;
+    const memberName = member.profiles?.username ?? "member";
+    if (!window.confirm(`确定将创建者身份转让给「${memberName}」吗？转让后你会成为普通成员。`)) return;
+    setBusy(true);
+    const { error } = await client!.rpc("transfer_channel_ownership", {
+      target_channel_id: selectedChannel.id,
+      target_kind: member.kind,
+      target_participant_id: member.user_id,
+    });
+    setBusy(false);
+    if (error) return setMessage("无法转让创建者身份。");
+    await load();
+    setMessage(`已将创建者身份转让给「${memberName}」。`);
   }
 
   async function leaveSelectedChannel() {
@@ -278,9 +324,26 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
     try {
       await navigator.clipboard.writeText(url);
       showInviteNotice("邀请链接已复制：7 天有效，最多 20 人加入。");
+      setInviteLinks((current) => [{
+        id: row.invite_link_id,
+        expires_at: row.expires_at,
+        use_count: 0,
+        max_uses: row.max_uses,
+        revoked_at: null,
+      }, ...current]);
     } catch {
       showInviteNotice("无法复制邀请链接，请检查浏览器的剪贴板权限。");
     }
+  }
+
+  async function revokeLink(linkId: string) {
+    setBusy(true);
+    const { error } = await client!.rpc("revoke_channel_invite_link", { target_invite_link_id: linkId });
+    setBusy(false);
+    if (error) return showInviteNotice("无法撤销邀请链接。");
+    setInviteLinks((current) => current.map((link) => link.id === linkId
+      ? { ...link, revoked_at: new Date().toISOString() }
+      : link));
   }
 
   function showInviteNotice(text: string) {
@@ -401,11 +464,15 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
                     <strong>{member.kind === "channel_only" ? memberName : `@${memberName}`}</strong>
                     {member.kind === "channel_only" && <small>GUEST</small>}
                     {member.role === "owner" && <small>OWNER</small>}
-                    {owner && member.role === "member" && <button aria-label={`移除 ${memberName}`} disabled={busy} onClick={() => void removeChannelMember(member)} type="button">移除</button>}
+                    {owner && member.role === "member" && <>
+                      <button aria-label={`转让给 ${memberName}`} disabled={busy} onClick={() => void transferOwnership(member)} type="button">设为创建者</button>
+                      <button aria-label={`移除 ${memberName}`} disabled={busy} onClick={() => void removeChannelMember(member)} type="button">移除</button>
+                    </>}
                   </div>;
                 })}
               </div>
               {owner && <>
+                <button disabled={busy} onClick={() => void renameSelectedChannel()} type="button">重命名</button>
                 <button className="delete-channel" disabled={busy} onClick={() => void deleteSelectedChannel()} type="button">删除 Channel</button>
               </>}
               {!owner && <button className="leave-channel" disabled={busy} onClick={() => void leaveSelectedChannel()} type="button">退出 Channel</button>}
@@ -421,6 +488,10 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
             <button disabled={busy} type="submit">邀请</button>
           </form>
           <button className="copy-invite" disabled={busy} onClick={() => void createLink()} type="button">复制分享链接</button>
+          {inviteLinks.filter((link) => !link.revoked_at).map((link) => <div className="identity-invite-link" key={link.id}>
+            <small>{link.use_count}/{link.max_uses} 次 · {new Date(link.expires_at).toLocaleDateString("zh-CN")}</small>
+            <button disabled={busy} onClick={() => void revokeLink(link.id)} type="button">撤销</button>
+          </div>)}
           {inviteNotice && <p className="invite-copy-notice" key={inviteNotice.id} role="status">{inviteNotice.text}</p>}
         </div>}
         {user && <div className="channel-user-footer">

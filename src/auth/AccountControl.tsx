@@ -17,15 +17,39 @@ type AccountControlProps = {
   onOpenNotifications?: () => void;
 };
 
+const IDENTITY_UPGRADE_PENDING_KEY = "movie-together:identity-upgrade-pending";
+
 export function AccountControl({ lightBackground = false, notificationRefreshKey = 0, notificationsOpen = false, onOpenNotifications }: AccountControlProps) {
   const client = supabase;
   const { loading, user, username } = useAuth();
   const channelIdentity = useChannelIdentity();
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const upgradeMergeRef = useRef(false);
   const [mode, setMode] = useState<Mode>("login");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useTransientMessage();
   const [reminderCount, setReminderCount] = useState(0);
+  const [identityUpgradePending, setIdentityUpgradePending] = useState(
+    () => localStorage.getItem(IDENTITY_UPGRADE_PENDING_KEY) === "true",
+  );
+
+  useEffect(() => {
+    if (!user || !channelIdentity.identity || !identityUpgradePending || upgradeMergeRef.current) return;
+    upgradeMergeRef.current = true;
+    setBusy(true);
+    void channelIdentity.mergeIntoAccount().then((channelId) => {
+      setBusy(false);
+      upgradeMergeRef.current = false;
+      if (!channelId) {
+        setMessage("账号已登录，但小组身份连接失败。你的原凭证仍然有效，请重试。");
+        return;
+      }
+      localStorage.removeItem(IDENTITY_UPGRADE_PENDING_KEY);
+      setIdentityUpgradePending(false);
+      notifyChannelsChanged();
+      setMessage("已升级为个人账号，并保留原有观影小组、角色和想看。");
+    });
+  }, [channelIdentity, identityUpgradePending, user]);
 
   useEffect(() => {
     if (!client || !user) {
@@ -234,6 +258,13 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
     setMessage(code ? `新代码是 ${code}。旧代码与其他设备会话已失效。` : "无法更换代码。");
   }
 
+  function startIdentityUpgrade() {
+    localStorage.setItem(IDENTITY_UPGRADE_PENDING_KEY, "true");
+    setIdentityUpgradePending(true);
+    setMode("signup");
+    setMessage("使用新邮箱注册，或切换到登录并使用已有个人账号；成功后会自动保留当前小组和想看。");
+  }
+
   return (
     <div className={`account-control${lightBackground ? " on-light" : ""}`}>
       {loading || channelIdentity.loading ? null : channelIdentity.identity && !user ? (
@@ -280,7 +311,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
           <label>个人代码<code>{channelIdentity.savedCode ?? "此设备没有保存代码"}</code></label>
           {message && <p className="auth-message" role="status">{message}</p>}
           <button className="auth-submit" disabled={busy} onClick={() => void rotateIdentityCode()} type="button">更换个人代码</button>
-          <button className="auth-link" onClick={() => { setMode("signup"); setMessage("注册并登录后，可使用“连接 Channel 身份”完成合并。"); }} type="button">升级为正式账号</button>
+          <button className="auth-link" onClick={startIdentityUpgrade} type="button">升级为个人账号</button>
         </div> : <>
         <p className="privacy-note">{mode.startsWith("channel_") ? "Channel-only 身份不需要邮箱，只能访问一个 Channel。" : "其他用户只会看到 username。邮箱仅用于登录、验证和找回，不会公开。"}</p>
         <form className="auth-form" onSubmit={submit}>

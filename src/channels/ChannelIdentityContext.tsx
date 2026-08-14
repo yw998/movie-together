@@ -60,7 +60,9 @@ type ChannelIdentityState = {
   rotateCode: () => Promise<string | null>;
   createInviteLink: () => Promise<string | null>;
   revokeInviteLink: (linkId: string) => Promise<boolean>;
-  removeMember: (identityId: string) => Promise<boolean>;
+  renameChannel: (name: string) => Promise<boolean>;
+  transferOwnership: (kind: ChannelIdentityMember["kind"], participantId: string) => Promise<boolean>;
+  removeMember: (kind: ChannelIdentityMember["kind"], participantId: string) => Promise<boolean>;
   leave: () => Promise<boolean>;
   deleteChannel: () => Promise<boolean>;
   logout: () => Promise<void>;
@@ -84,6 +86,8 @@ const emptyState: ChannelIdentityState = {
   rotateCode: async () => null,
   createInviteLink: async () => null,
   revokeInviteLink: async () => false,
+  renameChannel: async () => false,
+  transferOwnership: async () => false,
   removeMember: async () => false,
   leave: async () => false,
   deleteChannel: async () => false,
@@ -210,10 +214,36 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
     } catch { return false; }
   }, [refresh, sessionToken]);
 
-  const removeMember = useCallback(async (identityId: string) => {
+  const renameChannel = useCallback(async (name: string) => {
     if (!sessionToken) return false;
     try {
-      await callInvitationFunction(null, { action: "identity_remove_member", sessionToken, identityId });
+      await callInvitationFunction(null, { action: "identity_rename", sessionToken, name });
+      return refresh();
+    } catch { return false; }
+  }, [refresh, sessionToken]);
+
+  const transferOwnership = useCallback(async (kind: ChannelIdentityMember["kind"], participantId: string) => {
+    if (!sessionToken) return false;
+    try {
+      await callInvitationFunction(null, {
+        action: "identity_transfer_owner",
+        sessionToken,
+        participantKind: kind,
+        participantId,
+      });
+      return refresh();
+    } catch { return false; }
+  }, [refresh, sessionToken]);
+
+  const removeMember = useCallback(async (kind: ChannelIdentityMember["kind"], participantId: string) => {
+    if (!sessionToken) return false;
+    try {
+      await callInvitationFunction(null, {
+        action: "identity_remove_member",
+        sessionToken,
+        participantKind: kind,
+        participantId,
+      });
       return refresh();
     } catch { return false; }
   }, [refresh, sessionToken]);
@@ -281,13 +311,15 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
     rotateCode,
     createInviteLink,
     revokeInviteLink,
+    renameChannel,
+    transferOwnership,
     removeMember,
     leave: () => endIdentity("identity_leave"),
     deleteChannel: () => endIdentity("identity_delete_channel"),
     logout,
     mergeIntoAccount,
     mergeCredentials,
-  }), [createChannel, createInviteLink, endIdentity, joinInvite, loading, login, logout, mergeCredentials, mergeIntoAccount, refresh, removeMember, revokeInviteLink, rotateCode, savedCode, sessionToken, toggleMark, view]);
+  }), [createChannel, createInviteLink, endIdentity, joinInvite, loading, login, logout, mergeCredentials, mergeIntoAccount, refresh, removeMember, renameChannel, revokeInviteLink, rotateCode, savedCode, sessionToken, toggleMark, transferOwnership, view]);
 
   return <ChannelIdentityContext.Provider value={value}>{children}</ChannelIdentityContext.Provider>;
 }

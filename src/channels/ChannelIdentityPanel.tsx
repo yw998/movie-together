@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useChannelIdentity } from "./ChannelIdentityContext";
 import { avatarColor } from "./avatar";
 import { useTransientMessage } from "../lib/useTransientMessage";
-import { requestChannelCreateDialog } from "../auth/account-events";
 
 type ChannelIdentityPanelProps = {
   activeChannelId: string | null;
@@ -44,12 +43,21 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
     if (!ok) setMessage(owner ? "无法删除 Channel。" : "无法退出 Channel。");
   }
 
-  async function createAnotherChannel() {
-    const confirmed = window.confirm("一个 Channel-only 身份只能属于一个 Channel。继续会退出当前身份，再创建一组独立的 Channel 和个人代码。请确认已经保存当前凭证。");
-    if (!confirmed) return;
-    await channelIdentity.logout();
-    onNavigate(null);
-    requestChannelCreateDialog();
+  async function renameChannel() {
+    const name = window.prompt("新的观影小组名称", activeIdentity.channelName)?.trim();
+    if (!name || name === activeIdentity.channelName) return;
+    setBusy(true);
+    const ok = await channelIdentity.renameChannel(name);
+    setBusy(false);
+    setMessage(ok ? "观影小组名称已更新。" : "无法重命名观影小组。");
+  }
+
+  async function transferOwnership(memberId: string, kind: "account" | "channel_only", displayName: string) {
+    if (!window.confirm(`确定将创建者身份转让给「${displayName}」吗？转让后你会成为普通成员。`)) return;
+    setBusy(true);
+    const ok = await channelIdentity.transferOwnership(kind, memberId.replace(/^(?:user|identity):/, ""));
+    setBusy(false);
+    setMessage(ok ? `已将创建者身份转让给「${displayName}」。` : "无法转让创建者身份。");
   }
 
   const channelSelected = activeChannelId === identity.channelId;
@@ -64,7 +72,6 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
         <div className="channel-rail-list">
           <button aria-label={identity.channelName} className={channelSelected ? "active" : ""} onClick={() => { onNavigate(identity.channelId); setMobileOpen(false); }} title={identity.channelName} type="button">{identity.channelName.trim().slice(0, 2)}</button>
         </div>
-        <button aria-label="新建 Channel" className="channel-rail-create" onClick={() => void createAnotherChannel()} title="新建 Channel" type="button">＋</button>
       </nav>
       <section className="channel-context">
         <div className="channel-heading"><h2>一起看</h2><button className="channel-mobile-close" onClick={() => setMobileOpen(false)} type="button">×</button></div>
@@ -73,20 +80,28 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
             <span className="eyebrow dark">CHANNEL-ONLY</span>
             <h3>{identity.channelName}</h3>
             <p><code>{identity.publicChannelId}</code> · {identity.role === "owner" ? "OWNER" : "MEMBER"}</p>
+            {identity.role === "owner" && <button disabled={busy} onClick={() => void renameChannel()} type="button">重命名</button>}
             <div className="channel-member-list">
               <b>组内成员 · {channelIdentity.members.length}</b>
               {channelIdentity.members.map((member) => <div className="channel-member-row" key={member.id}>
                 <span style={{ background: avatarColor(member.displayName) }}>{member.displayName[0]?.toUpperCase()}</span>
                 <strong>{member.kind === "account" ? `@${member.displayName}` : member.displayName}</strong>
                 {member.kind === "channel_only" && <small>GUEST</small>}
-                {identity.role === "owner" && member.kind === "channel_only" && member.role === "member" && <button
+                {identity.role === "owner" && member.role === "member" && <>
+                <button
+                  aria-label={`转让给 ${member.displayName}`}
+                  disabled={busy}
+                  onClick={() => void transferOwnership(member.id, member.kind, member.displayName)}
+                  type="button"
+                >设为创建者</button>
+                <button
                   aria-label={`移除 ${member.displayName}`}
                   disabled={busy}
-                  onClick={() => void channelIdentity.removeMember(member.id.replace("identity:", "")).then((ok) => {
+                  onClick={() => void channelIdentity.removeMember(member.kind, member.id.replace(/^(?:user|identity):/, "")).then((ok) => {
                     if (!ok) setMessage("无法移除成员。");
                   })}
                   type="button"
-                >移除</button>}
+                >移除</button></>}
               </div>)}
             </div>
             {message && <p className="channel-message" role="status">{message}</p>}
