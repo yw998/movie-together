@@ -1,5 +1,6 @@
 import { cinemaCatalog } from "../data/cinemas";
 import { calendarWeekFor } from "../lib/calendar-week";
+import { dateLabelsForWindow } from "../lib/rolling-window";
 import { validateScheduleData, deduplicateShowings } from "../lib/schedule-validation";
 import { localPartsAtInstant } from "../lib/timezone";
 import { NEW_YORK_TIMEZONE, type Film, type ScheduleData, type Showing } from "../types/schedule";
@@ -14,19 +15,6 @@ export type CompiledCandidate = {
   appliedOverrides: number;
   resolvedWarnings: Record<string, string[]>;
 };
-
-function dateLabels(start: string, end: string): Record<string, string> {
-  const result: Record<string, string> = {};
-  const weekdays = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
-  const cursor = new Date(`${start}T12:00:00Z`);
-  const last = new Date(`${end}T12:00:00Z`);
-  while (cursor <= last) {
-    const date = cursor.toISOString().slice(0, 10);
-    result[date] = `${weekdays[cursor.getUTCDay()]} ${cursor.getUTCMonth() + 1}/${cursor.getUTCDate()}`;
-    cursor.setUTCDate(cursor.getUTCDate() + 1);
-  }
-  return result;
-}
 
 function richerFilm(existing: Film, incoming: Film): Film {
   if (existing.canonicalTitle.toLocaleLowerCase() !== incoming.canonicalTitle.toLocaleLowerCase()) {
@@ -152,7 +140,7 @@ export function compileWeeklyCandidate(
     cinemas: cinemaCatalog,
     films: enrichedFilms.sort((a, b) => a.displayTitle.localeCompare(b.displayTitle)),
     showings: unique.showings.sort((a, b) => a.startsAt.localeCompare(b.startsAt) || a.id.localeCompare(b.id)),
-    dateLabels: dateLabels(bundle.windowStart, bundle.windowEnd),
+    dateLabels: dateLabelsForWindow(bundle.windowStart, bundle.windowEnd),
   };
   const validation = validateScheduleData(schedule, { now: new Date(bundle.generatedAt), staleAfterHours: 72 });
   if (!validation.publishable) {
