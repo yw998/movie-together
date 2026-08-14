@@ -1,4 +1,4 @@
-# NYC Repertory Cinema Week
+# NYC Movie Together
 
 Chinese-first seven-day schedule for selected New York repertory cinemas.
 
