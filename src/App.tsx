@@ -6,6 +6,7 @@ import {
   getTimeCluster,
   hasShowingStarted,
   minutesSinceMidnight,
+  newYorkLocalDate,
   type TimeCluster,
 } from "./lib/time";
 import type { Showing } from "./types/schedule";
@@ -17,18 +18,21 @@ import { ChannelMainView } from "./channels/ChannelMainView";
 import { ShareMarkPopover } from "./watch-marks/ShareMarkDialog";
 import { NotificationsView } from "./notifications/NotificationsView";
 import { useChannelIdentity } from "./channels/ChannelIdentityContext";
+import { dateLabelsForWindow, rollingWindowFor } from "./lib/rolling-window";
 
 const timeClusters: TimeCluster[] = ["上午", "下午", "晚间", "深夜"];
 
 type ColorStyle = CSSProperties & { "--c": string };
 
 export default function App() {
-  const { metadata, cinemas, films, showings, dateLabels } = scheduleData;
+  const { metadata, cinemas, films, showings } = scheduleData;
+  const [nowMs, setNowMs] = useState(() => Date.now());
+  const viewWindow = rollingWindowFor(newYorkLocalDate(nowMs));
+  const dateLabels = dateLabelsForWindow(viewWindow.start, viewWindow.end);
   const dates = Object.keys(dateLabels);
   const [selectedDate, setSelectedDate] = useState(() =>
-    defaultScheduleDate(dates, metadata.windowStart),
+    defaultScheduleDate(dates, viewWindow.start),
   );
-  const [nowMs, setNowMs] = useState(() => Date.now());
   const [selectedCinemas, setSelectedCinemas] = useState(() =>
     cinemas.map((cinema) => cinema.id),
   );
@@ -46,7 +50,12 @@ export default function App() {
     filmTitle: string;
     anchor: { left: number; top: number; maxHeight: number; placement: "above" | "below" };
   } | null>(null);
-  const watchMarks = useWatchMarks(showings);
+  const viewShowings = useMemo(
+    () => showings.filter((showing) =>
+      showing.localDate >= viewWindow.start && showing.localDate <= viewWindow.end),
+    [showings, viewWindow.end, viewWindow.start],
+  );
+  const watchMarks = useWatchMarks(viewShowings);
 
   useEffect(() => {
     const refreshNow = () => setNowMs(Date.now());
@@ -57,6 +66,12 @@ export default function App() {
       document.removeEventListener("visibilitychange", refreshNow);
     };
   }, []);
+
+  useEffect(() => {
+    if (selectedDate < viewWindow.start || selectedDate > viewWindow.end) {
+      setSelectedDate(viewWindow.start);
+    }
+  }, [selectedDate, viewWindow.end, viewWindow.start]);
 
   useEffect(() => {
     const previousChannelId = previousIdentityChannelRef.current;
@@ -92,16 +107,16 @@ export default function App() {
     [films],
   );
   const upcomingStats = useMemo(() => {
-    const upcoming = showings.filter((showing) => !hasShowingStarted(showing.startsAt, nowMs));
+    const upcoming = viewShowings.filter((showing) => !hasShowingStarted(showing.startsAt, nowMs));
     return {
       films: new Set(upcoming.map((showing) => showing.filmId)).size,
       showings: upcoming.length,
     };
-  }, [nowMs, showings]);
+  }, [nowMs, viewShowings]);
 
   const visibleShowings = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase("zh-CN");
-    return showings
+    return viewShowings
       .filter((showing) => {
         const cinema = cinemaById.get(showing.cinemaId);
         const film = filmById.get(showing.filmId);
@@ -127,7 +142,7 @@ export default function App() {
     query,
     selectedCinemas,
     selectedDate,
-    showings,
+    viewShowings,
     scheduleView,
     watchMarks,
     channelIdentity.identity,
@@ -176,11 +191,11 @@ export default function App() {
       /> : <>
       <header className="hero">
         <div className="eyebrow">
-          NEW YORK · {formatWindowYears(metadata.windowStart, metadata.windowEnd)}
+          NEW YORK · {formatWindowYears(viewWindow.start, viewWindow.end)}
         </div>
         <h1>这周看什么？</h1>
         <p>
-          {cinemas.length} 家纽约艺术影院 · {formatWindowZh(metadata.windowStart, metadata.windowEnd)}
+          {cinemas.length} 家纽约艺术影院 · {formatWindowZh(viewWindow.start, viewWindow.end)}
         </p>
         <div className="stats">
           <b>{upcomingStats.showings}</b> 个场次 <span>·</span>{" "}
@@ -233,6 +248,11 @@ export default function App() {
         {!scheduleValidation.publishable && (
           <aside className="data-warning" role="status">
             此排片恢复自旧版原型，尚未完成官方来源复核，当前不可直接发布。购票前请以影院官网为准。
+          </aside>
+        )}
+        {metadata.windowEnd < viewWindow.end && (
+          <aside className="data-warning" role="status">
+            当前已核验排片仅覆盖到 {metadata.windowEnd}；之后日期正在等待下一次数据刷新。
           </aside>
         )}
         <div className="summary">
@@ -304,7 +324,11 @@ export default function App() {
             </section>
           ))
         ) : (
-          <div className="empty">没有符合筛选条件的场次。</div>
+          <div className="empty">
+            {selectedDate > metadata.windowEnd
+              ? "该日期的官方排片尚未刷新。"
+              : "没有符合筛选条件的场次。"}
+          </div>
         )}
       </section>
 
