@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import { callInvitationFunction, invitationUrl } from "./channel-api";
+import { callInvitationFunction, invitationUrl, type ChannelNotification } from "./channel-api";
 import { showingStorageWindow } from "../watch-marks/useWatchMarks";
 
 const SESSION_KEY = "movie-together:channel-identity-session";
@@ -51,11 +51,16 @@ type ChannelIdentityState = {
   members: ChannelIdentityMember[];
   marks: ChannelIdentityMark[];
   inviteLinks: IdentityView["inviteLinks"];
+  notifications: ChannelNotification[];
+  notificationsLoading: boolean;
+  unreadNotificationCount: number;
   savedCode: string | null;
   createChannel: (channelName: string, displayName: string) => Promise<string | null>;
   joinInvite: (inviteToken: string, displayName: string) => Promise<string | null>;
   login: (publicChannelId: string, accessCode: string) => Promise<string | null>;
   refresh: () => Promise<boolean>;
+  refreshNotifications: () => Promise<boolean>;
+  markNotificationsRead: () => Promise<boolean>;
   toggleMark: (showingId: string, localDate: string) => Promise<boolean>;
   rotateCode: () => Promise<string | null>;
   createInviteLink: () => Promise<string | null>;
@@ -77,11 +82,16 @@ const emptyState: ChannelIdentityState = {
   members: [],
   marks: [],
   inviteLinks: [],
+  notifications: [],
+  notificationsLoading: false,
+  unreadNotificationCount: 0,
   savedCode: null,
   createChannel: async () => null,
   joinInvite: async () => null,
   login: async () => null,
   refresh: async () => false,
+  refreshNotifications: async () => false,
+  markNotificationsRead: async () => false,
   toggleMark: async () => false,
   rotateCode: async () => null,
   createInviteLink: async () => null,
@@ -102,6 +112,8 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [sessionToken, setSessionToken] = useState<string | null>(() => localStorage.getItem(SESSION_KEY));
   const [view, setView] = useState<IdentityView | null>(null);
+  const [notifications, setNotifications] = useState<ChannelNotification[]>([]);
+  const [notificationsLoading, setNotificationsLoading] = useState(false);
 
   const acceptResponse = useCallback((response: IdentityResponse, suppliedCode?: string) => {
     localStorage.setItem(SESSION_KEY, response.sessionToken);
@@ -115,6 +127,7 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem(SESSION_KEY);
     setSessionToken(null);
     setView(null);
+    setNotifications([]);
   }, []);
 
   const refresh = useCallback(async () => {
@@ -139,6 +152,47 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
   }, [clearSession, sessionToken]);
 
   useEffect(() => { void refresh(); }, [refresh]);
+
+  const refreshNotifications = useCallback(async () => {
+    if (!sessionToken) {
+      setNotifications([]);
+      return false;
+    }
+    setNotificationsLoading(true);
+    try {
+      const result = await callInvitationFunction<{ notifications: ChannelNotification[] }>(null, {
+        action: "identity_notifications",
+        sessionToken,
+      });
+      setNotifications(result.notifications);
+      setNotificationsLoading(false);
+      return true;
+    } catch {
+      setNotificationsLoading(false);
+      return false;
+    }
+  }, [sessionToken]);
+
+  useEffect(() => {
+    if (!sessionToken) return;
+    void refreshNotifications();
+    const timer = window.setInterval(() => void refreshNotifications(), 60_000);
+    const refreshOnFocus = () => void refreshNotifications();
+    window.addEventListener("focus", refreshOnFocus);
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener("focus", refreshOnFocus);
+    };
+  }, [refreshNotifications, sessionToken]);
+
+  const markNotificationsRead = useCallback(async () => {
+    if (!sessionToken) return false;
+    try {
+      await callInvitationFunction(null, { action: "identity_notifications_read", sessionToken });
+      setNotifications((current) => current.map((notification) => ({ ...notification, is_new: false })));
+      return true;
+    } catch { return false; }
+  }, [sessionToken]);
 
   const createChannel = useCallback(async (channelName: string, displayName: string) => {
     try {
@@ -302,11 +356,16 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
     members: view?.members ?? [],
     marks: view?.marks ?? [],
     inviteLinks: view?.inviteLinks ?? [],
+    notifications,
+    notificationsLoading,
+    unreadNotificationCount: notifications.filter((notification) => notification.is_new).length,
     savedCode,
     createChannel,
     joinInvite,
     login,
     refresh,
+    refreshNotifications,
+    markNotificationsRead,
     toggleMark,
     rotateCode,
     createInviteLink,
@@ -319,7 +378,7 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
     logout,
     mergeIntoAccount,
     mergeCredentials,
-  }), [createChannel, createInviteLink, endIdentity, joinInvite, loading, login, logout, mergeCredentials, mergeIntoAccount, refresh, removeMember, renameChannel, revokeInviteLink, rotateCode, savedCode, sessionToken, toggleMark, transferOwnership, view]);
+  }), [createChannel, createInviteLink, endIdentity, joinInvite, loading, login, logout, markNotificationsRead, mergeCredentials, mergeIntoAccount, notifications, notificationsLoading, refresh, refreshNotifications, removeMember, renameChannel, revokeInviteLink, rotateCode, savedCode, sessionToken, toggleMark, transferOwnership, view]);
 
   return <ChannelIdentityContext.Provider value={value}>{children}</ChannelIdentityContext.Provider>;
 }

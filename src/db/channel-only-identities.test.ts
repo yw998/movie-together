@@ -59,7 +59,8 @@ describe("Channel-only identities", () => {
 
     for (const action of [
       "identity_create_channel", "identity_join", "identity_login", "identity_session",
-      "identity_toggle_mark", "identity_rotate_code", "identity_create_link",
+      "identity_toggle_mark", "identity_notifications", "identity_notifications_read",
+      "identity_rotate_code", "identity_create_link",
       "identity_revoke_link", "identity_rename", "identity_transfer_owner",
       "identity_remove_member", "identity_leave",
       "identity_delete_channel", "identity_logout", "identity_merge",

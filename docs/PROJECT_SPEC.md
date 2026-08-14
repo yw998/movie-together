@@ -1057,7 +1057,6 @@ It may not:
 * remove a share while retaining a private copy;
 * share into another Channel;
 * create user events;
-* access a global notification view;
 * modify content owned by another identity.
 
 Every Channel-only mark is directly and exclusively part of the identity's
@@ -1303,12 +1302,20 @@ Rules:
 
 # 23. Notifications
 
-Formal-account pages expose a top-right bell entry.
+Both personal accounts and Channel-only identities expose the same top-right
+notification entry and unread-count treatment.
 
 The notification page includes:
 
 * pending direct Channel invitations;
 * recent watch marks shared by other members in Channels the user currently belongs to.
+
+Channel-only identities have no direct-invitation inbox because they are bound to
+one existing Channel, but they use the same activity cards and read interaction.
+Activity from formal accounts and Channel-only identities must notify every other
+member regardless of identity kind. Multiple people marking the same exact showing
+are aggregated into one item with an actor count. Read and unread activity remains
+visible for 14 days.
 
 Invitation acceptance is always explicit.
 
@@ -1321,13 +1328,15 @@ Watch-mark activity uses private per-Channel read cursors.
 The cursor:
 
 * defaults to the membership join time;
-* advances only when the user explicitly chooses to mark activity as read;
+* advances for one Channel when that Channel is opened;
+* advances for all joined Channels when the user chooses “mark all as read”;
 * disappears when membership is removed.
 
 Notifications use one reverse-chronological feed rather than separate sections for each reminder type.
 
-Channel-only identities do not have a global notification view in the initial
-implementation.
+Opening the notification page alone does not advance a cursor. A Channel-only
+identity has one cursor for its one Channel; a personal account has one cursor per
+Channel.
 
 ---
 

@@ -147,6 +147,24 @@ Deno.serve(async (request) => {
       return json(request, data);
     }
 
+    if (action === "identity_notifications") {
+      if (!isIdentitySession(body.sessionToken)) return json(request, { error: "身份会话已失效。" }, 401);
+      const { data, error } = await admin.rpc("list_channel_identity_notifications", {
+        session_token: body.sessionToken,
+      });
+      if (error) return json(request, { error: "无法读取提醒。" }, 403);
+      return json(request, { notifications: data ?? [] });
+    }
+
+    if (action === "identity_notifications_read") {
+      if (!isIdentitySession(body.sessionToken)) return json(request, { error: "身份会话已失效。" }, 401);
+      const { data, error } = await admin.rpc("mark_channel_identity_notifications_read", {
+        session_token: body.sessionToken,
+      });
+      if (error || !data) return json(request, { error: "无法标记提醒为已读。" }, 403);
+      return json(request, { ok: true });
+    }
+
     if (action === "identity_rotate_code") {
       if (!isIdentitySession(body.sessionToken)) return json(request, { error: "身份会话已失效。" }, 401);
       const { data, error } = await admin.rpc("rotate_channel_identity_code", { session_token: body.sessionToken });

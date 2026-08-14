@@ -269,6 +269,17 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
     <div className={`account-control${lightBackground ? " on-light" : ""}`}>
       {loading || channelIdentity.loading ? null : channelIdentity.identity && !user ? (
         <>
+          {onOpenNotifications && <button
+            aria-label={channelIdentity.unreadNotificationCount > 0 ? `提醒，${channelIdentity.unreadNotificationCount} 条未读` : "提醒"}
+            aria-pressed={notificationsOpen}
+            className={`account-reminders${notificationsOpen ? " active" : ""}`}
+            onClick={onOpenNotifications}
+            title="提醒"
+            type="button"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
+            {channelIdentity.unreadNotificationCount > 0 && <b>{channelIdentity.unreadNotificationCount > 99 ? "99+" : channelIdentity.unreadNotificationCount}</b>}
+          </button>}
           <span>{channelIdentity.identity.displayName} <small>GUEST</small></span>
           <button onClick={() => { setMode("channel_identity"); setMessage(null); dialogRef.current?.showModal(); }} type="button">身份</button>
           <button disabled={busy} onClick={() => void channelIdentity.logout()} type="button">退出</button>
