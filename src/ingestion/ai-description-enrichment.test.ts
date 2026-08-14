@@ -209,6 +209,64 @@ describe("automatic Chinese description enrichment", () => {
       .resolves.toEqual([expect.objectContaining({ filmId: "new-film", status: "ok" })]);
   });
 
+  it("retries an incomplete response with a larger output budget", async () => {
+    const evidence: DescriptionEvidence[] = [{
+      filmId: "new-film",
+      title: "New Film",
+      sourceUrl: "https://cinema.example/new-film",
+      evidenceText: "An official synopsis with enough factual material for a short grounded summary.",
+    }];
+    const requests: number[] = [];
+    const fetcher = vi.fn(async (_input: string | URL | Request, init?: RequestInit) => {
+      const request = JSON.parse(String(init?.body)) as { max_output_tokens: number };
+      requests.push(request.max_output_tokens);
+      if (requests.length === 1) {
+        return new Response(JSON.stringify({
+          status: "incomplete",
+          incomplete_details: { reason: "max_output_tokens" },
+          output: [],
+        }), { status: 200, headers: { "x-request-id": "req-first" } });
+      }
+      return new Response(JSON.stringify({
+        status: "completed",
+        output: [{ type: "message", content: [{
+          type: "output_text",
+          text: JSON.stringify({ results: [{
+            filmId: "new-film",
+            status: "ok",
+            descriptionZh: "一段跨越多年、围绕家庭选择展开的故事。",
+            reason: null,
+          }] }),
+        }] }],
+      }), { status: 200 });
+    });
+
+    await expect(generateChineseDescriptions(evidence, "test-key", { fetcher, retryDelayMs: 0 }))
+      .resolves.toEqual([expect.objectContaining({ filmId: "new-film", status: "ok" })]);
+    expect(fetcher).toHaveBeenCalledTimes(2);
+    expect(requests).toEqual([2_000, 4_000]);
+  });
+
+  it("reports incomplete response details after retries are exhausted", async () => {
+    const evidence: DescriptionEvidence[] = [{
+      filmId: "new-film",
+      title: "New Film",
+      sourceUrl: "https://cinema.example/new-film",
+      evidenceText: "An official synopsis with enough factual material for a short grounded summary.",
+    }];
+    const fetcher = vi.fn(async () => new Response(JSON.stringify({
+      status: "incomplete",
+      incomplete_details: { reason: "max_output_tokens" },
+      output: [],
+    }), { status: 200, headers: { "x-request-id": "req-last" } }));
+
+    await expect(generateChineseDescriptions(evidence, "test-key", { fetcher, retryDelayMs: 0 }))
+      .rejects.toThrow(
+        "OpenAI response contained no structured text output (status=incomplete, reason=max_output_tokens, request_id=req-last).",
+      );
+    expect(fetcher).toHaveBeenCalledTimes(3);
+  });
+
   it("stops publication when the model cannot ground a description", async () => {
     await expect(enrichWeeklyBundleDescriptions(bundle(), new Map(), {
       fetchEvidence: async (filmId, title, sourceUrl) => ({
