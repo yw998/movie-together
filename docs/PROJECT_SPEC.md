@@ -200,6 +200,23 @@ Examples of meaningful format or event distinctions include:
 * members only
 * open captions
 
+## 4.3 Sold-out visibility
+
+Sold-out showings remain part of the public schedule because the product supports
+group planning rather than real-time ticket guidance.
+
+When an official source explicitly marks a showing sold out, ingestion retains
+that status with its fetch-time provenance. The public interface does not display
+a sold-out label because the update frequency cannot guarantee that availability
+remains current.
+
+## 4.4 Non-film and interactive programs
+
+Officially scheduled watch parties, interactive film parties, and similar timed
+cinema programs are included. They retain the exact official program title and
+available official explanation, and the public interface marks them uniformly as
+`特别活动`.
+
 ---
 
 # 5. Data trust model
@@ -290,6 +307,10 @@ Description generation must never modify:
 * ticket URL.
 
 Approved descriptions should be cached and reused rather than regenerated every schedule refresh.
+
+For Syndicated Bar Theater Kitchen, the initial description workflow uses only
+official Syndicated/Veezi copy. If official copy is absent, the Chinese
+description remains empty; external film metadata is not used as a fallback.
 
 ---
 
@@ -486,6 +507,24 @@ failed
 ```
 
 A `partial` or `failed` source should be visible in the review process.
+
+## 8.4 Syndicated Bar Theater Kitchen
+
+The Syndicated adapter uses the public Veezi schedule linked from the cinema's
+official website. It treats the Veezi JSON-LD event array as canonical showing
+data and joins the server-rendered film cards for stable film IDs, official copy,
+sold-out evidence, and dated accessibility notes.
+
+The adapter must validate the official theater identity, stable Veezi session
+IDs, exact offset timestamps, tenant token, source host, and JSON-LD/HTML showing
+counts. Missing or inconsistent evidence produces a `partial` or `failed` result
+rather than an empty publishable feed. Projection format remains `null` unless
+the official source explicitly supplies a screening format.
+
+The initial real-data source review was approved on August 14, 2026. Syndicated
+may now participate in the normal candidate, review, and publication workflow.
+That one-time source approval does not approve any future schedule candidate;
+the normal publication safety rules continue to apply to every run.
 
 ---
 

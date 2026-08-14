@@ -1,0 +1,41 @@
+{
+  "kind": "initial_cinema_source_review",
+  "cinemaId": "syndicated",
+  "windowStart": "2026-08-14",
+  "windowEnd": "2026-08-20",
+  "sourceSnapshot": {
+    "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+    "fetchedAt": "2026-08-14T19:35:51.668Z",
+    "contentHash": "99dea941614cb7be73d55d36b2f7f7dcd46365b75978b36c910738db411294d6",
+    "parserVersion": "syndicated-veezi-html-jsonld-v1",
+    "result": "success",
+    "warnings": []
+  },
+  "reviewedSummary": {
+    "films": 9,
+    "showings": 14,
+    "soldOutEvidence": 4,
+    "specialEvents": 2,
+    "publicSoldOutLabel": false
+  },
+  "reviewedShowings": [
+    { "id": "syndicated-6525", "title": "The Invite", "localDate": "2026-08-15", "localTime": "16:30", "eventType": "standard", "availabilityEvidence": "available" },
+    { "id": "syndicated-6500", "title": "I Want Your Sex", "localDate": "2026-08-15", "localTime": "19:00", "eventType": "standard", "availabilityEvidence": "available" },
+    { "id": "syndicated-6499", "title": "Miami Vice", "localDate": "2026-08-15", "localTime": "21:15", "eventType": "standard", "availabilityEvidence": "available" },
+    { "id": "syndicated-6501", "title": "I Want Your Sex", "localDate": "2026-08-16", "localTime": "15:30", "eventType": "open_caption", "eventNote": "Open caption screenings: Sunday 8/16 at 3:30pm.", "availabilityEvidence": "available" },
+    { "id": "syndicated-6504", "title": "The Insider", "localDate": "2026-08-16", "localTime": "17:40", "eventType": "standard", "availabilityEvidence": "available" },
+    { "id": "syndicated-6527", "title": "Rose of Nevada", "localDate": "2026-08-16", "localTime": "21:00", "eventType": "standard", "availabilityEvidence": "available" },
+    { "id": "syndicated-6502", "title": "I Want Your Sex", "localDate": "2026-08-17", "localTime": "18:30", "eventType": "standard", "availabilityEvidence": "available" },
+    { "id": "syndicated-6505", "title": "Thief", "localDate": "2026-08-17", "localTime": "20:40", "eventType": "standard", "availabilityEvidence": "sold_out" },
+    { "id": "syndicated-6474", "title": "Taste of Streep presents: Mamma Mia!", "localDate": "2026-08-18", "localTime": "18:25", "eventType": "other", "eventNote": "特别活动 · Our annual interactive movie party, presented by Taste of Streep!", "availabilityEvidence": "sold_out" },
+    { "id": "syndicated-6528", "title": "Maddie’s Secret", "localDate": "2026-08-18", "localTime": "21:00", "eventType": "standard", "availabilityEvidence": "available" },
+    { "id": "syndicated-6475", "title": "Taste of Streep presents: Mamma Mia!", "localDate": "2026-08-19", "localTime": "18:25", "eventType": "other", "eventNote": "特别活动 · Our annual interactive movie party, presented by Taste of Streep!", "availabilityEvidence": "sold_out" },
+    { "id": "syndicated-6526", "title": "The Invite", "localDate": "2026-08-19", "localTime": "21:00", "eventType": "standard", "availabilityEvidence": "available" },
+    { "id": "syndicated-6503", "title": "I Want Your Sex", "localDate": "2026-08-20", "localTime": "18:30", "eventType": "standard", "availabilityEvidence": "available" },
+    { "id": "syndicated-6506", "title": "Heat", "localDate": "2026-08-20", "localTime": "20:40", "eventType": "standard", "availabilityEvidence": "sold_out" }
+  ],
+  "decision": "approved_for_normal_candidate_pipeline",
+  "approvedAt": "2026-08-14T19:38:34.9779220Z",
+  "approvalMethod": "interactive_user_confirmation",
+  "publicationPerformed": false
+}

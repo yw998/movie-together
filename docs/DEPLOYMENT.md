@@ -86,7 +86,7 @@ The job:
 1. Applies database migrations.
 2. Loads the current approved review bundle from PostgreSQL.
 3. Pulls the official schedule for each complete calendar week touched by the
-   rolling seven-day window from all six implemented cinemas.
+   rolling seven-day window from all seven implemented cinemas.
 4. Reuses cached Chinese descriptions and generates copy only for genuinely new
    films whose official detail pages contain sufficient evidence.
 5. Compiles, validates, deduplicates, and reviews changes.
@@ -98,6 +98,19 @@ The job:
 8. Imports the approved run into PostgreSQL in one transaction, caching newly
    generated descriptions for later weeks.
 9. Exports the database publication to frontend JSON.
+
+### Hosted dry run
+
+Manual workflow dispatch defaults to `dry_run: true`. In this mode the workflow
+uses the same official-source adapters, PostgreSQL description cache, and
+`OPENAI_API_KEY` as production, then compiles and reviews both calendar weeks
+and verifies an isolated rolling candidate.
+
+Dry-run mode skips database migrations, automatic approval, database import,
+the public JSON export, git commits, deployment, and failure-issue creation. Its
+private review artifacts are still uploaded for inspection. A manual dispatch
+must explicitly turn off `dry_run` before it can follow the normal publication
+path; scheduled daily runs continue to use the normal publication safety gates.
 10. Runs tests and builds the site.
 11. Commits the validated JSON; Vercel deploys that commit.
 

@@ -104,6 +104,28 @@ export function extractDescriptionEvidence(html: string): string {
   return [...new Set(fragments)].join("\n").slice(0, 12_000);
 }
 
+function extractSyndicatedFilmEvidence(
+  html: string,
+  filmId: string,
+  title: string,
+): string {
+  const id = filmId.match(/^syndicated-(ST\d+)$/)?.[1];
+  if (!id) throw new Error(`Syndicated film ID is invalid: ${filmId}`);
+  const $ = load(html);
+  const cards = $(`#sessionsByFilmConent .film[id="${id}"][name="${id}"]`).filter(
+    (_, element) => normalizeText($(element).find(".title").first().text()) === title,
+  );
+  if (cards.length !== 1) {
+    throw new Error(`official Syndicated schedule matched ${cards.length} film cards for ${filmId}`);
+  }
+  const description = normalizeText(cards.find(".film-desc").first().text());
+  const evidenceText = `${title}\n${description}`.trim().slice(0, 12_000);
+  if (!description || evidenceText.length < 80) {
+    throw new Error(`official Syndicated film card did not contain enough synopsis evidence for ${filmId}`);
+  }
+  return evidenceText;
+}
+
 export async function fetchOfficialDescriptionEvidence(
   filmId: string,
   title: string,
@@ -154,7 +176,14 @@ export async function fetchOfficialDescriptionEvidence(
     if (!response.ok) {
       throw new Error(`official detail page returned HTTP ${response.status}`);
     }
-    const evidenceText = extractDescriptionEvidence(await response.text());
+    const html = await response.text();
+    const isSyndicated =
+      parsedSource.hostname === "ticketing.useast.veezi.com" &&
+      parsedSource.pathname === "/sessions/" &&
+      parsedSource.searchParams.get("siteToken") === "dxdq5wzbef6bz2sjqt83ytzn1c";
+    const evidenceText = isSyndicated
+      ? extractSyndicatedFilmEvidence(html, filmId, title)
+      : extractDescriptionEvidence(html);
     if (evidenceText.length < 80) {
       throw new Error("official detail page did not contain enough synopsis evidence");
     }

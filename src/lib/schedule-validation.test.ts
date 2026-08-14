@@ -82,7 +82,9 @@ describe("schedule validation", () => {
       ],
     };
 
-    expect(validateScheduleData(data).issues).toEqual([]);
+    expect(validateScheduleData(data, {
+      now: new Date("2026-08-11T16:00:00Z"),
+    }).issues).toEqual([]);
   });
 
   it("reports mismatched local time, untrusted domains, and stale evidence", () => {

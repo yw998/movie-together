@@ -5,6 +5,7 @@ import { fetchMetrographSchedule } from "./adapters/metrograph";
 import { fetchParisTheaterSchedule } from "./adapters/paris-theater";
 import { fetchFilmAtLincolnCenterSchedule } from "./adapters/film-at-lincoln-center";
 import { fetchRoxyCinemaSchedule } from "./adapters/roxy-cinema";
+import { fetchSyndicatedSchedule } from "./adapters/syndicated";
 import type { ReviewBundle } from "./review-report";
 import type { AdapterResult } from "./types";
 
@@ -24,6 +25,7 @@ export const officialScheduleFetchers: ScheduleFetcher[] = [
   fetchMetrographSchedule,
   fetchParisTheaterSchedule,
   fetchFilmAtLincolnCenterSchedule,
+  fetchSyndicatedSchedule,
 ];
 
 export async function fetchWeeklyIngestionBundle(

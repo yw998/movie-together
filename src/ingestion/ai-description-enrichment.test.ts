@@ -3,6 +3,7 @@ import type { Film, Showing } from "../types/schedule";
 import {
   enrichWeeklyBundleDescriptions,
   extractDescriptionEvidence,
+  fetchOfficialDescriptionEvidence,
   generateChineseDescriptions,
   type DescriptionEvidence,
 } from "./ai-description-enrichment";
@@ -87,6 +88,45 @@ describe("automatic Chinese description enrichment", () => {
     );
     expect(evidence.evidenceText).toContain("official synopsis");
     expect(fetcher).toHaveBeenCalledOnce();
+  });
+
+  it("extracts only the matching Syndicated Veezi film card by stable film ID", async () => {
+    const fetcher = vi.fn(async () => new Response(`
+      <div id="sessionsByFilmConent">
+        <div class="film" id="ST00002586" name="ST00002586">
+          <h3 class="title">The Invite</h3>
+          <p class="film-desc">A couple invites strangers into their home, where an apparently polite evening develops into a tense official story of rivalry and suspicion.</p>
+        </div>
+        <div class="film" id="ST00002604" name="ST00002604">
+          <h3 class="title">Thief</h3>
+          <p class="film-desc">This unrelated synopsis must never enter evidence for the requested Syndicated film.</p>
+        </div>
+      </div>
+    `, { status: 200 }));
+    const evidence = await fetchOfficialDescriptionEvidence(
+      "syndicated-ST00002586",
+      "The Invite",
+      "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      fetcher,
+    );
+    expect(evidence.evidenceText).toContain("polite evening");
+    expect(evidence.evidenceText).not.toContain("unrelated synopsis");
+  });
+
+  it("rejects a Syndicated card without sufficient official synopsis copy", async () => {
+    const fetcher = vi.fn(async () => new Response(`
+      <div id="sessionsByFilmConent">
+        <div class="film" id="ST00002586" name="ST00002586">
+          <h3 class="title">The Invite</h3><p class="film-desc"></p>
+        </div>
+      </div>
+    `, { status: 200 }));
+    await expect(fetchOfficialDescriptionEvidence(
+      "syndicated-ST00002586",
+      "The Invite",
+      "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      fetcher,
+    )).rejects.toThrow("did not contain enough synopsis evidence");
   });
 
   it("backs off and retries an official page after rate limiting", async () => {

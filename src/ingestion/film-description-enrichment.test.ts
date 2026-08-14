@@ -53,6 +53,24 @@ describe("film description enrichment", () => {
     });
   });
 
+  it("does not apply legacy or supplemental copy to Syndicated films", () => {
+    const syndicatedFilm = film({
+      id: "syndicated-ST00003000",
+      canonicalTitle: "Collateral",
+      displayTitle: "Collateral",
+    });
+    const syndicatedShowing = {
+      ...showing,
+      cinemaId: "syndicated",
+      filmId: syndicatedFilm.id,
+      detailUrl: "https://ticketing.useast.veezi.com/sessions/?siteToken=fixture",
+    } as Showing;
+
+    expect(enrichFilmDescriptions([syndicatedFilm], [syndicatedShowing])).toEqual([
+      expect.objectContaining({ descriptionZh: null, descriptionSource: null }),
+    ]);
+  });
+
   it("covers the new Film at Lincoln Center catalog with official provenance", () => {
     const ids = [
       "buddy",
