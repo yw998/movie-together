@@ -1,8 +1,8 @@
-# NYC Repertory Cinema Week — Project Specification
+# NYC Movie Together — Project Specification
 
 ## 0. Document purpose
 
-This document defines the **current product requirements, system boundaries, data rules, and accepted product decisions** for NYC Repertory Cinema Week.
+This document defines the **current product requirements, system boundaries, data rules, and accepted product decisions** for NYC Movie Together.
 
 It describes what the product **should be**, not a chronological history of how it was implemented.
 
@@ -23,7 +23,7 @@ When implementation and this specification disagree:
 
 ## 1.1 Product goal
 
-NYC Repertory Cinema Week is a public website that aggregates schedules from selected New York City repertory and arthouse cinemas.
+NYC Movie Together is a public website that aggregates schedules from selected New York City repertory and arthouse cinemas.
 
 The primary user question is:
 
