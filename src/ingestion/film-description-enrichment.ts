@@ -132,17 +132,22 @@ export function enrichFilmDescriptions(
   showings: readonly Showing[],
 ): Film[] {
   const detailUrlByFilmId = new Map<string, string>();
+  const cinemaIdsByFilmId = new Map<string, Set<string>>();
   for (const showing of showings) {
     if (!detailUrlByFilmId.has(showing.filmId)) {
       detailUrlByFilmId.set(showing.filmId, showing.detailUrl);
     }
+    const cinemaIds = cinemaIdsByFilmId.get(showing.filmId) ?? new Set<string>();
+    cinemaIds.add(showing.cinemaId);
+    cinemaIdsByFilmId.set(showing.filmId, cinemaIds);
   }
 
   return films.map((film) => {
-    const supplemental = supplementalDescriptions[film.id];
-    const catalogText = legacyDescriptions.get(
-      film.displayTitle.trim().toLocaleLowerCase(),
-    );
+    const officialOnly = cinemaIdsByFilmId.get(film.id)?.has("syndicated") ?? false;
+    const supplemental = officialOnly ? undefined : supplementalDescriptions[film.id];
+    const catalogText = officialOnly
+      ? null
+      : legacyDescriptions.get(film.displayTitle.trim().toLocaleLowerCase());
     const descriptionZh = film.descriptionZh ?? supplemental?.text ?? catalogText ?? null;
     if (!descriptionZh) {
       return { ...film, descriptionZh: null, descriptionSource: null };

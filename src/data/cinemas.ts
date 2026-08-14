@@ -31,4 +31,9 @@ export const cinemaCatalog: Cinema[] = [
     scheduleUrl: "https://www.filmlinc.org/now-playing/?tab=schedule", timezone: NEW_YORK_TIMEZONE,
     enabled: true, color: "#b83280",
   },
+  {
+    id: "syndicated", name: "Syndicated Bar Theater Kitchen", officialUrl: "https://syndicatedbk.com/",
+    scheduleUrl: "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+    timezone: NEW_YORK_TIMEZONE, enabled: true, color: "#2f855a",
+  },
 ];

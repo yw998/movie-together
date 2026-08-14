@@ -10,6 +10,11 @@ on:
         description: "Optional rolling-window start in New York (YYYY-MM-DD)"
         required: false
         type: string
+      dry_run:
+        description: "Dry run only (no database writes, publication, commit, or deployment)"
+        required: true
+        default: true
+        type: boolean
 
 concurrency:
   group: rolling-schedule-publication
@@ -27,6 +32,7 @@ jobs:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_DESCRIPTION_MODEL: ${{ vars.OPENAI_DESCRIPTION_MODEL }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true }}
 
     steps:
       - name: Check out repository
@@ -59,9 +65,10 @@ jobs:
           echo "run_dir=$RUN_DIR" >> "$GITHUB_OUTPUT"
 
       - name: Apply database migrations
+        if: ${{ env.DRY_RUN != 'true' }}
         run: npm run db:migrate
 
-      - name: Ingest, review, and import both calendar weeks
+      - name: Ingest and review both calendar weeks
         shell: bash
         run: |
           set -euo pipefail
@@ -79,14 +86,18 @@ jobs:
             npm run enrich:descriptions -- "$WEEK_DIR/candidate.json" "$WEEK_DIR/candidate-enriched.json"
             npm run compile:candidate -- "$WEEK_DIR/candidate-enriched.json" "$WEEK_DIR/compiled-schedule.json" "$WEEK_DIR/review-bundle.json" "$WEEK_DIR/overrides.json"
             npm run review:schedule -- "$WEEK_DIR/previous-review-bundle.json" "$WEEK_DIR/review-bundle.json" "$WEEK_DIR/review-report.json" "$WEEK_DIR/review-report.md"
-            npm run auto-approve:schedule -- "$WEEK_DIR/review-report.json" "$WEEK_DIR/approval.json"
-            npm run db:import -- "$WEEK_DIR/candidate-enriched.json" "$WEEK_DIR/compiled-schedule.json" "$WEEK_DIR/review-bundle.json" "$WEEK_DIR/overrides.json" "$WEEK_DIR/review-report.json" "$WEEK_DIR/approval.json"
+            if [ "$DRY_RUN" != "true" ]; then
+              npm run auto-approve:schedule -- "$WEEK_DIR/review-report.json" "$WEEK_DIR/approval.json"
+              npm run db:import -- "$WEEK_DIR/candidate-enriched.json" "$WEEK_DIR/compiled-schedule.json" "$WEEK_DIR/review-bundle.json" "$WEEK_DIR/overrides.json" "$WEEK_DIR/review-report.json" "$WEEK_DIR/approval.json"
+            fi
           done
 
       - name: Export today plus six days
+        if: ${{ env.DRY_RUN != 'true' }}
         run: npm run db:export -- src/data/published-schedule.json "${{ steps.context.outputs.anchor }}"
 
       - name: Verify rolling database round trip
+        if: ${{ env.DRY_RUN != 'true' }}
         shell: bash
         run: |
           RUN_DIR="${{ steps.context.outputs.run_dir }}"
@@ -97,6 +108,20 @@ jobs:
           done
           npm run db:verify-rolling -- src/data/published-schedule.json "${{ steps.context.outputs.anchor }}" "${COMPILED[@]}"
 
+      - name: Assemble and verify dry-run rolling candidate
+        if: ${{ env.DRY_RUN == 'true' }}
+        shell: bash
+        run: |
+          RUN_DIR="${{ steps.context.outputs.run_dir }}"
+          mapfile -t WEEK_STARTS < <(jq -r '.weekStarts[]' "$RUN_DIR/rolling-context.json")
+          COMPILED=()
+          for WINDOW_START in "${WEEK_STARTS[@]}"; do
+            COMPILED+=("$RUN_DIR/$WINDOW_START/compiled-schedule.json")
+          done
+          ROLLING="$RUN_DIR/rolling-dry-run.json"
+          npm run assemble:rolling-dry-run -- "$ROLLING" "${{ steps.context.outputs.anchor }}" "${COMPILED[@]}"
+          npm run db:verify-rolling -- "$ROLLING" "${{ steps.context.outputs.anchor }}" "${COMPILED[@]}"
+
       - name: Run tests
         run: npm test
 
@@ -104,6 +129,7 @@ jobs:
         run: npm run build
 
       - name: Commit validated rolling public data
+        if: ${{ env.DRY_RUN != 'true' }}
         shell: bash
         run: |
           if git diff --quiet -- src/data/published-schedule.json; then
@@ -126,7 +152,7 @@ jobs:
           retention-days: 30
 
       - name: Create manual-review issue on failure
-        if: failure()
+        if: ${{ failure() && env.DRY_RUN != 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
