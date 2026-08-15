@@ -239,7 +239,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
   async function transferOwnership(member: Member) {
     if (!selectedChannel || !owner || busy) return;
     const memberName = member.profiles?.username ?? "成员";
-    if (!window.confirm(`确定将创建者身份转让给「${memberName}」吗？转让后你会成为普通成员。`)) return;
+    if (!window.confirm(`确定将组长身份转让给「${memberName}」吗？转让后你会成为普通成员。`)) return;
     setBusy(true);
     const { error } = await client!.rpc("transfer_channel_ownership", {
       target_channel_id: selectedChannel.id,
@@ -247,9 +247,9 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
       target_participant_id: member.user_id,
     });
     setBusy(false);
-    if (error) return setMessage("无法转让创建者身份。");
+    if (error) return setMessage("无法转让组长身份。");
     await load();
-    setMessage(`已将创建者身份转让给「${memberName}」。`);
+    setMessage(`已将组长身份转让给「${memberName}」。`);
   }
 
   async function leaveSelectedChannel() {
@@ -479,9 +479,9 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
                     <span style={{ background: avatarColor(memberName) }}>{memberName[0]?.toUpperCase()}</span>
                     <strong>{member.kind === "channel_only" ? memberName : `@${memberName}`}</strong>
                     {member.kind === "channel_only" && <small>小组身份</small>}
-                    {member.role === "owner" && <small>创建者</small>}
+                    {member.role === "owner" && <small>组长</small>}
                     {owner && member.role === "member" && <>
-                      <button aria-label={`转让给 ${memberName}`} disabled={busy} onClick={() => void transferOwnership(member)} type="button">设为创建者</button>
+                      <button aria-label={`转让组长给 ${memberName}`} disabled={busy} onClick={() => void transferOwnership(member)} type="button">设为组长</button>
                       <button aria-label={`移除 ${memberName}`} disabled={busy} onClick={() => void removeChannelMember(member)} type="button">移除</button>
                     </>}
                   </div>;
