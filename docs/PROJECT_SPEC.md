@@ -836,11 +836,14 @@ Can:
 * delete the Channel;
 * create or revoke invitations;
 * remove members;
-* remove Channel-only identities.
+* remove Channel-only identities;
+* transfer ownership to another current member, after explicit confirmation.
 
 A Channel-only owner has the same management authority within its one Channel,
 except that it may invite only through revocable invitation links. It cannot use
 email or Friend ID invitations, join another Channel, or create a second Channel.
+Invitation links belong to the Channel: they remain valid across owner transfers
+and identity upgrades, and the current owner may view or revoke them.
 
 ### Member
 
@@ -1067,27 +1070,17 @@ A Channel-only member may leave. The owner may remove it. Either action
 permanently deletes the identity's marks, revokes its code and sessions, and
 deletes the identity. Rejoining requires a new invitation link and identity.
 
-A Channel-only owner cannot leave. It must delete the Channel or merge into a
-formal account. If a Channel still has a Channel-only owner after 180 consecutive
-days without valid activity, permanently delete the Channel, all Channel-only
-identities, their sessions, and their marks without a recovery period. Formal-
-account-owned Channels do not expire this way.
-
-Valid activity for this lifetime includes:
-
-* a successful Channel-only login;
-* creating or deleting a mark;
-* creating, revoking, or successfully using an invitation link;
-* a member joining, leaving, or being removed;
-* an owner management operation.
-
-Public schedule browsing and failed login attempts do not extend the lifetime.
+A Channel-only owner cannot leave until it transfers ownership, deletes the
+Channel, or merges into a formal account. Channels and identity-owned marks must
+not be silently deleted for inactivity. A future retention policy requires an
+explicit archive, warning, and recovery design before it may delete user data.
 
 ## 17.6 Merging into a formal account
 
 A signed-in formal account may claim any number of Channel-only identities, one
-at a time, by supplying each public Channel ID and access code. The same flow is
-available after starting registration from the Channel-only identity view.
+at a time, by supplying each public Channel ID and access code. Starting an
+upgrade from the Channel-only identity view must complete the merge automatically
+after registration or login; it must not require the same credentials a second time.
 Before confirmation, show the Channel, role, and number of marks that will move.
 
 The merge is irreversible and must be one atomic server-side transaction:
@@ -1097,9 +1090,10 @@ The merge is irreversible and must be one atomic server-side transaction:
 3. transfer all marks and preserve their Channel visibility;
 4. deduplicate marks for the same exact showing;
 5. transfer full Channel ownership when the old identity was the owner;
-6. replace product-facing attribution with the formal account username;
-7. revoke the old code and every Channel-only session;
-8. delete the old Channel-only identity.
+6. preserve original mark/share timestamps and transfer active invitation links;
+7. replace product-facing attribution with the formal account username;
+8. revoke the old code and every Channel-only session;
+9. delete the old Channel-only identity.
 
 Failure at any step must roll back the entire merge. The former display name may
 remain only in restricted security audit data and must no longer appear in the
