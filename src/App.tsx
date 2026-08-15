@@ -14,7 +14,7 @@ import { formatWindowYears, formatWindowZh } from "./lib/date-display";
 import { AccountControl } from "./auth/AccountControl";
 import { useAuth } from "./auth/AuthContext";
 import { supabase } from "./auth/supabase";
-import { useWatchMarks } from "./watch-marks/useWatchMarks";
+import { countMarkedShowings, showingMarkKey, useWatchMarks } from "./watch-marks/useWatchMarks";
 import { ChannelPanel } from "./channels/ChannelPanel";
 import { ChannelMainView } from "./channels/ChannelMainView";
 import { ShareMarkPopover } from "./watch-marks/ShareMarkDialog";
@@ -64,6 +64,12 @@ export default function App() {
     [showings, viewWindow.end, viewWindow.start],
   );
   const watchMarks = useWatchMarks(viewShowings);
+  const identityMarkedCount = useMemo(() => countMarkedShowings(
+    channelIdentity.marks
+      .filter((mark) => mark.id === `identity:${channelIdentity.identity?.id}`)
+      .map((mark) => showingMarkKey(mark.windowStart, mark.showingId)),
+    viewShowings,
+  ), [channelIdentity.identity?.id, channelIdentity.marks, viewShowings]);
 
   useEffect(() => {
     const refreshNow = () => setNowMs(Date.now());
@@ -311,7 +317,7 @@ export default function App() {
               <button className={scheduleView === "personal" ? "active" : ""} onClick={() => setScheduleView("personal")} type="button">我的想看</button>
             </div>}
             <b>{visibleShowings.length} 场{channelIdentity.identity
-              ? ` · 已标记 ${channelIdentity.marks.filter((mark) => mark.id === `identity:${channelIdentity.identity!.id}`).length} 场`
+              ? ` · 已标记 ${identityMarkedCount} 场`
               : watchMarks.signedIn && ` · 已标记 ${watchMarks.markedCount} 场`}</b>
           </div>
         </div>

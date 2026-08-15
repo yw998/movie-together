@@ -1214,7 +1214,7 @@ uses the following terms consistently:
 * `小组编号` for the public Channel locator;
 * `个人账号` for a Supabase Auth account;
 * `小组身份（无需邮箱）` for a Channel-only identity;
-* `创建者` and `成员` for the independent in-group role axis.
+* `组长` and `成员` for the independent in-group role axis.
 
 Do not show `GUEST`, `OWNER`, `正式账号`, `Channel-only`, or `Channel` as
 user-facing identity or group labels.

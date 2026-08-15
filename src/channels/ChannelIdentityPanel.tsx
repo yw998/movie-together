@@ -54,11 +54,11 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
   }
 
   async function transferOwnership(memberId: string, kind: "account" | "channel_only", displayName: string) {
-    if (!window.confirm(`确定将创建者身份转让给「${displayName}」吗？转让后你会成为普通成员。`)) return;
+    if (!window.confirm(`确定将组长身份转让给「${displayName}」吗？转让后你会成为普通成员。`)) return;
     setBusy(true);
     const ok = await channelIdentity.transferOwnership(kind, memberId.replace(/^(?:user|identity):/, ""));
     setBusy(false);
-    setMessage(ok ? `已将创建者身份转让给「${displayName}」。` : "无法转让创建者身份。");
+    setMessage(ok ? `已将组长身份转让给「${displayName}」。` : "无法转让组长身份。");
   }
 
   const channelSelected = activeChannelId === identity.channelId;
@@ -83,21 +83,21 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
               <h3>{identity.channelName}</h3>
               {identity.role === "owner" && <button className="channel-rename" disabled={busy} onClick={() => void renameChannel()} type="button">重命名</button>}
             </div>
-            <p>小组编号 <code>{identity.publicChannelId}</code> · {identity.role === "owner" ? "创建者" : "成员"}</p>
+            <p>小组编号 <code>{identity.publicChannelId}</code> · {identity.role === "owner" ? "组长" : "成员"}</p>
             <div className="channel-member-list">
               <b>组内成员 · {channelIdentity.members.length}</b>
               {channelIdentity.members.map((member) => <div className="channel-member-row" key={member.id}>
                 <span style={{ background: avatarColor(member.displayName) }}>{member.displayName[0]?.toUpperCase()}</span>
                 <strong>{member.kind === "account" ? `@${member.displayName}` : member.displayName}</strong>
                 {member.kind === "channel_only" && <small>小组身份</small>}
-                {member.role === "owner" && <small>创建者</small>}
+                {member.role === "owner" && <small>组长</small>}
                 {identity.role === "owner" && member.role === "member" && <>
                 <button
                   aria-label={`转让给 ${member.displayName}`}
                   disabled={busy}
                   onClick={() => void transferOwnership(member.id, member.kind, member.displayName)}
                   type="button"
-                >设为创建者</button>
+                >设为组长</button>
                 <button
                   aria-label={`移除 ${member.displayName}`}
                   disabled={busy}
@@ -117,7 +117,7 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
         </div>
         {identity.role === "owner" && <div className="channel-invite-footer">
           <b>邀请成员</b>
-          <p>小组身份的创建者通过私密链接邀请成员。</p>
+          <p>小组身份的组长通过私密链接邀请成员。</p>
           <button className="copy-invite" disabled={busy} onClick={() => void copyInvite()} type="button">复制邀请链接</button>
           {channelIdentity.inviteLinks.filter((link) => !link.revokedAt).map((link) => <div className="identity-invite-link" key={link.id}>
             <small>{link.useCount}/{link.maxUses} 次 · {new Date(link.expiresAt).toLocaleDateString("zh-CN")}</small>

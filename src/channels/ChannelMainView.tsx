@@ -100,7 +100,7 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
       <h1>{name}</h1>
       <p>{members.length} 位成员 · {sharedShowingCount} 个共享场次</p>
       <div className="channel-main-members" aria-label={members.map((member) => member.kind === "channel_only" ? `${member.username}（小组身份）` : `@${member.username}`).join("、")}>
-        {members.map((member) => <span key={member.user_id} style={{ background: avatarColor(member.username) }} title={`${member.kind === "channel_only" ? member.username : `@${member.username}`}${member.kind === "channel_only" ? "（小组身份）" : ""}${member.role === "owner" ? "（创建者）" : ""}`}>{member.username[0]?.toUpperCase()}</span>)}
+        {members.map((member) => <span key={member.user_id} style={{ background: avatarColor(member.username) }} title={`${member.kind === "channel_only" ? member.username : `@${member.username}`}${member.kind === "channel_only" ? "（小组身份）" : ""}${member.role === "owner" ? "（组长）" : ""}`}>{member.username[0]?.toUpperCase()}</span>)}
       </div>
     </header>
     <div className="channel-main-content">
