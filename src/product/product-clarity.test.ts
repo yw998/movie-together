@@ -23,7 +23,8 @@ describe("product positioning and identity clarity", () => {
   it("explains the workflow and both identity models without promising itinerary tools", async () => {
     const guide = await readFile(guidePath, "utf8");
     for (const label of ["浏览排片", "建立小组", "标记想看", "一起查看", "个人账号", "小组身份"]) expect(guide).toContain(label);
-    expect(guide).toContain("不是聊天、报名或行程规划工具");
+    expect(guide).toContain("观影小组是只有受邀成员可见的共享空间。");
+    expect(guide).not.toContain("不是聊天、报名或行程规划工具");
     expect(guide).toContain("个人代码丢失后无法找回");
   });
 

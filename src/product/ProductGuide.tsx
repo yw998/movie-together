@@ -12,7 +12,7 @@ export function ProductGuide({ open, onClose, onCreateGroup }: ProductGuideProps
       <button aria-label="关闭如何使用" className="product-guide-close" onClick={onClose} type="button">×</button>
       <span className="eyebrow dark">HOW IT WORKS</span>
       <h2 id="product-guide-title">一起决定这周看什么</h2>
-      <p className="product-guide-lead">观影小组是只有受邀成员可见的共享空间。它帮你们对齐想看的具体场次，不是聊天、报名或行程规划工具。</p>
+      <p className="product-guide-lead">观影小组是只有受邀成员可见的共享空间。</p>
       <ol className="product-steps">
         <li><b>浏览排片</b><span>查看纽约艺术影院未来七天的放映。</span></li>
         <li><b>建立小组</b><span>创建或加入一个私人观影小组。</span></li>
