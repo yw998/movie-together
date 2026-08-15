@@ -436,14 +436,14 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
             title={channel.name}
             type="button"
           >{channel.name.trim().slice(0, 2)}</button>)}
+          {user && <button
+            aria-label="新建观影小组"
+            className="channel-rail-create"
+            onClick={() => { setCreateMessage(null); setMobileOpen(false); createDialogRef.current?.showModal(); }}
+            title="新建观影小组"
+            type="button"
+          >＋</button>}
         </div>
-        {user && <button
-          aria-label="新建观影小组"
-          className="channel-rail-create"
-          onClick={() => { setCreateMessage(null); setMobileOpen(false); createDialogRef.current?.showModal(); }}
-          title="新建观影小组"
-          type="button"
-        >＋</button>}
       </nav>
 
       <section className="channel-context">

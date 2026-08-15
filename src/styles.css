@@ -217,7 +217,7 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-rail-nav button { color: #e9e4d9; background: #30312b; border: 0; border-radius: 50%; align-items: center; justify-content: center; width: 48px; min-height: 48px; padding: 5px; font-size: 12px; font-weight: 800; line-height: 1.05; display: flex; transition: border-radius .15s, background .15s; overflow: hidden; }
 .channel-rail-nav button:hover, .channel-rail-nav button.active { color: #171813; background: #eee9dd; border-radius: 15px; }
 .channel-rail-nav .channel-rail-home { color: #171813; background: #d5cfbf; font-size: 15px; }
-.channel-rail-nav .channel-rail-create { color: #9fc589; background: #292b25; margin-top: auto; font-size: 25px; font-weight: 400; }
+.channel-rail-nav .channel-rail-create { color: #9fc589; background: #292b25; font-size: 25px; font-weight: 400; }
 .channel-rail-nav .channel-rail-create:hover { color: #171813; background: #9fc589; }
 .channel-rail-divider { background: #3e4038; width: 34px; height: 1px; }
 .channel-rail-list { align-content: start; gap: 9px; width: 100%; min-height: 0; display: grid; justify-items: center; overflow-y: auto; scrollbar-width: none; }
