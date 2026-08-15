@@ -308,6 +308,14 @@ Description generation must never modify:
 
 Approved descriptions should be cached and reused rather than regenerated every schedule refresh.
 
+When automatic description enrichment requests review, an editor may add a
+version-controlled, evidence-backed entry to
+`data/manual-description-overrides.json`. Each entry records the film ID and
+title, Chinese description, official HTTPS source, reason, and creation time.
+The override is validated and then cached in durable storage after a successful
+publication. This editorial escape hatch applies only to descriptions and must
+never alter schedule facts.
+
 For Syndicated Bar Theater Kitchen, the initial description workflow uses only
 official Syndicated/Veezi copy. If official copy is absent, the Chinese
 description remains empty; external film metadata is not used as a fallback.

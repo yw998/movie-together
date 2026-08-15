@@ -5,6 +5,8 @@ import {
   extractDescriptionEvidence,
   fetchOfficialDescriptionEvidence,
   generateChineseDescriptions,
+  parseManualFilmDescriptions,
+  validateManualFilmDescriptionTargets,
   type DescriptionEvidence,
 } from "./ai-description-enrichment";
 import type { WeeklyIngestionBundle } from "./weekly-ingestion";
@@ -190,8 +192,14 @@ describe("automatic Chinese description enrichment", () => {
       evidenceText: "An official synopsis with enough factual material for a short grounded summary.",
     }];
     const fetcher = vi.fn(async (_input: string | URL | Request, init?: RequestInit) => {
-      const request = JSON.parse(String(init?.body)) as { text: { format: { strict: boolean } } };
+      const request = JSON.parse(String(init?.body)) as {
+        instructions: string;
+        text: { format: { strict: boolean } };
+      };
       expect(request.text.format.strict).toBe(true);
+      expect(request.instructions).toContain("剧情发生时间");
+      expect(request.instructions).toContain("Winner…2026 Sundance");
+      expect(request.instructions).toContain("Vilnius, 2022");
       expect(init?.headers).toMatchObject({ Authorization: "Bearer test-key" });
       return new Response(JSON.stringify({
         output: [{ type: "message", content: [{
@@ -207,6 +215,42 @@ describe("automatic Chinese description enrichment", () => {
     });
     await expect(generateChineseDescriptions(evidence, "test-key", { fetcher }))
       .resolves.toEqual([expect.objectContaining({ filmId: "new-film", status: "ok" })]);
+  });
+
+  it("validates version-controlled manual description overrides", () => {
+    const descriptions = parseManualFilmDescriptions([{
+      filmId: "how-to-divorce-during-the-war",
+      canonicalTitle: "How to Divorce During the War",
+      descriptionZh: "一对夫妻在战时维尔纽斯的动荡生活中重新审视婚姻与彼此。",
+      descriptionSource: "https://cinema.example/how-to-divorce-during-the-war",
+      reason: "Confirmed that 2022 is the story setting, not an award year.",
+      createdAt: "2026-08-15T12:00:00-04:00",
+    }]);
+    expect(descriptions.get("how-to-divorce-during-the-war")?.descriptionZh).toContain("维尔纽斯");
+  });
+
+  it("rejects incomplete manual description overrides", () => {
+    expect(() => parseManualFilmDescriptions([{
+      filmId: "new-film",
+      canonicalTitle: "New Film",
+      descriptionZh: "太短",
+      descriptionSource: "http://cinema.example/new-film",
+      reason: "reviewed",
+      createdAt: "not-a-date",
+    }])).toThrow("12 to 90");
+  });
+
+  it("requires a current manual override to match the film title and official cinema domain", () => {
+    const descriptions = parseManualFilmDescriptions([{
+      filmId: "a-brand-new-film",
+      canonicalTitle: "A Brand New Film",
+      descriptionZh: "一户人家在长期变迁中面对选择、离别与意外重逢。",
+      descriptionSource: "https://unofficial.example/a-brand-new-film",
+      reason: "Editor reviewed the official synopsis.",
+      createdAt: "2026-08-15T12:00:00-04:00",
+    }]);
+    expect(() => validateManualFilmDescriptionTargets(bundle(), descriptions))
+      .toThrow("official cinema source domain");
   });
 
   it("retries an incomplete response with a larger output budget", async () => {
@@ -278,6 +322,6 @@ describe("automatic Chinese description enrichment", () => {
         descriptionZh: null,
         reason: "官方页面没有足够情节信息",
       }],
-    })).rejects.toThrow("needs manual review");
+    })).rejects.toThrow("data/manual-description-overrides.json");
   });
 });

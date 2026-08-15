@@ -120,6 +120,43 @@ database publication and Vercel deployment active. If a late step fails after
 the database transaction, the previous Vercel deployment remains active and the
 next run can safely export the database's current publication again.
 
+### Resolve a description review without changing code
+
+Description review failures do not mean that schedule facts are wrong. A year
+in a synopsis may describe the story setting while another year describes an
+award, premiere, or release. The generator is instructed to keep those semantic
+roles separate, but genuinely ambiguous official copy still stops publication.
+
+To resolve one yourself:
+
+1. Open the failed Action log and copy the film ID and official evidence URL
+   from the `Description enrichment needs manual review` error.
+2. Read that official page and write one factual Chinese sentence of 12–90
+   characters. Do not add facts that are absent from the page.
+3. Edit `data/manual-description-overrides.json` in GitHub and add an entry:
+
+```json
+[
+  {
+    "filmId": "how-to-divorce-during-the-war",
+    "canonicalTitle": "How to Divorce During the War",
+    "descriptionZh": "（请替换为仅依据官方页面核实的一句中文影片简介）",
+    "descriptionSource": "https://OFFICIAL-CINEMA-PAGE",
+    "reason": "Confirmed that 2022 is the story setting, not an award year.",
+    "createdAt": "2026-08-15T12:00:00-04:00"
+  }
+]
+```
+
+4. Commit the edit, then open **Actions → Daily rolling schedule publication →
+   Run workflow**. First keep `dry_run` enabled. If it passes, run it again with
+   `dry_run` disabled to publish.
+
+The file is validated for duplicate film IDs, Chinese copy length, an official
+cinema HTTPS source, and a valid timestamp. Its title must still match the current candidate,
+so an old override cannot silently attach to a differently titled film. A
+successful publication stores the reviewed description in PostgreSQL for reuse.
+
 ## 5. First verification
 
 After pushing the repository:
