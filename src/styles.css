@@ -227,9 +227,15 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-context .channel-heading h2 { margin: 0; font-size: 25px; }
 .channel-context-scroll { padding: 16px; overflow-y: auto; }
 .channel-heading-actions { margin-top: 4px; }
-.channel-personal-summary { padding-top: 8px; }
-.channel-personal-summary h3 { margin: 8px 0; font: 700 21px Georgia, "Songti SC", serif; }
-.channel-personal-summary p { color: #aaa99e; font-size: 12px; line-height: 1.55; }
+.channel-group-overview { padding-top: 8px; }
+.channel-group-overview h3 { margin: 8px 0; font: 700 21px Georgia, "Songti SC", serif; }
+.channel-group-overview > p { color: #aaa99e; margin: 0 0 16px; font-size: 12px; line-height: 1.55; }
+.channel-overview-list { gap: 7px; display: grid; }
+.channel-overview-list button { text-align: left; color: #efeadf; background: #2b2c27; border: 1px solid #41433b; border-radius: 5px; justify-content: space-between; align-items: center; gap: 10px; width: 100%; padding: 11px 12px; display: flex; }
+.channel-overview-list button:hover { background: #353730; border-color: #66685e; }
+.channel-overview-list strong { overflow-wrap: anywhere; font-size: 12px; }
+.channel-overview-list small { color: #9fc589; flex: 0 0 auto; font: 700 9px monospace; }
+.channel-overview-create { color: #171813; background: #eee9dd; border: 0; border-radius: 4px; width: 100%; padding: 10px 12px; font-size: 12px; font-weight: 700; }
 .channel-detail { border-top: 0; margin-top: 0; padding-top: 8px; }
 .channel-member-list { border-top: 1px solid #3e4037; margin-top: 18px; padding-top: 14px; }
 .channel-member-list > b, .channel-invite-footer > b { color: #aaa99e; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }

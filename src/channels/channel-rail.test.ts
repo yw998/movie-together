@@ -45,4 +45,15 @@ describe("viewing-group rail", () => {
     expect(app).toContain('className={!activeChannelId && !notificationsOpen ? "active" : ""}');
     expect(app).not.toContain("!activeChannelId && !notificationsOpen && !groupPanelOpen");
   });
+
+  it("uses the neutral drawer state for a useful group overview instead of a duplicate personal home", async () => {
+    const panel = await readFile(panelPath, "utf8");
+
+    expect(panel).toContain("YOUR GROUPS");
+    expect(panel).toContain("个观影小组");
+    expect(panel).toContain('className="channel-overview-list"');
+    expect(panel).toContain('channel.owner_user_id === user.id ? "组长" : "成员"');
+    expect(panel).toContain('aria-label="返回排片"');
+    expect(panel).not.toContain("个人主页");
+  });
 });
