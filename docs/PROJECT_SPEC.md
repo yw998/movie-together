@@ -1228,6 +1228,12 @@ Desktop and mobile expose the same four primary destinations:
 * 通知;
 * 账号.
 
+For a signed-in personal account, the account destination opens an account
+summary rather than the password form. The summary shows the number of distinct
+films with personal `想看` marks, the number of current viewing-group
+memberships, and the time since the account was created. Password changes remain
+available as an explicit secondary action from this summary.
+
 An unauthenticated visitor starts on the schedule. A group identity starts in
 its unique group. A personal account restores its most recent location, while a
 new personal account without history starts on the schedule.

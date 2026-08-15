@@ -8,7 +8,7 @@ import { useTransientMessage } from "../lib/useTransientMessage";
 import { useChannelIdentity } from "../channels/ChannelIdentityContext";
 import { notifyChannelsChanged } from "../channels/channel-api";
 
-type Mode = "login" | "signup" | "resend" | "reset" | "update_password" | "change_password"
+type Mode = "login" | "signup" | "resend" | "reset" | "update_password" | "account_summary" | "change_password"
   | "channel_login" | "channel_create_choice" | "channel_create" | "channel_identity" | "channel_merge";
 type AccountControlProps = {
   lightBackground?: boolean;
@@ -19,6 +19,20 @@ type AccountControlProps = {
 };
 
 const IDENTITY_UPGRADE_PENDING_KEY = "movie-together:identity-upgrade-pending";
+
+type AccountSummary = {
+  markedFilmCount: number;
+  groupCount: number;
+};
+
+function accountAge(createdAt: string | undefined): string {
+  if (!createdAt) return "—";
+  const elapsedDays = Math.max(0, Math.floor((Date.now() - new Date(createdAt).getTime()) / 86_400_000));
+  if (elapsedDays === 0) return "今天";
+  if (elapsedDays < 30) return `${elapsedDays} 天`;
+  if (elapsedDays < 365) return `${Math.floor(elapsedDays / 30)} 个月`;
+  return `${Math.floor(elapsedDays / 365)} 年`;
+}
 
 export function AccountControl({ lightBackground = false, notificationRefreshKey = 0, notificationsOpen = false, onOpenGroup, onOpenNotifications }: AccountControlProps) {
   const client = supabase;
@@ -32,6 +46,8 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
   const [reminderCount, setReminderCount] = useState(0);
   const [completedGroupId, setCompletedGroupId] = useState<string | null>(null);
   const [loginEmail, setLoginEmail] = useState("");
+  const [accountSummary, setAccountSummary] = useState<AccountSummary | null>(null);
+  const [accountSummaryError, setAccountSummaryError] = useState(false);
   const [identityUpgradePending, setIdentityUpgradePending] = useState(
     () => localStorage.getItem(IDENTITY_UPGRADE_PENDING_KEY) === "true",
   );
@@ -74,10 +90,30 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
   }, [client, notificationRefreshKey, user]);
 
   useEffect(() => {
+    if (!client || !user || mode !== "account_summary") return;
+    let active = true;
+    setAccountSummary(null);
+    setAccountSummaryError(false);
+    void client.rpc("get_my_account_summary").then(({ data, error }) => {
+      if (!active) return;
+      const row = data?.[0] as { marked_film_count?: number; group_count?: number } | undefined;
+      if (error || !row) {
+        setAccountSummaryError(true);
+        return;
+      }
+      setAccountSummary({
+        markedFilmCount: Number(row.marked_film_count ?? 0),
+        groupCount: Number(row.group_count ?? 0),
+      });
+    });
+    return () => { active = false; };
+  }, [client, mode, user]);
+
+  useEffect(() => {
     if (!client) return;
     const openForLogin = () => {
       setCompletedGroupId(null);
-      setMode(channelIdentity.identity ? "channel_identity" : user ? "change_password" : "login");
+      setMode(channelIdentity.identity ? "channel_identity" : user ? "account_summary" : "login");
       setMessage(null);
       dialogRef.current?.showModal();
     };
@@ -363,12 +399,22 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
       )}
       <dialog className="auth-dialog" ref={dialogRef}>
         <form method="dialog" className="dialog-close"><button aria-label="关闭" type="submit">×</button></form>
-        {mode !== "change_password" && mode !== "channel_identity" && mode !== "channel_merge" && mode !== "channel_create_choice" && <div className="auth-tabs">
+        {mode !== "account_summary" && mode !== "change_password" && mode !== "channel_identity" && mode !== "channel_merge" && mode !== "channel_create_choice" && <div className="auth-tabs">
           <button className={mode === "login" || mode === "signup" ? "active" : ""} onClick={() => { setMode("login"); setMessage(null); }} type="button">个人账号</button>
           <button className={mode === "channel_login" || mode === "channel_create" ? "active" : ""} onClick={() => { setMode("channel_login"); setMessage(null); }} type="button">小组身份</button>
         </div>}
-        <h2>{mode === "login" ? "个人账号登录" : mode === "signup" ? "创建个人账号" : mode === "resend" ? "重发验证邮件" : mode === "reset" ? "找回账号" : mode === "change_password" ? "个人账号" : mode === "channel_login" ? "小组身份登录" : mode === "channel_create_choice" ? "怎样创建观影小组？" : mode === "channel_create" ? "创建小组身份" : mode === "channel_identity" ? "小组身份" : mode === "channel_merge" && completedGroupId ? "连接完成" : mode === "channel_merge" ? "连接以前的小组身份" : "设置新密码"}</h2>
-        {mode === "channel_identity" ? <div className="channel-identity-details">
+        <h2>{mode === "login" ? "个人账号登录" : mode === "signup" ? "创建个人账号" : mode === "resend" ? "重发验证邮件" : mode === "reset" ? "找回账号" : mode === "account_summary" || mode === "change_password" ? "个人账号" : mode === "channel_login" ? "小组身份登录" : mode === "channel_create_choice" ? "怎样创建观影小组？" : mode === "channel_create" ? "创建小组身份" : mode === "channel_identity" ? "小组身份" : mode === "channel_merge" && completedGroupId ? "连接完成" : mode === "channel_merge" ? "连接以前的小组身份" : "设置新密码"}</h2>
+        {mode === "account_summary" ? <div className="account-summary">
+          <p className="account-summary-name">@{username ?? "account"}</p>
+          <div className="account-summary-grid" aria-busy={!accountSummary && !accountSummaryError}>
+            <article><strong>{accountSummary?.markedFilmCount ?? "—"}</strong><span>已标记电影</span></article>
+            <article><strong>{accountSummary?.groupCount ?? "—"}</strong><span>观影小组</span></article>
+            <article><strong>{accountAge(user?.created_at)}</strong><span>账号时长</span></article>
+          </div>
+          {accountSummaryError && <p className="auth-message" role="status">暂时无法读取账号统计，请稍后重试。</p>}
+          <button className="auth-submit" onClick={() => { setMode("change_password"); setMessage(null); }} type="button">修改密码</button>
+          <button className="auth-link" onClick={() => dialogRef.current?.close()} type="button">关闭</button>
+        </div> : mode === "channel_identity" ? <div className="channel-identity-details">
           <p className="privacy-note">这个身份只能绑定同一个观影小组。小组编号可分享，个人代码是登录凭证，请勿分享；代码丢失后无法找回。</p>
           <label>小组编号<code>{channelIdentity.identity?.publicChannelId}</code></label>
           <label>个人代码<code>{channelIdentity.savedCode ?? "此设备没有保存代码"}</code></label>
