@@ -20,6 +20,17 @@ export function showingStorageWindow(localDate: string): string {
   return calendarWeekFor(localDate).start;
 }
 
+export function countMarkedShowings(
+  markKeys: Iterable<string>,
+  showings: readonly { id: string; localDate: string }[],
+): number {
+  const visibleKeys = new Set(showings.map((showing) => showingMarkKey(
+    showingStorageWindow(showing.localDate),
+    showing.id,
+  )));
+  return new Set([...markKeys].filter((key) => visibleKeys.has(key))).size;
+}
+
 export function useWatchMarks(showings: readonly { id: string; localDate: string }[]) {
   const { user } = useAuth();
   const [marks, setMarks] = useState<Map<string, string>>(new Map());
@@ -246,7 +257,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
 
   return {
     error,
-    markedCount: marks.size,
+    markedCount: countMarkedShowings(marks.keys(), showings),
     signedIn: Boolean(user),
     isMarked: (showingId: string) => { const key = keyFor(showingId); return key ? marks.has(key) : false; },
     isBusy: (showingId: string) => { const key = keyFor(showingId); return key ? busy.has(key) : false; },
