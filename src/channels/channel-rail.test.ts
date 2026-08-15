@@ -33,7 +33,7 @@ describe("viewing-group rail", () => {
     expect(styles).not.toContain(".channel-mobile-toggle, .channel-mobile-close, .channel-backdrop { display: none; }");
   });
 
-  it("reports the open drawer so the primary group destination stays highlighted", async () => {
+  it("highlights the open drawer without removing the underlying schedule highlight", async () => {
     const [panel, app] = await Promise.all([
       readFile(panelPath, "utf8"),
       readFile(appPath, "utf8"),
@@ -42,6 +42,7 @@ describe("viewing-group rail", () => {
     expect(panel).toContain("onPanelOpenChange?.(mobileOpen)");
     expect(app).toContain("onPanelOpenChange={setGroupPanelOpen}");
     expect(app).toContain('className={activeChannelId || groupPanelOpen ? "active" : ""}');
-    expect(app).toContain("!activeChannelId && !notificationsOpen && !groupPanelOpen");
+    expect(app).toContain('className={!activeChannelId && !notificationsOpen ? "active" : ""}');
+    expect(app).not.toContain("!activeChannelId && !notificationsOpen && !groupPanelOpen");
   });
 });
