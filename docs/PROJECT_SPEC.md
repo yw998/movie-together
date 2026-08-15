@@ -1029,6 +1029,12 @@ person can reveal it in their identity view. The server must not retain a
 reversibly encrypted or plaintext copy. A new device can display the code only
 after the person supplies it and chooses to save it on that device.
 
+The member-facing display-name field is labelled `昵称` with an explicit
+`创建后不可修改` warning before submission. After owner or invited-member
+creation, keep the credential receipt open with copy controls plus explicit
+`进入我的小组` and `关闭` actions; do not leave the person at an unexplained code
+screen.
+
 A Channel-only session:
 
 * is scoped to exactly one identity and one Channel;
@@ -1081,6 +1087,10 @@ at a time, by supplying each public Channel ID and access code. Starting an
 upgrade from the Channel-only identity view must complete the merge automatically
 after registration or login; it must not require the same credentials a second time.
 Before confirmation, show the Channel, role, and number of marks that will move.
+If the submitted email already belongs to a personal account, explain that fact
+and provide a direct route to personal-account login with the email preserved.
+After a manual credential merge, show a completion state with `进入我的小组`
+and `关闭` rather than leaving the completed credential form on screen.
 
 The merge is irreversible and must be one atomic server-side transaction:
 
