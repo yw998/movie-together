@@ -85,7 +85,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
   }, [load]);
 
   useEffect(() => {
-    const openPanel = () => setMobileOpen(true);
+    const openPanel = () => setMobileOpen((current) => !current);
     const openCreate = () => { setCreateMessage(null); setMobileOpen(false); createDialogRef.current?.showModal(); };
     window.addEventListener(OPEN_GROUP_PANEL_EVENT, openPanel);
     window.addEventListener(OPEN_REGISTERED_GROUP_CREATE_EVENT, openCreate);
@@ -449,7 +449,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
       <section className="channel-context">
         <div className="channel-heading">
           <h2>观影小组</h2>
-          <button className="channel-mobile-close" onClick={() => setMobileOpen(false)} type="button">×</button>
+          {mobileOpen && <button aria-label="关闭观影小组" className="channel-mobile-close" onClick={() => setMobileOpen(false)} type="button">×</button>}
         </div>
         <div className="channel-context-scroll">
           {!user && <div className="channel-heading-actions">

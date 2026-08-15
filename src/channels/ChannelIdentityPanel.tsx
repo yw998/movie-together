@@ -75,7 +75,7 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
         </div>
       </nav>
       <section className="channel-context">
-        <div className="channel-heading"><h2>观影小组</h2><button className="channel-mobile-close" onClick={() => setMobileOpen(false)} type="button">×</button></div>
+        <div className="channel-heading"><h2>观影小组</h2>{mobileOpen && <button aria-label="关闭观影小组" className="channel-mobile-close" onClick={() => setMobileOpen(false)} type="button">×</button>}</div>
         <div className="channel-context-scroll">
           <div className="channel-detail">
             <span className="eyebrow dark">GROUP IDENTITY</span>

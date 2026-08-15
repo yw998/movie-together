@@ -19,4 +19,16 @@ describe("viewing-group rail", () => {
     expect(createButton).toBeLessThan(listEnd);
     expect(styles).not.toMatch(/\.channel-rail-nav \.channel-rail-create[^}]*margin-top:\s*auto/);
   });
+
+  it("toggles the group drawer from its primary entry and exposes a visible close button", async () => {
+    const [panel, styles] = await Promise.all([
+      readFile(panelPath, "utf8"),
+      readFile(stylesPath, "utf8"),
+    ]);
+
+    expect(panel).toContain("setMobileOpen((current) => !current)");
+    expect(panel).toContain('mobileOpen && <button aria-label="关闭观影小组" className="channel-mobile-close"');
+    expect(styles).toContain(".channel-mobile-close { color:");
+    expect(styles).not.toContain(".channel-mobile-toggle, .channel-mobile-close, .channel-backdrop { display: none; }");
+  });
 });
