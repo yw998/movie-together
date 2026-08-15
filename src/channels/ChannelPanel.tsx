@@ -463,7 +463,10 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
               <p>这里会显示全部排片和你标记过的想看场次。</p>
             </div> : <div className="channel-detail">
               <span className="eyebrow dark">PRIVATE GROUP</span>
-              <h3>{selectedChannel.name}</h3>
+              <div className="channel-title-row">
+                <h3>{selectedChannel.name}</h3>
+                {owner && <button className="channel-rename" disabled={busy} onClick={() => void renameSelectedChannel()} type="button">重命名</button>}
+              </div>
               <label className="auto-share-setting">
                 <input checked={myMembership?.auto_share_new_marks ?? false} onChange={(event) => void setAutoShare(event.target.checked)} type="checkbox" />
                 新标记默认同步到这里
@@ -485,7 +488,6 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
                 })}
               </div>
               {owner && <>
-                <button disabled={busy} onClick={() => void renameSelectedChannel()} type="button">重命名</button>
                 <button className="delete-channel" disabled={busy} onClick={() => void deleteSelectedChannel()} type="button">删除观影小组</button>
               </>}
               {!owner && <button className="leave-channel" disabled={busy} onClick={() => void leaveSelectedChannel()} type="button">退出观影小组</button>}

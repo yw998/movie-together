@@ -167,6 +167,11 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-workspace nav button.active { color: #fff; background: #3a3c33; }
 .channel-detail { border-top: 1px solid #3e4037; margin-top: 12px; padding-top: 18px; }
 .channel-detail h3 { color: #fff; margin: 0 0 8px; font: 700 21px Georgia, "Songti SC", serif; }
+.channel-title-row { align-items: baseline; justify-content: space-between; gap: 10px; margin: 7px 0 8px; display: flex; }
+.channel-title-row h3 { overflow-wrap: anywhere; min-width: 0; margin: 0; }
+.channel-rename { color: #aaa99e; background: transparent; border: 0; border-bottom: 1px solid #65675d; flex: 0 0 auto; padding: 2px 0; font-size: 9px; font-weight: 700; }
+.channel-rename:hover { color: #fff; border-color: #d8d2c4; }
+.channel-rename:disabled { cursor: wait; opacity: .45; }
 .channel-detail p { color: #aaa99e; font-size: 11px; line-height: 1.5; }
 .auto-share-setting { color: #d2cec4; align-items: center; gap: 8px; margin: 14px 0; font-size: 11px; display: flex; }
 .channel-activity { border-top: 1px solid #3e4037; margin-top: 15px; padding-top: 14px; }

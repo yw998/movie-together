@@ -39,9 +39,13 @@ describe("group identity rules", () => {
     ]);
 
     expect(identityPanel).toContain("channelIdentity.renameChannel");
+    expect(identityPanel).toContain('className="channel-title-row"');
+    expect(identityPanel).toContain('className="channel-rename"');
     expect(identityPanel).toContain("channelIdentity.transferOwnership");
     expect(identityPanel).not.toContain("createAnotherChannel");
     expect(accountPanel).toContain('client!.rpc("rename_channel"');
+    expect(accountPanel).toContain('className="channel-title-row"');
+    expect(accountPanel).toContain('className="channel-rename"');
     expect(accountPanel).toContain('client!.rpc("transfer_channel_ownership"');
     expect(accountPanel).toContain('client!.rpc("revoke_channel_invite_link"');
     expect(accountControl).toContain("IDENTITY_UPGRADE_PENDING_KEY");

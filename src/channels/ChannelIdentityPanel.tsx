@@ -79,9 +79,11 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
         <div className="channel-context-scroll">
           <div className="channel-detail">
             <span className="eyebrow dark">GROUP IDENTITY</span>
-            <h3>{identity.channelName}</h3>
+            <div className="channel-title-row">
+              <h3>{identity.channelName}</h3>
+              {identity.role === "owner" && <button className="channel-rename" disabled={busy} onClick={() => void renameChannel()} type="button">重命名</button>}
+            </div>
             <p>小组编号 <code>{identity.publicChannelId}</code> · {identity.role === "owner" ? "创建者" : "成员"}</p>
-            {identity.role === "owner" && <button disabled={busy} onClick={() => void renameChannel()} type="button">重命名</button>}
             <div className="channel-member-list">
               <b>组内成员 · {channelIdentity.members.length}</b>
               {channelIdentity.members.map((member) => <div className="channel-member-row" key={member.id}>
