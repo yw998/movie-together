@@ -58,10 +58,14 @@ export function invitationUrl(token: string): string {
 export async function callInvitationFunction<T>(
   client: SupabaseClient | null,
   body: Record<string, unknown>,
+  accessToken?: string,
 ): Promise<T> {
   const activeClient = client ?? supabase;
   if (!activeClient) throw new Error("Supabase is unavailable.");
-  const { data, error } = await activeClient.functions.invoke("channel-invitations", { body });
+  const { data, error } = await activeClient.functions.invoke("channel-invitations", {
+    body,
+    ...(accessToken ? { headers: { Authorization: `Bearer ${accessToken}` } } : {}),
+  });
   if (error) throw error;
   return data as T;
 }

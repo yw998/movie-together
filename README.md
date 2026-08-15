@@ -1,6 +1,7 @@
 # NYC Movie Together
 
-Chinese-first seven-day schedule for selected New York repertory cinemas.
+Chinese-first seven-day schedule for selected New York repertory cinemas, with
+private watch groups where friends can mark and share exact showings together.
 
 Development record: [Engineering worklog — 2026-08-11](docs/WORKLOG_2026-08-11.md)
 
@@ -31,10 +32,9 @@ Deployment and automation: [GitHub and Vercel deployment](docs/DEPLOYMENT.md)
 The initial 409-showing dataset in `src/data/legacy-schedule.json` was recovered from the deployed prototype dated August 11, 2026. It preserves the existing UI content but is not equivalent to official-source evidence. The normalization layer therefore sets `fetchedAt` to `null` and `extractionStatus` to `needs_review` for every showing.
 
 Supabase PostgreSQL is the durable system of record. The frontend reads an
-approved static export at `src/data/published-schedule.json`. It contains
-the approved official August 10–16 schedule: 89 films and 342 showings across
-five cinemas. The recovered prototype remains separately archived in
-`src/data/legacy-schedule.json`.
+approved static export at `src/data/published-schedule.json`. The rolling public
+view covers seven cinemas. The recovered prototype remains separately archived
+in `src/data/legacy-schedule.json`.
 
 ## Ingestion status
 
@@ -44,7 +44,10 @@ five cinemas. The recovered prototype remains separately archived in
 - Metrograph: official film-page HTML adapter implemented. It resolves yearless official date labels only within the requested window, retains Vista session IDs and film formats, and preserves sold-out sessions without inventing ticket URLs. Requests use an hourly refresh key because Metrograph's bare `/film/` URL has been observed serving structurally valid but incomplete cached HTML.
 - Paris Theater: official digital showtime API plus CMS adapter implemented. It discovers the current public client contract at runtime (without persisting its client values), joins stable showtime IDs to official film metadata, and retains sold-out and accessibility/event labels.
 - Film at Lincoln Center: official `api.filmlinc.org/showtimes` plus official WordPress GraphQL adapter implemented. It joins Tessitura performance IDs to film metadata and exact Q&A/intro labels, preserves 35mm/70mm/DCP, open captions, standby-only availability, venues, and direct purchase links. Synthetic pass products are excluded.
-- Remaining cinema adapter: Syndicated is not yet implemented.
+- Syndicated Bar Theater Kitchen: official server-rendered Veezi HTML/JSON-LD
+  adapter implemented. It uses stable film and session IDs, exact offset-bearing
+  start times, official descriptions and direct purchase links while keeping
+  sold-out state out of the planning-focused public UI.
 
 The review command expects each JSON file to contain `generatedAt` and an
 `adapters` array of serialized adapter results. It exits non-zero when a feed

@@ -179,7 +179,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
       target_channel_ids: channelIds,
     });
     if (shareError) {
-      setError("无法更新 Channel 分享，请稍后重试。");
+      setError("无法更新观影小组分享，请稍后重试。");
       return false;
     }
     setShareCounts((current) => new Map(current).set(markId, channelIds.length));
@@ -204,7 +204,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
       target_showing_id: showingId,
       target_channel_id: channelId,
     });
-    if (shareError) setError("无法把标记分享到这个 Channel，请稍后重试。");
+    if (shareError) setError("无法把标记分享到这个观影小组，请稍后重试。");
     else {
       const markId = data as string;
       setMarks((current) => new Map(current).set(key, markId));
@@ -235,7 +235,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
       target_mark_id: markId,
       target_channel_ids: channelIds,
     });
-    if (shareError) setError("无法从这个 Channel 取消分享，请稍后重试。");
+    if (shareError) setError("无法从这个观影小组取消分享，请稍后重试。");
     else {
       setShareCounts((current) => new Map(current).set(markId, channelIds.length));
       window.dispatchEvent(new Event(WATCH_MARKS_CHANGED_EVENT));

@@ -17,7 +17,7 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
   const { user } = useAuth();
   const channelIdentity = useChannelIdentity();
   const watchMarks = useWatchMarks(scheduleData.showings);
-  const [name, setName] = useState("Channel");
+  const [name, setName] = useState("观影小组");
   const [members, setMembers] = useState<Member[]>([]);
   const [sharedMarks, setSharedMarks] = useState<SharedMark[]>([]);
   const [error, setError] = useTransientMessage();
@@ -47,7 +47,7 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
       client.rpc("list_channel_shared_marks", { target_channel_id: channelId }),
     ]);
     if (channelResult.error || memberResult.error || marksResult.error) {
-      setError("无法读取这个 Channel，请稍后重试。");
+      setError("无法读取这个观影小组，请稍后重试。");
       return;
     }
     setName(channelResult.data.name);
@@ -96,11 +96,11 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
 
   return <section className="channel-main-view">
     <header className="channel-main-hero">
-      <span className="eyebrow">TOGETHER CHANNEL</span>
+      <span className="eyebrow">PRIVATE WATCH GROUP</span>
       <h1>{name}</h1>
       <p>{members.length} 位成员 · {sharedShowingCount} 个共享场次</p>
-      <div className="channel-main-members" aria-label={members.map((member) => member.kind === "channel_only" ? `${member.username}（GUEST）` : `@${member.username}`).join("、")}>
-        {members.map((member) => <span key={member.user_id} style={{ background: avatarColor(member.username) }} title={`${member.kind === "channel_only" ? member.username : `@${member.username}`}${member.kind === "channel_only" ? "（GUEST）" : ""}${member.role === "owner" ? "（owner）" : ""}`}>{member.username[0]?.toUpperCase()}</span>)}
+      <div className="channel-main-members" aria-label={members.map((member) => member.kind === "channel_only" ? `${member.username}（小组身份）` : `@${member.username}`).join("、")}>
+        {members.map((member) => <span key={member.user_id} style={{ background: avatarColor(member.username) }} title={`${member.kind === "channel_only" ? member.username : `@${member.username}`}${member.kind === "channel_only" ? "（小组身份）" : ""}${member.role === "owner" ? "（创建者）" : ""}`}>{member.username[0]?.toUpperCase()}</span>)}
       </div>
     </header>
     <div className="channel-main-content">
@@ -140,8 +140,8 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
                     >{watchMarks.isBusy(activity.showingId) ? "保存中…" : currentUserShared ? "✓ 已想看" : "+ 想看"}</button>
                     {!channelIdentity.identity && currentUserShared && removePrompt === activity.showingId && <div className="channel-remove-menu" role="dialog" aria-label="取消想看">
                       <b>如何取消？</b>
-                      <button onClick={() => { setRemovePrompt(null); void watchMarks.removeFromChannel(activity.showingId, channelId); }} type="button">仅从这个 Channel 取消</button>
-                      <button className="remove-personal-mark" onClick={() => { setRemovePrompt(null); void watchMarks.toggle(activity.showingId); }} type="button">从个人想看中删除<small>也会从所有 Channel 移除</small></button>
+                      <button onClick={() => { setRemovePrompt(null); void watchMarks.removeFromChannel(activity.showingId, channelId); }} type="button">仅从这个观影小组取消</button>
+                      <button className="remove-personal-mark" onClick={() => { setRemovePrompt(null); void watchMarks.toggle(activity.showingId); }} type="button">从个人想看中删除<small>也会从所有观影小组移除</small></button>
                       <button className="cancel-remove-mark" onClick={() => setRemovePrompt(null)} type="button">保留想看</button>
                     </div>}
                   </div>}

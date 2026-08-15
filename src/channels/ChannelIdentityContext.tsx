@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { callInvitationFunction, invitationUrl, type ChannelNotification } from "./channel-api";
 import { showingStorageWindow } from "../watch-marks/useWatchMarks";
+import { supabase } from "../auth/supabase";
 
 const SESSION_KEY = "movie-together:channel-identity-session";
 const CODE_KEY_PREFIX = "movie-together:channel-identity-code:";
@@ -319,11 +320,14 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
   }, [clearSession, sessionToken]);
 
   const mergeIntoAccount = useCallback(async () => {
-    if (!sessionToken) return null;
+    if (!sessionToken || !supabase) return null;
     try {
+      const { data: authData, error: authError } = await supabase.auth.getSession();
+      const accessToken = authData.session?.access_token;
+      if (authError || !accessToken) return null;
       const result = await callInvitationFunction<{ channelId: string }>(null, {
         action: "identity_merge", sessionToken,
-      });
+      }, accessToken);
       clearSession();
       return result.channelId;
     } catch { return null; }
@@ -335,7 +339,7 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
         action: "identity_login", publicChannelId, accessCode,
       });
       const accepted = window.confirm(
-        `确认把「${preview.view.identity.channelName}」中的 ${preview.view.identity.role === "owner" ? "owner" : "member"} 身份和 ${preview.view.marks.filter((mark) => mark.id === `identity:${preview.view.identity.id}`).length} 个标记合并到当前正式账号吗？此操作不可撤销。`,
+        `确认把「${preview.view.identity.channelName}」中的${preview.view.identity.role === "owner" ? "创建者" : "成员"}身份和 ${preview.view.marks.filter((mark) => mark.id === `identity:${preview.view.identity.id}`).length} 个想看合并到当前个人账号吗？原个人代码将立即失效，此操作不可撤销。`,
       );
       if (!accepted) {
         await callInvitationFunction(null, { action: "identity_logout", sessionToken: preview.sessionToken });

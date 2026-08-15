@@ -38,7 +38,7 @@ export function ShareMarkPopover({
     ]).then(async ([memberResult, shareResult]) => {
       if (!active) return;
       if (memberResult.error || shareResult.error) {
-        setMessage("无法读取 Channel 分享设置。");
+        setMessage("无法读取观影小组分享设置。");
         setBusy(false);
         return;
       }
@@ -47,7 +47,7 @@ export function ShareMarkPopover({
         ? await client.from("channels").select("id,name").in("id", memberships.map((row) => row.channel_id))
         : { data: [], error: null };
       if (!active) return;
-      if (error) setMessage("无法读取 Channel 分享设置。");
+      if (error) setMessage("无法读取观影小组分享设置。");
       const defaults = new Map(memberships.map((row) => [row.channel_id, row.auto_share_new_marks]));
       setChannels((channelRows ?? []).map((channel) => ({
         ...channel,
@@ -70,7 +70,7 @@ export function ShareMarkPopover({
   }
 
   return <aside
-    aria-label="选择要分享的 Channel"
+    aria-label="选择要分享的观影小组"
     className={`share-mark-popover ${anchor.placement}`}
     role="dialog"
     style={{
@@ -81,10 +81,10 @@ export function ShareMarkPopover({
   >
     <button className="share-dialog-close" onClick={onClose} type="button">×</button>
     <span className="eyebrow dark">PERSONAL MARK SAVED</span>
-    <h2>分享到 Channel？</h2>
+    <h2>分享到观影小组？</h2>
     <p className="privacy-note">「{filmTitle}」已经加入个人主视图。关闭这里不会取消标记。</p>
     <form className="share-channel-form" onSubmit={submit}>
-      {busy && channels.length === 0 ? <p>读取 Channel…</p> : channels.length === 0 ? <p>你还没有加入任何 Channel，此标记仅自己可见。</p> : channels.map((channel) => <label key={channel.id}>
+      {busy && channels.length === 0 ? <p>读取观影小组…</p> : channels.length === 0 ? <p>你还没有加入任何观影小组，此标记仅自己可见。</p> : channels.map((channel) => <label key={channel.id}>
         <input
           checked={selected.has(channel.id)}
           onChange={(event) => setSelected((current) => {

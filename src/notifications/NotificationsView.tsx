@@ -66,7 +66,7 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
       share_existing_marks: shareExistingInvitations.has(invitation.invitation_id),
     });
     setBusy(false);
-    if (error) return setMessage("邀请已失效或 Channel 人数已满。");
+    if (error) return setMessage("邀请已失效或观影小组人数已满。");
     setMessage(`已加入「${invitation.channel_name}」。`);
     await load();
     notifyChannelsChanged();
@@ -112,20 +112,20 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
   ].sort((left, right) => right.sortAt - left.sortAt), [invitations, visibleActivities]);
 
   if (!user && !channelIdentity.identity) return <section className="notifications-view notifications-signed-out">
-    <span className="eyebrow dark">REMINDERS</span>
-    <h1>提醒</h1>
-    <p>登录后查看 Channel 邀请和朋友新分享的想看场次。</p>
-    <button onClick={requestAccountDialog} type="button">登录 / 注册</button>
+    <span className="eyebrow dark">NOTIFICATIONS</span>
+    <h1>通知</h1>
+    <p>登录后查看观影小组邀请和朋友新分享的想看场次。</p>
+    <button onClick={requestAccountDialog} type="button">选择登录方式</button>
   </section>;
 
   return <section className="notifications-view">
     <header className="notifications-header">
-      <div><span className="eyebrow dark">REMINDERS</span><h1>提醒</h1></div>
+      <div><span className="eyebrow dark">NOTIFICATIONS</span><h1>通知</h1></div>
       {unreadCount > 0 && <button disabled={busy} onClick={() => void markAllRead()} type="button">全部标为已读</button>}
     </header>
     {message && <p className="notifications-message" role="status">{message}</p>}
     {loading || channelIdentity.notificationsLoading ? <p className="notifications-empty">正在读取提醒…</p> : reminders.length === 0
-      ? <p className="notifications-empty">目前没有提醒。</p>
+      ? <p className="notifications-empty">目前没有通知。</p>
       : <div className="notifications-list">{reminders.map((reminder) => {
         if (reminder.kind === "invitation") {
           const { invitation } = reminder;

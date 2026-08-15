@@ -2,14 +2,23 @@ import { createClient } from "npm:@supabase/supabase-js@2.112.3";
 
 const allowedOrigins = new Set([
   "https://movie-together-nu.vercel.app",
-  "http://localhost:5173",
-  "http://127.0.0.1:5173",
 ]);
+
+function isAllowedOrigin(origin: string) {
+  if (allowedOrigins.has(origin)) return true;
+  try {
+    const url = new URL(origin);
+    return url.protocol === "http:"
+      && (url.hostname === "localhost" || url.hostname === "127.0.0.1");
+  } catch {
+    return false;
+  }
+}
 
 function corsHeaders(request: Request) {
   const origin = request.headers.get("origin") ?? "";
   return {
-    "Access-Control-Allow-Origin": allowedOrigins.has(origin)
+    "Access-Control-Allow-Origin": isAllowedOrigin(origin)
       ? origin
       : "https://movie-together-nu.vercel.app",
     "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info",

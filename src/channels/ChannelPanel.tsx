@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
-import { requestAccountDialog } from "../auth/account-events";
+import { OPEN_GROUP_PANEL_EVENT, OPEN_REGISTERED_GROUP_CREATE_EVENT, requestAccountDialog, requestChannelCreateDialog, requestIdentityCredentialsDialog } from "../auth/account-events";
 import { supabase } from "../auth/supabase";
 import { useAuth } from "../auth/AuthContext";
 import {
@@ -68,7 +68,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
       client.rpc("get_my_friend_id"),
     ]);
     if (channelResult.error || friendResult.error) {
-      setMessage("无法读取 Channel，请稍后重试。");
+      setMessage("无法读取观影小组，请稍后重试。");
       return;
     }
     const nextChannels = channelResult.data as Channel[];
@@ -83,6 +83,17 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
     window.addEventListener(CHANNELS_CHANGED_EVENT, load);
     return () => window.removeEventListener(CHANNELS_CHANGED_EVENT, load);
   }, [load]);
+
+  useEffect(() => {
+    const openPanel = () => setMobileOpen(true);
+    const openCreate = () => { setCreateMessage(null); setMobileOpen(false); createDialogRef.current?.showModal(); };
+    window.addEventListener(OPEN_GROUP_PANEL_EVENT, openPanel);
+    window.addEventListener(OPEN_REGISTERED_GROUP_CREATE_EVENT, openCreate);
+    return () => {
+      window.removeEventListener(OPEN_GROUP_PANEL_EVENT, openPanel);
+      window.removeEventListener(OPEN_REGISTERED_GROUP_CREATE_EVENT, openCreate);
+    };
+  }, [setCreateMessage]);
 
   useEffect(() => () => {
     if (friendIdCopyTimerRef.current !== null) window.clearTimeout(friendIdCopyTimerRef.current);
@@ -158,7 +169,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
     const name = String(new FormData(formElement).get("name") ?? "").trim();
     if (!name) return;
     if (channels.some((channel) => channel.name.trim().toLocaleLowerCase() === name.toLocaleLowerCase())) {
-      setCreateMessage("你已经有一个同名 Channel。");
+      setCreateMessage("你已经有一个同名观影小组。");
       return;
     }
     creatingRef.current = true;
@@ -166,7 +177,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
     const { data, error } = await client!.rpc("create_channel", { channel_name: name });
     creatingRef.current = false;
     setBusy(false);
-    if (error) return setCreateMessage(error.code === "23505" ? "你已经有一个同名 Channel。" : "无法创建 Channel，请稍后重试。");
+    if (error) return setCreateMessage(error.code === "23505" ? "你已经有一个同名观影小组。" : "无法创建观影小组，请稍后重试。");
     formElement.reset();
     await load();
     createDialogRef.current?.close();
@@ -198,16 +209,16 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
     setMembers((current) => current.map((member) => member.user_id === user?.id
       ? { ...member, auto_share_new_marks: enabled }
       : member));
-    setMessage(enabled ? "以后新标记会默认同步到这个 Channel。" : "以后新标记不会默认同步到这个 Channel。");
+    setMessage(enabled ? "以后新标记会默认同步到这个观影小组。" : "以后新标记不会默认同步到这个观影小组。");
   }
 
   async function deleteSelectedChannel() {
     if (!selectedChannel || !owner || busy) return;
-    if (!window.confirm(`确定删除「${selectedChannel.name}」吗？成员、邀请与 guest 访问都会立即失效。`)) return;
+    if (!window.confirm(`确定删除「${selectedChannel.name}」吗？成员关系、邀请和小组身份都会立即失效；个人账号的私人想看仍会保留。`)) return;
     setBusy(true);
     const { error } = await client!.rpc("delete_channel", { target_channel_id: selectedChannel.id });
     setBusy(false);
-    if (error) return setMessage("无法删除 Channel，请稍后重试。");
+    if (error) return setMessage("无法删除观影小组，请稍后重试。");
     showDeleteNotice(`已删除「${selectedChannel.name}」。`);
     onNavigate(null);
     await load();
@@ -227,7 +238,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
 
   async function transferOwnership(member: Member) {
     if (!selectedChannel || !owner || busy) return;
-    const memberName = member.profiles?.username ?? "member";
+    const memberName = member.profiles?.username ?? "成员";
     if (!window.confirm(`确定将创建者身份转让给「${memberName}」吗？转让后你会成为普通成员。`)) return;
     setBusy(true);
     const { error } = await client!.rpc("transfer_channel_ownership", {
@@ -243,11 +254,11 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
 
   async function leaveSelectedChannel() {
     if (!selectedChannel || owner || busy) return;
-    if (!window.confirm(`确定退出「${selectedChannel.name}」吗？你在这个 Channel 的分享会被移除，个人想看仍会保留。`)) return;
+    if (!window.confirm(`确定退出「${selectedChannel.name}」吗？你在这个观影小组的分享会被移除，个人想看仍会保留。`)) return;
     setBusy(true);
     const { error } = await client!.rpc("leave_channel", { target_channel_id: selectedChannel.id });
     setBusy(false);
-    if (error) return setMessage("无法退出 Channel，请稍后重试。");
+    if (error) return setMessage("无法退出观影小组，请稍后重试。");
     showDeleteNotice(`已退出「${selectedChannel.name}」。`);
     onNavigate(null);
     await load();
@@ -255,10 +266,10 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
 
   async function removeChannelMember(member: Member) {
     if (!selected || !owner || busy) return;
-    const memberName = member.profiles?.username ?? "member";
+    const memberName = member.profiles?.username ?? "成员";
     const warning = member.kind === "channel_only"
-      ? `确定移除「${memberName}」吗？其 Channel-only 身份和全部标记都会永久删除。`
-      : `确定移除 @${memberName} 吗？其在这个 Channel 的分享会被移除，个人想看仍会保留。`;
+      ? `确定移除「${memberName}」吗？其小组身份和全部想看都会永久删除。`
+      : `确定移除 @${memberName} 吗？其在这个观影小组的分享会被移除，个人想看仍会保留。`;
     if (!window.confirm(warning)) return;
     setBusy(true);
     const { error } = member.kind === "channel_only"
@@ -373,7 +384,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
     clearInviteToken();
     setInvitePreview(null);
     dialogRef.current?.close();
-    setMessage("已加入 Channel。");
+    setMessage("已加入观影小组。");
     setShareExistingOnJoin(false);
     notifyChannelsChanged();
   }
@@ -389,6 +400,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
     if (!code) return setMessage("无法加入；链接可能已失效，或显示名已被使用。");
     clearInviteToken();
     dialogRef.current?.close();
+    requestIdentityCredentialsDialog();
   }
 
   return (
@@ -398,15 +410,15 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
       className="channel-mobile-toggle"
       onClick={() => setMobileOpen(true)}
       type="button"
-    >☰ 一起看</button>
+    >☰ 观影小组</button>
     <button
-      aria-label="关闭 Channel"
+      aria-label="关闭观影小组"
       className={`channel-backdrop${mobileOpen ? " open" : ""}`}
       onClick={() => setMobileOpen(false)}
       type="button"
     />
-    <aside className={`channel-panel${mobileOpen ? " open" : ""}${selected ? " context-open" : ""}`}>
-      <nav className="channel-rail-nav" aria-label="一起看导航">
+    <aside className={`channel-panel${mobileOpen ? " open" : ""}${selected || mobileOpen ? " context-open" : ""}`}>
+      <nav className="channel-rail-nav" aria-label="观影小组导航">
         <button
           aria-label="个人主页"
           className={`channel-rail-home${selected === null && !notificationsOpen ? " active" : ""}`}
@@ -426,22 +438,23 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
           >{channel.name.trim().slice(0, 2)}</button>)}
         </div>
         {user && <button
-          aria-label="新建 Channel"
+          aria-label="新建观影小组"
           className="channel-rail-create"
           onClick={() => { setCreateMessage(null); setMobileOpen(false); createDialogRef.current?.showModal(); }}
-          title="新建 Channel"
+          title="新建观影小组"
           type="button"
         >＋</button>}
       </nav>
 
       <section className="channel-context">
         <div className="channel-heading">
-          <h2>一起看</h2>
+          <h2>观影小组</h2>
           <button className="channel-mobile-close" onClick={() => setMobileOpen(false)} type="button">×</button>
         </div>
         <div className="channel-context-scroll">
           {!user && <div className="channel-heading-actions">
-            <button onClick={requestAccountDialog} type="button">登录后创建</button>
+            <button onClick={requestChannelCreateDialog} type="button">创建观影小组</button>
+            <p>建立只有受邀成员可见的共享想看空间。</p>
           </div>}
           {user && <>
             {!selectedChannel ? <div className="channel-personal-summary">
@@ -449,8 +462,11 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
               <h3>个人主页</h3>
               <p>这里会显示全部排片和你标记过的想看场次。</p>
             </div> : <div className="channel-detail">
-              <span className="eyebrow dark">CHANNEL</span>
-              <h3>{selectedChannel.name}</h3>
+              <span className="eyebrow dark">PRIVATE GROUP</span>
+              <div className="channel-title-row">
+                <h3>{selectedChannel.name}</h3>
+                {owner && <button className="channel-rename" disabled={busy} onClick={() => void renameSelectedChannel()} type="button">重命名</button>}
+              </div>
               <label className="auto-share-setting">
                 <input checked={myMembership?.auto_share_new_marks ?? false} onChange={(event) => void setAutoShare(event.target.checked)} type="checkbox" />
                 新标记默认同步到这里
@@ -458,12 +474,12 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
               <div className="channel-member-list">
                 <b>组内成员 · {members.length}</b>
                 {members.map((member) => {
-                  const memberName = member.profiles?.username ?? "member";
+                  const memberName = member.profiles?.username ?? "成员";
                   return <div className="channel-member-row" key={member.user_id}>
                     <span style={{ background: avatarColor(memberName) }}>{memberName[0]?.toUpperCase()}</span>
                     <strong>{member.kind === "channel_only" ? memberName : `@${memberName}`}</strong>
-                    {member.kind === "channel_only" && <small>GUEST</small>}
-                    {member.role === "owner" && <small>OWNER</small>}
+                    {member.kind === "channel_only" && <small>小组身份</small>}
+                    {member.role === "owner" && <small>创建者</small>}
                     {owner && member.role === "member" && <>
                       <button aria-label={`转让给 ${memberName}`} disabled={busy} onClick={() => void transferOwnership(member)} type="button">设为创建者</button>
                       <button aria-label={`移除 ${memberName}`} disabled={busy} onClick={() => void removeChannelMember(member)} type="button">移除</button>
@@ -472,10 +488,9 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
                 })}
               </div>
               {owner && <>
-                <button disabled={busy} onClick={() => void renameSelectedChannel()} type="button">重命名</button>
-                <button className="delete-channel" disabled={busy} onClick={() => void deleteSelectedChannel()} type="button">删除 Channel</button>
+                <button className="delete-channel" disabled={busy} onClick={() => void deleteSelectedChannel()} type="button">删除观影小组</button>
               </>}
-              {!owner && <button className="leave-channel" disabled={busy} onClick={() => void leaveSelectedChannel()} type="button">退出 Channel</button>}
+              {!owner && <button className="leave-channel" disabled={busy} onClick={() => void leaveSelectedChannel()} type="button">退出观影小组</button>}
             </div>}
             {message && <p className="channel-message" role="status">{message}</p>}
           </>}
@@ -510,9 +525,9 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
 
       <dialog className="channel-create-dialog" onClick={(event) => { if (event.target === event.currentTarget) event.currentTarget.close(); }} onClose={() => setCreateMessage(null)} ref={createDialogRef}>
         <form className="dialog-close" method="dialog"><button aria-label="关闭" type="submit">×</button></form>
-        <span className="eyebrow dark">NEW CHANNEL</span>
-        <h2>创建 Channel</h2>
-        <p>建立一个只对受邀成员开放的共享想看空间。</p>
+        <span className="eyebrow dark">NEW PRIVATE GROUP</span>
+        <h2>创建观影小组</h2>
+        <p>建立一个只有受邀成员可见的共享想看空间。个人账号的想看默认仅自己可见，再由你选择分享。</p>
         <div className="channel-create-friend-id">
           <span>个人 Friend ID</span>
           <div>
@@ -523,9 +538,9 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
           </div>
         </div>
         <form className="channel-create-modal-form" onSubmit={createChannel}>
-          <label>Channel 名称<input autoFocus maxLength={80} name="name" placeholder="例如：周末电影小组" required /></label>
+          <label>观影小组名称<input autoFocus maxLength={80} name="name" placeholder="例如：周末电影小组" required /></label>
           {createMessage && <p className="channel-create-message" role="status">{createMessage}</p>}
-          <button disabled={busy} type="submit">{busy ? "创建中…" : "创建 Channel"}</button>
+          <button disabled={busy} type="submit">{busy ? "创建中…" : "创建观影小组"}</button>
         </form>
       </dialog>
 
@@ -533,15 +548,17 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
         <form className="dialog-close" method="dialog"><button aria-label="关闭" type="submit">×</button></form>
         <h2>{invitePreview ? `加入「${invitePreview.channelName}」` : "邀请已失效"}</h2>
         {invitePreview ? <>
+          <p className="privacy-note">这是只有受邀成员可见的观影小组。加入后可以看到组员分享的想看场次。</p>
           {user && <label className="invite-share-existing">
             <input checked={shareExistingOnJoin} onChange={(event) => setShareExistingOnJoin(event.target.checked)} type="checkbox" />
             <span><b>同步现有的全部个人标记</b><small>不勾选也能加入，以后可逐条手动分享。</small></span>
           </label>}
-          <button className="auth-submit" disabled={busy} onClick={() => void acceptLink()} type="button">{user ? "加入我的账号" : "登录 / 注册后加入"}</button>
+          <button className="auth-submit" disabled={busy} onClick={() => void acceptLink()} type="button">{user ? "用个人账号加入" : "用个人账号登录 / 注册后加入"}</button>
           {!user && <form className="auth-form guest-form" onSubmit={joinAsChannelIdentity}>
-            <label>不注册，创建不可修改的显示名<input maxLength={40} name="display_name" required /></label>
-            <p className="privacy-note">加入后所有想看标记都会直接同步到这个 Channel。</p>
-            <button className="auth-submit" disabled={busy} type="submit">创建 Channel-only 身份</button>
+            <h3>使用小组身份（无需邮箱）</h3>
+            <label>昵称<input maxLength={40} name="display_name" required /><small>创建后不可修改</small></label>
+            <p className="privacy-note">此身份只能绑定同一个观影小组，所有想看都会直接分享。个人代码丢失后无法找回；以后可升级为个人账号并保留小组和想看。</p>
+            <button className="auth-submit" disabled={busy} type="submit">创建小组身份并加入</button>
           </form>}
         </> : <p>请重新打开有效的邀请链接。</p>}
       </dialog>
