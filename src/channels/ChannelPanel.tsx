@@ -554,7 +554,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
           <button className="auth-submit" disabled={busy} onClick={() => void acceptLink()} type="button">{user ? "用个人账号加入" : "用个人账号登录 / 注册后加入"}</button>
           {!user && <form className="auth-form guest-form" onSubmit={joinAsChannelIdentity}>
             <h3>使用小组身份（无需邮箱）</h3>
-            <label>不可修改的显示名<input maxLength={40} name="display_name" required /></label>
+            <label>昵称<input maxLength={40} name="display_name" required /><small>创建后不可修改</small></label>
             <p className="privacy-note">此身份只能绑定同一个观影小组，所有想看都会直接分享。个人代码丢失后无法找回；以后可升级为个人账号并保留小组和想看。</p>
             <button className="auth-submit" disabled={busy} type="submit">创建小组身份并加入</button>
           </form>}

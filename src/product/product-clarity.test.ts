@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 const appPath = new URL("../App.tsx", import.meta.url);
 const guidePath = new URL("./ProductGuide.tsx", import.meta.url);
 const accountPath = new URL("../auth/AccountControl.tsx", import.meta.url);
+const groupPanelPath = new URL("../channels/ChannelPanel.tsx", import.meta.url);
 
 describe("product positioning and identity clarity", () => {
   it("keeps schedule discovery as the headline and makes collaboration explicit", async () => {
@@ -32,5 +33,32 @@ describe("product positioning and identity clarity", () => {
     expect(account).toContain("使用个人账号");
     expect(account).toContain("使用小组身份（无需邮箱）");
     expect(account).toContain("只能绑定同一个观影小组");
+  });
+
+  it("labels immutable display names as nicknames with an explicit warning", async () => {
+    const [account, groupPanel] = await Promise.all([
+      readFile(accountPath, "utf8"),
+      readFile(groupPanelPath, "utf8"),
+    ]);
+    expect(account).toContain("<label>昵称");
+    expect(groupPanel).toContain("<label>昵称");
+    expect(account).toContain("创建后不可修改");
+    expect(account).not.toContain("不可修改的显示名");
+  });
+
+  it("gives creation and account-merge completions a clear next step and exit", async () => {
+    const account = await readFile(accountPath, "utf8");
+    expect(account.match(/进入我的小组/g)?.length).toBeGreaterThanOrEqual(2);
+    expect(account).toContain("dialog-completion");
+    expect(account).toContain("取消并关闭");
+    expect(account).toContain("onOpenGroup?.(channelId)");
+  });
+
+  it("routes an already-registered upgrade email to personal-account login", async () => {
+    const account = await readFile(accountPath, "utf8");
+    expect(account).toContain('error?.code === "user_already_exists"');
+    expect(account).toContain("转到个人账号登录");
+    expect(account).toContain("defaultValue={loginEmail}");
+    expect(account).toContain("登录成功后会继续连接小组身份");
   });
 });

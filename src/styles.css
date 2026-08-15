@@ -58,6 +58,9 @@ a { color: inherit; }
 .identity-choice > button:not(.auth-link):hover { border-color: #74766c; background: #faf7ef; }
 .identity-choice b { font: 700 16px Georgia, "Songti SC", serif; }
 .identity-choice span { color: var(--muted); font-size: 11px; line-height: 1.5; }
+.auth-form label > small { color: var(--muted); font-size: 10px; font-weight: 400; }
+.dialog-completion { gap: 12px; display: grid; }
+.dialog-completion p { color: var(--muted); margin: 0 0 6px; font-size: 12px; line-height: 1.6; }
 .eyebrow { letter-spacing: .22em; color: #c9c4b7; font: 700 12px/1 monospace; }
 .hero h1 { letter-spacing: -.06em; z-index: 1; margin: 22px 0 16px; font-family: Georgia, "Songti SC", serif; font-size: clamp(54px, 8vw, 104px); line-height: .95; position: relative; }
 .hero p { color: #d1cdc3; margin: 0; font-size: 19px; }

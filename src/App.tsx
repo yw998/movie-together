@@ -218,6 +218,7 @@ export default function App() {
         lightBackground={notificationsOpen}
         notificationRefreshKey={notificationRefreshKey}
         notificationsOpen={notificationsOpen}
+        onOpenGroup={navigateTogether}
         onOpenNotifications={toggleNotifications}
       />
       <nav aria-label="主要功能" className="primary-nav">

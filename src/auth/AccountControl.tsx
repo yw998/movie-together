@@ -15,11 +15,12 @@ type AccountControlProps = {
   notificationRefreshKey?: number;
   notificationsOpen?: boolean;
   onOpenNotifications?: () => void;
+  onOpenGroup?: (channelId: string) => void;
 };
 
 const IDENTITY_UPGRADE_PENDING_KEY = "movie-together:identity-upgrade-pending";
 
-export function AccountControl({ lightBackground = false, notificationRefreshKey = 0, notificationsOpen = false, onOpenNotifications }: AccountControlProps) {
+export function AccountControl({ lightBackground = false, notificationRefreshKey = 0, notificationsOpen = false, onOpenGroup, onOpenNotifications }: AccountControlProps) {
   const client = supabase;
   const { loading, user, username } = useAuth();
   const channelIdentity = useChannelIdentity();
@@ -29,6 +30,8 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useTransientMessage();
   const [reminderCount, setReminderCount] = useState(0);
+  const [completedGroupId, setCompletedGroupId] = useState<string | null>(null);
+  const [loginEmail, setLoginEmail] = useState("");
   const [identityUpgradePending, setIdentityUpgradePending] = useState(
     () => localStorage.getItem(IDENTITY_UPGRADE_PENDING_KEY) === "true",
   );
@@ -73,12 +76,14 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
   useEffect(() => {
     if (!client) return;
     const openForLogin = () => {
+      setCompletedGroupId(null);
       setMode(channelIdentity.identity ? "channel_identity" : user ? "change_password" : "login");
       setMessage(null);
       dialogRef.current?.showModal();
     };
     window.addEventListener(OPEN_ACCOUNT_EVENT, openForLogin);
     const openForChannelCreate = () => {
+      setCompletedGroupId(null);
       if (user) {
         requestRegisteredGroupCreate();
         return;
@@ -148,7 +153,8 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
       if (!channelId) return setMessage("无法连接身份，请检查小组编号和个人代码。");
       await channelIdentity.refresh();
       notifyChannelsChanged();
-      setMessage("小组身份已合并到个人账号。");
+      setCompletedGroupId(channelId);
+      setMessage(null);
       return;
     }
     const email = String(form.get("email") ?? "").trim();
@@ -229,6 +235,16 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
           emailRedirectTo: window.location.origin,
         },
       });
+      const existingAccount = error?.code === "user_already_exists"
+        || error?.code === "email_exists"
+        || /already (?:registered|exists)/i.test(error?.message ?? "")
+        || (!error && data.user !== null && (data.user.identities?.length ?? 0) === 0);
+      if (existingAccount) {
+        setLoginEmail(email);
+        setMessage("这个邮箱已经注册。请转到个人账号登录；登录成功后会继续连接当前小组身份。");
+        setBusy(false);
+        return;
+      }
       setMessage(
         error
           ? "注册失败。请检查信息，或换一个 username 后重试。"
@@ -260,6 +276,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
   function startIdentityUpgrade() {
     localStorage.setItem(IDENTITY_UPGRADE_PENDING_KEY, "true");
     setIdentityUpgradePending(true);
+    setLoginEmail("");
     setMode("signup");
     setMessage("使用新邮箱注册，或切换到登录并使用已有个人账号；成功后会自动保留当前小组和想看。");
   }
@@ -291,6 +308,13 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
     }
     await navigator.clipboard.writeText(`小组编号：${channelIdentity.identity.publicChannelId}\n个人代码：${channelIdentity.savedCode}`);
     setMessage("小组编号和个人代码已复制。个人代码请勿分享；丢失后无法找回。");
+  }
+
+  function enterMyGroup(channelId: string) {
+    setCompletedGroupId(null);
+    setMessage(null);
+    dialogRef.current?.close();
+    onOpenGroup?.(channelId);
   }
 
   return (
@@ -328,7 +352,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
           <span>@{username ?? "account"}</span>
           {channelIdentity.identity && <button disabled={busy} onClick={() => void finishIdentityUpgrade()} type="button">完成小组身份升级</button>}
           <button onClick={() => { setMode("change_password"); setMessage(null); dialogRef.current?.showModal(); }} type="button">修改密码</button>
-          <button onClick={() => { setMode("channel_merge"); setMessage(null); dialogRef.current?.showModal(); }} type="button">连接小组身份</button>
+          <button onClick={() => { setCompletedGroupId(null); setMode("channel_merge"); setMessage(null); dialogRef.current?.showModal(); }} type="button">连接小组身份</button>
           <button disabled={busy} onClick={signOut} type="button">退出</button>
         </>
       ) : (
@@ -343,7 +367,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
           <button className={mode === "login" || mode === "signup" ? "active" : ""} onClick={() => { setMode("login"); setMessage(null); }} type="button">个人账号</button>
           <button className={mode === "channel_login" || mode === "channel_create" ? "active" : ""} onClick={() => { setMode("channel_login"); setMessage(null); }} type="button">小组身份</button>
         </div>}
-        <h2>{mode === "login" ? "个人账号登录" : mode === "signup" ? "创建个人账号" : mode === "resend" ? "重发验证邮件" : mode === "reset" ? "找回账号" : mode === "change_password" ? "个人账号" : mode === "channel_login" ? "小组身份登录" : mode === "channel_create_choice" ? "怎样创建观影小组？" : mode === "channel_create" ? "创建小组身份" : mode === "channel_identity" ? "小组身份" : mode === "channel_merge" ? "连接以前的小组身份" : "设置新密码"}</h2>
+        <h2>{mode === "login" ? "个人账号登录" : mode === "signup" ? "创建个人账号" : mode === "resend" ? "重发验证邮件" : mode === "reset" ? "找回账号" : mode === "change_password" ? "个人账号" : mode === "channel_login" ? "小组身份登录" : mode === "channel_create_choice" ? "怎样创建观影小组？" : mode === "channel_create" ? "创建小组身份" : mode === "channel_identity" ? "小组身份" : mode === "channel_merge" && completedGroupId ? "连接完成" : mode === "channel_merge" ? "连接以前的小组身份" : "设置新密码"}</h2>
         {mode === "channel_identity" ? <div className="channel-identity-details">
           <p className="privacy-note">这个身份只能绑定同一个观影小组。小组编号可分享，个人代码是登录凭证，请勿分享；代码丢失后无法找回。</p>
           <label>小组编号<code>{channelIdentity.identity?.publicChannelId}</code></label>
@@ -351,9 +375,15 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
           {message && <p className="auth-message" role="status">{message}</p>}
           <button className="auth-submit" disabled={!channelIdentity.savedCode} onClick={() => void copyIdentityCredentials()} type="button">复制登录信息</button>
           <button className="auth-submit" disabled={busy} onClick={() => void rotateIdentityCode()} type="button">更换个人代码</button>
+          {channelIdentity.identity && <button className="auth-submit" onClick={() => enterMyGroup(channelIdentity.identity!.channelId)} type="button">进入我的小组</button>}
           {user
             ? <button className="auth-link" disabled={busy} onClick={() => void finishIdentityUpgrade()} type="button">完成升级并保留小组和想看</button>
             : <button className="auth-link" onClick={startIdentityUpgrade} type="button">升级为个人账号</button>}
+          <button className="auth-link" onClick={() => dialogRef.current?.close()} type="button">关闭</button>
+        </div> : mode === "channel_merge" && completedGroupId ? <div className="dialog-completion">
+          <p>小组身份已连接到个人账号，原个人代码已经失效。观影小组、角色和想看均已保留。</p>
+          <button className="auth-submit" onClick={() => enterMyGroup(completedGroupId)} type="button">进入我的小组</button>
+          <button className="auth-link" onClick={() => { setCompletedGroupId(null); dialogRef.current?.close(); }} type="button">关闭</button>
         </div> : mode === "channel_create_choice" ? <div className="identity-choice">
           <p className="privacy-note">观影小组只有受邀成员可见。两种方式都能创建小组、邀请朋友并共同标记想看的具体场次。</p>
           <button onClick={() => { setMode("signup"); setMessage(null); }} type="button"><b>使用个人账号</b><span>可加入多个小组，想看默认私密，邮箱可找回。适合长期使用。</span></button>
@@ -364,7 +394,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
         <form className="auth-form" onSubmit={submit}>
           {mode === "channel_create" && <>
             <label>观影小组名称<input maxLength={80} name="channel_name" required /></label>
-            <label>不可修改的显示名<input maxLength={40} name="display_name" required /></label>
+            <label>昵称<input maxLength={40} name="display_name" required /><small>创建后不可修改</small></label>
           </>}
           {(mode === "channel_login" || mode === "channel_merge") && <>
             <label>小组编号<input autoCapitalize="characters" name="public_channel_id" pattern="CH-[A-HJ-NP-Za-hj-np-z2-9]{8}" placeholder="CH-7KDM4QPX" required /></label>
@@ -373,7 +403,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
           {mode === "signup" && (
             <label>Username<input autoComplete="username" maxLength={24} minLength={3} name="username" pattern="[a-zA-Z0-9_]+" required /></label>
           )}
-          {!mode.startsWith("channel_") && mode !== "update_password" && mode !== "change_password" && <label>邮箱<input autoComplete="email" name="email" required type="email" /></label>}
+          {!mode.startsWith("channel_") && mode !== "update_password" && mode !== "change_password" && <label>邮箱<input autoComplete="email" defaultValue={loginEmail} key={`${mode}:${loginEmail}`} name="email" required type="email" /></label>}
           {mode === "change_password" ? <>
             <label>当前密码<input autoComplete="current-password" name="current_password" required type="password" /></label>
             <label>新密码<input autoComplete="new-password" minLength={8} name="password" required type="password" /></label>
@@ -384,10 +414,13 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
           {mode === "channel_login" && <button className="auth-link" onClick={() => { setMode("channel_create_choice"); setMessage(null); }} type="button">还没有观影小组？创建一个</button>}
           {mode === "channel_create" && <button className="auth-link" onClick={() => { setMode("channel_login"); setMessage(null); }} type="button">已有小组编号和个人代码</button>}
           {mode === "login" && <button className="auth-link" onClick={() => { setMode("signup"); setMessage(null); }} type="button">还没有个人账号？注册</button>}
+          {mode === "signup" && loginEmail && <button className="auth-submit" onClick={() => { setMode("login"); setMessage("请输入这个邮箱对应的个人账号密码。登录成功后会继续连接小组身份。"); }} type="button">转到个人账号登录</button>}
+          {mode === "signup" && !loginEmail && <button className="auth-link" onClick={() => { setMode("login"); setMessage(null); }} type="button">已有个人账号？转到登录</button>}
           {mode === "login" && <button className="auth-link" onClick={() => { setMode("reset"); setMessage(null); }} type="button">忘记密码？</button>}
           {mode === "signup" && <button className="auth-link" onClick={() => { setMode("resend"); setMessage(null); }} type="button">没有收到验证邮件？</button>}
           {(mode === "resend" || mode === "reset" || mode === "update_password") && <button className="auth-link" onClick={() => { setMode("login"); setMessage(null); }} type="button">返回登录</button>}
           {mode === "change_password" && <button className="auth-link" onClick={() => dialogRef.current?.close()} type="button">取消</button>}
+          {mode === "channel_merge" && <button className="auth-link" onClick={() => dialogRef.current?.close()} type="button">取消并关闭</button>}
         </form>
         </>}
       </dialog>
