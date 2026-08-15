@@ -4,17 +4,23 @@ import {
   DEFAULT_DESCRIPTION_MODEL,
   enrichWeeklyBundleDescriptions,
   generateChineseDescriptions,
+  parseManualFilmDescriptions,
+  validateManualFilmDescriptionTargets,
   type CachedFilmDescription,
 } from "../src/ingestion/ai-description-enrichment";
 import type { WeeklyIngestionBundle } from "../src/ingestion/weekly-ingestion";
 
-const [, , inputPath, outputPath] = process.argv;
+const [, , inputPath, outputPath, manualDescriptionPath = "data/manual-description-overrides.json"] = process.argv;
 if (!inputPath || !outputPath) {
-  console.error("Usage: npm run enrich:descriptions -- candidate.json enriched-candidate.json");
+  console.error("Usage: npm run enrich:descriptions -- candidate.json enriched-candidate.json [manual-description-overrides.json]");
   process.exit(2);
 }
 
 const bundle = JSON.parse(await readFile(inputPath, "utf8")) as WeeklyIngestionBundle;
+const manualDescriptions = parseManualFilmDescriptions(
+  JSON.parse(await readFile(manualDescriptionPath, "utf8")) as unknown,
+);
+validateManualFilmDescriptionTargets(bundle, manualDescriptions);
 const sql = createDatabaseClient();
 try {
   const rows = await sql<{
@@ -27,7 +33,7 @@ try {
     from films
     where description_zh is not null and description_source is not null
   `;
-  const cache = new Map<string, CachedFilmDescription>(rows.map((row) => [
+  const databaseCache = new Map<string, CachedFilmDescription>(rows.map((row) => [
     row.id,
     {
       canonicalTitle: row.canonical_title,
@@ -35,6 +41,7 @@ try {
       descriptionSource: row.description_source,
     },
   ]));
+  const cache = new Map([...databaseCache, ...manualDescriptions]);
   let generatedCount = 0;
   const enriched = await enrichWeeklyBundleDescriptions(bundle, cache, {
     generate: async (evidence) => {
