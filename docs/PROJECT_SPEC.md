@@ -1234,6 +1234,11 @@ films with personal `想看` marks, the number of current viewing-group
 memberships, and the time since the account was created. Password changes remain
 available as an explicit secondary action from this summary.
 
+The viewing-group drawer's neutral state is a group overview, not a duplicate
+personal home. It shows joined groups with full names and the member's `组长` or
+`成员` role. The rail's `我` control returns to the schedule and closes the
+drawer.
+
 An unauthenticated visitor starts on the schedule. A group identity starts in
 its unique group. A personal account restores its most recent location, while a
 new personal account without history starts on the schedule.

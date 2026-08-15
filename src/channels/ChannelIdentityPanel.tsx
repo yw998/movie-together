@@ -68,7 +68,7 @@ export function ChannelIdentityPanel({ activeChannelId, onNavigate }: ChannelIde
     <button aria-label="关闭观影小组" className={`channel-backdrop${mobileOpen ? " open" : ""}`} onClick={() => setMobileOpen(false)} type="button" />
     <aside className={`channel-panel${channelSelected ? " context-open" : ""}${mobileOpen ? " open" : ""}`}>
       <nav className="channel-rail-nav" aria-label="小组身份导航">
-        <button aria-label="个人主页" className={`channel-rail-home${!channelSelected ? " active" : ""}`} onClick={() => { onNavigate(null); setMobileOpen(false); }} title="个人主页" type="button">我</button>
+        <button aria-label="返回排片" className={`channel-rail-home${!channelSelected ? " active" : ""}`} onClick={() => { onNavigate(null); setMobileOpen(false); }} title="返回排片" type="button">我</button>
         <span className="channel-rail-divider" />
         <div className="channel-rail-list">
           <button aria-label={identity.channelName} className={channelSelected ? "active" : ""} onClick={() => { onNavigate(identity.channelId); setMobileOpen(false); }} title={identity.channelName} type="button">{identity.channelName.trim().slice(0, 2)}</button>

@@ -427,10 +427,10 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
     <aside className={`channel-panel${mobileOpen ? " open" : ""}${selected || mobileOpen ? " context-open" : ""}`}>
       <nav className="channel-rail-nav" aria-label="观影小组导航">
         <button
-          aria-label="个人主页"
+          aria-label="返回排片"
           className={`channel-rail-home${selected === null && !notificationsOpen ? " active" : ""}`}
           onClick={() => { onNavigate(null); setMobileOpen(false); }}
-          title="个人主页"
+          title="返回排片"
           type="button"
         >我</button>
         <span className="channel-rail-divider" />
@@ -464,10 +464,26 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
             <p>建立只有受邀成员可见的共享想看空间。</p>
           </div>}
           {user && <>
-            {!selectedChannel ? <div className="channel-personal-summary">
-              <span className="eyebrow dark">PERSONAL</span>
-              <h3>个人主页</h3>
-              <p>这里会显示全部排片和你标记过的想看场次。</p>
+            {!selectedChannel ? <div className="channel-group-overview">
+              <span className="eyebrow dark">YOUR GROUPS</span>
+              <h3>{channels.length > 0 ? `${channels.length} 个观影小组` : "还没有观影小组"}</h3>
+              <p>{channels.length > 0
+                ? "选择一个小组，查看成员、分享设置和邀请方式。"
+                : "创建一个观影小组，或通过朋友发来的邀请链接加入。"}</p>
+              {channels.length > 0 ? <div className="channel-overview-list">
+                {channels.map((channel) => <button
+                  key={channel.id}
+                  onClick={() => { onNavigate(channel.id); setMobileOpen(false); }}
+                  type="button"
+                >
+                  <strong>{channel.name}</strong>
+                  <small>{channel.owner_user_id === user.id ? "组长" : "成员"}</small>
+                </button>)}
+              </div> : <button
+                className="channel-overview-create"
+                onClick={() => { setCreateMessage(null); setMobileOpen(false); createDialogRef.current?.showModal(); }}
+                type="button"
+              >创建观影小组</button>}
             </div> : <div className="channel-detail">
               <span className="eyebrow dark">PRIVATE GROUP</span>
               <div className="channel-title-row">
