@@ -25,6 +25,7 @@ type ChannelPanelProps = {
   activeChannelId: string | null;
   notificationsOpen: boolean;
   onNavigate: (channelId: string | null) => void;
+  onPanelOpenChange?: (open: boolean) => void;
 };
 
 export function ChannelPanel(props: ChannelPanelProps) {
@@ -32,7 +33,7 @@ export function ChannelPanel(props: ChannelPanelProps) {
   return identity ? <ChannelIdentityPanel {...props} /> : <RegisteredChannelPanel {...props} />;
 }
 
-function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate }: ChannelPanelProps) {
+function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate, onPanelOpenChange }: ChannelPanelProps) {
   const client = supabase;
   const { user, username } = useAuth();
   const channelIdentity = useChannelIdentity();
@@ -94,6 +95,12 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
       window.removeEventListener(OPEN_REGISTERED_GROUP_CREATE_EVENT, openCreate);
     };
   }, [setCreateMessage]);
+
+  useEffect(() => {
+    onPanelOpenChange?.(mobileOpen);
+  }, [mobileOpen, onPanelOpenChange]);
+
+  useEffect(() => () => onPanelOpenChange?.(false), [onPanelOpenChange]);
 
   useEffect(() => () => {
     if (friendIdCopyTimerRef.current !== null) window.clearTimeout(friendIdCopyTimerRef.current);

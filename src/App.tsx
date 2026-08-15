@@ -47,6 +47,7 @@ export default function App() {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [notificationRefreshKey, setNotificationRefreshKey] = useState(0);
   const [guideOpen, setGuideOpen] = useState(false);
+  const [groupPanelOpen, setGroupPanelOpen] = useState(false);
   const channelIdentity = useChannelIdentity();
   const { user } = useAuth();
   const previousIdentityChannelRef = useRef<string | null>(null);
@@ -218,6 +219,7 @@ export default function App() {
         activeChannelId={activeChannelId}
         notificationsOpen={notificationsOpen}
         onNavigate={navigateTogether}
+        onPanelOpenChange={setGroupPanelOpen}
       />
       <div className="site-shell">
       <AccountControl
@@ -229,7 +231,7 @@ export default function App() {
       />
       <nav aria-label="主要功能" className="primary-nav">
         <button className={!activeChannelId && !notificationsOpen ? "active" : ""} onClick={() => navigateTogether(null)} type="button"><span>▤</span>排片</button>
-        <button className={activeChannelId ? "active" : ""} onClick={openGroups} type="button"><span>◎</span>观影小组</button>
+        <button className={activeChannelId || groupPanelOpen ? "active" : ""} onClick={openGroups} type="button"><span>◎</span>观影小组</button>
         <button className={notificationsOpen ? "active" : ""} onClick={toggleNotifications} type="button"><span>♢</span>通知</button>
         <button onClick={requestAccountDialog} type="button"><span>○</span>账号</button>
       </nav>
