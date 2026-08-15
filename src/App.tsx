@@ -12,6 +12,8 @@ import {
 import type { Showing } from "./types/schedule";
 import { formatWindowYears, formatWindowZh } from "./lib/date-display";
 import { AccountControl } from "./auth/AccountControl";
+import { useAuth } from "./auth/AuthContext";
+import { supabase } from "./auth/supabase";
 import { useWatchMarks } from "./watch-marks/useWatchMarks";
 import { ChannelPanel } from "./channels/ChannelPanel";
 import { ChannelMainView } from "./channels/ChannelMainView";
@@ -42,6 +44,7 @@ export default function App() {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [notificationRefreshKey, setNotificationRefreshKey] = useState(0);
   const channelIdentity = useChannelIdentity();
+  const { user } = useAuth();
   const previousIdentityChannelRef = useRef<string | null>(null);
   const previousNotificationChannelRef = useRef<string | null>(null);
   const [identityBusy, setIdentityBusy] = useState<Set<string>>(new Set());
@@ -84,7 +87,15 @@ export default function App() {
     setActiveChannelId(channelId);
     setNotificationsOpen(false);
     setSharePrompt(null);
-  }, []);
+    if (!channelId) return;
+    if (user && supabase) {
+      void supabase.rpc("mark_my_channel_notifications_read", { target_channel_id: channelId })
+        .then(() => setNotificationRefreshKey((current) => current + 1));
+    } else if (channelIdentity.identity?.channelId === channelId) {
+      void channelIdentity.markNotificationsRead()
+        .then(() => setNotificationRefreshKey((current) => current + 1));
+    }
+  }, [channelIdentity.identity?.channelId, channelIdentity.markNotificationsRead, user]);
   const toggleNotifications = useCallback(() => {
     if (notificationsOpen) {
       setNotificationsOpen(false);

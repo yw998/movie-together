@@ -18,10 +18,10 @@ export type ChannelInvitation = {
 export type ChannelNotification = {
   channel_id: string;
   channel_name: string;
-  mark_id: string;
   window_start: string;
   showing_id: string;
-  actor_username: string;
+  actor_names: string[];
+  actor_count: number;
   shared_at: string;
   is_new: boolean;
 };
