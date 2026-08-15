@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 
 const migrationPath = new URL("../../db/migrations/013_channel_notifications.sql", import.meta.url);
 const parityMigrationPath = new URL("../../db/migrations/018_group_identity_notifications.sql", import.meta.url);
+const identityQueryFixPath = new URL("../../db/migrations/020_fix_identity_notification_query.sql", import.meta.url);
 const viewPath = new URL("../notifications/NotificationsView.tsx", import.meta.url);
 const accountControlPath = new URL("../auth/AccountControl.tsx", import.meta.url);
 const channelPanelPath = new URL("../channels/ChannelPanel.tsx", import.meta.url);
@@ -35,6 +36,11 @@ describe("channel reminders", () => {
     expect(migration).toContain("authenticate_channel_identity(session_token)");
     expect(migration).toContain("to service_role");
     expect(migration).not.toMatch(/grant\s+.*channel_identity_notification_reads\s+to\s+(anon|authenticated)/i);
+  });
+
+  it("allows identity session authentication to refresh activity during notification reads", async () => {
+    const migration = await readFile(identityQueryFixPath, "utf8");
+    expect(migration).toContain("alter function public.list_channel_identity_notifications(text) volatile");
   });
 
   it("keeps invitation acceptance and read acknowledgement explicit", async () => {
