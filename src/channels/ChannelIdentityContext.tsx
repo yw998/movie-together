@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { callInvitationFunction, invitationUrl, type ChannelNotification } from "./channel-api";
 import { showingStorageWindow } from "../watch-marks/useWatchMarks";
+import { supabase } from "../auth/supabase";
 
 const SESSION_KEY = "movie-together:channel-identity-session";
 const CODE_KEY_PREFIX = "movie-together:channel-identity-code:";
@@ -319,11 +320,14 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
   }, [clearSession, sessionToken]);
 
   const mergeIntoAccount = useCallback(async () => {
-    if (!sessionToken) return null;
+    if (!sessionToken || !supabase) return null;
     try {
+      const { data: authData, error: authError } = await supabase.auth.getSession();
+      const accessToken = authData.session?.access_token;
+      if (authError || !accessToken) return null;
       const result = await callInvitationFunction<{ channelId: string }>(null, {
         action: "identity_merge", sessionToken,
-      });
+      }, accessToken);
       clearSession();
       return result.channelId;
     } catch { return null; }

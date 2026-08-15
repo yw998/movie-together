@@ -3,7 +3,7 @@ import { normalizeUsername, usernameError } from "../lib/username";
 import { passwordChangeError } from "../lib/password";
 import { authConfigured, supabase } from "./supabase";
 import { useAuth } from "./AuthContext";
-import { OPEN_ACCOUNT_EVENT, OPEN_CHANNEL_CREATE_EVENT, requestRegisteredGroupCreate } from "./account-events";
+import { IDENTITY_CREDENTIALS_PENDING_KEY, OPEN_ACCOUNT_EVENT, OPEN_CHANNEL_CREATE_EVENT, requestRegisteredGroupCreate } from "./account-events";
 import { useTransientMessage } from "../lib/useTransientMessage";
 import { useChannelIdentity } from "../channels/ChannelIdentityContext";
 import { notifyChannelsChanged } from "../channels/channel-api";
@@ -35,21 +35,16 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
 
   useEffect(() => {
     if (!user || !channelIdentity.identity || !identityUpgradePending || upgradeMergeRef.current) return;
-    upgradeMergeRef.current = true;
-    setBusy(true);
-    void channelIdentity.mergeIntoAccount().then((channelId) => {
-      setBusy(false);
-      upgradeMergeRef.current = false;
-      if (!channelId) {
-        setMessage("账号已登录，但小组身份连接失败。你的原凭证仍然有效，请重试。");
-        return;
-      }
-      localStorage.removeItem(IDENTITY_UPGRADE_PENDING_KEY);
-      setIdentityUpgradePending(false);
-      notifyChannelsChanged();
-      setMessage("已升级为个人账号，并保留原有观影小组、角色和想看。");
-    });
+    void finishIdentityUpgrade();
   }, [channelIdentity, identityUpgradePending, user]);
+
+  useEffect(() => {
+    if (!channelIdentity.identity || localStorage.getItem(IDENTITY_CREDENTIALS_PENDING_KEY) !== "true") return;
+    localStorage.removeItem(IDENTITY_CREDENTIALS_PENDING_KEY);
+    setMode("channel_identity");
+    setMessage("请立即复制并保存小组编号和个人代码。个人代码丢失后无法找回。");
+    dialogRef.current?.showModal();
+  }, [channelIdentity.identity, setMessage]);
 
   useEffect(() => {
     if (!client || !user) {
@@ -78,7 +73,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
   useEffect(() => {
     if (!client) return;
     const openForLogin = () => {
-      setMode(channelIdentity.identity && !user ? "channel_identity" : user ? "change_password" : "login");
+      setMode(channelIdentity.identity ? "channel_identity" : user ? "change_password" : "login");
       setMessage(null);
       dialogRef.current?.showModal();
     };
@@ -269,6 +264,26 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
     setMessage("使用新邮箱注册，或切换到登录并使用已有个人账号；成功后会自动保留当前小组和想看。");
   }
 
+  async function finishIdentityUpgrade() {
+    if (!user || !channelIdentity.identity || upgradeMergeRef.current) return;
+    upgradeMergeRef.current = true;
+    setBusy(true);
+    const channelId = await channelIdentity.mergeIntoAccount();
+    setBusy(false);
+    upgradeMergeRef.current = false;
+    if (!channelId) {
+      setMode("channel_identity");
+      setMessage("个人账号已登录，但自动连接没有完成。小组身份和原凭证仍然安全，请点击“完成升级”重试。");
+      dialogRef.current?.showModal();
+      return;
+    }
+    localStorage.removeItem(IDENTITY_UPGRADE_PENDING_KEY);
+    setIdentityUpgradePending(false);
+    notifyChannelsChanged();
+    setMessage("已升级为个人账号，并保留原有观影小组、角色和想看。");
+    dialogRef.current?.close();
+  }
+
   async function copyIdentityCredentials() {
     if (!channelIdentity.identity || !channelIdentity.savedCode) {
       setMessage("此设备没有保存个人代码；请更换代码后立即复制。");
@@ -311,6 +326,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
             {reminderCount > 0 && <b>{reminderCount > 99 ? "99+" : reminderCount}</b>}
           </button>}
           <span>@{username ?? "account"}</span>
+          {channelIdentity.identity && <button disabled={busy} onClick={() => void finishIdentityUpgrade()} type="button">完成小组身份升级</button>}
           <button onClick={() => { setMode("change_password"); setMessage(null); dialogRef.current?.showModal(); }} type="button">修改密码</button>
           <button onClick={() => { setMode("channel_merge"); setMessage(null); dialogRef.current?.showModal(); }} type="button">连接小组身份</button>
           <button disabled={busy} onClick={signOut} type="button">退出</button>
@@ -335,7 +351,9 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
           {message && <p className="auth-message" role="status">{message}</p>}
           <button className="auth-submit" disabled={!channelIdentity.savedCode} onClick={() => void copyIdentityCredentials()} type="button">复制登录信息</button>
           <button className="auth-submit" disabled={busy} onClick={() => void rotateIdentityCode()} type="button">更换个人代码</button>
-          <button className="auth-link" onClick={startIdentityUpgrade} type="button">升级为个人账号</button>
+          {user
+            ? <button className="auth-link" disabled={busy} onClick={() => void finishIdentityUpgrade()} type="button">完成升级并保留小组和想看</button>
+            : <button className="auth-link" onClick={startIdentityUpgrade} type="button">升级为个人账号</button>}
         </div> : mode === "channel_create_choice" ? <div className="identity-choice">
           <p className="privacy-note">观影小组只有受邀成员可见。两种方式都能创建小组、邀请朋友并共同标记想看的具体场次。</p>
           <button onClick={() => { setMode("signup"); setMessage(null); }} type="button"><b>使用个人账号</b><span>可加入多个小组，想看默认私密，邮箱可找回。适合长期使用。</span></button>

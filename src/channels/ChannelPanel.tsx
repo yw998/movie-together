@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
-import { OPEN_GROUP_PANEL_EVENT, OPEN_REGISTERED_GROUP_CREATE_EVENT, requestAccountDialog, requestChannelCreateDialog } from "../auth/account-events";
+import { OPEN_GROUP_PANEL_EVENT, OPEN_REGISTERED_GROUP_CREATE_EVENT, requestAccountDialog, requestChannelCreateDialog, requestIdentityCredentialsDialog } from "../auth/account-events";
 import { supabase } from "../auth/supabase";
 import { useAuth } from "../auth/AuthContext";
 import {
@@ -400,7 +400,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
     if (!code) return setMessage("无法加入；链接可能已失效，或显示名已被使用。");
     clearInviteToken();
     dialogRef.current?.close();
-    window.setTimeout(requestAccountDialog, 0);
+    requestIdentityCredentialsDialog();
   }
 
   return (

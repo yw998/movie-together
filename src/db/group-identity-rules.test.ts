@@ -5,6 +5,9 @@ const migrationPath = new URL("../../db/migrations/017_group_identity_rules.sql"
 const identityPanelPath = new URL("../channels/ChannelIdentityPanel.tsx", import.meta.url);
 const accountPanelPath = new URL("../channels/ChannelPanel.tsx", import.meta.url);
 const accountControlPath = new URL("../auth/AccountControl.tsx", import.meta.url);
+const identityContextPath = new URL("../channels/ChannelIdentityContext.tsx", import.meta.url);
+const channelApiPath = new URL("../channels/channel-api.ts", import.meta.url);
+const accountEventsPath = new URL("../auth/account-events.ts", import.meta.url);
 
 describe("group identity rules", () => {
   it("gives both owner kinds the same core management boundary", async () => {
@@ -43,5 +46,32 @@ describe("group identity rules", () => {
     expect(accountPanel).toContain('client!.rpc("revoke_channel_invite_link"');
     expect(accountControl).toContain("IDENTITY_UPGRADE_PENDING_KEY");
     expect(accountControl).toContain("channelIdentity.mergeIntoAccount()");
+  });
+
+  it("shows newly issued invite credentials only after identity state is available", async () => {
+    const [accountPanel, accountControl, accountEvents] = await Promise.all([
+      readFile(accountPanelPath, "utf8"),
+      readFile(accountControlPath, "utf8"),
+      readFile(accountEventsPath, "utf8"),
+    ]);
+
+    expect(accountPanel).toContain("requestIdentityCredentialsDialog()");
+    expect(accountEvents).toContain("IDENTITY_CREDENTIALS_PENDING_KEY");
+    expect(accountControl).toContain("请立即复制并保存小组编号和个人代码");
+    expect(accountControl).toContain('setMode("channel_identity")');
+  });
+
+  it("merges with the explicit authenticated access token and keeps a retry path", async () => {
+    const [identityContext, channelApi, accountControl] = await Promise.all([
+      readFile(identityContextPath, "utf8"),
+      readFile(channelApiPath, "utf8"),
+      readFile(accountControlPath, "utf8"),
+    ]);
+
+    expect(identityContext).toContain("supabase.auth.getSession()");
+    expect(identityContext).toContain("accessToken");
+    expect(channelApi).toContain("Authorization: `Bearer ${accessToken}`");
+    expect(accountControl).toContain("完成小组身份升级");
+    expect(accountControl).toContain("小组身份和原凭证仍然安全");
   });
 });
