@@ -14,6 +14,7 @@ describe("hosted schedule dry run", () => {
   it("guards every production mutation behind the non-dry-run condition", () => {
     for (const step of [
       "Apply database migrations",
+      "Import approved rolling window",
       "Export today plus six days",
       "Verify rolling database round trip",
       "Commit validated rolling public data",
@@ -34,5 +35,15 @@ describe("hosted schedule dry run", () => {
     );
     expect(workflow).toContain("compiled-schedule.json");
     expect(workflow).not.toContain("npm run assemble:rolling-dry-run");
+  });
+
+  it("validates the candidate before importing it into the database", () => {
+    expect(workflow).toContain('cp "$RUN_DIR/compiled-schedule.json" src/data/published-schedule.json');
+    expect(workflow.indexOf("- name: Run tests")).toBeLessThan(
+      workflow.indexOf("- name: Import approved rolling window"),
+    );
+    expect(workflow.indexOf("- name: Build production site")).toBeLessThan(
+      workflow.indexOf("- name: Import approved rolling window"),
+    );
   });
 });
