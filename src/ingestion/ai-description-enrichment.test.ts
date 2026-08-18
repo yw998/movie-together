@@ -6,10 +6,28 @@ import {
   fetchOfficialDescriptionEvidence,
   generateChineseDescriptions,
   parseManualFilmDescriptions,
+  validEnglishDescription,
   validateManualFilmDescriptionTargets,
   type DescriptionEvidence,
 } from "./ai-description-enrichment";
 import type { WeeklyIngestionBundle } from "./weekly-ingestion";
+
+describe("English description quality", () => {
+  it("accepts audience-facing synopsis copy", () => {
+    expect(validEnglishDescription(
+      "A stranded astronaut crosses an unfamiliar planet while searching for a route home.",
+    )).toBe(true);
+  });
+
+  it("rejects webpage metadata inventories", () => {
+    expect(validEnglishDescription(
+      "Page lists the director, running time, format, distributor, and program context.",
+    )).toBe(false);
+    expect(validEnglishDescription(
+      "A 70mm presentation listing with synopsis, year, running time, and principal cast.",
+    )).toBe(false);
+  });
+});
 
 function bundle(title = "A Brand New Film"): WeeklyIngestionBundle {
   const film: Film = {
@@ -219,6 +237,35 @@ describe("automatic bilingual description enrichment", () => {
     });
   });
 
+  it("invalidates a metadata inventory and regenerates only English", async () => {
+    const candidate = bundle();
+    candidate.adapters[0].films[0] = {
+      ...candidate.adapters[0].films[0],
+      descriptionZh: "一家人在二十年变迁中经历选择、离别与重逢。",
+      descriptionEn: "Page lists the year, running time, format, distributor, and principal cast.",
+      descriptionSource: "https://my.filmforum.org/a-brand-new-film",
+    };
+    const generate = vi.fn(async (evidence: readonly DescriptionEvidence[]) => {
+      expect(evidence[0].requestedLanguages).toEqual(["en-US"]);
+      return [{
+        filmId: evidence[0].filmId,
+        status: "ok" as const,
+        descriptionZh: null,
+        descriptionEn: "A family faces difficult choices across two decades of separation and change.",
+        reason: null,
+      }];
+    });
+    const result = await enrichWeeklyBundleDescriptions(candidate, new Map(), {
+      fetchEvidence: async (filmId, title, sourceUrl) => ({
+        filmId, title, sourceUrl, evidenceText: "Official story evidence about a family across two decades.",
+      }),
+      generate,
+    });
+    expect(result.adapters[0].films[0].descriptionEn).toBe(
+      "A family faces difficult choices across two decades of separation and change.",
+    );
+  });
+
   it("sends a strict schema request and validates the structured response", async () => {
     const evidence: DescriptionEvidence[] = [{
       filmId: "new-film",
@@ -235,6 +282,8 @@ describe("automatic bilingual description enrichment", () => {
       expect(request.instructions).toContain("bilingual");
       expect(request.instructions).toContain("Chinese");
       expect(request.instructions).toContain("English");
+      expect(request.instructions).toContain("audience-facing");
+      expect(request.instructions).toContain("Never describe the webpage");
       expect(init?.headers).toMatchObject({ Authorization: "Bearer test-key" });
       return new Response(JSON.stringify({
         output: [{ type: "message", content: [{
