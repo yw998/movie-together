@@ -96,6 +96,33 @@ describe("Syndicated official Veezi adapter", () => {
     });
   });
 
+  it("safely ignores an explicitly dated open-caption note outside the ingestion window", () => {
+    const html = fixture([{
+      id: "6502", title: "I Want Your Sex", startsAt: "2026-08-17T18:30:00-04:00",
+      duration: "PT1H30M", filmId: "ST00002592",
+      description: "A new film. Open caption screenings: Sunday 8/16 at 3:30pm.",
+    }]);
+    const result = parseSyndicatedHtml(html, {
+      ...options, windowStart: "2026-08-17", windowEnd: "2026-08-23",
+    });
+    expect(result.snapshot.result).toBe("success");
+    expect(result.warnings).toEqual([]);
+    expect(result.showings[0]).toMatchObject({ eventType: "standard", eventNote: null });
+  });
+
+  it("still holds an in-window open-caption note that has no matching session", () => {
+    const html = fixture([{
+      id: "6502", title: "I Want Your Sex", startsAt: "2026-08-17T18:30:00-04:00",
+      duration: "PT1H30M", filmId: "ST00002592",
+      description: "A new film. Open caption screenings: Tuesday 8/18 at 3:30pm.",
+    }]);
+    const result = parseSyndicatedHtml(html, {
+      ...options, windowStart: "2026-08-17", windowEnd: "2026-08-23",
+    });
+    expect(result.snapshot.result).toBe("partial");
+    expect(result.warnings).toContain("syndicated-ST00002592 open-caption note matched 0 official sessions.");
+  });
+
   it("marks official interactive and watch-party programs as special events", () => {
     const html = fixture([{
       id: "6474", title: "Taste of Streep presents: Mamma Mia!",

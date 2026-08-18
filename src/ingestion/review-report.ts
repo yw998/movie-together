@@ -16,6 +16,7 @@ export type ShowingChange = {
 export type CinemaReview = {
   cinemaId: string;
   status: SourceSnapshot["result"];
+  fallback: AdapterResult["publicationFallback"] | null;
   previousCount: number;
   currentCount: number;
   addedIds: string[];
@@ -123,10 +124,13 @@ export function createReviewReport(
     if (!after) {
       concerns.push("Cinema is missing from the current ingestion bundle.");
     } else {
-      if (after.snapshot.result !== "success") {
+      const hasApprovedFallback = after.publicationFallback?.mode === "previous_approved";
+      if (after.snapshot.result !== "success" && !hasApprovedFallback) {
         concerns.push(`Feed status is ${after.snapshot.result}: ${after.snapshot.error ?? "manual review required"}`);
       }
-      concerns.push(...after.warnings.map((warning) => `Parser warning: ${warning}`));
+      if (!hasApprovedFallback) {
+        concerns.push(...after.warnings.map((warning) => `Parser warning: ${warning}`));
+      }
       const duplicates = duplicateIds(currentShowings);
       if (duplicates.length > 0) concerns.push(`Duplicate showing IDs: ${duplicates.join(", ")}`);
       const unverified = currentShowings.filter((showing) => showing.extractionStatus === "needs_review").length;
@@ -145,6 +149,7 @@ export function createReviewReport(
     return {
       cinemaId,
       status: after?.snapshot.result ?? "failed",
+      fallback: after?.publicationFallback ?? null,
       previousCount: previousShowings.length,
       currentCount: currentShowings.length,
       addedIds,
@@ -190,6 +195,9 @@ export function formatReviewReport(report: ReviewReport): string {
     lines.push("", `## ${cinema.cinemaId}`, "",
       `Status: ${cinema.status}; showings: ${cinema.previousCount} → ${cinema.currentCount}`,
       `Added: ${cinema.addedIds.length}; removed: ${cinema.removedIds.length}; changed: ${cinema.changes.length}`);
+    if (cinema.fallback) {
+      lines.push(`- FALLBACK: using the previous approved cinema facts from ${cinema.fallback.sourceGeneratedAt}; the current feed was not published.`);
+    }
     for (const concern of cinema.concerns) lines.push(`- CONCERN: ${concern}`);
     if (cinema.addedShowings.length > 0) {
       lines.push("", "### 新增场次", "", showingTable(cinema.addedShowings));

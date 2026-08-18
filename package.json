@@ -46,6 +46,7 @@
     "ingest:roxy-cinema": "tsx scripts/ingest-roxy-cinema.ts",
     "ingest:syndicated": "tsx scripts/ingest-syndicated.ts",
     "promote:schedule": "tsx scripts/promote-schedule.ts",
+    "reconcile:candidate": "tsx scripts/reconcile-candidate.ts",
     "review:schedule": "tsx scripts/review-schedule.ts",
     "test": "vitest run",
     "test:watch": "vitest"

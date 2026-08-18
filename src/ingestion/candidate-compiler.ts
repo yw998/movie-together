@@ -61,6 +61,18 @@ export function compileWeeklyCandidate(
   const films = new Map<string, Film>();
   const showings = new Map<string, Showing>();
   for (const adapter of bundle.adapters) {
+    if (adapter.publicationFallback) {
+      const fallbackAt = new Date(adapter.publicationFallback.sourceGeneratedAt).getTime();
+      const currentAt = new Date(bundle.generatedAt).getTime();
+      if (
+        adapter.snapshot.result === "success" ||
+        Number.isNaN(fallbackAt) ||
+        Number.isNaN(currentAt) ||
+        fallbackAt > currentAt
+      ) {
+        throw new Error(`Adapter ${adapter.cinemaId} has invalid approved fallback metadata.`);
+      }
+    }
     for (const film of adapter.films) {
       const existing = films.get(film.id);
       films.set(film.id, existing ? richerFilm(existing, film) : film);
@@ -112,11 +124,12 @@ export function compileWeeklyCandidate(
 
   if (options.requireCleanSources) {
     for (const adapter of bundle.adapters) {
-      if (adapter.snapshot.result === "failed") {
+      const hasApprovedFallback = adapter.publicationFallback?.mode === "previous_approved";
+      if (adapter.snapshot.result === "failed" && !hasApprovedFallback) {
         throw new Error(`Adapter ${adapter.cinemaId} failed and is not publishable.`);
       }
       const resolved = resolvedWarnings.get(adapter.cinemaId) ?? new Set<string>();
-      if (adapter.warnings.some((warning) => !resolved.has(warning))) {
+      if (!hasApprovedFallback && adapter.warnings.some((warning) => !resolved.has(warning))) {
         throw new Error(`Adapter ${adapter.cinemaId} has unresolved review warnings.`);
       }
     }

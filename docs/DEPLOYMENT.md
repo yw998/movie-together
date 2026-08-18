@@ -86,14 +86,18 @@ The job:
 1. Applies database migrations.
 2. Loads the current approved review bundle from PostgreSQL.
 3. Pulls the official schedule for each complete calendar week touched by the
-   rolling seven-day window from all seven implemented cinemas.
+   rolling seven-day window from all seven implemented cinemas. A clean cinema
+   uses the current response. An unclean cinema is replaced atomically with its
+   same-week previously approved facts; partial current facts are never mixed in.
 4. Reuses cached Chinese descriptions and generates copy only for genuinely new
    films whose official detail pages contain sufficient evidence.
 5. Compiles, validates, deduplicates, and reviews changes.
-6. Stops on any failed feed, unresolved warning, questionable count change,
-   schema issue, database error, round-trip mismatch, test failure, or build
-   failure. Missing evidence, model refusal, or invalid Chinese copy also stops
-   publication and opens the same manual-review path.
+6. Stops when an unclean feed has no same-week approved fallback, when fallback
+   facts are stale, or on an unresolved warning from a current feed,
+   questionable count change, schema issue, database error, round-trip
+   mismatch, test failure, or build failure. Missing evidence, model refusal,
+   or invalid Chinese copy also stops publication and opens the same
+   manual-review path.
 7. Automatically approves only a report with zero concerns.
 8. Imports the approved run into PostgreSQL in one transaction, caching newly
    generated descriptions for later weeks.
@@ -119,6 +123,13 @@ artifact for 30 days. A failed run opens a GitHub Issue and leaves the previous
 database publication and Vercel deployment active. If a late step fails after
 the database transaction, the previous Vercel deployment remains active and the
 next run can safely export the database's current publication again.
+
+The artifact retains both `raw-candidate.json` and the reconciled
+`candidate.json`. A review report marks `FALLBACK` for each cinema whose current
+feed failed validation while its previously approved facts were carried
+forward. The database source snapshot still records the current failed or
+partial attempt; the carried showings keep their original `fetchedAt` and source
+URLs.
 
 ### Resolve a description review without changing code
 

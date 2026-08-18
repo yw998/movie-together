@@ -529,6 +529,11 @@ counts. Missing or inconsistent evidence produces a `partial` or `failed` result
 rather than an empty publishable feed. Projection format remains `null` unless
 the official source explicitly supplies a screening format.
 
+A dated accessibility note that is unambiguously outside the candidate window
+is historical copy and may be ignored for that window. An in-window note that
+does not match exactly one official session remains a parser warning and must
+not be attached to a plausible showing.
+
 The initial real-data source review was approved on August 14, 2026. Syndicated
 may now participate in the normal candidate, review, and publication workflow.
 That one-time source approval does not approve any future schedule candidate;
@@ -644,10 +649,17 @@ reason: expected schedule structure not found
 
 The currently published schedule remains active until a replacement candidate successfully passes the publication workflow.
 
+A cinema feed with a `partial` or `failed` result is isolated from the clean
+feeds. The workflow may continue only when it can replace that cinema's entire
+candidate payload with the same calendar week's previously approved facts. It
+must never mix partial current facts with approved facts. The fallback retains
+its original showing provenance, is identified in the review report, and must
+still pass the normal stale-data validation. Clean cinemas may then publish
+normally. If no same-week approved fallback exists, publication stops.
+
 A new dataset must not replace the public dataset when any blocking condition remains, including:
 
-* failed cinema feed;
-* unresolved partial feed;
+* a failed or partial cinema feed without a valid same-week approved fallback;
 * schema validation failure;
 * questionable showing;
 * duplicate stable ID;

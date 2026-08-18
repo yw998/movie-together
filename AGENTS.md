@@ -22,7 +22,7 @@ The experience should be fast, editorially clear, mobile-friendly, and trustwort
 
 Design data adapters so additional cinemas can be added later without rewriting the shared pipeline.
 
-## Current public product
+## Initial public product
 
 - Public URL: https://nyc-rep-cinema-week.wyzmanto.chatgpt.site
 - Chinese-first interface
