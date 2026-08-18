@@ -1,5 +1,5 @@
 import { readFile, writeFile } from "node:fs/promises";
-import { dateLabelsForWindow, rollingWindowFor } from "../src/lib/rolling-window";
+import { rollingWindowFor } from "../src/lib/rolling-window";
 import { validateScheduleData } from "../src/lib/schedule-validation";
 import type { Film, ScheduleData } from "../src/types/schedule";
 
@@ -51,7 +51,6 @@ const rolling: ScheduleData = {
   films: [...filmsById.values()].sort((left, right) =>
     left.displayTitle.localeCompare(right.displayTitle) || left.id.localeCompare(right.id)),
   showings,
-  dateLabels: dateLabelsForWindow(window.start, window.end),
 };
 const validation = validateScheduleData(rolling, { staleAfterHours: Number.POSITIVE_INFINITY });
 if (validation.errors > 0) {

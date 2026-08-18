@@ -19,7 +19,7 @@ describe("registered-user invitation methods", () => {
     const component = await readFile(componentPath, "utf8");
 
     expect(component).toContain('<option value="friend_id">Friend ID</option>');
-    expect(component).toContain('<option value="email">邮箱</option>');
+    expect(component).toContain('<option value="email">{copy("邮箱", "Email")}</option>');
     expect(component).not.toContain('<option value="username">');
     expect(component).toContain("等待对方接受后才会加入");
   });

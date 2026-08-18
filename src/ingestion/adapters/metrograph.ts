@@ -157,6 +157,7 @@ export function parseMetrographHtml(
         director: null,
         runtimeMinutes: null,
         descriptionZh: null,
+        descriptionEn: null,
         descriptionSource: null,
       });
     }

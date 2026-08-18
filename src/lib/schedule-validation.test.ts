@@ -49,11 +49,11 @@ const baseData: ScheduleData = {
       director: null,
       runtimeMinutes: null,
       descriptionZh: null,
+      descriptionEn: null,
       descriptionSource: null,
     },
   ],
   showings: [baseShowing],
-  dateLabels: { "2026-08-11": "8/11" },
 };
 
 describe("schedule validation", () => {

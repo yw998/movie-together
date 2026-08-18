@@ -305,8 +305,7 @@ function specialEventNote(card: FilmCard): string | null {
   const sentence = card.description.match(
     /[^.!?]*(?:interactive (?:movie )?party|watch party)[^.!?]*(?:[.!?]|$)/i,
   )?.[0];
-  if (sentence) return `特别活动 · ${cleanText(sentence)}`;
-  if (/watch party|taste of streep/i.test(card.title)) return "特别活动";
+  if (sentence) return cleanText(sentence);
   return null;
 }
 
@@ -379,6 +378,7 @@ export function parseSyndicatedHtml(
         director: null,
         runtimeMinutes: runtimeFor(card.title, events, warnings),
         descriptionZh: null,
+        descriptionEn: null,
         descriptionSource: null,
       });
     }

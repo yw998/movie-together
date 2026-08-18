@@ -4,6 +4,7 @@ import { requestAccountDialog } from "../auth/account-events";
 import { supabase } from "../auth/supabase";
 import { calendarWeekFor } from "../lib/calendar-week";
 import { useTransientMessage } from "../lib/useTransientMessage";
+import { useI18n } from "../i18n/I18nContext";
 
 type WatchMarkRow = { id: string; window_start: string; showing_id: string };
 export const WATCH_MARKS_CHANGED_EVENT = "movie-together:watch-marks-changed";
@@ -33,6 +34,7 @@ export function countMarkedShowings(
 
 export function useWatchMarks(showings: readonly { id: string; localDate: string }[]) {
   const { user } = useAuth();
+  const { t } = useI18n();
   const [marks, setMarks] = useState<Map<string, string>>(new Map());
   const [busy, setBusy] = useState<Set<string>>(new Set());
   const [shareCounts, setShareCounts] = useState<Map<string, number>>(new Map());
@@ -66,7 +68,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
       .then(async ({ data, error: queryError }) => {
         if (!active) return;
         if (queryError) {
-          setError("无法读取想看标记，请刷新后重试。");
+          setError(t("marks.loadError"));
           return;
         }
         const rows = data as WatchMarkRow[];
@@ -88,7 +90,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
         setError(null);
       });
     return () => { active = false; };
-  }, [user, windowSignature]);
+  }, [t, user, windowSignature]);
 
   const loadMutualCounts = useCallback(async () => {
     const client = supabase;
@@ -143,7 +145,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
     let result: WatchMarkToggleResult = null;
     if (existingId) {
       const { error: deleteError } = await client.from("watch_marks").delete().eq("id", existingId);
-      if (deleteError) setError("无法取消标记，请稍后重试。");
+      if (deleteError) setError(t("marks.removeError"));
       else setMarks((current) => {
         const next = new Map(current);
         next.delete(key);
@@ -161,7 +163,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
         target_window_start: windowStart,
         target_showing_id: showingId,
       });
-      if (insertError) setError("无法保存标记，请稍后重试。");
+      if (insertError) setError(t("marks.saveError"));
       else {
         const markId = data as string;
         setMarks((current) => new Map(current).set(key, markId));
@@ -180,7 +182,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
       return next;
     });
     return result;
-  }, [busy, keyFor, marks, showingWindows, user]);
+  }, [busy, keyFor, marks, showingWindows, t, user]);
 
   const updateSharing = useCallback(async (markId: string, channelIds: string[]) => {
     const client = supabase;
@@ -190,13 +192,13 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
       target_channel_ids: channelIds,
     });
     if (shareError) {
-      setError("无法更新观影小组分享，请稍后重试。");
+      setError(t("marks.shareUpdateError"));
       return false;
     }
     setShareCounts((current) => new Map(current).set(markId, channelIds.length));
     window.dispatchEvent(new Event(WATCH_MARKS_CHANGED_EVENT));
     return true;
-  }, [user]);
+  }, [t, user]);
 
   const addToChannel = useCallback(async (showingId: string, channelId: string) => {
     const client = supabase;
@@ -215,7 +217,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
       target_showing_id: showingId,
       target_channel_id: channelId,
     });
-    if (shareError) setError("无法把标记分享到这个观影小组，请稍后重试。");
+    if (shareError) setError(t("marks.shareFamError"));
     else {
       const markId = data as string;
       setMarks((current) => new Map(current).set(key, markId));
@@ -224,7 +226,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
     }
     setBusy((current) => { const next = new Set(current); next.delete(key); return next; });
     return !shareError;
-  }, [busy, keyFor, marks, showingWindows, user]);
+  }, [busy, keyFor, showingWindows, t, user]);
 
   const removeFromChannel = useCallback(async (showingId: string, channelId: string) => {
     const client = supabase;
@@ -246,14 +248,14 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
       target_mark_id: markId,
       target_channel_ids: channelIds,
     });
-    if (shareError) setError("无法从这个观影小组取消分享，请稍后重试。");
+    if (shareError) setError(t("marks.unshareFamError"));
     else {
       setShareCounts((current) => new Map(current).set(markId, channelIds.length));
       window.dispatchEvent(new Event(WATCH_MARKS_CHANGED_EVENT));
     }
     setBusy((current) => { const next = new Set(current); next.delete(key); return next; });
     return !shareError;
-  }, [busy, keyFor, marks, user]);
+  }, [busy, keyFor, marks, t, user]);
 
   return {
     error,

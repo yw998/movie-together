@@ -17,6 +17,7 @@ function film(overrides: Partial<Film> = {}): Film {
     director: null,
     runtimeMinutes: null,
     descriptionZh: null,
+    descriptionEn: null,
     descriptionSource: null,
     ...overrides,
   };

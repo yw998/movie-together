@@ -18,6 +18,8 @@ export type Film = {
   director: string | null;
   runtimeMinutes: number | null;
   descriptionZh: string | null;
+  /** English copy may be absent while an older approved dataset is being backfilled. */
+  descriptionEn: string | null;
   descriptionSource: string | null;
 };
 
@@ -58,5 +60,4 @@ export type ScheduleData = {
   cinemas: Cinema[];
   films: Film[];
   showings: Showing[];
-  dateLabels: Record<string, string>;
 };

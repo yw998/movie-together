@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import { callInvitationFunction, invitationUrl, type ChannelNotification } from "./channel-api";
 import { showingStorageWindow } from "../watch-marks/useWatchMarks";
 import { supabase } from "../auth/supabase";
+import { useI18n } from "../i18n/I18nContext";
 
 const SESSION_KEY = "movie-together:channel-identity-session";
 const CODE_KEY_PREFIX = "movie-together:channel-identity-code:";
@@ -110,6 +111,7 @@ const emptyState: ChannelIdentityState = {
 const ChannelIdentityContext = createContext<ChannelIdentityState>(emptyState);
 
 export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
+  const { copy } = useI18n();
   const [loading, setLoading] = useState(true);
   const [sessionToken, setSessionToken] = useState<string | null>(() => localStorage.getItem(SESSION_KEY));
   const [view, setView] = useState<IdentityView | null>(null);
@@ -338,9 +340,11 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
       const preview = await callInvitationFunction<IdentityResponse>(null, {
         action: "identity_login", publicChannelId, accessCode,
       });
-      const accepted = window.confirm(
-        `确认把「${preview.view.identity.channelName}」中的${preview.view.identity.role === "owner" ? "组长" : "成员"}身份和 ${preview.view.marks.filter((mark) => mark.id === `identity:${preview.view.identity.id}`).length} 个想看合并到当前个人账号吗？原个人代码将立即失效，此操作不可撤销。`,
-      );
+      const markCount = preview.view.marks.filter((mark) => mark.id === `identity:${preview.view.identity.id}`).length;
+      const accepted = window.confirm(copy(
+        `确认把「${preview.view.identity.channelName}」中的${preview.view.identity.role === "owner" ? "组长" : "成员"}身份和 ${markCount} 个想看合并到当前个人账号吗？原个人代码将立即失效，此操作不可撤销。`,
+        `Merge the ${preview.view.identity.role === "owner" ? "Organizer" : "Member"} profile and ${markCount} want-to-watch marks from “${preview.view.identity.channelName}” into the current personal account? The old personal code will stop working immediately, and this cannot be undone.`,
+      ));
       if (!accepted) {
         await callInvitationFunction(null, { action: "identity_logout", sessionToken: preview.sessionToken });
         return null;
@@ -350,7 +354,7 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
       });
       return result.channelId;
     } catch { return null; }
-  }, []);
+  }, [copy]);
 
   const savedCode = view ? localStorage.getItem(`${CODE_KEY_PREFIX}${view.identity.publicChannelId}`) : null;
   const value = useMemo<ChannelIdentityState>(() => ({

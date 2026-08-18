@@ -8,6 +8,8 @@ import type { ChannelInvitation, ChannelNotification } from "../channels/channel
 import { notifyChannelsChanged } from "../channels/channel-api";
 import { useTransientMessage } from "../lib/useTransientMessage";
 import { useChannelIdentity } from "../channels/ChannelIdentityContext";
+import { useI18n } from "../i18n/I18nContext";
+import { formatCalendarDate } from "../lib/date-display";
 
 type NotificationsViewProps = {
   onOpenChannel: (channelId: string) => void;
@@ -16,6 +18,7 @@ type NotificationsViewProps = {
 
 export function NotificationsView({ onOpenChannel, onNotificationsChanged }: NotificationsViewProps) {
   const client = supabase;
+  const { locale, t } = useI18n();
   const { user } = useAuth();
   const channelIdentity = useChannelIdentity();
   const [invitations, setInvitations] = useState<ChannelInvitation[]>([]);
@@ -49,12 +52,12 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
     ]);
     setLoading(false);
     if (invitationResult.error || activityResult.error) {
-      setMessage("无法读取提醒，请稍后重试。");
+      setMessage(t("notifications.loadError"));
       return;
     }
     setInvitations((invitationResult.data ?? []) as ChannelInvitation[]);
     setActivities((activityResult.data ?? []) as ChannelNotification[]);
-  }, [channelIdentity.identity, channelIdentity.refreshNotifications, client, user]);
+  }, [channelIdentity.identity, channelIdentity.refreshNotifications, client, t, user]);
 
   useEffect(() => { void load(); }, [load]);
 
@@ -66,8 +69,8 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
       share_existing_marks: shareExistingInvitations.has(invitation.invitation_id),
     });
     setBusy(false);
-    if (error) return setMessage("邀请已失效或观影小组人数已满。");
-    setMessage(`已加入「${invitation.channel_name}」。`);
+    if (error) return setMessage(t("notifications.inviteInvalid"));
+    setMessage(t("notifications.joined", { name: invitation.channel_name }));
     await load();
     notifyChannelsChanged();
     onNotificationsChanged();
@@ -79,8 +82,8 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
     if (!user && channelIdentity.identity) {
       const ok = await channelIdentity.markNotificationsRead();
       setBusy(false);
-      if (!ok) return setMessage("暂时无法标记为已读。");
-      setMessage("新想看提醒已标为已读。");
+      if (!ok) return setMessage(t("notifications.readError"));
+      setMessage(t("notifications.readSuccess"));
       onNotificationsChanged();
       return;
     }
@@ -90,9 +93,9 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
     }
     const { error } = await client.rpc("mark_my_channel_notifications_read", { target_channel_id: null });
     setBusy(false);
-    if (error) return setMessage("暂时无法标记为已读。");
+    if (error) return setMessage(t("notifications.readError"));
     setActivities((current) => current.map((activity) => ({ ...activity, is_new: false })));
-    setMessage("新想看提醒已标为已读。");
+    setMessage(t("notifications.readSuccess"));
     onNotificationsChanged();
   }
 
@@ -113,25 +116,25 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
 
   if (!user && !channelIdentity.identity) return <section className="notifications-view notifications-signed-out">
     <span className="eyebrow dark">NOTIFICATIONS</span>
-    <h1>通知</h1>
-    <p>登录后查看观影小组邀请和朋友新分享的想看场次。</p>
-    <button onClick={requestAccountDialog} type="button">选择登录方式</button>
+    <h1>{t("nav.notifications")}</h1>
+    <p>{t("notifications.signInCopy")}</p>
+    <button onClick={requestAccountDialog} type="button">{t("notifications.chooseSignIn")}</button>
   </section>;
 
   return <section className="notifications-view">
     <header className="notifications-header">
-      <div><span className="eyebrow dark">NOTIFICATIONS</span><h1>通知</h1></div>
-      {unreadCount > 0 && <button disabled={busy} onClick={() => void markAllRead()} type="button">全部标为已读</button>}
+      <div><span className="eyebrow dark">NOTIFICATIONS</span><h1>{t("nav.notifications")}</h1></div>
+      {unreadCount > 0 && <button disabled={busy} onClick={() => void markAllRead()} type="button">{t("notifications.markAll")}</button>}
     </header>
     {message && <p className="notifications-message" role="status">{message}</p>}
-    {loading || channelIdentity.notificationsLoading ? <p className="notifications-empty">正在读取提醒…</p> : reminders.length === 0
-      ? <p className="notifications-empty">目前没有通知。</p>
+    {loading || channelIdentity.notificationsLoading ? <p className="notifications-empty">{t("notifications.loading")}</p> : reminders.length === 0
+      ? <p className="notifications-empty">{t("notifications.empty")}</p>
       : <div className="notifications-list">{reminders.map((reminder) => {
         if (reminder.kind === "invitation") {
           const { invitation } = reminder;
           return <article className="notification-row invitation-row unread" key={invitation.invitation_id}>
-            <span className="notification-dot" aria-label="待处理" />
-            <div className="notification-copy"><p><b>@{invitation.inviter_username}</b> 邀请你加入</p><strong>「{invitation.channel_name}」</strong><small>有效期至 {formatDateTime(invitation.expires_at)}</small></div>
+            <span className="notification-dot" aria-label={t("notifications.pending")} />
+            <div className="notification-copy"><p><b>@{invitation.inviter_username}</b> {t("notifications.invited")}</p><strong>「{invitation.channel_name}」</strong><small>{t("notifications.expires", { date: formatDateTime(invitation.expires_at, locale) })}</small></div>
             <div className="invitation-actions">
               <label>
                 <input
@@ -144,10 +147,10 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
                   })}
                   type="checkbox"
                 />
-                同步现有个人标记
+                {t("notifications.shareExisting")}
               </label>
-              <small>也可以加入后手动分享</small>
-              <button disabled={busy} onClick={() => void acceptInvitation(invitation)} type="button">接受邀请</button>
+              <small>{t("notifications.shareLater")}</small>
+              <button disabled={busy} onClick={() => void acceptInvitation(invitation)} type="button">{t("notifications.accept")}</button>
             </div>
           </article>;
         }
@@ -156,22 +159,22 @@ export function NotificationsView({ onOpenChannel, onNotificationsChanged }: Not
           const film = showing ? filmById.get(showing.filmId) : null;
           const cinema = showing ? cinemaById.get(showing.cinemaId) : null;
           const actorCopy = activity.actor_count === 1
-            ? activity.actor_names[0] ?? "一位成员"
-            : `${activity.actor_count} 位成员`;
+            ? activity.actor_names[0] ?? t("notifications.oneMember")
+            : t("notifications.members", { count: activity.actor_count });
           return <article className={`notification-row activity-row${activity.is_new ? " unread" : ""}`} key={`${activity.channel_id}:${activity.window_start}:${activity.showing_id}`}>
-            <span className="notification-dot" aria-label={activity.is_new ? "未读" : "已读"} />
+            <span className="notification-dot" aria-label={activity.is_new ? t("notifications.unread") : t("notifications.read")} />
             <div>
-              <p><b>{actorCopy}</b> 在 <button className="notification-channel-link" onClick={() => onOpenChannel(activity.channel_id)} type="button">「{activity.channel_name}」</button> 标记了想看</p>
-              <strong>{film?.displayTitle ?? "已不在当前七日排片中的场次"}</strong>
-              <small>{showing ? `${showing.localDate} · ${formatDisplayTime(showing.localTime)} · ${cinema?.name ?? ""}` : `场次 ID：${activity.showing_id}`} · {formatDateTime(activity.shared_at)}</small>
+              <p><b>{actorCopy}</b> {t("notifications.marked", { name: `「${activity.channel_name}」` })}</p>
+              <strong>{film?.displayTitle ?? t("notifications.missingFilm")}</strong>
+              <small>{showing ? `${formatCalendarDate(showing.localDate, locale)} · ${formatDisplayTime(showing.localTime)} · ${cinema?.name ?? ""}` : t("notifications.showingId", { id: activity.showing_id })} · {formatDateTime(activity.shared_at, locale)}</small>
             </div>
           </article>;
         })}</div>}
   </section>;
 }
 
-function formatDateTime(value: string) {
-  return new Intl.DateTimeFormat("zh-CN", {
+function formatDateTime(value: string, locale: "zh-CN" | "en-US") {
+  return new Intl.DateTimeFormat(locale, {
     timeZone: "America/New_York",
     month: "numeric",
     day: "numeric",

@@ -3,7 +3,7 @@ import { createDatabaseClient } from "../src/db/client";
 import {
   DEFAULT_DESCRIPTION_MODEL,
   enrichWeeklyBundleDescriptions,
-  generateChineseDescriptions,
+  generateBilingualDescriptions,
   parseManualFilmDescriptions,
   validateManualFilmDescriptionTargets,
   type CachedFilmDescription,
@@ -26,18 +26,21 @@ try {
   const rows = await sql<{
     id: string;
     canonical_title: string;
-    description_zh: string;
+    description_zh: string | null;
+    description_en: string | null;
     description_source: string;
   }[]>`
-    select id, canonical_title, description_zh, description_source
+    select id, canonical_title, description_zh, description_en, description_source
     from films
-    where description_zh is not null and description_source is not null
+    where (description_zh is not null or description_en is not null)
+      and description_source is not null
   `;
   const databaseCache = new Map<string, CachedFilmDescription>(rows.map((row) => [
     row.id,
     {
       canonicalTitle: row.canonical_title,
       descriptionZh: row.description_zh,
+      descriptionEn: row.description_en,
       descriptionSource: row.description_source,
     },
   ]));
@@ -46,14 +49,14 @@ try {
   const enriched = await enrichWeeklyBundleDescriptions(bundle, cache, {
     generate: async (evidence) => {
       generatedCount = evidence.length;
-      return generateChineseDescriptions(evidence, process.env.OPENAI_API_KEY ?? "", {
+      return generateBilingualDescriptions(evidence, process.env.OPENAI_API_KEY ?? "", {
         model: process.env.OPENAI_DESCRIPTION_MODEL?.trim() || DEFAULT_DESCRIPTION_MODEL,
       });
     },
   });
   await writeFile(outputPath, `${JSON.stringify(enriched, null, 2)}\n`, { flag: "wx" });
   console.log(
-    `Chinese descriptions ready for ${new Set(enriched.adapters.flatMap((adapter) => adapter.films.map((film) => film.id))).size} films; generated ${generatedCount} new description(s).`,
+    `Bilingual descriptions processed for ${new Set(enriched.adapters.flatMap((adapter) => adapter.films.map((film) => film.id))).size} films; generated ${generatedCount} new description pair(s).`,
   );
 } finally {
   await sql.end();

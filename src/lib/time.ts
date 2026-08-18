@@ -1,4 +1,4 @@
-export type TimeCluster = "上午" | "下午" | "晚间" | "深夜";
+export type TimeCluster = "morning" | "afternoon" | "evening" | "lateNight";
 
 export function parseDisplayTime(value: string): string {
   const match = value.match(/^(\d{1,2}):(\d{2})\s(AM|PM)$/);
@@ -26,10 +26,10 @@ export function formatDisplayTime(localTime: string): string {
 
 export function getTimeCluster(localTime: string): TimeCluster {
   const minutes = minutesSinceMidnight(localTime);
-  if (minutes < 12 * 60) return "上午";
-  if (minutes < 17 * 60) return "下午";
-  if (minutes < 21 * 60) return "晚间";
-  return "深夜";
+  if (minutes < 12 * 60) return "morning";
+  if (minutes < 17 * 60) return "afternoon";
+  if (minutes < 21 * 60) return "evening";
+  return "lateNight";
 }
 
 export function newYorkLocalDate(now = Date.now()): string {

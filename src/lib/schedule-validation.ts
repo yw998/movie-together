@@ -91,14 +91,14 @@ export function validateScheduleData(
   }
 
   data.films.forEach((film, index) => {
-    const hasDescription = Boolean(film.descriptionZh?.trim());
+    const hasDescription = Boolean(film.descriptionZh?.trim() || film.descriptionEn?.trim());
     const hasSource = Boolean(film.descriptionSource?.trim());
     if (hasDescription !== hasSource) {
       add(
         "error",
         "description_provenance",
         `films[${index}]`,
-        "Chinese description and its source must be present together.",
+        "At least one localized description and its shared source must be present together.",
       );
     } else if (hasSource) {
       try {

@@ -20,6 +20,7 @@ function bundle(title = "A Brand New Film"): WeeklyIngestionBundle {
     director: null,
     runtimeMinutes: null,
     descriptionZh: null,
+    descriptionEn: null,
     descriptionSource: null,
   };
   const showing: Showing = {
@@ -63,7 +64,7 @@ function bundle(title = "A Brand New Film"): WeeklyIngestionBundle {
   };
 }
 
-describe("automatic Chinese description enrichment", () => {
+describe("automatic bilingual description enrichment", () => {
   it("extracts synopsis evidence without script or navigation instructions", () => {
     const evidence = extractDescriptionEvidence(`
       <html><head><meta name="description" content="A filmmaker follows one family across twenty years of change."></head>
@@ -153,6 +154,7 @@ describe("automatic Chinese description enrichment", () => {
       new Map([["a-brand-new-film", {
         canonicalTitle: "A Brand New Film",
         descriptionZh: "一家人在二十年变迁中经历选择、离别与重逢。",
+        descriptionEn: "A family faces choices, separation, and reunion across twenty years of change.",
         descriptionSource: "https://my.filmforum.org/a-brand-new-film",
       }]]),
       { fetchEvidence, generate },
@@ -175,12 +177,45 @@ describe("automatic Chinese description enrichment", () => {
         filmId: evidence[0].filmId,
         status: "ok",
         descriptionZh: "一家人在二十年变迁中经历选择、离别与重逢。",
+        descriptionEn: "A family faces choices, separation, and reunion across twenty years of change.",
         reason: null,
       }],
     });
     expect(result.adapters[0].films[0]).toMatchObject({
       descriptionZh: "一家人在二十年变迁中经历选择、离别与重逢。",
+      descriptionEn: "A family faces choices, separation, and reunion across twenty years of change.",
       descriptionSource: sourceUrl,
+    });
+  });
+
+  it("retries only the missing locale and preserves the cached locale", async () => {
+    const generate = vi.fn(async (evidence: readonly DescriptionEvidence[]) => {
+      expect(evidence[0].requestedLanguages).toEqual(["en-US"]);
+      return [{
+        filmId: evidence[0].filmId,
+        status: "ok" as const,
+        descriptionZh: null,
+        descriptionEn: "A family faces difficult choices across two decades of change.",
+        reason: null,
+      }];
+    });
+    const result = await enrichWeeklyBundleDescriptions(bundle(), new Map([[
+      "a-brand-new-film",
+      {
+        canonicalTitle: "A Brand New Film",
+        descriptionZh: "一家人在二十年变迁中经历选择、离别与重逢。",
+        descriptionEn: null,
+        descriptionSource: "https://my.filmforum.org/a-brand-new-film",
+      },
+    ]]), {
+      fetchEvidence: async (filmId, title, sourceUrl) => ({
+        filmId, title, sourceUrl, evidenceText: "Official evidence about a family across two decades of difficult change.",
+      }),
+      generate,
+    });
+    expect(result.adapters[0].films[0]).toMatchObject({
+      descriptionZh: "一家人在二十年变迁中经历选择、离别与重逢。",
+      descriptionEn: "A family faces difficult choices across two decades of change.",
     });
   });
 
@@ -197,9 +232,9 @@ describe("automatic Chinese description enrichment", () => {
         text: { format: { strict: boolean } };
       };
       expect(request.text.format.strict).toBe(true);
-      expect(request.instructions).toContain("剧情发生时间");
-      expect(request.instructions).toContain("Winner…2026 Sundance");
-      expect(request.instructions).toContain("Vilnius, 2022");
+      expect(request.instructions).toContain("bilingual");
+      expect(request.instructions).toContain("Chinese");
+      expect(request.instructions).toContain("English");
       expect(init?.headers).toMatchObject({ Authorization: "Bearer test-key" });
       return new Response(JSON.stringify({
         output: [{ type: "message", content: [{
@@ -208,6 +243,7 @@ describe("automatic Chinese description enrichment", () => {
             filmId: "new-film",
             status: "ok",
             descriptionZh: "一段跨越多年、围绕家庭选择展开的故事。",
+            descriptionEn: "A family story unfolds across years of difficult choices and change.",
             reason: null,
           }] }),
         }] }],
@@ -279,6 +315,7 @@ describe("automatic Chinese description enrichment", () => {
             filmId: "new-film",
             status: "ok",
             descriptionZh: "一段跨越多年、围绕家庭选择展开的故事。",
+            descriptionEn: "A family story unfolds across years of difficult choices and change.",
             reason: null,
           }] }),
         }] }],
@@ -311,8 +348,8 @@ describe("automatic Chinese description enrichment", () => {
     expect(fetcher).toHaveBeenCalledTimes(3);
   });
 
-  it("stops publication when the model cannot ground a description", async () => {
-    await expect(enrichWeeklyBundleDescriptions(bundle(), new Map(), {
+  it("keeps schedule facts publishable when descriptions need review", async () => {
+    const result = await enrichWeeklyBundleDescriptions(bundle(), new Map(), {
       fetchEvidence: async (filmId, title, sourceUrl) => ({
         filmId, title, sourceUrl, evidenceText: "Long but inconclusive official page text without a synopsis or film facts.",
       }),
@@ -320,8 +357,10 @@ describe("automatic Chinese description enrichment", () => {
         filmId: evidence[0].filmId,
         status: "needs_review",
         descriptionZh: null,
+        descriptionEn: null,
         reason: "官方页面没有足够情节信息",
       }],
-    })).rejects.toThrow("data/manual-description-overrides.json");
+    });
+    expect(result.adapters[0].films[0]).toMatchObject({ descriptionZh: null, descriptionSource: null });
   });
 });

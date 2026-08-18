@@ -230,7 +230,8 @@ export function parseParisPayloads(
           year: Number.isInteger(yearValue) && yearValue > 1800 ? yearValue : null,
           director: text(cms.Director) || null,
           runtimeMinutes: Number.isInteger(runtimeValue) && runtimeValue > 0 ? runtimeValue : null,
-          descriptionZh: null,
+        descriptionZh: null,
+        descriptionEn: null,
           descriptionSource: null,
         });
       }

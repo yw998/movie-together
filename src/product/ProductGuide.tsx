@@ -3,36 +3,43 @@ type ProductGuideProps = {
   onClose: () => void;
   onCreateGroup: () => void;
 };
+import { useI18n } from "../i18n/I18nContext";
+import type { MessageKey } from "../i18n/messages";
+
+const steps: { title: MessageKey; copy: MessageKey }[] = [
+  { title: "guide.step1Title", copy: "guide.step1Copy" },
+  { title: "guide.step2Title", copy: "guide.step2Copy" },
+  { title: "guide.step3Title", copy: "guide.step3Copy" },
+  { title: "guide.step4Title", copy: "guide.step4Copy" },
+];
 
 export function ProductGuide({ open, onClose, onCreateGroup }: ProductGuideProps) {
+  const { t } = useI18n();
   if (!open) return null;
 
   return <div className="product-guide-backdrop" role="presentation" onMouseDown={onClose}>
     <section aria-labelledby="product-guide-title" aria-modal="true" className="product-guide" onMouseDown={(event) => event.stopPropagation()} role="dialog">
-      <button aria-label="关闭如何使用" className="product-guide-close" onClick={onClose} type="button">×</button>
+      <button aria-label={t("guide.close")} className="product-guide-close" onClick={onClose} type="button">×</button>
       <span className="eyebrow dark">HOW IT WORKS</span>
-      <h2 id="product-guide-title">一起决定这周看什么</h2>
-      <p className="product-guide-lead">观影小组是只有受邀成员可见的共享空间。</p>
+      <h2 id="product-guide-title">{t("guide.title")}</h2>
+      <p className="product-guide-lead">{t("guide.lead")}</p>
       <ol className="product-steps">
-        <li><b>浏览排片</b><span>查看纽约艺术影院未来七天的放映。</span></li>
-        <li><b>建立小组</b><span>创建或加入一个私人观影小组。</span></li>
-        <li><b>标记想看</b><span>选择电影、影院、日期和时间都确定的场次。</span></li>
-        <li><b>一起查看</b><span>在小组里看到朋友共同想看的时间。</span></li>
+        {steps.map((step) => <li key={step.title}><b>{t(step.title)}</b><span>{t(step.copy)}</span></li>)}
       </ol>
       <div className="identity-comparison">
         <article>
-          <h3>个人账号</h3>
-          <p>适合长期使用。想看默认仅自己可见，再选择分享给一个或多个观影小组。</p>
-          <ul><li>可加入多个小组</li><li>邮箱可用于找回账号</li><li>集中查看邀请和小组动态</li></ul>
+          <h3>{t("guide.account")}</h3>
+          <p>{t("guide.accountCopy")}</p>
+          <ul><li>{t("guide.accountItem1")}</li><li>{t("guide.accountItem2")}</li><li>{t("guide.accountItem3")}</li></ul>
         </article>
         <article>
-          <h3>小组身份 <small>无需邮箱</small></h3>
-          <p>适合先加入一个固定小组。所有想看都会直接分享给该小组。</p>
-          <ul><li>只能绑定同一个小组</li><li>个人代码丢失后无法找回</li><li>以后可升级为个人账号并保留内容</li></ul>
+          <h3>{t("guide.profile")} <small>{t("guide.noEmail")}</small></h3>
+          <p>{t("guide.profileCopy")}</p>
+          <ul><li>{t("guide.profileItem1")}</li><li>{t("guide.profileItem2")}</li><li>{t("guide.profileItem3")}</li></ul>
         </article>
       </div>
-      <p className="product-guide-note">已有多个小组身份？升级后可逐个连接，保留加入过的小组、角色和想看。</p>
-      <button className="product-guide-cta" onClick={() => { onClose(); onCreateGroup(); }} type="button">创建观影小组</button>
+      <p className="product-guide-note">{t("guide.note")}</p>
+      <button className="product-guide-cta" onClick={() => { onClose(); onCreateGroup(); }} type="button">{t("hero.createFam")}</button>
     </section>
   </div>;
 }

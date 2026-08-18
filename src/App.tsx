@@ -10,7 +10,7 @@ import {
   type TimeCluster,
 } from "./lib/time";
 import type { Showing } from "./types/schedule";
-import { formatWindowYears, formatWindowZh } from "./lib/date-display";
+import { formatCalendarDate, formatWindow, formatWindowYears } from "./lib/date-display";
 import { AccountControl } from "./auth/AccountControl";
 import { useAuth } from "./auth/AuthContext";
 import { supabase } from "./auth/supabase";
@@ -20,21 +20,24 @@ import { ChannelMainView } from "./channels/ChannelMainView";
 import { ShareMarkPopover } from "./watch-marks/ShareMarkDialog";
 import { NotificationsView } from "./notifications/NotificationsView";
 import { useChannelIdentity } from "./channels/ChannelIdentityContext";
-import { dateLabelsForWindow, rollingWindowFor } from "./lib/rolling-window";
+import { datesForWindow, rollingWindowFor } from "./lib/rolling-window";
 import { ProductGuide } from "./product/ProductGuide";
 import { requestAccountDialog, requestChannelCreateDialog, requestGroupPanel } from "./auth/account-events";
+import { useI18n } from "./i18n/I18nContext";
+import { LanguageSwitch } from "./i18n/LanguageSwitch";
 
-const timeClusters: TimeCluster[] = ["上午", "下午", "晚间", "深夜"];
+const timeClusters: TimeCluster[] = ["morning", "afternoon", "evening", "lateNight"];
 const LAST_PERSONAL_GROUP_KEY = "movie-together:last-personal-group";
 
 type ColorStyle = CSSProperties & { "--c": string };
 
 export default function App() {
   const { metadata, cinemas, films, showings } = scheduleData;
+  const { locale, t } = useI18n();
   const [nowMs, setNowMs] = useState(() => Date.now());
   const viewWindow = rollingWindowFor(newYorkLocalDate(nowMs));
-  const dateLabels = dateLabelsForWindow(viewWindow.start, viewWindow.end);
-  const dates = Object.keys(dateLabels);
+  const dates = datesForWindow(viewWindow.start, viewWindow.end);
+  const dateLabels = Object.fromEntries(dates.map((date) => [date, formatCalendarDate(date, locale)]));
   const [selectedDate, setSelectedDate] = useState(() =>
     defaultScheduleDate(dates, viewWindow.start),
   );
@@ -157,7 +160,7 @@ export default function App() {
   }, [nowMs, viewShowings]);
 
   const visibleShowings = useMemo(() => {
-    const normalizedQuery = query.trim().toLocaleLowerCase("zh-CN");
+    const normalizedQuery = query.trim().toLocaleLowerCase(locale);
     return viewShowings
       .filter((showing) => {
         const cinema = cinemaById.get(showing.cinemaId);
@@ -170,7 +173,7 @@ export default function App() {
           (scheduleView === "all" || (channelIdentity.identity
             ? channelIdentity.marks.some((mark) => mark.id === `identity:${channelIdentity.identity!.id}` && mark.showingId === showing.id)
             : watchMarks.isMarked(showing.id))) &&
-          searchable.toLocaleLowerCase("zh-CN").includes(normalizedQuery)
+          searchable.toLocaleLowerCase(locale).includes(normalizedQuery)
         );
       })
       .sort(
@@ -190,6 +193,7 @@ export default function App() {
     channelIdentity.identity,
     channelIdentity.marks,
     nowMs,
+    locale,
   ]);
 
   const groups = (scheduleView === "personal"
@@ -198,7 +202,7 @@ export default function App() {
         rows: visibleShowings.filter((showing) => showing.localDate === date),
       }))
     : timeClusters.map((name) => ({
-        name,
+        name: t(`time.${name}`),
         rows: visibleShowings.filter(
           (showing) => getTimeCluster(showing.localTime) === name,
         ),
@@ -222,6 +226,7 @@ export default function App() {
         onPanelOpenChange={setGroupPanelOpen}
       />
       <div className="site-shell">
+      <LanguageSwitch />
       <AccountControl
         lightBackground={notificationsOpen}
         notificationRefreshKey={notificationRefreshKey}
@@ -229,11 +234,11 @@ export default function App() {
         onOpenGroup={navigateTogether}
         onOpenNotifications={toggleNotifications}
       />
-      <nav aria-label="主要功能" className="primary-nav">
-        <button className={!activeChannelId && !notificationsOpen ? "active" : ""} onClick={() => navigateTogether(null)} type="button"><span>▤</span>排片</button>
-        <button className={activeChannelId || groupPanelOpen ? "active" : ""} onClick={openGroups} type="button"><span>◎</span>观影小组</button>
-        <button className={notificationsOpen ? "active" : ""} onClick={toggleNotifications} type="button"><span>♢</span>通知</button>
-        <button onClick={requestAccountDialog} type="button"><span>○</span>账号</button>
+      <nav aria-label={t("nav.primary")} className="primary-nav">
+        <button className={!activeChannelId && !notificationsOpen ? "active" : ""} onClick={() => navigateTogether(null)} type="button"><span>▤</span>{t("nav.schedule")}</button>
+        <button className={activeChannelId || groupPanelOpen ? "active" : ""} onClick={openGroups} type="button"><span>◎</span>{t("nav.filmFams")}</button>
+        <button className={notificationsOpen ? "active" : ""} onClick={toggleNotifications} type="button"><span>♢</span>{t("nav.notifications")}</button>
+        <button onClick={requestAccountDialog} type="button"><span>○</span>{t("nav.account")}</button>
       </nav>
       {activeChannelId ? <ChannelMainView channelId={activeChannelId} nowMs={nowMs} /> : notificationsOpen ? <NotificationsView
         onNotificationsChanged={() => setNotificationRefreshKey((current) => current + 1)}
@@ -243,24 +248,23 @@ export default function App() {
         <div className="eyebrow">
           NEW YORK · {formatWindowYears(viewWindow.start, viewWindow.end)}
         </div>
-        <h1>这周看什么？</h1>
-        <p className="hero-positioning">浏览纽约艺术影院未来七天排片，和朋友在观影小组里共同标记、分享具体场次。</p>
+        <h1>{t("hero.title")}</h1>
+        <p className="hero-positioning">{t("hero.positioning")}</p>
         <p className="hero-window">
-          {cinemas.length} 家纽约艺术影院 · {formatWindowZh(viewWindow.start, viewWindow.end)}
+          {t("hero.cinemas", { count: cinemas.length, window: formatWindow(viewWindow.start, viewWindow.end, locale) })}
         </p>
         <div className="hero-actions">
-          <button onClick={requestChannelCreateDialog} type="button">创建观影小组</button>
-          <button className="secondary" onClick={() => setGuideOpen(true)} type="button">如何使用</button>
+          <button onClick={requestChannelCreateDialog} type="button">{t("hero.createFam")}</button>
+          <button className="secondary" onClick={() => setGuideOpen(true)} type="button">{t("hero.guide")}</button>
         </div>
-        <small className="hero-privacy">只有受邀成员可以看到小组内容。</small>
+        <small className="hero-privacy">{t("hero.privacy")}</small>
         <div className="stats">
-          <b>{upcomingStats.showings}</b> 个场次 <span>·</span>{" "}
-          <b>{upcomingStats.films}</b> 部影片
+          {t("hero.stats", { showings: upcomingStats.showings, films: upcomingStats.films })}
         </div>
       </header>
 
       <div className="sticky">
-        {scheduleView === "all" && <nav className="dates" aria-label="日期">
+        {scheduleView === "all" && <nav className="dates" aria-label={t("schedule.dates")}>
           {dates.map((date) => (
             <button
               className={date === selectedDate ? "active" : ""}
@@ -290,9 +294,9 @@ export default function App() {
           <label className="search">
             ⌕
             <input
-              aria-label="搜索电影或影院"
+              aria-label={t("schedule.searchLabel")}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="搜索电影或影院"
+              placeholder={t("schedule.searchPlaceholder")}
               type="search"
               value={query}
             />
@@ -303,24 +307,24 @@ export default function App() {
       <section className="content">
         {!scheduleValidation.publishable && (
           <aside className="data-warning" role="status">
-            此排片恢复自旧版原型，尚未完成官方来源复核，当前不可直接发布。购票前请以影院官网为准。
+            {t("schedule.unverified")}
           </aside>
         )}
         {metadata.windowEnd < viewWindow.end && (
           <aside className="data-warning" role="status">
-            当前已核验排片仅覆盖到 {metadata.windowEnd}；之后日期正在等待下一次数据刷新。
+            {t("schedule.coverage", { date: formatCalendarDate(metadata.windowEnd, locale) })}
           </aside>
         )}
         <div className="summary">
-          <span>{scheduleView === "personal" ? "未来七天 · 我的想看" : dateLabels[selectedDate]}</span>
+          <span>{scheduleView === "personal" ? t("schedule.personalHeading") : dateLabels[selectedDate]}</span>
           <div className="summary-tools">
             {(watchMarks.signedIn || channelIdentity.identity) && <div className="view-switch">
-              <button className={scheduleView === "all" ? "active" : ""} onClick={() => setScheduleView("all")} type="button">全部排片</button>
-              <button className={scheduleView === "personal" ? "active" : ""} onClick={() => setScheduleView("personal")} type="button">我的想看</button>
+              <button className={scheduleView === "all" ? "active" : ""} onClick={() => setScheduleView("all")} type="button">{t("schedule.all")}</button>
+              <button className={scheduleView === "personal" ? "active" : ""} onClick={() => setScheduleView("personal")} type="button">{t("schedule.mine")}</button>
             </div>}
-            <b>{visibleShowings.length} 场{channelIdentity.identity
-              ? ` · 已标记 ${identityMarkedCount} 场`
-              : watchMarks.signedIn && ` · 已标记 ${watchMarks.markedCount} 场`}</b>
+            <b>{t("schedule.count", { count: visibleShowings.length })}{channelIdentity.identity
+              ? ` · ${t("schedule.markedCount", { count: identityMarkedCount })}`
+              : watchMarks.signedIn && ` · ${t("schedule.markedCount", { count: watchMarks.markedCount })}`}</b>
           </div>
         </div>
         {watchMarks.error && <aside className="mark-error" role="status">{watchMarks.error}</aside>}
@@ -374,6 +378,7 @@ export default function App() {
                     signedIn={Boolean(channelIdentity.identity) || watchMarks.signedIn}
                     channelOnly={Boolean(channelIdentity.identity)}
                     showing={showing}
+                    locale={locale}
                   />
                 ))}
               </div>
@@ -382,15 +387,15 @@ export default function App() {
         ) : (
           <div className="empty">
             {selectedDate > metadata.windowEnd
-              ? "该日期的官方排片尚未刷新。"
-              : "没有符合筛选条件的场次。"}
+              ? t("schedule.notRefreshed")
+              : t("schedule.noResults")}
           </div>
         )}
       </section>
 
       <footer>
         <p>
-          排片整理于 {metadata.refreshedLocalDate}（纽约时间）。影院可能临时调整或售罄，购票前请以官方页面为准。
+          {t("schedule.footer", { date: formatCalendarDate(metadata.refreshedLocalDate, locale) })}
         </p>
         <div>
           {cinemas.map((cinema) => (
@@ -431,9 +436,12 @@ type ShowingCardProps = {
   shareCount: number;
   mutualCount: number;
   channelOnly: boolean;
+  locale: "zh-CN" | "en-US";
 };
 
-function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, onEditShare, signedIn, shareCount, mutualCount, channelOnly }: ShowingCardProps) {
+function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, onEditShare, signedIn, shareCount, mutualCount, channelOnly, locale }: ShowingCardProps) {
+  const { t } = useI18n();
+  const description = locale === "zh-CN" ? film.descriptionZh : film.descriptionEn;
   return (
     <article
       className="card"
@@ -446,28 +454,26 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
           {cinema.name}
         </div>
         <h2>{film.displayTitle}</h2>
-        <p>
-          {film.descriptionZh ??
-            "本周特别放映；点击查看影院官方介绍与最新票务状态。"}
-        </p>
+        {description && <p>{description}</p>}
+        {showing.eventType === "other" && <small className="event-label">{t("event.special")}</small>}
         {showing.eventNote && <small>{showing.eventNote}</small>}
-        {mutualCount > 0 && <small className="mutual-interest">共同观影小组中有 {mutualCount} 人也想看</small>}
+        {mutualCount > 0 && <small className="mutual-interest">{t("showing.mutual", { count: mutualCount })}</small>}
         {marked && (channelOnly
-          ? <small className="mutual-interest">已同步到当前观影小组</small>
-          : <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? `已分享至 ${shareCount} 个观影小组 · 编辑` : "仅个人可见 · 设置分享"}</button>)}
+          ? <small className="mutual-interest">{t("showing.synced")}</small>
+          : <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? t("showing.shared", { count: shareCount }) : t("showing.privateShare")}</button>)}
         <div className="card-actions">
           <a href={showing.detailUrl} rel="noreferrer" target="_blank">
-            官方详情 / 购票 ↗
+            {t("showing.official")}
           </a>
           <button
             aria-pressed={marked}
             className={`watch-mark${marked ? " marked" : ""}`}
             disabled={markBusy}
             onClick={(event) => onToggleMark(event.currentTarget)}
-            title={channelOnly ? "此标记会直接同步到当前观影小组" : signedIn ? "此标记目前仅自己可见" : "登录后标记具体场次"}
+            title={channelOnly ? t("showing.channelOnlyTitle") : signedIn ? t("showing.privateTitle") : t("showing.signInTitle")}
             type="button"
           >
-            {markBusy ? "保存中…" : marked ? "✓ 想看" : "+ 想看"}
+            {markBusy ? t("showing.saving") : marked ? t("showing.wanted") : t("showing.want")}
           </button>
         </div>
       </div>

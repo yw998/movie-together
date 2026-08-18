@@ -21,7 +21,7 @@ describe("personal mark and channel share flow", () => {
   it("keeps dismissal separate from deletion and saves explicit channels", async () => {
     const dialog = await readFile(dialogPath, "utf8");
 
-    expect(dialog).toContain("关闭这里不会取消标记");
+    expect(dialog).toContain('t("share.savedCopy"');
     expect(dialog).toContain("onSaved(channelIds)");
     expect(dialog).not.toContain('.from("watch_marks").delete');
     expect(dialog).not.toContain("showModal");
@@ -33,8 +33,8 @@ describe("personal mark and channel share flow", () => {
 
     expect(app).toContain('scheduleView === "personal" || showing.localDate === selectedDate');
     expect(app).toContain('{scheduleView === "all" && <nav className="dates"');
-    expect(app).toContain('scheduleView === "personal" ? "未来七天 · 我的想看"');
-    expect(app).toContain("已分享至 ${shareCount} 个观影小组");
+    expect(app).toContain('scheduleView === "personal" ? t("schedule.personalHeading")');
+    expect(app).toContain('t("showing.shared", { count: shareCount })');
   });
 
   it("lets a member add their own mark from a shared Channel card", async () => {
@@ -60,8 +60,8 @@ describe("personal mark and channel share flow", () => {
 
     expect(hook).toContain("const removeFromChannel");
     expect(hook).toContain("existingChannelId !== channelId");
-    expect(channelView).toContain("仅从这个观影小组取消");
-    expect(channelView).toContain("也会从所有观影小组移除");
+    expect(channelView).toContain('t("fam.removeHere")');
+    expect(channelView).toContain('t("fam.removeEverywhere")');
     expect(channelView).toContain("watchMarks.toggle(activity.showingId)");
   });
 
@@ -72,6 +72,6 @@ describe("personal mark and channel share flow", () => {
     expect(hook).toContain("const peopleByShowing = new Map<string, Set<string>>()");
     expect(hook).toContain("mark.user_id === user.id");
     expect(hook).toContain("people.add(mark.user_id)");
-    expect(app).toContain("共同观影小组中有 {mutualCount} 人也想看");
+    expect(app).toContain('t("showing.mutual", { count: mutualCount })');
   });
 });

@@ -26,19 +26,6 @@ function dateText(value: unknown): string {
 function instantText(value: unknown): string {
   return value instanceof Date ? value.toISOString() : new Date(String(value)).toISOString();
 }
-function labels(start: string, end: string): Record<string, string> {
-  const result: Record<string, string> = {};
-  const weekdays = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
-  const cursor = new Date(`${start}T12:00:00Z`);
-  const last = new Date(`${end}T12:00:00Z`);
-  while (cursor <= last) {
-    const date = cursor.toISOString().slice(0, 10);
-    result[date] = `${weekdays[cursor.getUTCDay()]} ${cursor.getUTCMonth() + 1}/${cursor.getUTCDate()}`;
-    cursor.setUTCDate(cursor.getUTCDate() + 1);
-  }
-  return result;
-}
-
 const sql = createDatabaseClient();
 try {
   const rollingStart = anchorLocalDate!;
@@ -75,7 +62,7 @@ try {
   const films: Film[] = filmRows.map((row) => ({
     id: row.id, canonicalTitle: row.canonical_title, displayTitle: row.display_title,
     year: row.release_year, director: row.director, runtimeMinutes: row.runtime_minutes,
-    descriptionZh: row.description_zh, descriptionSource: row.description_source,
+    descriptionZh: row.description_zh, descriptionEn: row.description_en, descriptionSource: row.description_source,
   }));
   const showings: Showing[] = showingRows.map((row) => {
     const localDate = dateText(row.local_date);
@@ -100,7 +87,6 @@ try {
     cinemas,
     films,
     showings,
-    dateLabels: labels(rollingStart, rollingEnd),
   };
   const validation = validateScheduleData(schedule, { staleAfterHours: Number.POSITIVE_INFINITY });
   if (validation.errors > 0) {

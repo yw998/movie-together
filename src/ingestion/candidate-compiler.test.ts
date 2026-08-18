@@ -10,7 +10,7 @@ import { prepareApprovedSchedule } from "./promotion";
 
 const film: Film = {
   id: "fixture-film", canonicalTitle: "Fixture Film", displayTitle: "Fixture Film",
-  year: null, director: null, runtimeMinutes: null, descriptionZh: null, descriptionSource: null,
+  year: null, director: null, runtimeMinutes: null, descriptionZh: null, descriptionEn: null, descriptionSource: null,
 };
 const showing: Showing = {
   id: "film-forum-1", cinemaId: "film-forum", filmId: film.id,
@@ -48,9 +48,7 @@ describe("weekly candidate compiler", () => {
     expect(result.schedule.metadata).toMatchObject({
       windowStart: "2026-08-10", windowEnd: "2026-08-16", refreshedLocalDate: "2026-08-10",
     });
-    expect(Object.values(result.schedule.dateLabels)).toEqual([
-      "周一 8/10", "周二 8/11", "周三 8/12", "周四 8/13", "周五 8/14", "周六 8/15", "周日 8/16",
-    ]);
+    expect(result.schedule).not.toHaveProperty("dateLabels");
     expect(result.schedule.showings).toHaveLength(1);
   });
 

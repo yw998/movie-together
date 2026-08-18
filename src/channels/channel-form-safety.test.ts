@@ -18,9 +18,9 @@ describe("async channel forms", () => {
     const styles = await readFile(stylesPath, "utf8");
 
     expect(source).toContain('className="invite-copy-notice"');
-    expect(source).toContain('showInviteNotice(error ? "没有找到这个 Friend ID');
-    expect(source).toContain('showInviteNotice("无法发送邮箱邀请。")');
-    expect(source).toContain('showInviteNotice("无法生成邀请链接。")');
+    expect(source).toContain('copy("没有找到这个 Friend ID');
+    expect(source).toContain('showInviteNotice(copy("无法发送邮箱邀请。"');
+    expect(source).toContain('showInviteNotice(copy("无法生成邀请链接。"');
     expect(source).toContain("{inviteNotice.text}");
     expect(source).toContain("}, 3000)");
     expect(source).toContain("window.clearTimeout(inviteCopyTimerRef.current)");
@@ -42,8 +42,8 @@ describe("async channel forms", () => {
     const source = await readFile(componentPath, "utf8");
     const styles = await readFile(stylesPath, "utf8");
 
-    expect(source).toContain('showDeleteNotice(`已删除「${selectedChannel.name}」。`)');
-    expect(source).toContain('showDeleteNotice(`已退出「${selectedChannel.name}」。`)');
+    expect(source).toContain('showDeleteNotice(copy(`已删除「${selectedChannel.name}」。`');
+    expect(source).toContain('showDeleteNotice(copy(`已退出「${selectedChannel.name}」。`');
     expect(source).toContain('className="channel-delete-toast"');
     expect(source).toContain("}, 3000)");
     expect(styles).toContain("top: 50%; left: 50%");
@@ -55,7 +55,7 @@ describe("async channel forms", () => {
 
     expect(source).toContain('rpc("leave_channel"');
     expect(source).toContain("!owner && <button");
-    expect(source).toContain("退出观影小组</button>");
+    expect(source).toContain('copy("退出观影小组", "Leave Film Fam")');
     expect(source).toContain("个人想看仍会保留");
   });
 });
