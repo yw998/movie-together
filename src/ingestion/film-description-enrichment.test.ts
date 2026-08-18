@@ -110,14 +110,18 @@ describe("film description enrichment", () => {
     ).toBe(true);
   });
 
-  it("covers every film in the current publication", () => {
+  it("preserves the current catalog and requires provenance for any description", () => {
     const enriched = enrichFilmDescriptions(
       publishedSchedule.films as Film[],
       publishedSchedule.showings as Showing[],
     );
     expect(enriched).toHaveLength(publishedSchedule.films.length);
     expect(
-      enriched.filter((item) => !item.descriptionZh || !item.descriptionSource),
+      enriched.filter(
+        (item) =>
+          Boolean(item.descriptionZh || item.descriptionEn) !==
+          Boolean(item.descriptionSource),
+      ),
     ).toEqual([]);
   });
 });

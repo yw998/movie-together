@@ -81,16 +81,8 @@ jobs:
           npm run review:schedule -- "$RUN_DIR/previous-review-bundle.json" "$RUN_DIR/review-bundle.json" "$RUN_DIR/review-report.json" "$RUN_DIR/review-report.md"
           if [ "$DRY_RUN" != "true" ]; then
             npm run auto-approve:schedule -- "$RUN_DIR/review-report.json" "$RUN_DIR/approval.json"
-            npm run db:import -- "$RUN_DIR/candidate-enriched.json" "$RUN_DIR/compiled-schedule.json" "$RUN_DIR/review-bundle.json" "$RUN_DIR/overrides.json" "$RUN_DIR/review-report.json" "$RUN_DIR/approval.json"
           fi
-
-      - name: Export today plus six days
-        if: ${{ env.DRY_RUN != 'true' }}
-        run: npm run db:export -- src/data/published-schedule.json "${{ steps.context.outputs.anchor }}"
-
-      - name: Verify rolling database round trip
-        if: ${{ env.DRY_RUN != 'true' }}
-        run: npm run db:verify-rolling -- src/data/published-schedule.json "${{ steps.context.outputs.anchor }}" "${{ steps.context.outputs.run_dir }}/compiled-schedule.json"
+          cp "$RUN_DIR/compiled-schedule.json" src/data/published-schedule.json
 
       - name: Verify dry-run rolling candidate
         if: ${{ env.DRY_RUN == 'true' }}
@@ -101,6 +93,18 @@ jobs:
 
       - name: Build production site
         run: npm run build
+
+      - name: Import approved rolling window
+        if: ${{ env.DRY_RUN != 'true' }}
+        run: npm run db:import -- "${{ steps.context.outputs.run_dir }}/candidate-enriched.json" "${{ steps.context.outputs.run_dir }}/compiled-schedule.json" "${{ steps.context.outputs.run_dir }}/review-bundle.json" "${{ steps.context.outputs.run_dir }}/overrides.json" "${{ steps.context.outputs.run_dir }}/review-report.json" "${{ steps.context.outputs.run_dir }}/approval.json"
+
+      - name: Export today plus six days
+        if: ${{ env.DRY_RUN != 'true' }}
+        run: npm run db:export -- src/data/published-schedule.json "${{ steps.context.outputs.anchor }}"
+
+      - name: Verify rolling database round trip
+        if: ${{ env.DRY_RUN != 'true' }}
+        run: npm run db:verify-rolling -- src/data/published-schedule.json "${{ steps.context.outputs.anchor }}" "${{ steps.context.outputs.run_dir }}/compiled-schedule.json"
 
       - name: Commit validated rolling public data
         if: ${{ env.DRY_RUN != 'true' }}
