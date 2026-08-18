@@ -6,6 +6,9 @@ describe("description-only publication", () => {
     const importer = readFileSync("scripts/db/import-descriptions.ts", "utf8");
     expect(importer).toContain("update films");
     expect(importer).toContain("description_en");
+    expect(importer).toContain("${film.descriptionZh}::text");
+    expect(importer).toContain("${descriptionEn}::text is null");
+    expect(importer).toContain("${film.descriptionSource}::text");
     expect(importer).not.toMatch(/update\s+showings/i);
     expect(importer).not.toMatch(/insert\s+into\s+showings/i);
     expect(importer).not.toMatch(/published_weeks/);
