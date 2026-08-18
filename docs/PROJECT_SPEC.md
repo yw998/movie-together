@@ -65,6 +65,14 @@ English control remains behind `VITE_ENABLE_ENGLISH_UI` in production until the
 bilingual release checklist is complete. Vercel Preview deployments enable it
 automatically for acceptance testing.
 
+Bilingual description backfill is operationally independent from schedule
+publication. It may update only `films.description_zh`, `films.description_en`,
+`films.description_source`, and the matching description fields in the public
+JSON. It must not create, remove, or alter cinema or showing facts. The backfill
+is manual so unresolved films do not consume AI requests every day. Manual runs
+default to review-only artifact generation; database and public JSON writes
+require the explicit `publish=true` input.
+
 Film titles may retain their original-language titles.
 
 Technical identifiers, source metadata, and internal application data do not need to be translated.

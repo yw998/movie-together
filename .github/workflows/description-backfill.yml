@@ -1,0 +1,88 @@
+name: Bilingual description backfill
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Write approved descriptions to the database and public JSON"
+        required: true
+        default: false
+        type: boolean
+
+concurrency:
+  group: rolling-schedule-publication
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_DESCRIPTION_MODEL: ${{ vars.OPENAI_DESCRIPTION_MODEL }}
+      PUBLISH: ${{ inputs.publish }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Apply database migrations
+        run: npm run db:migrate
+
+      - name: Export latest approved candidate
+        run: |
+          mkdir -p artifacts/description-backfill
+          npm run db:export-artifact -- candidate artifacts/description-backfill/candidate.json
+
+      - name: Generate only missing localized descriptions
+        run: npm run enrich:descriptions -- artifacts/description-backfill/candidate.json artifacts/description-backfill/candidate-enriched.json
+
+      - name: Update only database description columns
+        if: ${{ env.PUBLISH == 'true' }}
+        run: npm run db:import-descriptions -- artifacts/description-backfill/candidate-enriched.json
+
+      - name: Synchronize only descriptions into public JSON
+        if: ${{ env.PUBLISH == 'true' }}
+        run: npm run db:sync-published-descriptions -- src/data/published-schedule.json
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build production site
+        run: npm run build
+
+      - name: Commit validated public descriptions
+        if: ${{ env.PUBLISH == 'true' }}
+        shell: bash
+        run: |
+          if git diff --quiet -- src/data/published-schedule.json; then
+            echo "Published descriptions are unchanged."
+            exit 0
+          fi
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
+          git add src/data/published-schedule.json
+          git commit -m "data: synchronize bilingual descriptions"
+          git push
+
+      - name: Upload private description review artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: description-backfill-${{ github.run_id }}
+          path: artifacts/description-backfill
+          if-no-files-found: warn
+          retention-days: 30

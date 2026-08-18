@@ -5,6 +5,7 @@ import {
   enrichWeeklyBundleDescriptions,
   generateBilingualDescriptions,
   parseManualFilmDescriptions,
+  validEnglishDescription,
   validateManualFilmDescriptionTargets,
   type CachedFilmDescription,
 } from "../src/ingestion/ai-description-enrichment";
@@ -40,7 +41,7 @@ try {
     {
       canonicalTitle: row.canonical_title,
       descriptionZh: row.description_zh,
-      descriptionEn: row.description_en,
+      descriptionEn: row.description_en && validEnglishDescription(row.description_en) ? row.description_en : null,
       descriptionSource: row.description_source,
     },
   ]));
