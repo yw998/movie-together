@@ -58,6 +58,23 @@ describe("ingestion review report", () => {
     expect(report.cinemas[0].concerns.join(" ")).toMatch(/partial.*Parser warning.*Duplicate.*25%/);
   });
 
+  it("reports an approved whole-cinema fallback without blocking clean cinemas", () => {
+    const previous = bundle(adapter([showing("kept")]));
+    const fallback = adapter([showing("kept")], "partial");
+    fallback.publicationFallback = {
+      mode: "previous_approved",
+      sourceGeneratedAt: previous.generatedAt,
+    };
+    const report = createReviewReport(previous, bundle(fallback), "f".repeat(64));
+    expect(report.publishable).toBe(true);
+    expect(report.cinemas[0]).toMatchObject({
+      status: "partial",
+      fallback: { mode: "previous_approved" },
+      concerns: [],
+    });
+    expect(formatReviewReport(report)).toContain("FALLBACK: using the previous approved cinema facts");
+  });
+
   it("does not treat already-finished showings disappearing as an upcoming feed drop", () => {
     const finished = ["1", "2", "3", "4"].map((id) =>
       showing(id, { startsAt: `2026-08-10T1${id}:00:00-04:00`, localDate: "2026-08-10" }),

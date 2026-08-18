@@ -79,6 +79,18 @@ describe("weekly candidate compiler", () => {
     expect(() => compileWeeklyCandidate(bundle(), wrongWeek)).toThrow("exactly match");
   });
 
+  it("allows an unclean adapter only when its whole payload is an approved fallback", () => {
+    const reconciled = bundle();
+    reconciled.adapters[0].snapshot.result = "partial";
+    reconciled.adapters[0].warnings = ["current parser changed"];
+    reconciled.adapters[0].publicationFallback = {
+      mode: "previous_approved",
+      sourceGeneratedAt: "2026-08-10T13:00:00Z",
+    };
+    expect(() => compileWeeklyCandidate(reconciled, undefined, { requireCleanSources: true }))
+      .not.toThrow();
+  });
+
   it("promotes only the exact compiled facts covered by approval", async () => {
     const source = bundle();
     const compiled = compileWeeklyCandidate(source, undefined, { requireCleanSources: true });

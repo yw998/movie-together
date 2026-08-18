@@ -1,9 +1,9 @@
 import { writeFile } from "node:fs/promises";
 import { fetchWeeklyIngestionBundle } from "../src/ingestion/weekly-ingestion";
 
-const [, , anchorLocalDate, outputPath] = process.argv;
+const [, , anchorLocalDate, outputPath, continueFlag] = process.argv;
 if (!/^\d{4}-\d{2}-\d{2}$/.test(anchorLocalDate ?? "") || !outputPath) {
-  console.error("Usage: npm run ingest:week -- YYYY-MM-DD candidate.json");
+  console.error("Usage: npm run ingest:week -- YYYY-MM-DD candidate.json [--continue-on-feed-failure]");
   process.exit(2);
 }
 try {
@@ -15,7 +15,7 @@ try {
     `${bundle.adapters.length - failed.length}/${bundle.adapters.length} feeds succeeded.`,
   );
   console.log("Run review:schedule next. This command never publishes.");
-  if (failed.length > 0) process.exitCode = 1;
+  if (failed.length > 0 && continueFlag !== "--continue-on-feed-failure") process.exitCode = 1;
 } catch (error) {
   console.error(error instanceof Error ? error.message : String(error));
   process.exitCode = 1;

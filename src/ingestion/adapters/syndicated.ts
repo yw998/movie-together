@@ -248,6 +248,8 @@ function openCaptionFacts(
   card: FilmCard,
   events: readonly OfficialEvent[],
   warnings: string[],
+  windowStart: string,
+  windowEnd: string,
 ): Map<string, string> {
   const facts = new Map<string, string>();
   if (!/open captions?/i.test(card.description)) return facts;
@@ -262,6 +264,25 @@ function openCaptionFacts(
     return facts;
   }
   for (const match of matches) {
+    const month = Number(match[1]);
+    const day = Number(match[2]);
+    const years = new Set([Number(windowStart.slice(0, 4)), Number(windowEnd.slice(0, 4))]);
+    const possibleDates = [...years]
+      .map((year) => {
+        const value = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+        const parsed = new Date(`${value}T12:00:00Z`);
+        return parsed.getUTCFullYear() === year && parsed.getUTCMonth() + 1 === month && parsed.getUTCDate() === day
+          ? value
+          : null;
+      })
+      .filter((value): value is string => value !== null);
+    if (possibleDates.length === 0) {
+      warnings.push(`${card.filmId} has an open-caption note with an invalid date.`);
+      continue;
+    }
+    if (!possibleDates.some((value) => value >= windowStart && value <= windowEnd)) {
+      continue;
+    }
     let hour = Number(match[3]) % 12;
     if (match[5].toLocaleLowerCase() === "pm") hour += 12;
     const monthDay = `${String(Number(match[1])).padStart(2, "0")}-${String(Number(match[2])).padStart(2, "0")}`;
@@ -334,7 +355,9 @@ export function parseSyndicatedHtml(
   });
   const captionFacts = new Map<string, string>();
   for (const card of cards.values()) {
-    for (const [sessionId, note] of openCaptionFacts(card, events, warnings)) {
+    for (const [sessionId, note] of openCaptionFacts(
+      card, events, warnings, options.windowStart, options.windowEnd,
+    )) {
       captionFacts.set(sessionId, note);
     }
   }

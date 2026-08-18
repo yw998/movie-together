@@ -82,7 +82,8 @@ jobs:
 
             npm run db:export-artifact -- review_bundle "$WEEK_DIR/previous-review-bundle.json" "$WINDOW_START" --allow-empty
             npm run automation:create-override -- "$WEEK_ANCHOR" "$WEEK_DIR/overrides.json"
-            npm run ingest:week -- "$WEEK_ANCHOR" "$WEEK_DIR/candidate.json"
+            npm run ingest:week -- "$WEEK_ANCHOR" "$WEEK_DIR/raw-candidate.json" --continue-on-feed-failure
+            npm run reconcile:candidate -- "$WEEK_DIR/raw-candidate.json" "$WEEK_DIR/previous-review-bundle.json" "$WEEK_DIR/candidate.json"
             npm run enrich:descriptions -- "$WEEK_DIR/candidate.json" "$WEEK_DIR/candidate-enriched.json"
             npm run compile:candidate -- "$WEEK_DIR/candidate-enriched.json" "$WEEK_DIR/compiled-schedule.json" "$WEEK_DIR/review-bundle.json" "$WEEK_DIR/overrides.json"
             npm run review:schedule -- "$WEEK_DIR/previous-review-bundle.json" "$WEEK_DIR/review-bundle.json" "$WEEK_DIR/review-report.json" "$WEEK_DIR/review-report.md"
