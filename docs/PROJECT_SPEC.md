@@ -61,8 +61,9 @@ The interface uses locale-neutral URLs and a global `中文 / EN` control. Langu
 selection precedence is: an explicit device choice, the signed-in account
 preference, the browser language, then English. Switching language preserves the
 current page, filters, dialogs, scroll position, and application state. The
-English control remains behind `VITE_ENABLE_ENGLISH_UI` until the bilingual
-release checklist is complete.
+English control remains behind `VITE_ENABLE_ENGLISH_UI` in production until the
+bilingual release checklist is complete. Vercel Preview deployments enable it
+automatically for acceptance testing.
 
 Film titles may retain their original-language titles.
 

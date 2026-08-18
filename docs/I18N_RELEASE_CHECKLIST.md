@@ -1,6 +1,7 @@
 # English interface release checklist
 
-The English interface stays hidden unless `VITE_ENABLE_ENGLISH_UI=true`.
+The English interface stays hidden in production unless `VITE_ENABLE_ENGLISH_UI=true`.
+Vercel Preview deployments enable it automatically for acceptance testing.
 Before enabling it in production, review these flows once in both `zh-CN` and
 `en-US`, on mobile and desktop:
 

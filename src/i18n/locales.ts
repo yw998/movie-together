@@ -4,7 +4,7 @@ export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = "en-US";
 export const LOCALE_STORAGE_KEY = "nyc-movie-together.locale";
-export const ENGLISH_UI_ENABLED = import.meta.env.VITE_ENABLE_ENGLISH_UI === "true";
+export const ENGLISH_UI_ENABLED = __VERCEL_PREVIEW__ || import.meta.env.VITE_ENABLE_ENGLISH_UI === "true";
 
 export function isLocale(value: unknown): value is Locale {
   return typeof value === "string" && SUPPORTED_LOCALES.includes(value as Locale);
