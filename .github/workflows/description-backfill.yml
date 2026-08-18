@@ -25,6 +25,7 @@ jobs:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_DESCRIPTION_MODEL: ${{ vars.OPENAI_DESCRIPTION_MODEL }}
       PUBLISH: ${{ inputs.publish }}
+      REQUIRE_DESCRIPTION_GENERATION_SUCCESS: "true"
 
     steps:
       - name: Check out repository

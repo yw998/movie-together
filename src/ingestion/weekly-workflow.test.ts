@@ -11,6 +11,10 @@ describe("hosted schedule dry run", () => {
     );
   });
 
+  it("reuses cached descriptions without making daily AI generation requests", () => {
+    expect(workflow).toContain("DESCRIPTION_GENERATION_MODE: cache-only");
+  });
+
   it("guards every production mutation behind the non-dry-run condition", () => {
     for (const step of [
       "Apply database migrations",

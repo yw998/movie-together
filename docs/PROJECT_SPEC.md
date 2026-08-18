@@ -337,6 +337,13 @@ missing language. Description evidence, generation, or validation failure never
 blocks publication of otherwise valid schedule facts. The missing localized
 description is hidden rather than replaced with copy from another language.
 
+Manual AI generation uses bounded film batches with exact requested identifiers.
+A malformed batch is retried one film at a time so one bad response cannot discard
+unrelated valid descriptions. The review artifact reports attempted, accepted,
+review-needed, retried, and technical-failure counts. A total technical generation
+failure stops the manual backfill before import; daily schedule publication remains
+cache-only and is never blocked by description generation.
+
 Approved descriptions should be cached and reused rather than regenerated every schedule refresh.
 
 When automatic description enrichment requests review, an editor may add a

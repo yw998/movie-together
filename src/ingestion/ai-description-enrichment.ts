@@ -35,6 +35,19 @@ export type DescriptionDecision = {
   reason: string | null;
 };
 
+export type DescriptionGenerationBatchSummary = {
+  decisions: DescriptionDecision[];
+  attemptedFilms: number;
+  acceptedFilms: number;
+  acceptedChinese: number;
+  acceptedEnglish: number;
+  needsReviewFilms: number;
+  technicalFailureFilms: number;
+  retriedFilms: number;
+  retryBatches: { filmIds: string[]; error: string }[];
+  failures: { filmId: string; error: string }[];
+};
+
 type FetchLike = (
   input: string | URL | Request,
   init?: RequestInit,
@@ -399,7 +412,7 @@ export async function generateBilingualDescriptions(
                   type: "object",
                   additionalProperties: false,
                   properties: {
-                    filmId: { type: "string" },
+                    filmId: { type: "string", enum: [...new Set(evidence.map((item) => item.filmId))] },
                     status: { type: "string", enum: ["ok", "needs_review"] },
                     descriptionZh: { type: ["string", "null"] },
                     descriptionEn: { type: ["string", "null"] },
@@ -407,6 +420,8 @@ export async function generateBilingualDescriptions(
                   },
                   required: ["filmId", "status", "descriptionZh", "descriptionEn", "reason"],
                 },
+                minItems: evidence.length,
+                maxItems: evidence.length,
               },
             },
             required: ["results"],
@@ -479,6 +494,78 @@ export async function generateBilingualDescriptions(
   return decisions;
 }
 
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function validateBatchDecisions(
+  evidence: readonly DescriptionEvidence[],
+  decisions: readonly DescriptionDecision[],
+): void {
+  const expectedIds = new Set(evidence.map((item) => item.filmId));
+  const seen = new Set<string>();
+  for (const decision of decisions) {
+    if (!expectedIds.has(decision.filmId) || seen.has(decision.filmId)) {
+      throw new Error(`Description batch returned an unexpected or duplicate film ID: ${decision.filmId}.`);
+    }
+    seen.add(decision.filmId);
+  }
+  if (seen.size !== expectedIds.size) {
+    const missing = [...expectedIds].filter((id) => !seen.has(id));
+    throw new Error(`Description batch omitted film(s): ${missing.join(", ")}.`);
+  }
+}
+
+export async function generateBilingualDescriptionsInBatches(
+  evidence: readonly DescriptionEvidence[],
+  generate: (batch: readonly DescriptionEvidence[]) => Promise<DescriptionDecision[]>,
+  options: { batchSize?: number } = {},
+): Promise<DescriptionGenerationBatchSummary> {
+  const batchSize = options.batchSize ?? 10;
+  if (!Number.isInteger(batchSize) || batchSize < 1) {
+    throw new Error("Description generation batch size must be a positive integer.");
+  }
+
+  const decisions: DescriptionDecision[] = [];
+  const retryBatches: DescriptionGenerationBatchSummary["retryBatches"] = [];
+  const failures: DescriptionGenerationBatchSummary["failures"] = [];
+  let retriedFilms = 0;
+
+  for (let index = 0; index < evidence.length; index += batchSize) {
+    const batch = evidence.slice(index, index + batchSize);
+    try {
+      const batchDecisions = await generate(batch);
+      validateBatchDecisions(batch, batchDecisions);
+      decisions.push(...batchDecisions);
+    } catch (error) {
+      retryBatches.push({ filmIds: batch.map((item) => item.filmId), error: errorMessage(error) });
+      retriedFilms += batch.length;
+      for (const item of batch) {
+        try {
+          const itemDecisions = await generate([item]);
+          validateBatchDecisions([item], itemDecisions);
+          decisions.push(...itemDecisions);
+        } catch (itemError) {
+          failures.push({ filmId: item.filmId, error: errorMessage(itemError) });
+        }
+      }
+    }
+  }
+
+  return {
+    decisions,
+    attemptedFilms: evidence.length,
+    acceptedFilms: decisions.filter((item) => item.descriptionZh || item.descriptionEn).length,
+    acceptedChinese: decisions.filter((item) => item.descriptionZh).length,
+    acceptedEnglish: decisions.filter((item) => item.descriptionEn).length,
+    needsReviewFilms: decisions.filter((item) => item.status === "needs_review").length,
+    technicalFailureFilms: failures.length,
+    retriedFilms,
+    retryBatches,
+    failures,
+  };
+}
+
 /** @deprecated Kept for scripts and integrations while they adopt the bilingual name. */
 export const generateChineseDescriptions = generateBilingualDescriptions;
 
@@ -546,6 +633,17 @@ export async function enrichWeeklyBundleDescriptions(
 
   const missing = enriched.filter((film) => !film.descriptionZh || !film.descriptionEn || !film.descriptionSource);
   if (missing.length > 0) {
+    if (!options.generate) {
+      console.warn("Description generation is disabled; cached and built-in descriptions were preserved.");
+      const enrichedById = new Map(enriched.map((item) => [item.id, item]));
+      return {
+        ...bundle,
+        adapters: bundle.adapters.map((adapter) => ({
+          ...adapter,
+          films: adapter.films.map((film) => enrichedById.get(film.id) ?? film),
+        })),
+      };
+    }
     const sourceByFilmId = new Map<string, string>();
     showings.forEach((showing) => {
       const detailUrl = officialDetailUrl(showing);
@@ -574,8 +672,8 @@ export async function enrichWeeklyBundleDescriptions(
       }
       if (!options.fetchEvidence && index < missing.length - 1) await wait(250);
     }
-    if (!options.generate || evidence.length === 0) {
-      console.warn("Description generator is not configured or no usable evidence was found; schedule facts remain publishable.");
+    if (evidence.length === 0) {
+      console.warn("No usable description evidence was found; schedule facts remain publishable.");
       const enrichedById = new Map(enriched.map((item) => [item.id, item]));
       return {
         ...bundle,

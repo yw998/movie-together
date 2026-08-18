@@ -4,6 +4,7 @@ import {
   enrichWeeklyBundleDescriptions,
   extractDescriptionEvidence,
   fetchOfficialDescriptionEvidence,
+  generateBilingualDescriptionsInBatches,
   generateChineseDescriptions,
   parseManualFilmDescriptions,
   validEnglishDescription,
@@ -182,6 +183,18 @@ describe("automatic bilingual description enrichment", () => {
     expect(generate).not.toHaveBeenCalled();
   });
 
+  it("keeps daily cache-only enrichment from fetching evidence or calling AI", async () => {
+    const fetchEvidence = vi.fn();
+    const result = await enrichWeeklyBundleDescriptions(bundle(), new Map(), { fetchEvidence });
+
+    expect(result.adapters[0].films[0]).toMatchObject({
+      descriptionZh: null,
+      descriptionEn: null,
+      descriptionSource: null,
+    });
+    expect(fetchEvidence).not.toHaveBeenCalled();
+  });
+
   it("generates only a missing description and binds it to official evidence", async () => {
     const sourceUrl = "https://my.filmforum.org/a-brand-new-film";
     const result = await enrichWeeklyBundleDescriptions(bundle(), new Map(), {
@@ -276,9 +289,14 @@ describe("automatic bilingual description enrichment", () => {
     const fetcher = vi.fn(async (_input: string | URL | Request, init?: RequestInit) => {
       const request = JSON.parse(String(init?.body)) as {
         instructions: string;
-        text: { format: { strict: boolean } };
+        text: { format: { strict: boolean; schema: { properties: { results: { minItems: number; maxItems: number; items: { properties: { filmId: { enum: string[] } } } } } } } };
       };
       expect(request.text.format.strict).toBe(true);
+      expect(request.text.format.schema.properties.results).toMatchObject({
+        minItems: 1,
+        maxItems: 1,
+      });
+      expect(request.text.format.schema.properties.results.items.properties.filmId.enum).toEqual(["new-film"]);
       expect(request.instructions).toContain("bilingual");
       expect(request.instructions).toContain("Chinese");
       expect(request.instructions).toContain("English");
@@ -300,6 +318,63 @@ describe("automatic bilingual description enrichment", () => {
     });
     await expect(generateChineseDescriptions(evidence, "test-key", { fetcher }))
       .resolves.toEqual([expect.objectContaining({ filmId: "new-film", status: "ok" })]);
+  });
+
+  it("isolates a malformed batch and preserves successful film decisions", async () => {
+    const evidence = ["film-a", "film-b", "film-c"].map((filmId) => ({
+      filmId,
+      title: filmId,
+      sourceUrl: `https://cinema.example/${filmId}`,
+      evidenceText: "Official synopsis evidence long enough for a grounded audience-facing description.",
+      requestedLanguages: ["en-US" as const],
+    }));
+    const generate = vi.fn(async (batch: readonly DescriptionEvidence[]) => {
+      if (batch.length > 1) throw new Error("unexpected film ID");
+      if (batch[0].filmId === "film-b") throw new Error("malformed single-film response");
+      return [{
+        filmId: batch[0].filmId,
+        status: "ok" as const,
+        descriptionZh: null,
+        descriptionEn: `An official story description for ${batch[0].title} and its central conflict.`,
+        reason: null,
+      }];
+    });
+
+    const summary = await generateBilingualDescriptionsInBatches(evidence, generate, { batchSize: 2 });
+
+    expect(summary.decisions.map((item) => item.filmId)).toEqual(["film-a", "film-c"]);
+    expect(summary).toMatchObject({
+      attemptedFilms: 3,
+      acceptedFilms: 2,
+      acceptedEnglish: 2,
+      technicalFailureFilms: 1,
+      retriedFilms: 2,
+    });
+    expect(summary.failures).toEqual([
+      expect.objectContaining({ filmId: "film-b", error: "malformed single-film response" }),
+    ]);
+  });
+
+  it("reports a total technical generation failure without fabricating decisions", async () => {
+    const evidence = ["film-a", "film-b"].map((filmId) => ({
+      filmId,
+      title: filmId,
+      sourceUrl: `https://cinema.example/${filmId}`,
+      evidenceText: "Official synopsis evidence long enough for a grounded audience-facing description.",
+    }));
+    const summary = await generateBilingualDescriptionsInBatches(
+      evidence,
+      async () => { throw new Error("invalid structured output"); },
+      { batchSize: 2 },
+    );
+
+    expect(summary.decisions).toEqual([]);
+    expect(summary).toMatchObject({
+      attemptedFilms: 2,
+      acceptedFilms: 0,
+      technicalFailureFilms: 2,
+      retriedFilms: 2,
+    });
   });
 
   it("validates version-controlled manual description overrides", () => {

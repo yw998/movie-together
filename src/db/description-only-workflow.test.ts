@@ -19,7 +19,13 @@ describe("description-only publication", () => {
     expect(workflow).toContain("workflow_dispatch:");
     expect(workflow).toContain("default: false");
     expect(workflow).toContain("env.PUBLISH == 'true'");
+    expect(workflow).toContain('REQUIRE_DESCRIPTION_GENERATION_SUCCESS: "true"');
     expect(workflow).toContain("git add src/data/published-schedule.json");
     expect(workflow).not.toContain("schedule:");
+
+    const enrichment = readFileSync("scripts/enrich-descriptions.ts", "utf8");
+    expect(enrichment).toContain("generateBilingualDescriptionsInBatches");
+    expect(enrichment).toContain("technicalFailureFilms === generationSummary.attemptedFilms");
+    expect(enrichment).toContain(".report.json");
   });
 });
