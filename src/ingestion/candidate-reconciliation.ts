@@ -1,6 +1,7 @@
+import { datesForWindow } from "../lib/rolling-window";
 import type { ReviewBundle } from "./review-report";
 import type { AdapterResult } from "./types";
-import type { WeeklyIngestionBundle } from "./weekly-ingestion";
+import type { ScheduleIngestionBundle } from "./weekly-ingestion";
 
 function adapterMap(adapters: readonly AdapterResult[], label: string): Map<string, AdapterResult> {
   const result = new Map<string, AdapterResult>();
@@ -13,11 +14,7 @@ function adapterMap(adapters: readonly AdapterResult[], label: string): Map<stri
   return result;
 }
 
-function validateFallbackFacts(
-  adapter: AdapterResult,
-  windowStart: string,
-  windowEnd: string,
-): void {
+function validatePreviousFacts(adapter: AdapterResult, windowStart: string, windowEnd: string): void {
   for (const showing of adapter.showings) {
     if (showing.cinemaId !== adapter.cinemaId) {
       throw new Error(`Previous approved ${adapter.cinemaId} data contains a showing for ${showing.cinemaId}.`);
@@ -29,39 +26,65 @@ function validateFallbackFacts(
 }
 
 /**
- * Keeps every clean current feed and replaces an unclean cinema atomically with
- * that cinema's facts from the exact previously approved week. It never mixes
- * a partial current response with approved facts.
+ * Keeps clean current cinema feeds. An unclean feed is discarded atomically,
+ * then rebuilt only from dates covered by the previous approved window. Dates
+ * with no approved coverage are explicitly omitted instead of blocking other
+ * cinemas or admitting partial current facts.
  */
-export function reconcileWeeklyCandidate(
-  current: WeeklyIngestionBundle,
+export function reconcileRollingCandidate(
+  current: ScheduleIngestionBundle,
   previousApproved: ReviewBundle,
-): WeeklyIngestionBundle {
+): ScheduleIngestionBundle {
   const previousByCinema = adapterMap(previousApproved.adapters, "Previous approved review bundle");
   adapterMap(current.adapters, "Current ingestion bundle");
+  const dates = datesForWindow(current.windowStart, current.windowEnd);
+  const previousStart = previousApproved.windowStart;
+  const previousEnd = previousApproved.windowEnd;
 
   const adapters = current.adapters.map((adapter): AdapterResult => {
     if (adapter.snapshot.result === "success") {
       return { ...adapter, publicationFallback: undefined };
     }
+
     const previous = previousByCinema.get(adapter.cinemaId);
-    if (!previous) {
-      throw new Error(
-        `Adapter ${adapter.cinemaId} is ${adapter.snapshot.result}, and no previous approved data exists for fallback.`,
-      );
+    const fallbackDates = previous && previousStart && previousEnd
+      ? dates.filter((date) => date >= previousStart && date <= previousEnd)
+      : [];
+    const unavailableDates = dates.filter((date) => !fallbackDates.includes(date));
+    const fallbackSet = new Set(fallbackDates);
+    const showings = previous?.showings.filter((showing) => fallbackSet.has(showing.localDate)) ?? [];
+    const filmIds = new Set(showings.map((showing) => showing.filmId));
+    const films = previous?.films.filter((film) => filmIds.has(film.id)) ?? [];
+
+    if (previous && previousStart && previousEnd) {
+      validatePreviousFacts(previous, previousStart, previousEnd);
     }
-    validateFallbackFacts(previous, current.windowStart, current.windowEnd);
-    const sourceGeneratedAt = previous.publicationFallback?.sourceGeneratedAt ?? previousApproved.generatedAt;
-    if (Number.isNaN(new Date(sourceGeneratedAt).getTime())) {
+    const inheritedSource = previous?.publicationFallback?.sourceGeneratedAt;
+    const sourceGeneratedAt = fallbackDates.length > 0
+      ? inheritedSource ?? previousApproved.generatedAt
+      : null;
+    if (sourceGeneratedAt && Number.isNaN(new Date(sourceGeneratedAt).getTime())) {
       throw new Error(`Previous approved ${adapter.cinemaId} fallback timestamp is invalid.`);
     }
+
     return {
       ...adapter,
-      films: previous.films,
-      showings: previous.showings,
-      publicationFallback: { mode: "previous_approved", sourceGeneratedAt },
+      films,
+      showings,
+      publicationFallback: {
+        mode: "date_scoped",
+        sourceGeneratedAt,
+        fallbackDates,
+        unavailableDates,
+      },
     };
   });
 
+  if (adapters.every((adapter) => adapter.showings.length === 0)) {
+    throw new Error("No verified or previously approved showings remain in the rolling window.");
+  }
   return { ...current, adapters };
 }
+
+/** @deprecated Use rolling-window reconciliation. */
+export const reconcileWeeklyCandidate = reconcileRollingCandidate;

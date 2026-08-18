@@ -11,6 +11,8 @@ export function compiledScheduleReviewBundle(
   const filmsById = new Map(schedule.films.map((film) => [film.id, film]));
   return {
     generatedAt: source.generatedAt,
+    windowStart: source.windowStart,
+    windowEnd: source.windowEnd,
     adapters: source.adapters.map((adapter) => {
       const showings = schedule.showings.filter((showing) => showing.cinemaId === adapter.cinemaId);
       const filmIds = new Set(showings.map((showing) => showing.filmId));

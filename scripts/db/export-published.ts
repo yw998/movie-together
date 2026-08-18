@@ -35,6 +35,7 @@ try {
     join published_weeks pw on pw.window_start = sw.window_start
     where sw.window_start <= ${rollingEnd}
       and sw.window_end >= ${rollingStart}
+      and pw.is_current = true
     order by sw.window_start
   `;
   if (weeks.length === 0) throw new Error(`No approved publication overlaps ${rollingStart} through ${rollingEnd}.`);
@@ -45,6 +46,7 @@ try {
     join published_weeks pw on pw.window_start = s.window_start
     where s.local_date between ${rollingStart} and ${rollingEnd}
       and s.publication_status = 'active'
+      and pw.is_current = true
     order by f.display_title, f.id
   `;
   const showingRows = await sql`
@@ -52,6 +54,7 @@ try {
     join published_weeks pw on pw.window_start = s.window_start
     where s.local_date between ${rollingStart} and ${rollingEnd}
       and s.publication_status = 'active'
+      and pw.is_current = true
     order by s.starts_at, s.id
   `;
   const cinemas: Cinema[] = cinemaRows.map((row) => ({
@@ -82,7 +85,10 @@ try {
       windowStart: rollingStart,
       windowEnd: rollingEnd,
       refreshedLocalDate: weeks.map((week) => dateText(week.refreshed_local_date)).sort().at(-1)!,
-      provenanceNote: "Rolling seven-day publication assembled from approved New York calendar-week sources.",
+      provenanceNote: "Rolling seven-day publication assembled from approved official cinema sources.",
+      unavailableCinemaDates: weeks.flatMap((week) =>
+        Array.isArray(week.unavailable_cinema_dates) ? week.unavailable_cinema_dates : [],
+      ).filter((item) => item.localDate >= rollingStart && item.localDate <= rollingEnd),
     },
     cinemas,
     films,

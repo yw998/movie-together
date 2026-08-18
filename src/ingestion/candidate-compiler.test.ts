@@ -52,6 +52,29 @@ describe("weekly candidate compiler", () => {
     expect(result.schedule.showings).toHaveLength(1);
   });
 
+  it("accepts an arbitrary seven-day rolling window", () => {
+    const rolling = bundle();
+    rolling.generatedAt = "2026-08-12T14:00:00Z";
+    rolling.windowKind = "rolling_seven_days";
+    rolling.windowStart = "2026-08-12";
+    rolling.windowEnd = "2026-08-18";
+    rolling.adapters = rolling.adapters.map((item) => item.cinemaId === "film-forum"
+      ? {
+          ...item,
+          showings: [{
+            ...showing,
+            startsAt: "2026-08-12T19:00:00-04:00",
+            localDate: "2026-08-12",
+            fetchedAt: "2026-08-12T14:00:00Z",
+          }],
+        }
+      : item);
+    expect(compileWeeklyCandidate(rolling).schedule.metadata).toMatchObject({
+      windowStart: "2026-08-12",
+      windowEnd: "2026-08-18",
+    });
+  });
+
   it("applies only week-scoped, evidence-backed manual overrides", () => {
     const overrides: ManualOverrideFile = {
       windowStart: "2026-08-10", windowEnd: "2026-08-16",
@@ -97,7 +120,7 @@ describe("weekly candidate compiler", () => {
       reportGeneratedAt: source.generatedAt, candidateDigest: digest,
       approvedAt: "2026-08-10T16:00:00Z", approvedBy: "Editor",
       decision: "approved" as const,
-      reviewedSummary: { cinemas: 5, added: 1, removed: 0, changed: 0, concerns: 0 },
+      reviewedSummary: { cinemas: 5, added: 1, removed: 0, changed: 0, concerns: 0, unavailableCinemaDates: 0 },
     };
     await expect(prepareApprovedSchedule(source, approval)).resolves.toEqual(compiled.schedule);
     await expect(

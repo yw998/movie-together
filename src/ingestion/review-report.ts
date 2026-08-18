@@ -1,7 +1,12 @@
 import type { Film, Showing } from "../types/schedule";
 import type { AdapterResult, SourceSnapshot } from "./types";
 
-export type ReviewBundle = { generatedAt: string; adapters: AdapterResult[] };
+export type ReviewBundle = {
+  generatedAt: string;
+  windowStart?: string;
+  windowEnd?: string;
+  adapters: AdapterResult[];
+};
 export type ReviewShowing = Pick<
   Showing,
   "id" | "localDate" | "localTime" | "format" | "eventType" | "eventNote" | "detailUrl" | "sourceUrl"
@@ -25,13 +30,14 @@ export type CinemaReview = {
   removedShowings: ReviewShowing[];
   changes: ShowingChange[];
   concerns: string[];
+  unavailableDates: string[];
 };
 export type ReviewReport = {
   generatedAt: string;
   candidateDigest: string;
   publishable: boolean;
   approvalRequired: true;
-  summary: { cinemas: number; added: number; removed: number; changed: number; concerns: number };
+  summary: { cinemas: number; added: number; removed: number; changed: number; concerns: number; unavailableCinemaDates: number };
   cinemas: CinemaReview[];
 };
 
@@ -124,7 +130,7 @@ export function createReviewReport(
     if (!after) {
       concerns.push("Cinema is missing from the current ingestion bundle.");
     } else {
-      const hasApprovedFallback = after.publicationFallback?.mode === "previous_approved";
+      const hasApprovedFallback = Boolean(after.publicationFallback);
       if (after.snapshot.result !== "success" && !hasApprovedFallback) {
         concerns.push(`Feed status is ${after.snapshot.result}: ${after.snapshot.error ?? "manual review required"}`);
       }
@@ -144,7 +150,9 @@ export function createReviewReport(
       if (previousUpcomingCount > 0 && currentUpcomingCount < previousUpcomingCount * 0.75) {
         concerns.push(`Upcoming showing count fell by more than 25% (${previousUpcomingCount} to ${currentUpcomingCount}).`);
       }
-      if (currentShowings.length === 0) concerns.push("Current feed has no publishable showings.");
+      if (currentShowings.length === 0 && (after.publicationFallback?.unavailableDates?.length ?? 0) === 0) {
+        concerns.push("Current feed has no publishable showings.");
+      }
     }
     return {
       cinemaId,
@@ -158,6 +166,7 @@ export function createReviewReport(
       removedShowings,
       changes: changes.sort((left, right) => left.id.localeCompare(right.id)),
       concerns,
+      unavailableDates: after?.publicationFallback?.unavailableDates ?? [],
     };
   });
   const summary = {
@@ -166,6 +175,7 @@ export function createReviewReport(
     removed: cinemas.reduce((sum, cinema) => sum + cinema.removedIds.length, 0),
     changed: cinemas.reduce((sum, cinema) => sum + cinema.changes.length, 0),
     concerns: cinemas.reduce((sum, cinema) => sum + cinema.concerns.length, 0),
+    unavailableCinemaDates: cinemas.reduce((sum, cinema) => sum + cinema.unavailableDates.length, 0),
   };
   return {
     generatedAt: current.generatedAt,
@@ -196,7 +206,14 @@ export function formatReviewReport(report: ReviewReport): string {
       `Status: ${cinema.status}; showings: ${cinema.previousCount} → ${cinema.currentCount}`,
       `Added: ${cinema.addedIds.length}; removed: ${cinema.removedIds.length}; changed: ${cinema.changes.length}`);
     if (cinema.fallback) {
-      lines.push(`- FALLBACK: using the previous approved cinema facts from ${cinema.fallback.sourceGeneratedAt}; the current feed was not published.`);
+      lines.push(
+        cinema.fallback.sourceGeneratedAt
+          ? `- FALLBACK: using approved cinema-date facts from ${cinema.fallback.sourceGeneratedAt}; the partial current feed was not published.`
+          : "- FALLBACK: the partial current feed was excluded; no earlier approved facts were available.",
+      );
+    }
+    if (cinema.unavailableDates.length > 0) {
+      lines.push(`- UNAVAILABLE: no approved facts for ${cinema.unavailableDates.join(", ")}; this cinema-date was omitted.`);
     }
     for (const concern of cinema.concerns) lines.push(`- CONCERN: ${concern}`);
     if (cinema.addedShowings.length > 0) {

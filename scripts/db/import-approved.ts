@@ -97,14 +97,17 @@ try {
     }
     await transaction`
       insert into schedule_weeks
-        (window_start, window_end, timezone, refreshed_local_date, provenance_note, run_id)
+        (window_start, window_end, timezone, refreshed_local_date, provenance_note, unavailable_cinema_dates, run_id)
       values
         (${compiled.metadata.windowStart}, ${compiled.metadata.windowEnd}, ${compiled.metadata.timezone},
-         ${compiled.metadata.refreshedLocalDate}, ${compiled.metadata.provenanceNote}, ${candidate.generatedAt})
+         ${compiled.metadata.refreshedLocalDate}, ${compiled.metadata.provenanceNote},
+         ${transaction.json(compiled.metadata.unavailableCinemaDates ?? [])}, ${candidate.generatedAt})
       on conflict (window_start) do update set
         window_end = excluded.window_end, timezone = excluded.timezone,
         refreshed_local_date = excluded.refreshed_local_date,
-        provenance_note = excluded.provenance_note, run_id = excluded.run_id
+        provenance_note = excluded.provenance_note,
+        unavailable_cinema_dates = excluded.unavailable_cinema_dates,
+        run_id = excluded.run_id
     `;
     // Keep stable showing rows so future user watch marks cannot be orphaned by
     // a weekly refresh. Rows missing from the latest approved candidate remain

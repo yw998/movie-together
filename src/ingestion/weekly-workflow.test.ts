@@ -28,10 +28,11 @@ describe("hosted schedule dry run", () => {
     );
   });
 
-  it("assembles a private rolling artifact only in dry-run mode", () => {
+  it("verifies the exact rolling candidate only in dry-run mode", () => {
     expect(workflow).toMatch(
-      /Assemble and verify dry-run rolling candidate\s+if: \$\{\{ env\.DRY_RUN == 'true' \}\}/,
+      /Verify dry-run rolling candidate\s+if: \$\{\{ env\.DRY_RUN == 'true' \}\}/,
     );
-    expect(workflow).toContain("npm run assemble:rolling-dry-run");
+    expect(workflow).toContain("compiled-schedule.json");
+    expect(workflow).not.toContain("npm run assemble:rolling-dry-run");
   });
 });
