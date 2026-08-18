@@ -4,10 +4,12 @@ import {
   DEFAULT_DESCRIPTION_MODEL,
   enrichWeeklyBundleDescriptions,
   generateBilingualDescriptions,
+  generateBilingualDescriptionsInBatches,
   parseManualFilmDescriptions,
   validEnglishDescription,
   validateManualFilmDescriptionTargets,
   type CachedFilmDescription,
+  type DescriptionGenerationBatchSummary,
 } from "../src/ingestion/ai-description-enrichment";
 import type { WeeklyIngestionBundle } from "../src/ingestion/weekly-ingestion";
 
@@ -18,6 +20,11 @@ if (!inputPath || !outputPath) {
 }
 
 const bundle = JSON.parse(await readFile(inputPath, "utf8")) as WeeklyIngestionBundle;
+const reportPath = outputPath.endsWith(".json")
+  ? outputPath.replace(/\.json$/u, ".report.json")
+  : `${outputPath}.report.json`;
+const generationEnabled = process.env.DESCRIPTION_GENERATION_MODE !== "cache-only";
+const requireGenerationSuccess = process.env.REQUIRE_DESCRIPTION_GENERATION_SUCCESS === "true";
 const manualDescriptions = parseManualFilmDescriptions(
   JSON.parse(await readFile(manualDescriptionPath, "utf8")) as unknown,
 );
@@ -46,19 +53,39 @@ try {
     },
   ]));
   const cache = new Map([...databaseCache, ...manualDescriptions]);
-  let generatedCount = 0;
+  const generationState: { summary: DescriptionGenerationBatchSummary | null } = { summary: null };
   const enriched = await enrichWeeklyBundleDescriptions(bundle, cache, {
-    generate: async (evidence) => {
-      generatedCount = evidence.length;
-      return generateBilingualDescriptions(evidence, process.env.OPENAI_API_KEY ?? "", {
-        model: process.env.OPENAI_DESCRIPTION_MODEL?.trim() || DEFAULT_DESCRIPTION_MODEL,
-      });
-    },
+    generate: generationEnabled
+      ? async (evidence) => {
+          generationState.summary = await generateBilingualDescriptionsInBatches(
+            evidence,
+            (batch) => generateBilingualDescriptions(batch, process.env.OPENAI_API_KEY ?? "", {
+              model: process.env.OPENAI_DESCRIPTION_MODEL?.trim() || DEFAULT_DESCRIPTION_MODEL,
+            }),
+          );
+          return generationState.summary.decisions;
+        }
+      : undefined,
   });
   await writeFile(outputPath, `${JSON.stringify(enriched, null, 2)}\n`, { flag: "wx" });
-  console.log(
-    `Bilingual descriptions processed for ${new Set(enriched.adapters.flatMap((adapter) => adapter.films.map((film) => film.id))).size} films; generated ${generatedCount} new description pair(s).`,
-  );
+  const generationSummary = generationState.summary;
+  const report = {
+    totalFilms: new Set(enriched.adapters.flatMap((adapter) => adapter.films.map((film) => film.id))).size,
+    generationMode: generationEnabled ? "generate" : "cache-only",
+    generation: generationSummary,
+  };
+  await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`, { flag: "wx" });
+  console.log(`Description enrichment report: ${JSON.stringify(report)}`);
+  if (
+    requireGenerationSuccess &&
+    generationSummary &&
+    generationSummary.attemptedFilms > 0 &&
+    generationSummary.technicalFailureFilms === generationSummary.attemptedFilms
+  ) {
+    throw new Error(
+      `All ${generationSummary.attemptedFilms} attempted description generations failed technically; no descriptions were imported.`,
+    );
+  }
 } finally {
   await sql.end();
 }
