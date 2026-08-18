@@ -53,6 +53,11 @@ export type ScheduleMetadata = {
   windowEnd: string;
   refreshedLocalDate: string;
   provenanceNote: string;
+  unavailableCinemaDates?: Array<{
+    cinemaId: string;
+    localDate: string;
+    reason: "feed_unavailable";
+  }>;
 };
 
 export type ScheduleData = {

@@ -8,7 +8,7 @@ function report(concerns = 0): ReviewReport {
     candidateDigest: "c".repeat(64),
     publishable: concerns === 0,
     approvalRequired: true,
-    summary: { cinemas: 5, added: 3, removed: 1, changed: 0, concerns },
+    summary: { cinemas: 5, added: 3, removed: 1, changed: 0, concerns, unavailableCinemaDates: 0 },
     cinemas: [],
   };
 }

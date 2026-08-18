@@ -90,6 +90,21 @@ export function validateScheduleData(
     add("error", "invalid_window", "metadata", "Window start is after window end.");
   }
 
+  const unavailableKeys = new Set<string>();
+  for (const [index, item] of (data.metadata.unavailableCinemaDates ?? []).entries()) {
+    const key = `${item.cinemaId}:${item.localDate}`;
+    if (!cinemaById.has(item.cinemaId)) {
+      add("error", "unknown_unavailable_cinema", `metadata.unavailableCinemaDates[${index}]`, item.cinemaId);
+    }
+    if (item.localDate < data.metadata.windowStart || item.localDate > data.metadata.windowEnd) {
+      add("error", "unavailable_outside_window", `metadata.unavailableCinemaDates[${index}]`, item.localDate);
+    }
+    if (unavailableKeys.has(key)) {
+      add("error", "duplicate_unavailable_date", `metadata.unavailableCinemaDates[${index}]`, key);
+    }
+    unavailableKeys.add(key);
+  }
+
   data.films.forEach((film, index) => {
     const hasDescription = Boolean(film.descriptionZh?.trim() || film.descriptionEn?.trim());
     const hasSource = Boolean(film.descriptionSource?.trim());

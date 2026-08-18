@@ -1,5 +1,6 @@
 import { cinemaCatalog } from "../data/cinemas";
 import { calendarWeekFor } from "../lib/calendar-week";
+import { datesForWindow } from "../lib/rolling-window";
 import { validateScheduleData, deduplicateShowings } from "../lib/schedule-validation";
 import { localPartsAtInstant } from "../lib/timezone";
 import { NEW_YORK_TIMEZONE, type Film, type ScheduleData, type Showing } from "../types/schedule";
@@ -45,13 +46,15 @@ export function compileWeeklyCandidate(
   options: { requireCleanSources?: boolean } = {},
 ): CompiledCandidate {
   const expectedWindow = calendarWeekFor(bundle.windowStart);
+  const windowDates = datesForWindow(bundle.windowStart, bundle.windowEnd);
+  const validCalendarWeek = bundle.windowKind === "calendar_week_monday_sunday" &&
+    bundle.windowStart === expectedWindow.start && bundle.windowEnd === expectedWindow.end;
+  const validRollingWindow = bundle.windowKind === "rolling_seven_days" && windowDates.length === 7;
   if (
     bundle.timezone !== NEW_YORK_TIMEZONE ||
-    bundle.windowKind !== "calendar_week_monday_sunday" ||
-    bundle.windowStart !== expectedWindow.start ||
-    bundle.windowEnd !== expectedWindow.end
+    (!validCalendarWeek && !validRollingWindow)
   ) {
-    throw new Error("Candidate is not an exact Monday–Sunday New York calendar week.");
+    throw new Error("Candidate is not an exact seven-day New York schedule window.");
   }
   const expectedCinemas = new Set(cinemaCatalog.map((cinema) => cinema.id));
   const adapterIds = new Set(bundle.adapters.map((adapter) => adapter.cinemaId));
@@ -62,13 +65,15 @@ export function compileWeeklyCandidate(
   const showings = new Map<string, Showing>();
   for (const adapter of bundle.adapters) {
     if (adapter.publicationFallback) {
-      const fallbackAt = new Date(adapter.publicationFallback.sourceGeneratedAt).getTime();
+      const fallbackAt = adapter.publicationFallback.sourceGeneratedAt
+        ? new Date(adapter.publicationFallback.sourceGeneratedAt).getTime()
+        : null;
       const currentAt = new Date(bundle.generatedAt).getTime();
       if (
         adapter.snapshot.result === "success" ||
-        Number.isNaN(fallbackAt) ||
+        (fallbackAt !== null && Number.isNaN(fallbackAt)) ||
         Number.isNaN(currentAt) ||
-        fallbackAt > currentAt
+        (fallbackAt !== null && fallbackAt > currentAt)
       ) {
         throw new Error(`Adapter ${adapter.cinemaId} has invalid approved fallback metadata.`);
       }
@@ -124,7 +129,7 @@ export function compileWeeklyCandidate(
 
   if (options.requireCleanSources) {
     for (const adapter of bundle.adapters) {
-      const hasApprovedFallback = adapter.publicationFallback?.mode === "previous_approved";
+      const hasApprovedFallback = Boolean(adapter.publicationFallback);
       if (adapter.snapshot.result === "failed" && !hasApprovedFallback) {
         throw new Error(`Adapter ${adapter.cinemaId} failed and is not publishable.`);
       }
@@ -149,6 +154,13 @@ export function compileWeeklyCandidate(
       windowEnd: bundle.windowEnd,
       refreshedLocalDate: refreshLocalDate(bundle.generatedAt),
       provenanceNote: "Compiled from reviewed official cinema adapters; publication requires a matching approval artifact.",
+      unavailableCinemaDates: bundle.adapters.flatMap((adapter) =>
+        (adapter.publicationFallback?.unavailableDates ?? []).map((localDate) => ({
+          cinemaId: adapter.cinemaId,
+          localDate,
+          reason: "feed_unavailable" as const,
+        })),
+      ),
     },
     cinemas: cinemaCatalog,
     films: enrichedFilms.sort((a, b) => a.displayTitle.localeCompare(b.displayTitle)),

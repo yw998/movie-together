@@ -72,7 +72,23 @@ describe("ingestion review report", () => {
       fallback: { mode: "previous_approved" },
       concerns: [],
     });
-    expect(formatReviewReport(report)).toContain("FALLBACK: using the previous approved cinema facts");
+    expect(formatReviewReport(report)).toContain("FALLBACK: using approved cinema-date facts");
+  });
+
+  it("reports omitted cinema-dates without blocking verified cinemas", () => {
+    const previous = bundle(adapter([showing("kept")]));
+    const fallback = adapter([showing("kept")], "partial");
+    fallback.publicationFallback = {
+      mode: "date_scoped",
+      sourceGeneratedAt: previous.generatedAt,
+      fallbackDates: ["2026-08-11"],
+      unavailableDates: ["2026-08-17"],
+    };
+    const report = createReviewReport(previous, bundle(fallback), "9".repeat(64));
+    expect(report.publishable).toBe(true);
+    expect(report.summary.unavailableCinemaDates).toBe(1);
+    expect(report.cinemas[0].unavailableDates).toEqual(["2026-08-17"]);
+    expect(formatReviewReport(report)).toContain("UNAVAILABLE");
   });
 
   it("does not treat already-finished showings disappearing as an upcoming feed drop", () => {

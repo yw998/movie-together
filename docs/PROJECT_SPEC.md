@@ -143,7 +143,9 @@ Wednesday Aug 12 → Tuesday Aug 18
 
 There is no public calendar-week switching interface in the current product.
 
-Internally, schedule ingestion and durable storage may continue to use Monday–Sunday calendar-week bundles where useful for stable identity, approval, and archival purposes.
+Ingestion, review, approval, database import, and public export use the same
+exact rolling seven-day window. Calendar-week grouping may be used only for
+archive presentation; it must not control fetching, fallback, or publication.
 
 The public export combines whatever approved internal weeks are necessary to produce the rolling seven-day window.
 
@@ -631,7 +633,8 @@ The schedule workflow runs daily at:
 05:00 America/New_York
 ```
 
-It gathers whatever internal calendar-week data is necessary to cover the public rolling seven-day window.
+It fetches the exact public rolling seven-day window once and imports the
+approved result in one database transaction.
 
 ---
 
@@ -681,16 +684,18 @@ reason: expected schedule structure not found
 The currently published schedule remains active until a replacement candidate successfully passes the publication workflow.
 
 A cinema feed with a `partial` or `failed` result is isolated from the clean
-feeds. The workflow may continue only when it can replace that cinema's entire
-candidate payload with the same calendar week's previously approved facts. It
-must never mix partial current facts with approved facts. The fallback retains
-its original showing provenance, is identified in the review report, and must
-still pass the normal stale-data validation. Clean cinemas may then publish
-normally. If no same-week approved fallback exists, publication stops.
+feeds and its entire current payload is discarded. For each date also covered
+by the previous approved rolling window, the workflow carries forward that
+cinema's approved date facts without changing their provenance. For a date with
+no approved coverage, that cinema-date is omitted and reported as unavailable;
+other verified cinemas continue publishing. The frontend identifies the
+temporarily unavailable cinema on that date. Current partial facts and approved
+facts are never mixed. Publication stops when no verified or approved showings
+remain anywhere in the seven-day window.
 
 A new dataset must not replace the public dataset when any blocking condition remains, including:
 
-* a failed or partial cinema feed without a valid same-week approved fallback;
+* no verified or previously approved showings remain in the rolling window;
 * schema validation failure;
 * questionable showing;
 * duplicate stable ID;

@@ -7,19 +7,20 @@ const appPath = new URL("../App.tsx", import.meta.url);
 const messagesPath = new URL("../i18n/messages.ts", import.meta.url);
 
 describe("rolling seven-day publication", () => {
-  it("exports approved showings by rolling local-date range instead of one current week", async () => {
+  it("exports the one current approved rolling window", async () => {
     const source = await readFile(exportPath, "utf8");
 
     expect(source).toContain("s.local_date between ${rollingStart} and ${rollingEnd}");
     expect(source).toContain("join published_weeks pw on pw.window_start = s.window_start");
-    expect(source).not.toContain("where pw.is_current = true");
+    expect(source).toContain("pw.is_current = true");
   });
 
-  it("runs daily and reviews every calendar week touched by the public window", async () => {
+  it("runs daily and reviews one exact rolling window", async () => {
     const workflow = await readFile(workflowPath, "utf8");
 
     expect(workflow).toContain('cron: "0 5 * * *"');
-    expect(workflow).toContain("for WEEK_ANCHOR");
+    expect(workflow).toContain("npm run ingest:rolling");
+    expect(workflow).not.toContain("for WEEK_ANCHOR");
     expect(workflow).toContain("npm run review:schedule");
     expect(workflow).toContain("npm run db:verify-rolling");
   });

@@ -147,6 +147,9 @@ export default function App() {
     () => new Map(cinemas.map((cinema) => [cinema.id, cinema])),
     [cinemas],
   );
+  const unavailableCinemaNames = (metadata.unavailableCinemaDates ?? [])
+    .filter((item) => item.localDate === selectedDate && selectedCinemas.includes(item.cinemaId))
+    .map((item) => cinemaById.get(item.cinemaId)?.name ?? item.cinemaId);
   const filmById = useMemo(
     () => new Map(films.map((film) => [film.id, film])),
     [films],
@@ -313,6 +316,11 @@ export default function App() {
         {metadata.windowEnd < viewWindow.end && (
           <aside className="data-warning" role="status">
             {t("schedule.coverage", { date: formatCalendarDate(metadata.windowEnd, locale) })}
+          </aside>
+        )}
+        {scheduleView === "all" && unavailableCinemaNames.length > 0 && (
+          <aside className="data-warning" role="status">
+            {t("schedule.cinemaUnavailable", { cinemas: unavailableCinemaNames.join(", ") })}
           </aside>
         )}
         <div className="summary">

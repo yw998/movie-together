@@ -17,7 +17,9 @@ export type AdapterResult = {
   snapshot: SourceSnapshot;
   warnings: string[];
   publicationFallback?: {
-    mode: "previous_approved";
-    sourceGeneratedAt: string;
+    mode: "previous_approved" | "date_scoped";
+    sourceGeneratedAt: string | null;
+    fallbackDates?: string[];
+    unavailableDates?: string[];
   };
 };

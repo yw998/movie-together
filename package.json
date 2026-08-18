@@ -42,6 +42,7 @@
     "ingest:film-forum": "tsx scripts/ingest-film-forum.ts",
     "ingest:film-at-lincoln-center": "tsx scripts/ingest-film-at-lincoln-center.ts",
     "ingest:week": "tsx scripts/ingest-week.ts",
+    "ingest:rolling": "tsx scripts/ingest-rolling.ts",
     "ingest:ifc-center": "tsx scripts/ingest-ifc-center.ts",
     "ingest:metrograph": "tsx scripts/ingest-metrograph.ts",
     "ingest:paris-theater": "tsx scripts/ingest-paris-theater.ts",
