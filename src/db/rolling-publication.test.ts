@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 const exportPath = new URL("../../scripts/db/export-published.ts", import.meta.url);
 const workflowPath = new URL("../../.github/workflows/weekly-schedule.yml", import.meta.url);
 const appPath = new URL("../App.tsx", import.meta.url);
+const messagesPath = new URL("../i18n/messages.ts", import.meta.url);
 
 describe("rolling seven-day publication", () => {
   it("exports approved showings by rolling local-date range instead of one current week", async () => {
@@ -24,7 +25,9 @@ describe("rolling seven-day publication", () => {
   });
 
   it("labels the homepage as a future-seven-day view", async () => {
-    const app = await readFile(appPath, "utf8");
-    expect(app).toContain("这周看什么？");
+    const [app, messages] = await Promise.all([readFile(appPath, "utf8"), readFile(messagesPath, "utf8")]);
+    expect(app).toContain('t("hero.title")');
+    expect(messages).toContain("这周看什么？");
+    expect(messages).toContain("So, What Are We Watching?");
   });
 });

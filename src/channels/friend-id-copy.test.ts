@@ -9,7 +9,7 @@ describe("Friend ID copy control", () => {
 
     expect(source).toContain("navigator.clipboard.writeText(friendId)");
     expect(source).toContain('disabled={!friendId}');
-    expect(source).toContain('friendIdCopied ? "已复制" : "复制"');
+    expect(source).toContain('friendIdCopied ? copy("已复制", "Copied") : copy("复制", "Copy")');
     expect(source).toContain("无法复制 Friend ID");
     expect(source).toContain("friendIdCopyTimerRef.current = window.setTimeout");
     expect(source).toContain("}, 3000)");
@@ -24,7 +24,7 @@ describe("Friend ID copy control", () => {
 
     expect(createDialog).toContain('className="channel-create-friend-id"');
     expect(createDialog).toContain("个人 Friend ID");
-    expect(createDialog).toContain('{friendId ?? "读取中…"}');
+    expect(createDialog).toContain('{friendId ?? copy("读取中…", "Loading…")}');
     expect(createDialog).toContain('onClick={() => void copyFriendId()}');
     expect(createDialog).toContain('disabled={!friendId}');
   });

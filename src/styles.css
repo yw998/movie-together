@@ -383,3 +383,33 @@ footer a { color: #e5e0d5; text-decoration: none; }
   .product-steps { grid-template-columns: 1fr 1fr; }
   .identity-comparison { grid-template-columns: 1fr; }
 }
+
+.language-switch {
+  align-items: center;
+  background: #24261f;
+  border: 1px solid #64655b;
+  border-radius: 99px;
+  color: #f8f3e9;
+  display: flex;
+  gap: 5px;
+  padding: 5px 9px;
+  position: fixed;
+  right: 22px;
+  top: 64px;
+  z-index: 28;
+  box-shadow: 0 4px 14px #0003;
+}
+.language-switch button {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  opacity: .55;
+  padding: 2px;
+}
+.language-switch button[aria-pressed="true"] { font-weight: 800; opacity: 1; }
+
+@media (max-width: 720px) {
+  .language-switch { right: 18px; top: 52px; }
+}

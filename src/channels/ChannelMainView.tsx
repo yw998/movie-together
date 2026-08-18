@@ -7,6 +7,8 @@ import { useWatchMarks, WATCH_MARKS_CHANGED_EVENT } from "../watch-marks/useWatc
 import { avatarColor } from "./avatar";
 import { useTransientMessage } from "../lib/useTransientMessage";
 import { useChannelIdentity } from "./ChannelIdentityContext";
+import { useI18n } from "../i18n/I18nContext";
+import { formatCalendarDate } from "../lib/date-display";
 
 type SharedMark = { showing_id: string; user_id: string; username: string };
 type Member = { user_id: string; role: "owner" | "member"; username: string; kind?: "account" | "channel_only" };
@@ -14,10 +16,11 @@ type ParticipantRow = { participant_id: string; display_name: string; role: stri
 
 export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs: number }) {
   const client = supabase;
+  const { locale, t } = useI18n();
   const { user } = useAuth();
   const channelIdentity = useChannelIdentity();
   const watchMarks = useWatchMarks(scheduleData.showings);
-  const [name, setName] = useState("观影小组");
+  const [name, setName] = useState(t("fam.defaultName"));
   const [members, setMembers] = useState<Member[]>([]);
   const [sharedMarks, setSharedMarks] = useState<SharedMark[]>([]);
   const [error, setError] = useTransientMessage();
@@ -47,7 +50,7 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
       client.rpc("list_channel_shared_marks", { target_channel_id: channelId }),
     ]);
     if (channelResult.error || memberResult.error || marksResult.error) {
-      setError("无法读取这个观影小组，请稍后重试。");
+      setError(t("fam.loadError"));
       return;
     }
     setName(channelResult.data.name);
@@ -59,7 +62,7 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
     })));
     setSharedMarks((marksResult.data ?? []) as SharedMark[]);
     setError(null);
-  }, [channelId, channelIdentity.identity, channelIdentity.marks, channelIdentity.members, client]);
+  }, [channelId, channelIdentity.identity, channelIdentity.marks, channelIdentity.members, client, t]);
 
   useEffect(() => {
     void load();
@@ -86,27 +89,27 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
   const sharedShowingCount = activities.length;
 
   const groups = useMemo(() => {
-    const dated = Object.keys(scheduleData.dateLabels).map((date) => ({
+    const dated = [...new Set(scheduleData.showings.map((showing) => showing.localDate))].map((date) => ({
       key: date,
-      label: scheduleData.dateLabels[date],
+      label: formatCalendarDate(date, locale),
       rows: activities.filter((activity) => activity.showing?.localDate === date),
     })).filter((group) => group.rows.length > 0);
     return dated;
-  }, [activities]);
+  }, [activities, locale]);
 
   return <section className="channel-main-view">
     <header className="channel-main-hero">
       <span className="eyebrow">PRIVATE WATCH GROUP</span>
       <h1>{name}</h1>
-      <p>{members.length} 位成员 · {sharedShowingCount} 个共享场次</p>
-      <div className="channel-main-members" aria-label={members.map((member) => member.kind === "channel_only" ? `${member.username}（小组身份）` : `@${member.username}`).join("、")}>
-        {members.map((member) => <span key={member.user_id} style={{ background: avatarColor(member.username) }} title={`${member.kind === "channel_only" ? member.username : `@${member.username}`}${member.kind === "channel_only" ? "（小组身份）" : ""}${member.role === "owner" ? "（组长）" : ""}`}>{member.username[0]?.toUpperCase()}</span>)}
+      <p>{t("fam.stats", { members: members.length, showings: sharedShowingCount })}</p>
+      <div className="channel-main-members" aria-label={members.map((member) => member.kind === "channel_only" ? `${member.username}${t("fam.profileSuffix")}` : `@${member.username}`).join(", ")}>
+        {members.map((member) => <span key={member.user_id} style={{ background: avatarColor(member.username) }} title={`${member.kind === "channel_only" ? member.username : `@${member.username}`}${member.kind === "channel_only" ? t("fam.profileSuffix") : ""}${member.role === "owner" ? t("fam.organizerSuffix") : ""}`}>{member.username[0]?.toUpperCase()}</span>)}
       </div>
     </header>
     <div className="channel-main-content">
-      <div className="channel-main-title"><div><span className="eyebrow dark">SHARED WATCHLIST</span><h2>大家想看</h2></div><b>{activities.length} 场</b></div>
+      <div className="channel-main-title"><div><span className="eyebrow dark">SHARED WATCHLIST</span><h2>{t("fam.sharedTitle")}</h2></div><b>{t("schedule.count", { count: activities.length })}</b></div>
       {(error || watchMarks.error) && <aside className="mark-error" role="status">{error ?? watchMarks.error}</aside>}
-      {groups.length === 0 ? <div className="channel-main-empty">还没有成员把想看场次分享到这里。</div> : groups.map((group) => <section className="channel-date-group" key={group.key}>
+      {groups.length === 0 ? <div className="channel-main-empty">{t("fam.empty")}</div> : groups.map((group) => <section className="channel-date-group" key={group.key}>
         <div className="channel-date-rail"><span>{group.label}</span><i /></div>
         <div className="channel-shared-grid">
           {group.rows.map((activity) => {
@@ -114,17 +117,17 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
             const currentUserShared = activity.marks.some((mark) => mark.user_id === (identityMarkOwner ?? user?.id));
             return <article className="channel-shared-card" key={activity.showingId}>
               <div className="channel-shared-meta">
-                <span>{activity.showing ? formatDisplayTime(activity.showing.localTime) : "场次已不在本周排片中"}</span>
+                <span>{activity.showing ? formatDisplayTime(activity.showing.localTime) : t("fam.missingShowing")}</span>
                 {activity.cinema && <b>{activity.cinema.name}</b>}
               </div>
-              <h2>{activity.film?.displayTitle ?? "已下架场次"}</h2>
-              {activity.film?.descriptionZh && <p>{activity.film.descriptionZh}</p>}
+              <h2>{activity.film?.displayTitle ?? t("fam.removedShowing")}</h2>
+              {(locale === "zh-CN" ? activity.film?.descriptionZh : activity.film?.descriptionEn) && <p>{locale === "zh-CN" ? activity.film?.descriptionZh : activity.film?.descriptionEn}</p>}
               <div className="channel-shared-footer">
                 <div className="mark-avatars" aria-label={activity.marks.map((mark) => `@${mark.username}`).join("、")}>
                   {activity.marks.map((mark) => <span key={mark.user_id} style={{ background: avatarColor(mark.username) }} title={`@${mark.username}`}>{mark.username[0]?.toUpperCase()}</span>)}
                 </div>
                 <div className="channel-card-actions">
-                  {activity.showing && <a href={activity.showing.detailUrl} rel="noreferrer" target="_blank">官方详情 / 购票 ↗</a>}
+                  {activity.showing && <a href={activity.showing.detailUrl} rel="noreferrer" target="_blank">{t("showing.official")}</a>}
                   {activity.showing && <div className="channel-mark-control">
                     <button
                       aria-expanded={currentUserShared ? removePrompt === activity.showingId : undefined}
@@ -137,12 +140,12 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
                           ? setRemovePrompt((current) => current === activity.showingId ? null : activity.showingId)
                           : void watchMarks.addToChannel(activity.showingId, channelId)}
                       type="button"
-                    >{watchMarks.isBusy(activity.showingId) ? "保存中…" : currentUserShared ? "✓ 已想看" : "+ 想看"}</button>
-                    {!channelIdentity.identity && currentUserShared && removePrompt === activity.showingId && <div className="channel-remove-menu" role="dialog" aria-label="取消想看">
-                      <b>如何取消？</b>
-                      <button onClick={() => { setRemovePrompt(null); void watchMarks.removeFromChannel(activity.showingId, channelId); }} type="button">仅从这个观影小组取消</button>
-                      <button className="remove-personal-mark" onClick={() => { setRemovePrompt(null); void watchMarks.toggle(activity.showingId); }} type="button">从个人想看中删除<small>也会从所有观影小组移除</small></button>
-                      <button className="cancel-remove-mark" onClick={() => setRemovePrompt(null)} type="button">保留想看</button>
+                    >{watchMarks.isBusy(activity.showingId) ? t("showing.saving") : currentUserShared ? t("fam.wanted") : t("showing.want")}</button>
+                    {!channelIdentity.identity && currentUserShared && removePrompt === activity.showingId && <div className="channel-remove-menu" role="dialog" aria-label={t("fam.cancelLabel")}>
+                      <b>{t("fam.cancelQuestion")}</b>
+                      <button onClick={() => { setRemovePrompt(null); void watchMarks.removeFromChannel(activity.showingId, channelId); }} type="button">{t("fam.removeHere")}</button>
+                      <button className="remove-personal-mark" onClick={() => { setRemovePrompt(null); void watchMarks.toggle(activity.showingId); }} type="button">{t("fam.removePersonal")}<small>{t("fam.removeEverywhere")}</small></button>
+                      <button className="cancel-remove-mark" onClick={() => setRemovePrompt(null)} type="button">{t("fam.keep")}</button>
                     </div>}
                   </div>}
                 </div>

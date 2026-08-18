@@ -1,6 +1,5 @@
 import { cinemaCatalog } from "../data/cinemas";
 import { calendarWeekFor } from "../lib/calendar-week";
-import { dateLabelsForWindow } from "../lib/rolling-window";
 import { validateScheduleData, deduplicateShowings } from "../lib/schedule-validation";
 import { localPartsAtInstant } from "../lib/timezone";
 import { NEW_YORK_TIMEZONE, type Film, type ScheduleData, type Showing } from "../types/schedule";
@@ -28,6 +27,7 @@ function richerFilm(existing: Film, incoming: Film): Film {
     director: existing.director ?? incoming.director,
     runtimeMinutes: existing.runtimeMinutes ?? incoming.runtimeMinutes,
     descriptionZh: existing.descriptionZh ?? incoming.descriptionZh,
+    descriptionEn: existing.descriptionEn ?? incoming.descriptionEn,
     descriptionSource: existing.descriptionSource ?? incoming.descriptionSource,
   };
 }
@@ -153,7 +153,6 @@ export function compileWeeklyCandidate(
     cinemas: cinemaCatalog,
     films: enrichedFilms.sort((a, b) => a.displayTitle.localeCompare(b.displayTitle)),
     showings: unique.showings.sort((a, b) => a.startsAt.localeCompare(b.startsAt) || a.id.localeCompare(b.id)),
-    dateLabels: dateLabelsForWindow(bundle.windowStart, bundle.windowEnd),
   };
   const validation = validateScheduleData(schedule, { now: new Date(bundle.generatedAt), staleAfterHours: 72 });
   if (!validation.publishable) {

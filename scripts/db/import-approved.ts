@@ -65,12 +65,13 @@ try {
     }
     for (const film of compiled.films) {
       await transaction`
-        insert into films (id, canonical_title, display_title, release_year, director, runtime_minutes, description_zh, description_source)
-        values (${film.id}, ${film.canonicalTitle}, ${film.displayTitle}, ${film.year}, ${film.director}, ${film.runtimeMinutes}, ${film.descriptionZh}, ${film.descriptionSource})
+        insert into films (id, canonical_title, display_title, release_year, director, runtime_minutes, description_zh, description_en, description_source)
+        values (${film.id}, ${film.canonicalTitle}, ${film.displayTitle}, ${film.year}, ${film.director}, ${film.runtimeMinutes}, ${film.descriptionZh}, ${film.descriptionEn ?? null}, ${film.descriptionSource})
         on conflict (id) do update set
           canonical_title = excluded.canonical_title, display_title = excluded.display_title,
           release_year = excluded.release_year, director = excluded.director,
           runtime_minutes = excluded.runtime_minutes, description_zh = excluded.description_zh,
+          description_en = excluded.description_en,
           description_source = excluded.description_source
       `;
     }

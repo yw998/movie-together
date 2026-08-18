@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { dateLabelsForWindow, rollingWindowFor } from "./rolling-window";
+import { datesForWindow, rollingWindowFor } from "./rolling-window";
 
 describe("rolling seven-day publication window", () => {
   it("spans two storage weeks when today is midweek", () => {
@@ -18,15 +18,10 @@ describe("rolling seven-day publication window", () => {
     });
   });
 
-  it("builds display labels for every day in the rolling window", () => {
-    expect(dateLabelsForWindow("2026-08-14", "2026-08-20")).toEqual({
-      "2026-08-14": "周五 8/14",
-      "2026-08-15": "周六 8/15",
-      "2026-08-16": "周日 8/16",
-      "2026-08-17": "周一 8/17",
-      "2026-08-18": "周二 8/18",
-      "2026-08-19": "周三 8/19",
-      "2026-08-20": "周四 8/20",
-    });
+  it("returns language-neutral dates for the rolling window", () => {
+    expect(datesForWindow("2026-08-14", "2026-08-20")).toEqual([
+      "2026-08-14", "2026-08-15", "2026-08-16", "2026-08-17",
+      "2026-08-18", "2026-08-19", "2026-08-20",
+    ]);
   });
 });

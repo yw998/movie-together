@@ -163,6 +163,7 @@ export function parseRoxyCinemaHtml(
         director: null,
         runtimeMinutes: null,
         descriptionZh: null,
+        descriptionEn: null,
         descriptionSource: null,
       });
     }

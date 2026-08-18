@@ -6,9 +6,8 @@ export type RollingWindow = {
   weekStarts: string[];
 };
 
-export function dateLabelsForWindow(start: string, end: string): Record<string, string> {
-  const result: Record<string, string> = {};
-  const weekdays = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+export function datesForWindow(start: string, end: string): string[] {
+  const result: string[] = [];
   const cursor = new Date(`${start}T12:00:00Z`);
   const last = new Date(`${end}T12:00:00Z`);
   if (Number.isNaN(cursor.getTime()) || Number.isNaN(last.getTime()) || start > end) {
@@ -16,7 +15,7 @@ export function dateLabelsForWindow(start: string, end: string): Record<string, 
   }
   while (cursor <= last) {
     const date = cursor.toISOString().slice(0, 10);
-    result[date] = `${weekdays[cursor.getUTCDay()]} ${cursor.getUTCMonth() + 1}/${cursor.getUTCDate()}`;
+    result.push(date);
     cursor.setUTCDate(cursor.getUTCDate() + 1);
   }
   return result;

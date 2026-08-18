@@ -23,8 +23,8 @@ describe("channel invitation acceptance", () => {
       readFile(panelPath, "utf8"),
     ]);
 
-    expect(notifications).toContain("同步现有个人标记");
-    expect(notifications).toContain("也可以加入后手动分享");
+    expect(notifications).toContain('t("notifications.shareExisting")');
+    expect(notifications).toContain('t("notifications.shareLater")');
     expect(notifications).toContain("share_existing_marks:");
     expect(panel).toContain("同步现有的全部个人标记");
     expect(panel).toContain("以后可逐条手动分享");

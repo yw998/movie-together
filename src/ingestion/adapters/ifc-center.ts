@@ -195,7 +195,8 @@ export function parseIfcCenterHtml(
           year: null,
           director: null,
           runtimeMinutes: null,
-          descriptionZh: null,
+        descriptionZh: null,
+        descriptionEn: null,
           descriptionSource: null,
         });
       }

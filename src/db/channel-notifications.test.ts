@@ -48,7 +48,7 @@ describe("channel reminders", () => {
     expect(view).toContain('rpc("accept_channel_invitation"');
     expect(view).toContain('rpc("mark_my_channel_notifications_read"');
     expect(view).toContain("channelIdentity.markNotificationsRead()");
-    expect(view).toContain("全部标为已读");
+    expect(view).toContain('t("notifications.markAll")');
   });
 
   it("places the reminder bell beside either identity instead of in the Channel rail", async () => {

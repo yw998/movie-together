@@ -28,12 +28,12 @@ describe("New York local time helpers", () => {
   });
 
   it("uses the specified time-cluster boundaries", () => {
-    expect(getTimeCluster("11:59")).toBe("上午");
-    expect(getTimeCluster("12:00")).toBe("下午");
-    expect(getTimeCluster("16:59")).toBe("下午");
-    expect(getTimeCluster("17:00")).toBe("晚间");
-    expect(getTimeCluster("20:59")).toBe("晚间");
-    expect(getTimeCluster("21:00")).toBe("深夜");
+    expect(getTimeCluster("11:59")).toBe("morning");
+    expect(getTimeCluster("12:00")).toBe("afternoon");
+    expect(getTimeCluster("16:59")).toBe("afternoon");
+    expect(getTimeCluster("17:00")).toBe("evening");
+    expect(getTimeCluster("20:59")).toBe("evening");
+    expect(getTimeCluster("21:00")).toBe("lateNight");
   });
 
   it("rejects malformed values", () => {

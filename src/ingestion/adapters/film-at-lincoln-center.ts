@@ -157,7 +157,8 @@ export function parseFilmLincPayload(
       year: details.year,
       director: details.director,
       runtimeMinutes: details.runtimeMinutes,
-      descriptionZh: null,
+        descriptionZh: null,
+        descriptionEn: null,
       descriptionSource: null,
     });
 

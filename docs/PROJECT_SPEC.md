@@ -44,7 +44,7 @@ Its value comes from:
 * a curated cinema scope;
 * reliable official-source schedules;
 * clear chronological organization;
-* concise Chinese descriptions;
+* concise localized descriptions;
 * preservation of meaningful screening distinctions;
 * lightweight planning and sharing features.
 
@@ -52,9 +52,17 @@ Its value comes from:
 
 ## 1.2 Product language
 
-Primary interface language:
+Supported interface languages:
 
-**Chinese**
+* Simplified Chinese (`zh-CN`)
+* US English (`en-US`)
+
+The interface uses locale-neutral URLs and a global `中文 / EN` control. Language
+selection precedence is: an explicit device choice, the signed-in account
+preference, the browser language, then English. Switching language preserves the
+current page, filters, dialogs, scroll position, and application state. The
+English control remains behind `VITE_ENABLE_ENGLISH_UI` until the bilingual
+release checklist is complete.
 
 Film titles may retain their original-language titles.
 
@@ -71,6 +79,9 @@ America/New_York
 ```
 
 User-visible calendar dates must always correspond to the New York local date of the screening.
+
+Localized date labels and time-of-day names are presentation data derived from
+`localDate`; they are not stored as parallel Chinese and English schedule facts.
 
 ---
 
@@ -140,7 +151,7 @@ The public schedule should provide:
 * chronological ordering;
 * time-of-day grouping;
 * screening count where useful;
-* short Chinese film descriptions;
+* short Chinese or English film descriptions selected by the active interface language;
 * screening format and meaningful special-event information;
 * official detail or ticket links;
 * visible data refresh information;
@@ -215,7 +226,9 @@ remains current.
 Officially scheduled watch parties, interactive film parties, and similar timed
 cinema programs are included. They retain the exact official program title and
 available official explanation, and the public interface marks them uniformly as
-`特别活动`.
+`特别活动` or `Special Event` according to the active interface language. Official
+event notes remain in their source language; program-added labels are localized
+at render time.
 
 ---
 
@@ -287,7 +300,7 @@ unless the official source provides sufficient evidence that zero showings is co
 
 ## 5.5 Descriptions
 
-Chinese film descriptions are separate from schedule facts.
+Chinese and English film descriptions are separate from schedule facts.
 
 AI-assisted descriptions are allowed when grounded in:
 
@@ -306,12 +319,20 @@ Description generation must never modify:
 * availability;
 * ticket URL.
 
+One AI request generates Chinese and English copy together when both are missing.
+Each language is validated and cached independently against one shared evidence
+URL. A valid language is retained if the other fails; later runs request only the
+missing language. Description evidence, generation, or validation failure never
+blocks publication of otherwise valid schedule facts. The missing localized
+description is hidden rather than replaced with copy from another language.
+
 Approved descriptions should be cached and reused rather than regenerated every schedule refresh.
 
 When automatic description enrichment requests review, an editor may add a
 version-controlled, evidence-backed entry to
 `data/manual-description-overrides.json`. Each entry records the film ID and
-title, Chinese description, official HTTPS source, reason, and creation time.
+title, at least one Chinese or English description, an official HTTPS source,
+reason, and creation time.
 The override is validated and then cached in durable storage after a successful
 publication. This editorial escape hatch applies only to descriptions and must
 never alter schedule facts.
@@ -353,6 +374,7 @@ type Film = {
   runtimeMinutes: number | null;
 
   descriptionZh: string | null;
+  descriptionEn: string | null;
   descriptionSource: string | null;
 };
 ```
@@ -1235,6 +1257,12 @@ uses the following terms consistently:
 * `个人账号` for a Supabase Auth account;
 * `小组身份（无需邮箱）` for a Channel-only identity;
 * `组长` and `成员` for the independent in-group role axis.
+
+English user-facing copy uses `Film Fam`, `Film Fam ID`, `Film Fam profile (no
+email required)`, `Organizer`, `Member`, `Personal account`, `Want to watch`, and
+`Notifications`. `Film Fam` is the feature name; the product remains **NYC Movie
+Together**. User-created names and future user-event content are displayed in
+their original language and are never machine-translated.
 
 Do not show `GUEST`, `OWNER`, `正式账号`, `Channel-only`, or `Channel` as
 user-facing identity or group labels.

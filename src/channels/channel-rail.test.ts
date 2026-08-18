@@ -28,7 +28,7 @@ describe("viewing-group rail", () => {
     ]);
 
     expect(panel).toContain("setMobileOpen((current) => !current)");
-    expect(panel).toContain('mobileOpen && <button aria-label="关闭观影小组" className="channel-mobile-close"');
+    expect(panel).toContain('mobileOpen && <button aria-label={copy("关闭观影小组", "Close Film Fam")} className="channel-mobile-close"');
     expect(styles).toContain(".channel-mobile-close { color:");
     expect(styles).not.toContain(".channel-mobile-toggle, .channel-mobile-close, .channel-backdrop { display: none; }");
   });
@@ -52,8 +52,8 @@ describe("viewing-group rail", () => {
     expect(panel).toContain("YOUR GROUPS");
     expect(panel).toContain("个观影小组");
     expect(panel).toContain('className="channel-overview-list"');
-    expect(panel).toContain('channel.owner_user_id === user.id ? "组长" : "成员"');
-    expect(panel).toContain('aria-label="返回排片"');
+    expect(panel).toContain('channel.owner_user_id === user.id ? copy("组长", "Organizer") : copy("成员", "Member")');
+    expect(panel).toContain('aria-label={copy("返回排片", "Back to schedule")}');
     expect(panel).not.toContain("个人主页");
   });
 });

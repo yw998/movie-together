@@ -117,6 +117,7 @@ export function parseFilmForumPayload(
         director: null,
         runtimeMinutes: null,
         descriptionZh: null,
+        descriptionEn: null,
         descriptionSource: null,
       });
     }

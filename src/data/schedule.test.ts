@@ -12,9 +12,7 @@ describe("approved public schedule", () => {
     });
     expect(scheduleData.metadata.refreshedLocalDate >= rollingWindow.start).toBe(true);
     expect(scheduleData.metadata.refreshedLocalDate <= rollingWindow.end).toBe(true);
-    expect(Object.keys(scheduleData.dateLabels)).toEqual(
-      expect.arrayContaining([rollingWindow.start, rollingWindow.end]),
-    );
+    expect(scheduleData).not.toHaveProperty("dateLabels");
     expect(new Set(scheduleData.cinemas.map((cinema) => cinema.id)).size).toBe(
       scheduleData.cinemas.length,
     );

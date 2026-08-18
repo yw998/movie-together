@@ -132,7 +132,7 @@ describe("Syndicated official Veezi adapter", () => {
     const result = parseSyndicatedHtml(html, options);
     expect(result.showings[0]).toMatchObject({
       eventType: "other",
-      eventNote: "特别活动 · Join us for an interactive movie party with games and prizes.",
+      eventNote: "Join us for an interactive movie party with games and prizes.",
     });
   });
 

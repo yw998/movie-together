@@ -37,7 +37,6 @@ if (approvedValidation.errors || exportedValidation.errors) {
 }
 const comparisons = [
   ["metadata", approved.metadata, exported.metadata],
-  ["date labels", approved.dateLabels, exported.dateLabels],
   ["cinemas", byId(approved.cinemas), byId(exported.cinemas)],
   ["films", byId(approved.films), byId(exported.films)],
   [
