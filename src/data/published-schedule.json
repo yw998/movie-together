@@ -80,7 +80,8 @@
       "director": "Stanley Kubrick",
       "runtimeMinutes": 149,
       "descriptionZh": "從石器時代到木星之旅，一段關於人性與進化的宏大科幻沉思。",
-      "descriptionSource": "https://www.paristheaternyc.com/film/2001-a-space-odyssey-paris"
+      "descriptionSource": "https://www.paristheaternyc.com/film/2001-a-space-odyssey-paris",
+      "descriptionEn": null
     },
     {
       "id": "54-the-director-s-cut-q-a-this-is-cine-matographe",
@@ -90,7 +91,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "泽西城少年踏入 1979 年 Studio 54 的炫目与代价，映后主创问答。",
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/54-directors-cut-qa-2/"
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/54-directors-cut-qa-2/",
+      "descriptionEn": null
     },
     {
       "id": "after-hours",
@@ -100,7 +102,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "孤獨白領保羅在深夜紐約展開一連串荒誕又危險的夜間遭遇。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000970"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000970",
+      "descriptionEn": null
     },
     {
       "id": "alice-in-wonderland-1951",
@@ -110,7 +113,8 @@
       "director": "Clyde Geronimi",
       "runtimeMinutes": 75,
       "descriptionZh": "愛麗絲跌入兔子洞，展開充滿奇幻與古怪冒險的仙境旅程。",
-      "descriptionSource": "https://www.paristheaternyc.com/film/alice-in-wonderland-1951-paris"
+      "descriptionSource": "https://www.paristheaternyc.com/film/alice-in-wonderland-1951-paris",
+      "descriptionEn": null
     },
     {
       "id": "aliens",
@@ -120,7 +124,8 @@
       "director": "James Cameron",
       "runtimeMinutes": 137,
       "descriptionZh": "瑞普莉帶領海軍陸戰隊重返LV-426，面對再度爆發的外星威脅。",
-      "descriptionSource": "https://www.paristheaternyc.com/film/aliens-paris"
+      "descriptionSource": "https://www.paristheaternyc.com/film/aliens-paris",
+      "descriptionEn": null
     },
     {
       "id": "apocalypse-now-roadshow",
@@ -130,7 +135,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一名美军上尉奉命深入越战腹地执行秘密任务，航程逐渐化为疯狂之旅。",
-      "descriptionSource": "https://www.tcm.com/watchtcm/titles/67522"
+      "descriptionSource": "https://www.tcm.com/watchtcm/titles/67522",
+      "descriptionEn": null
     },
     {
       "id": "back-to-the-future",
@@ -140,7 +146,8 @@
       "director": "Robert Zemeckis",
       "runtimeMinutes": 116,
       "descriptionZh": "少年誤入時光機回到1955年，必須促成父母相愛才能回到1985年。",
-      "descriptionSource": "https://www.paristheaternyc.com/film/back-to-the-future-paris"
+      "descriptionSource": "https://www.paristheaternyc.com/film/back-to-the-future-paris",
+      "descriptionEn": null
     },
     {
       "id": "barbie",
@@ -150,7 +157,8 @@
       "director": "Greta Gerwig",
       "runtimeMinutes": 114,
       "descriptionZh": "芭比在理想的芭比樂園遭遇存在危機，並引出肯的存在焦慮。",
-      "descriptionSource": "https://www.paristheaternyc.com/film/barbie-paris"
+      "descriptionSource": "https://www.paristheaternyc.com/film/barbie-paris",
+      "descriptionEn": null
     },
     {
       "id": "barrio-triste",
@@ -160,7 +168,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "1987 年麦德林，少年用偷来的摄像机记录危险生活。",
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/barrio-triste/"
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/barrio-triste/",
+      "descriptionEn": null
     },
     {
       "id": "battle-royale",
@@ -170,7 +179,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "学生被迫互相猎杀的残酷生存寓言。",
-      "descriptionSource": "https://www.ifccenter.com/films/battle-royale-2/"
+      "descriptionSource": "https://www.ifccenter.com/films/battle-royale-2/",
+      "descriptionEn": null
     },
     {
       "id": "before-sunrise",
@@ -180,7 +190,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一对陌生人在维也纳共度一夜，爱情从漫谈中生长。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999002387"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999002387",
+      "descriptionEn": null
     },
     {
       "id": "billy-liar",
@@ -190,7 +201,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "爱幻想的年轻职员在谎言与逃离小城的机会之间摇摆。",
-      "descriptionSource": "https://my.filmforum.org/billy-liar-4k"
+      "descriptionSource": "https://my.filmforum.org/billy-liar-4k",
+      "descriptionEn": null
     },
     {
       "id": "blade-runner-the-final-cut",
@@ -200,7 +212,8 @@
       "director": "Ridley Scott",
       "runtimeMinutes": 117,
       "descriptionZh": "複雜未來城中，獵人德卡德受命追緝幾名逃回地球的複製人。",
-      "descriptionSource": "https://www.paristheaternyc.com/film/blade-runner-the-final-cut-paris"
+      "descriptionSource": "https://www.paristheaternyc.com/film/blade-runner-the-final-cut-paris",
+      "descriptionEn": null
     },
     {
       "id": "bodyhackers",
@@ -210,7 +223,8 @@
       "director": "Carlos Conceição",
       "runtimeMinutes": 83,
       "descriptionZh": "反企業活動者追入黑市整形世界，在肉體改造的噩夢中被吞噬。",
-      "descriptionSource": "https://www.filmlinc.org/films/bodyhackers/"
+      "descriptionSource": "https://www.filmlinc.org/films/bodyhackers/",
+      "descriptionEn": null
     },
     {
       "id": "boyhood",
@@ -220,7 +234,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "理查德·林克莱特用同一班演员拍摄12年，透过少年梅森的视角讲述成长故事。",
-      "descriptionSource": "https://www.ifccenter.com/films/boyhood/"
+      "descriptionSource": "https://www.ifccenter.com/films/boyhood/",
+      "descriptionEn": null
     },
     {
       "id": "bram-stoker-s-dracula",
@@ -230,7 +245,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "哥譚式華麗改編，德古拉的欲望與復仇在豪華製作中被強烈呈現。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004970"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004970",
+      "descriptionEn": null
     },
     {
       "id": "bride-of-the-earth",
@@ -240,7 +256,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "阿納托利亞窮苦村民為保愛人誓言復仇，呈現充滿政治色彩的民族悲劇。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004927"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004927",
+      "descriptionEn": null
     },
     {
       "id": "catvideofest-2026",
@@ -250,7 +267,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "年度猫咪视频精选，轻松治愈，也为动物公益募款。",
-      "descriptionSource": "https://www.ifccenter.com/films/catvideofest-2026/"
+      "descriptionSource": "https://www.ifccenter.com/films/catvideofest-2026/",
+      "descriptionEn": null
     },
     {
       "id": "syndicated-ST00002588",
@@ -260,7 +278,8 @@
       "director": null,
       "runtimeMinutes": 74,
       "descriptionZh": "Oscilloscope 呈现的年度猫咪短片汇映，汇集最新精选视频并支持本地救助组织。",
-      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "descriptionEn": null
     },
     {
       "id": "center-stage",
@@ -270,7 +289,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "八位纽约芭蕾学生在竞争、欲望与艺术理想之间成长。",
-      "descriptionSource": "https://my.filmforum.org/center-stage"
+      "descriptionSource": "https://my.filmforum.org/center-stage",
+      "descriptionEn": null
     },
     {
       "id": "characters-disappearing-q-a",
@@ -280,7 +300,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "1971年纽约，三位青年在亚裔美国人运动中各自前行，随着身边人神秘消失，集体疑惧蔓延。",
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/characters-disappearing-4-2/"
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/characters-disappearing-4-2/",
+      "descriptionEn": null
     },
     {
       "id": "chasing-butterflies",
@@ -290,7 +311,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "兩位古怪老婦守護衰敗城堡生活，繼承人到來打破昔日寧靜與秩序。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004972"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004972",
+      "descriptionEn": null
     },
     {
       "id": "chungking-express",
@@ -300,7 +322,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "两个失恋警察、菠萝罐头与加州梦交织的香港情书。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000735"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000735",
+      "descriptionEn": null
     },
     {
       "id": "claire-s-knee",
@@ -310,7 +333,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一位准新郎在安纳西湖区对一位少女的膝盖产生近乎虔诚的痴迷。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000660"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000660",
+      "descriptionEn": null
     },
     {
       "id": "click-35mm-2006-movies",
@@ -320,7 +344,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "职场父亲获得一只能快进人生的神奇遥控器，结果失控改变了他的人际与家庭生活。",
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/click-35mm/"
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/click-35mm/",
+      "descriptionEn": null
     },
     {
       "id": "collateral",
@@ -330,7 +355,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "洛杉矶出租车司机被职业杀手挟持，在一夜之间驶入致命任务。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004937"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004937",
+      "descriptionEn": null
     },
     {
       "id": "syndicated-ST00002598",
@@ -340,7 +366,8 @@
       "director": null,
       "runtimeMinutes": 120,
       "descriptionZh": "一名计程车司机在洛杉矶的一夜里被一位职业杀手挟持成了帮手与人质。",
-      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "descriptionEn": null
     },
     {
       "id": "crank-35mm-2006-movies",
@@ -350,7 +377,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "杀手必须持续提高心率才能活命的高速动作狂想。",
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/crank-35mm/"
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/crank-35mm/",
+      "descriptionEn": null
     },
     {
       "id": "days-and-nights-in-the-forest",
@@ -360,7 +388,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "四名中產青年郊遊卻被各自種姓偏見與情感困境逼迫面對自身缺陷。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004969"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004969",
+      "descriptionEn": null
     },
     {
       "id": "dead-souls",
@@ -370,7 +399,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "1890 年亚利桑那小镇因一份死者名单陷入荒诞混乱。",
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/dead-souls/"
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/dead-souls/",
+      "descriptionEn": null
     },
     {
       "id": "dementia-13-director-s-cut",
@@ -380,7 +410,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "路易丝企图骗取婆婆的遗产，却让家族秘事逐渐演变为一连串谋杀。",
-      "descriptionSource": "https://www.rialtopictures.com/catalogue/dementia-13-directors-cut"
+      "descriptionSource": "https://www.rialtopictures.com/catalogue/dementia-13-directors-cut",
+      "descriptionEn": null
     },
     {
       "id": "drunken-master-ii",
@@ -390,7 +421,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "成龍回歸醉拳角色，與走私集團與反派上演一連串驚心動魄的功夫對決。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004940"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004940",
+      "descriptionEn": null
     },
     {
       "id": "dumplings",
@@ -400,7 +432,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "关于青春执念的香港身体恐怖寓言。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004945"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004945",
+      "descriptionEn": null
     },
     {
       "id": "e-t-the-extra-terrestrial",
@@ -410,7 +443,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一名男孩與迷失外星人在家庭與冒險中建立深厚友誼，發出想回家的呼喚。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000571"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000571",
+      "descriptionEn": null
     },
     {
       "id": "fallen-angels",
@@ -420,7 +454,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "王家卫拍夜香港：杀手、失恋者与擦肩而过的欲望。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003325"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003325",
+      "descriptionEn": null
     },
     {
       "id": "family-movie",
@@ -430,7 +465,8 @@
       "director": "Kevin Bacon, Kyra Sedgwick",
       "runtimeMinutes": 87,
       "descriptionZh": "一家人在鄉間自製低成本驚悚片拍攝時，發現農場藏有屍體與危機。",
-      "descriptionSource": "https://www.filmlinc.org/films/family-movie/"
+      "descriptionSource": "https://www.filmlinc.org/films/family-movie/",
+      "descriptionEn": null
     },
     {
       "id": "favorites-of-the-moon",
@@ -440,7 +476,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一部滑稽全景喜剧，描写两件珍贵物品在巴黎街头不同人手中流转的命运。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004953"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004953",
+      "descriptionEn": null
     },
     {
       "id": "fight-club",
@@ -450,7 +487,8 @@
       "director": "David Fincher",
       "runtimeMinutes": 139,
       "descriptionZh": "失眠男子與肥皂推銷員創立地下鬥毆社，演變成失控的暴力與反叛運動。",
-      "descriptionSource": "https://www.paristheaternyc.com/film/fight-club-paris"
+      "descriptionSource": "https://www.paristheaternyc.com/film/fight-club-paris",
+      "descriptionEn": null
     },
     {
       "id": "first-blood",
@@ -460,7 +498,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "越戰老兵蘭博與當地警長衝突，引發在小鎮上的生死對決與逃亡。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004944"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004944",
+      "descriptionEn": null
     },
     {
       "id": "franz",
@@ -470,7 +509,8 @@
       "director": "Agnieszka Holland",
       "runtimeMinutes": 127,
       "descriptionZh": "非傳統傳記以碎片化手法探究卡夫卡的內心世界與創作淵源。",
-      "descriptionSource": "https://www.filmlinc.org/films/franz/"
+      "descriptionSource": "https://www.filmlinc.org/films/franz/",
+      "descriptionEn": null
     },
     {
       "id": "freefall-a-reckoning-for-boeing",
@@ -480,7 +520,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "Rory Kennedy 延续调查，追问波音危机、吹哨者与企业责任。",
-      "descriptionSource": "https://www.ifccenter.com/films/freefall-a-reckoning-for-boeing/"
+      "descriptionSource": "https://www.ifccenter.com/films/freefall-a-reckoning-for-boeing/",
+      "descriptionEn": null
     },
     {
       "id": "freefall-a-reckoning-for-boeing-open-captioning",
@@ -490,7 +531,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "Rory Kennedy 延续对波音危机、吹哨者与企业责任的调查；本场配开放字幕。",
-      "descriptionSource": "https://www.ifccenter.com/films/freefall-a-reckoning-for-boeing-open-captioning/"
+      "descriptionSource": "https://www.ifccenter.com/films/freefall-a-reckoning-for-boeing-open-captioning/",
+      "descriptionEn": null
     },
     {
       "id": "gail-daughtry-and-the-celebrity-sex-pass",
@@ -500,7 +542,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "小镇发型师为报复未婚夫，闯入荒诞的好莱坞追星之旅。",
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/gail-daughtry-and-the-celebrity-sex-pass/"
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/gail-daughtry-and-the-celebrity-sex-pass/",
+      "descriptionEn": null
     },
     {
       "id": "happy-hour",
@@ -510,7 +553,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "四位三十多歲的老友因離婚消息重整人生，展開長時間的自我與友情檢視。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001933"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001933",
+      "descriptionEn": null
     },
     {
       "id": "happy-together",
@@ -520,7 +564,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "王家卫以布宜诺斯艾利斯为背景拍一段反复破裂的爱情。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000497"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000497",
+      "descriptionEn": null
     },
     {
       "id": "syndicated-ST00002602",
@@ -530,7 +575,8 @@
       "director": null,
       "runtimeMinutes": 170,
       "descriptionZh": "在洛杉矶，精明的盗贼尼尔和执着的侦探文森特展开一场危险的猫鼠对决。",
-      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "descriptionEn": null
     },
     {
       "id": "syndicated-ST00002594",
@@ -540,7 +586,8 @@
       "director": null,
       "runtimeMinutes": 110,
       "descriptionZh": "一场神秘迷雾笼罩未来都市，年轻女子踏上寻找父亲并与美国士兵纠缠的救赎之旅。",
-      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "descriptionEn": null
     },
     {
       "id": "house",
@@ -550,7 +597,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "少女與同伴到鄉間老宅，遭遇家電飛舞與變異怪物的奇幻恐怖噩夢。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003307"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003307",
+      "descriptionEn": null
     },
     {
       "id": "how-to-divorce-during-the-war",
@@ -560,7 +608,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "高飞女高管玛丽娅在俄军入侵前一天提出离婚，夫妻在难民与中年危机中分离。",
-      "descriptionSource": "https://www.ifccenter.com/films/how-to-divorce-during-the-war/"
+      "descriptionSource": "https://www.ifccenter.com/films/how-to-divorce-during-the-war/",
+      "descriptionEn": null
     },
     {
       "id": "syndicated-ST00002592",
@@ -570,7 +619,8 @@
       "director": null,
       "runtimeMinutes": 90,
       "descriptionZh": "年轻的艾略特成为艺术家埃丽卡的性缪斯，卷入性、痴迷与谋杀的漩涡。",
-      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "descriptionEn": null
     },
     {
       "id": "in-my-skin",
@@ -580,7 +630,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一名巴黎女性因腿傷陷入對自我身體的執著，最終導致自我毀滅式的沉迷。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004973"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004973",
+      "descriptionEn": null
     },
     {
       "id": "in-the-mood-for-love",
@@ -590,7 +641,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "六零年代港都兩人發現配偶外遇，在壓抑細節中孕育出未竟的情感。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000517"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000517",
+      "descriptionEn": null
     },
     {
       "id": "it-ends",
@@ -600,7 +652,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一群应届毕业生深夜驱车外出，原想享受最后相聚，却意外驶入另一条路改变行程。",
-      "descriptionSource": "https://www.ifccenter.com/films/it-ends/"
+      "descriptionSource": "https://www.ifccenter.com/films/it-ends/",
+      "descriptionEn": null
     },
     {
       "id": "it-ends-open-captioning",
@@ -610,7 +663,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一群应届毕业生深夜驾车误入一条无尽的两车道地狱，面对未知的恐怖与宇宙力量。",
-      "descriptionSource": "https://www.ifccenter.com/films/it-ends-open-captioning/"
+      "descriptionSource": "https://www.ifccenter.com/films/it-ends-open-captioning/",
+      "descriptionEn": null
     },
     {
       "id": "jawbreaker",
@@ -620,7 +674,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "这部1999年的美国青少年电影尽管评价和票房不佳，后来发展出邪典追随者。",
-      "descriptionSource": "https://www.ifccenter.com/films/jawbreaker/"
+      "descriptionSource": "https://www.ifccenter.com/films/jawbreaker/",
+      "descriptionEn": null
     },
     {
       "id": "jfk",
@@ -630,7 +685,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "奥利弗·斯通把肯尼迪遇刺调查拍成狂热的阴谋史诗。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004941"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004941",
+      "descriptionEn": null
     },
     {
       "id": "la-haine",
@@ -640,7 +696,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "巴黎郊区三位青年在骚乱后的一天，怒火不断逼近爆点。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003673"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003673",
+      "descriptionEn": null
     },
     {
       "id": "la-notte",
@@ -650,7 +707,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "安东尼奥尼凝视一段婚姻在米兰上流社交中悄然瓦解。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004957"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004957",
+      "descriptionEn": null
     },
     {
       "id": "late-fame",
@@ -660,7 +718,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "年长诗人被年轻崇拜者重新发现，虚荣与旧梦随之苏醒。",
-      "descriptionSource": "https://my.filmforum.org/late-fame"
+      "descriptionSource": "https://my.filmforum.org/late-fame",
+      "descriptionEn": null
     },
     {
       "id": "lawrence-of-arabia",
@@ -670,7 +729,8 @@
       "director": "David Lean",
       "runtimeMinutes": 218,
       "descriptionZh": "勞倫斯在沙漠中聯合阿拉伯部落，掀起對奧斯曼帝國的戰爭與身世探索。",
-      "descriptionSource": "https://www.paristheaternyc.com/film/lawrence-of-arabia-paris"
+      "descriptionSource": "https://www.paristheaternyc.com/film/lawrence-of-arabia-paris",
+      "descriptionEn": null
     },
     {
       "id": "lockjaw-q-a",
@@ -680,7 +740,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "下颌被绑的雷娜外出寻乐，一夜间既考验友谊也招来新敌人。",
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/lockjaw-qa/"
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/lockjaw-qa/",
+      "descriptionEn": null
     },
     {
       "id": "maddie-s-secret",
@@ -690,7 +751,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "美食网红的成功压力唤醒她极力压下的过往。",
-      "descriptionSource": "https://www.ifccenter.com/films/maddies-secret/"
+      "descriptionSource": "https://www.ifccenter.com/films/maddies-secret/",
+      "descriptionEn": null
     },
     {
       "id": "syndicated-ST00002574",
@@ -700,7 +762,8 @@
       "director": null,
       "runtimeMinutes": 98,
       "descriptionZh": "约翰·厄利自导自演，讲述洗碗工玛蒂在美食内容公司意外成名并面对过去秘密的故事。",
-      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "descriptionEn": null
     },
     {
       "id": "michael-mann-s-manhunter-the-final-cut",
@@ -710,7 +773,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "FBI 侧写师追捕连环杀手，冷峻色彩与电子乐塑造现代惊悚。",
-      "descriptionSource": "https://www.ifccenter.com/films/michael-manns-manhunter-the-final-cut/"
+      "descriptionSource": "https://www.ifccenter.com/films/michael-manns-manhunter-the-final-cut/",
+      "descriptionEn": null
     },
     {
       "id": "my-heart-is-that-eternal-rose",
@@ -720,7 +784,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "香港風格濃烈的英雄血腥情節片，三位朋友被罪與愛情的糾葛牽連。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003698"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003698",
+      "descriptionEn": null
     },
     {
       "id": "mysterious-skin",
@@ -730,7 +795,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "Gregg Araki 以两段破碎记忆直视创伤与自我认知。",
-      "descriptionSource": "https://www.ifccenter.com/films/mysterious-skin/"
+      "descriptionSource": "https://www.ifccenter.com/films/mysterious-skin/",
+      "descriptionEn": null
     },
     {
       "id": "national-theatre-live-all-my-sons-2026",
@@ -740,7 +806,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "Arthur Miller 家庭悲剧的舞台高清放映。",
-      "descriptionSource": "https://www.ifccenter.com/films/national-theatre-live-all-my-sons-2026/"
+      "descriptionSource": "https://www.ifccenter.com/films/national-theatre-live-all-my-sons-2026/",
+      "descriptionEn": null
     },
     {
       "id": "never-after-dark",
@@ -750,7 +817,8 @@
       "director": "Dave Boyle",
       "runtimeMinutes": 105,
       "descriptionZh": "温和的灵媒受邀前往偏僻旅馆驱邪，却被一股敌意深重的超自然力量步步逼近。",
-      "descriptionSource": "https://www.filmlinc.org/films/never-after-dark/"
+      "descriptionSource": "https://www.filmlinc.org/films/never-after-dark/",
+      "descriptionEn": null
     },
     {
       "id": "new-york-stories",
@@ -760,7 +828,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "三位导演以各自独立的篇章，描绘纽约人的爱情、家庭与城市生活。",
-      "descriptionSource": "https://catalog.afi.com/Film/58206-NEW-YORK-STORIES"
+      "descriptionSource": "https://catalog.afi.com/Film/58206-NEW-YORK-STORIES",
+      "descriptionEn": null
     },
     {
       "id": "one-from-the-heart-reprise",
@@ -770,7 +839,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "拉斯维加斯的一对恋人在周年纪念日争吵分手，各自踏上一夜浪漫奇遇。",
-      "descriptionSource": "https://catalog.afi.com/Film/68242-ONE-FROM-THE-HEART"
+      "descriptionSource": "https://catalog.afi.com/Film/68242-ONE-FROM-THE-HEART",
+      "descriptionEn": null
     },
     {
       "id": "panic-room",
@@ -780,7 +850,8 @@
       "director": "David Fincher",
       "runtimeMinutes": 112,
       "descriptionZh": "母女躲進家中防暴室，卻在入侵者的貓鼠遊戲中被迫自救。",
-      "descriptionSource": "https://www.paristheaternyc.com/film/panic-room-paris"
+      "descriptionSource": "https://www.paristheaternyc.com/film/panic-room-paris",
+      "descriptionEn": null
     },
     {
       "id": "paranoid-park",
@@ -790,7 +861,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "Van Sant 以碎片化时间描画少年事故后的秘密与内疚。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001512"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001512",
+      "descriptionEn": null
     },
     {
       "id": "pastorale",
@@ -800,7 +872,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "第比利斯弦樂四重奏到山村排練，日常生活與古典樂在鄉間交織成詩。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004971"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004971",
+      "descriptionEn": null
     },
     {
       "id": "petite-maman",
@@ -810,7 +883,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一個孩子在森林中遇見一位神秘女孩，獲得與母親及亡祖母連結的機會。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004050"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004050",
+      "descriptionEn": null
     },
     {
       "id": "possession",
@@ -820,7 +894,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一名間諜回到柏林發現妻子行為古怪，展開一場越演越烈的離婚噩夢。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001205"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001205",
+      "descriptionEn": null
     },
     {
       "id": "raw",
@@ -830,7 +905,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "素食少女在獸醫學校被迫食生臟器後，開始覺醒出難以抑制的食肉慾望。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003304"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003304",
+      "descriptionEn": null
     },
     {
       "id": "rebecca",
@@ -840,7 +916,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "年輕新婦嫁入莊園後，始終被亡妻麗貝卡的幽影與家中祕密所困。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000678"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000678",
+      "descriptionEn": null
     },
     {
       "id": "saturday-afternoon-cartoons-bugs-we-love",
@@ -850,7 +927,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "以珍貴16mm動畫短片展映昆蟲主題經典卡通，並附策展人導賞與座談。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004979"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004979",
+      "descriptionEn": null
     },
     {
       "id": "sherman-s-march",
@@ -860,7 +938,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "原本的历史纪录片逐渐变成一场荒诞又坦诚的爱情游记。",
-      "descriptionSource": "https://my.filmforum.org/shermans-march"
+      "descriptionSource": "https://my.filmforum.org/shermans-march",
+      "descriptionEn": null
     },
     {
       "id": "sholay",
@@ -870,7 +949,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一位前警官招募兩名小賊助其剿滅恐怖土匪，史詩式印度西部片。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004947"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004947",
+      "descriptionEn": null
     },
     {
       "id": "solaris",
@@ -880,7 +960,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "塔可夫斯基的太空哲思：记忆、愧疚与无法复原的爱。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999002965"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999002965",
+      "descriptionEn": null
     },
     {
       "id": "something-real",
@@ -890,7 +971,8 @@
       "director": "Evar Anvelt",
       "runtimeMinutes": 113,
       "descriptionZh": "一名色情成癮的中年男子與老練騙子糾纏，黑郵勒索演變成生死競逐。",
-      "descriptionSource": "https://www.filmlinc.org/films/something-real/"
+      "descriptionSource": "https://www.filmlinc.org/films/something-real/",
+      "descriptionEn": null
     },
     {
       "id": "speed-racer",
@@ -900,7 +982,8 @@
       "director": "Lana Wachowski, Lilly Wachowski",
       "runtimeMinutes": 135,
       "descriptionZh": "賽車手Speed為保家業揭發賽事被財團操控，與家人並肩挑戰陰謀。",
-      "descriptionSource": "https://www.paristheaternyc.com/film/speed-racer-paris"
+      "descriptionSource": "https://www.paristheaternyc.com/film/speed-racer-paris",
+      "descriptionEn": null
     },
     {
       "id": "spider-baby",
@@ -910,7 +993,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "司機試圖掩蓋邊緣家庭的謀殺與食人行徑，既黑色又荒誕。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001189"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001189",
+      "descriptionEn": null
     },
     {
       "id": "stavisky",
@@ -920,7 +1004,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "以劇場化手法呈現騙徒斯塔維斯基的浮華人生與權力交易的崛落與覆滅。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999002634"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999002634",
+      "descriptionEn": null
     },
     {
       "id": "syndicated-ST00000710",
@@ -930,7 +1015,8 @@
       "director": null,
       "runtimeMinutes": 108,
       "descriptionZh": "Taste of Streep 主办的互动电影派对，围绕《妈妈咪呀！》展开并附赠周边与饮品。",
-      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "descriptionEn": null
     },
     {
       "id": "the-bend-in-the-river",
@@ -940,7 +1026,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "Moss 再次回望朋友、衰老与一条持续流动的河。",
-      "descriptionSource": "https://my.filmforum.org/the-bend-in-the-river"
+      "descriptionSource": "https://my.filmforum.org/the-bend-in-the-river",
+      "descriptionEn": null
     },
     {
       "id": "the-big-cheese",
@@ -950,7 +1037,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "奶酪竞赛纪录片，竞技热闹背后也有人情与坚持。",
-      "descriptionSource": "https://www.ifccenter.com/films/the-big-cheese/"
+      "descriptionSource": "https://www.ifccenter.com/films/the-big-cheese/",
+      "descriptionEn": null
     },
     {
       "id": "the-chaser",
@@ -960,7 +1048,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "前偵探為追查失蹤女子展開全夜追捕，面對連環殺手與低效警力的阻礙。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004951"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004951",
+      "descriptionEn": null
     },
     {
       "id": "the-conversation",
@@ -970,7 +1059,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一名监听专家从受托录下的对话中察觉谋杀阴谋，也陷入日益加深的疑惧。",
-      "descriptionSource": "https://www.tcm.com/watchtcm/titles/71469"
+      "descriptionSource": "https://www.tcm.com/watchtcm/titles/71469",
+      "descriptionEn": null
     },
     {
       "id": "the-dark-knight",
@@ -980,7 +1070,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "诺兰把超级英雄片升级为关于秩序与混乱的都市犯罪史诗。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003615"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003615",
+      "descriptionEn": null
     },
     {
       "id": "the-godfather",
@@ -990,7 +1081,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "纽约一个势力庞大的黑帮家族，在权力传承与暴力冲突中经历动荡。",
-      "descriptionSource": "https://www.tcm.com/watchtcm/titles/443184"
+      "descriptionSource": "https://www.tcm.com/watchtcm/titles/443184",
+      "descriptionEn": null
     },
     {
       "id": "the-godfather-ii",
@@ -1000,7 +1092,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "影片交错讲述维托·柯里昂的崛起与儿子迈克尔掌权后的家族衰落。",
-      "descriptionSource": "https://www.tcm.com/articles/afi-top-100/140792/the-godfather-part-ii-1974"
+      "descriptionSource": "https://www.tcm.com/articles/afi-top-100/140792/the-godfather-part-ii-1974",
+      "descriptionEn": null
     },
     {
       "id": "syndicated-ST00002586",
@@ -1010,7 +1103,8 @@
       "director": null,
       "runtimeMinutes": 107,
       "descriptionZh": "一对中年夫妇邀请楼上年轻夫妇聚会，意外发展改变了当晚。",
-      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "descriptionEn": null
     },
     {
       "id": "the-invite",
@@ -1020,7 +1114,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一场邻里晚餐逐渐揭开两段婚姻的欲望与裂缝。",
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-invite/"
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-invite/",
+      "descriptionEn": null
     },
     {
       "id": "the-jungle-book",
@@ -1030,7 +1125,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "迪士尼手绘经典，丛林男孩在歌声与冒险中寻找归属。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004962"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004962",
+      "descriptionEn": null
     },
     {
       "id": "the-night-is-short-walk-on-girl",
@@ -1040,7 +1136,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "夜晚的京都奇遇记，少女在纵情狂欢中与形形色色人物相遇，展开荒诞一夜。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001554"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001554",
+      "descriptionEn": null
     },
     {
       "id": "the-others",
@@ -1050,7 +1147,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "雾锁庄园中的哥特鬼故事，靠空间与沉默制造寒意。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004961"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004961",
+      "descriptionEn": null
     },
     {
       "id": "the-panic-in-needle-park",
@@ -1060,7 +1158,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一对恋人在纽约毒瘾世界中逐渐失控。",
-      "descriptionSource": "https://www.ifccenter.com/films/the-panic-in-needle-park/"
+      "descriptionSource": "https://www.ifccenter.com/films/the-panic-in-needle-park/",
+      "descriptionEn": null
     },
     {
       "id": "the-piano",
@@ -1070,7 +1169,8 @@
       "director": "Jane Campion",
       "runtimeMinutes": 121,
       "descriptionZh": "失语钢琴家带着女儿来到殖民时期的新西兰，在包办婚姻、欲望与自由之间挣扎。",
-      "descriptionSource": "https://www.filmlinc.org/films/the-piano/"
+      "descriptionSource": "https://www.filmlinc.org/films/the-piano/",
+      "descriptionEn": null
     },
     {
       "id": "the-rain-people",
@@ -1080,7 +1180,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一名郊区主妇突然离家，独自驾车横越美国寻找生活的另一种可能。",
-      "descriptionSource": "https://www.tcm.com/watchtcm/titles/87618"
+      "descriptionSource": "https://www.tcm.com/watchtcm/titles/87618",
+      "descriptionEn": null
     },
     {
       "id": "the-same-river-twice",
@@ -1090,7 +1191,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "二十多年后重访旧友，理想主义被时间重新衡量。",
-      "descriptionSource": "https://my.filmforum.org/same-river-twice"
+      "descriptionSource": "https://my.filmforum.org/same-river-twice",
+      "descriptionEn": null
     },
     {
       "id": "the-samurai-and-the-prisoner",
@@ -1100,7 +1202,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "黑泽清的新作，以武士时代故事拆解忠诚与囚禁。",
-      "descriptionSource": "https://www.ifccenter.com/films/the-samurai-and-the-prisoner/"
+      "descriptionSource": "https://www.ifccenter.com/films/the-samurai-and-the-prisoner/",
+      "descriptionEn": null
     },
     {
       "id": "the-son-of-the-sheik",
@@ -1110,7 +1213,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一名阿拉伯骑士在沙漠匪徒的威胁下，设法保护自己爱上的舞女。",
-      "descriptionSource": "https://www.tcm.com/watchtcm/titles/326475"
+      "descriptionSource": "https://www.tcm.com/watchtcm/titles/326475",
+      "descriptionEn": null
     },
     {
       "id": "the-sun-never-sets",
@@ -1120,7 +1224,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "自由奔放的温蒂在与年长离异的杰克的关系中陷入抉择，旧爱回归让局势复杂化。",
-      "descriptionSource": "https://www.ifccenter.com/films/the-sun-never-sets/"
+      "descriptionSource": "https://www.ifccenter.com/films/the-sun-never-sets/",
+      "descriptionEn": null
     },
     {
       "id": "the-taking-of-pelham-123",
@@ -1130,7 +1235,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "四名劫匪劫持纽约地铁列车并索要赎金，市府与交通警察在限时威胁下展开营救。",
-      "descriptionSource": "https://www.tcm.com/watchtcm/titles/92255"
+      "descriptionSource": "https://www.tcm.com/watchtcm/titles/92255",
+      "descriptionEn": null
     },
     {
       "id": "the-threshing",
@@ -1140,7 +1246,8 @@
       "director": "Sean Mannion",
       "runtimeMinutes": 90,
       "descriptionZh": "年輕女子到再生農場工作，與伴侶在宗教化農場的異常規範下受試煉。",
-      "descriptionSource": "https://www.filmlinc.org/films/the-threshing/"
+      "descriptionSource": "https://www.filmlinc.org/films/the-threshing/",
+      "descriptionEn": null
     },
     {
       "id": "syndicated-ST00002604",
@@ -1150,7 +1257,8 @@
       "director": null,
       "runtimeMinutes": 123,
       "descriptionZh": "詹姆斯·康在迈克尔·曼导演的处女作中饰演欲洗手不干的职业窃贼。",
-      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "descriptionEn": null
     },
     {
       "id": "train-to-busan",
@@ -1160,7 +1268,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "高速列车爆发丧尸危机，类型刺激中包裹亲情抉择。",
-      "descriptionSource": "https://www.ifccenter.com/films/train-to-busan-2/"
+      "descriptionSource": "https://www.ifccenter.com/films/train-to-busan-2/",
+      "descriptionEn": null
     },
     {
       "id": "true-romance",
@@ -1170,7 +1279,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一對新戀人帶著走私毒品落跑，暴力與浪漫在逃亡旅程中互相交織。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003371"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003371",
+      "descriptionEn": null
     },
     {
       "id": "union-county",
@@ -1180,7 +1290,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "年轻人回到家乡，在家庭与阶层现实中重新定位自己。",
-      "descriptionSource": "https://www.ifccenter.com/films/union-county/"
+      "descriptionSource": "https://www.ifccenter.com/films/union-county/",
+      "descriptionEn": null
     },
     {
       "id": "vertigo",
@@ -1190,7 +1301,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "希区柯克关于欲望、替身与执念的迷离悬疑经典。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000090"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000090",
+      "descriptionEn": null
     },
     {
       "id": "west-side-story-1961",
@@ -1200,7 +1312,8 @@
       "director": "Jerome Robbins, Robert Wise",
       "runtimeMinutes": 153,
       "descriptionZh": "改編羅密歐與茱麗葉，在紐約幫派鬥爭中上演經典愛情與舞蹈對抗。",
-      "descriptionSource": "https://www.paristheaternyc.com/film/west-side-story-1961-paris"
+      "descriptionSource": "https://www.paristheaternyc.com/film/west-side-story-1961-paris",
+      "descriptionEn": null
     },
     {
       "id": "what-lies-beneath",
@@ -1210,7 +1323,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一位佛蒙特主婦懷疑鄰居謀殺，其孤寂生活與超自然現象交織。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004967"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004967",
+      "descriptionEn": null
     },
     {
       "id": "when-marnie-was-there",
@@ -1220,7 +1334,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "在北海道濕地，孤獨女孩安娜與神秘少女馬妮結下深刻而微妙的友誼。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004968"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004968",
+      "descriptionEn": null
     },
     {
       "id": "white-material",
@@ -1230,7 +1345,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "咖啡種植場女經理在一國臨近內戰的動盪中竭力等候收成，艱難求存。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000557"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000557",
+      "descriptionEn": null
     },
     {
       "id": "wild-inside",
@@ -1240,7 +1356,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "关于纽约明星猫头鹰 Flaco 与城市投射的纪录片。",
-      "descriptionSource": "https://www.ifccenter.com/films/wild-inside/"
+      "descriptionSource": "https://www.ifccenter.com/films/wild-inside/",
+      "descriptionEn": null
     },
     {
       "id": "withnail-and-i",
@@ -1250,7 +1367,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "兩位窮困演員郁郁不得志，誤打誤撞到鄉間度假爆發喝酒、鬥嘴與囧事。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004966"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004966",
+      "descriptionEn": null
     },
     {
       "id": "women-on-the-verge-of-a-nervous-breakdown",
@@ -1260,7 +1378,8 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "女配音員佩帕被情人拋棄，引發一連串誇張失控的情感與喜劇事件。",
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003126"
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003126",
+      "descriptionEn": null
     }
   ],
   "showings": [
