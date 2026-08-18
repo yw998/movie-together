@@ -32,13 +32,14 @@ try {
         : null;
       const rows = await transaction<{ id: string }[]>`
         update films
-        set description_zh = coalesce(${film.descriptionZh}, description_zh),
-            description_en = ${descriptionEn},
+        set description_zh = coalesce(${film.descriptionZh}::text, description_zh),
+            description_en = ${descriptionEn}::text,
             description_source = case
-              when coalesce(${film.descriptionZh}, description_zh) is null and ${descriptionEn} is null then null
-              else coalesce(${film.descriptionSource}, description_source)
+              when coalesce(${film.descriptionZh}::text, description_zh) is null
+                and ${descriptionEn}::text is null then null
+              else coalesce(${film.descriptionSource}::text, description_source)
             end
-        where id = ${film.id}
+        where id = ${film.id}::text
         returning id
       `;
       if (rows.length !== 1) throw new Error(`Description target ${film.id} does not exist in the database.`);
