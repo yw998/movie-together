@@ -1,20 +1,20 @@
 {
   "metadata": {
     "timezone": "America/New_York",
-    "windowStart": "2026-08-23",
-    "windowEnd": "2026-08-29",
-    "refreshedLocalDate": "2026-08-23",
+    "windowStart": "2026-08-24",
+    "windowEnd": "2026-08-30",
+    "refreshedLocalDate": "2026-08-24",
     "provenanceNote": "Rolling seven-day publication assembled from approved official cinema sources.",
     "unavailableCinemaDates": [
       {
         "reason": "feed_unavailable",
         "cinemaId": "ifc-center",
-        "localDate": "2026-08-29"
+        "localDate": "2026-08-30"
       },
       {
         "reason": "feed_unavailable",
         "cinemaId": "film-at-lincoln-center",
-        "localDate": "2026-08-29"
+        "localDate": "2026-08-30"
       }
     ]
   },
@@ -85,17 +85,6 @@
   ],
   "films": [
     {
-      "id": "2001-a-space-odyssey",
-      "canonicalTitle": "2001: A Space Odyssey",
-      "displayTitle": "2001: A Space Odyssey",
-      "year": 1968,
-      "director": "Stanley Kubrick",
-      "runtimeMinutes": 149,
-      "descriptionZh": "從石器時代到木星之旅，一段關於人性與進化的宏大科幻沉思。",
-      "descriptionEn": null,
-      "descriptionSource": "https://www.paristheaternyc.com/film/2001-a-space-odyssey-paris"
-    },
-    {
       "id": "2046",
       "canonicalTitle": "2046",
       "displayTitle": "2046",
@@ -118,15 +107,15 @@
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000915"
     },
     {
-      "id": "54-the-director-s-cut-q-a-this-is-cine-matographe",
-      "canonicalTitle": "54: The Director's Cut + Q&A | This is Cinématographe",
-      "displayTitle": "54: The Director's Cut + Q&A | This is Cinématographe",
+      "id": "a-rimbaud",
+      "canonicalTitle": "A. Rimbaud",
+      "displayTitle": "A. Rimbaud",
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": "泽西城少年踏入 1979 年 Studio 54 的炫目与代价，映后主创问答。",
+      "descriptionZh": null,
       "descriptionEn": null,
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/54-directors-cut-qa-2/"
+      "descriptionSource": null
     },
     {
       "id": "after-hours",
@@ -149,17 +138,6 @@
       "descriptionZh": "愛麗絲跌入兔子洞，展開充滿奇幻與古怪冒險的仙境旅程。",
       "descriptionEn": null,
       "descriptionSource": "https://www.paristheaternyc.com/film/alice-in-wonderland-1951-paris"
-    },
-    {
-      "id": "aliens",
-      "canonicalTitle": "Aliens",
-      "displayTitle": "Aliens",
-      "year": 1986,
-      "director": "James Cameron",
-      "runtimeMinutes": 137,
-      "descriptionZh": "瑞普莉帶領海軍陸戰隊重返LV-426，面對再度爆發的外星威脅。",
-      "descriptionEn": null,
-      "descriptionSource": "https://www.paristheaternyc.com/film/aliens-paris"
     },
     {
       "id": "and-then-there-was-light",
@@ -217,17 +195,6 @@
       "descriptionSource": "https://www.paristheaternyc.com/film/back-to-the-future-paris"
     },
     {
-      "id": "barbie",
-      "canonicalTitle": "Barbie",
-      "displayTitle": "Barbie",
-      "year": 2023,
-      "director": "Greta Gerwig",
-      "runtimeMinutes": 114,
-      "descriptionZh": "芭比在理想的芭比樂園遭遇存在危機，並引出肯的存在焦慮。",
-      "descriptionEn": null,
-      "descriptionSource": "https://www.paristheaternyc.com/film/barbie-paris"
-    },
-    {
       "id": "before-sunrise",
       "canonicalTitle": "Before Sunrise",
       "displayTitle": "Before Sunrise",
@@ -272,28 +239,6 @@
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004970"
     },
     {
-      "id": "catvideofest-2026",
-      "canonicalTitle": "CatVideoFest 2026",
-      "displayTitle": "CatVideoFest 2026",
-      "year": null,
-      "director": null,
-      "runtimeMinutes": null,
-      "descriptionZh": "年度猫咪视频精选，轻松治愈，也为动物公益募款。",
-      "descriptionEn": null,
-      "descriptionSource": "https://www.ifccenter.com/films/catvideofest-2026/"
-    },
-    {
-      "id": "syndicated-ST00002588",
-      "canonicalTitle": "CatVideoFest 2026",
-      "displayTitle": "CatVideoFest 2026",
-      "year": null,
-      "director": null,
-      "runtimeMinutes": 74,
-      "descriptionZh": "Oscilloscope 呈现的年度猫咪短片汇映，汇集最新精选视频并支持本地救助组织。",
-      "descriptionEn": null,
-      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
-    },
-    {
       "id": "center-stage",
       "canonicalTitle": "CENTER STAGE",
       "displayTitle": "CENTER STAGE",
@@ -303,17 +248,6 @@
       "descriptionZh": "八位纽约芭蕾学生在竞争、欲望与艺术理想之间成长。",
       "descriptionEn": null,
       "descriptionSource": "https://my.filmforum.org/center-stage"
-    },
-    {
-      "id": "chasing-butterflies",
-      "canonicalTitle": "Chasing Butterflies",
-      "displayTitle": "Chasing Butterflies",
-      "year": null,
-      "director": null,
-      "runtimeMinutes": null,
-      "descriptionZh": "兩位古怪老婦守護衰敗城堡生活，繼承人到來打破昔日寧靜與秩序。",
-      "descriptionEn": null,
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004972"
     },
     {
       "id": "chocolat",
@@ -349,17 +283,6 @@
       "descriptionSource": null
     },
     {
-      "id": "click-35mm-2006-movies",
-      "canonicalTitle": "Click - 35MM | 2006 Movies",
-      "displayTitle": "Click - 35MM | 2006 Movies",
-      "year": null,
-      "director": null,
-      "runtimeMinutes": null,
-      "descriptionZh": "职场父亲获得一只能快进人生的神奇遥控器，结果失控改变了他的人际与家庭生活。",
-      "descriptionEn": null,
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/click-35mm/"
-    },
-    {
       "id": "collateral",
       "canonicalTitle": "Collateral",
       "displayTitle": "Collateral",
@@ -369,17 +292,6 @@
       "descriptionZh": "洛杉矶出租车司机被职业杀手挟持，在一夜之间驶入致命任务。",
       "descriptionEn": null,
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004937"
-    },
-    {
-      "id": "syndicated-ST00002598",
-      "canonicalTitle": "Collateral",
-      "displayTitle": "Collateral",
-      "year": null,
-      "director": null,
-      "runtimeMinutes": 120,
-      "descriptionZh": "一名计程车司机在洛杉矶的一夜里被一位职业杀手挟持成了帮手与人质。",
-      "descriptionEn": null,
-      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     },
     {
       "id": "colony",
@@ -402,17 +314,6 @@
       "descriptionZh": null,
       "descriptionEn": null,
       "descriptionSource": null
-    },
-    {
-      "id": "crank-35mm-2006-movies",
-      "canonicalTitle": "Crank - 35MM | 2006 Movies",
-      "displayTitle": "Crank - 35MM | 2006 Movies",
-      "year": null,
-      "director": null,
-      "runtimeMinutes": null,
-      "descriptionZh": "杀手必须持续提高心率才能活命的高速动作狂想。",
-      "descriptionEn": null,
-      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/crank-35mm/"
     },
     {
       "id": "curse-of-the-demon",
@@ -583,6 +484,17 @@
       "id": "girlhood",
       "canonicalTitle": "Girlhood",
       "displayTitle": "Girlhood",
+      "year": null,
+      "director": null,
+      "runtimeMinutes": null,
+      "descriptionZh": null,
+      "descriptionEn": null,
+      "descriptionSource": null
+    },
+    {
+      "id": "goodbye-dragon-inn",
+      "canonicalTitle": "Goodbye, Dragon Inn",
+      "displayTitle": "Goodbye, Dragon Inn",
       "year": null,
       "director": null,
       "runtimeMinutes": null,
@@ -976,17 +888,6 @@
       "descriptionSource": "https://www.paristheaternyc.com/film/panic-room-paris"
     },
     {
-      "id": "pastorale",
-      "canonicalTitle": "Pastorale",
-      "displayTitle": "Pastorale",
-      "year": null,
-      "director": null,
-      "runtimeMinutes": null,
-      "descriptionZh": "第比利斯弦樂四重奏到山村排練，日常生活與古典樂在鄉間交織成詩。",
-      "descriptionEn": null,
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004971"
-    },
-    {
       "id": "peggy-sue-got-married",
       "canonicalTitle": "PEGGY SUE GOT MARRIED",
       "displayTitle": "PEGGY SUE GOT MARRIED",
@@ -1185,6 +1086,17 @@
       "descriptionSource": "https://www.tcm.com/watchtcm/titles/443184"
     },
     {
+      "id": "the-godfather-coda",
+      "canonicalTitle": "THE GODFATHER CODA",
+      "displayTitle": "THE GODFATHER CODA",
+      "year": null,
+      "director": null,
+      "runtimeMinutes": null,
+      "descriptionZh": null,
+      "descriptionEn": null,
+      "descriptionSource": null
+    },
+    {
       "id": "the-godfather-ii",
       "canonicalTitle": "THE GODFATHER II",
       "displayTitle": "THE GODFATHER II",
@@ -1251,17 +1163,6 @@
       "descriptionSource": null
     },
     {
-      "id": "the-jungle-book",
-      "canonicalTitle": "The Jungle Book",
-      "displayTitle": "The Jungle Book",
-      "year": null,
-      "director": null,
-      "runtimeMinutes": null,
-      "descriptionZh": "迪士尼手绘经典，丛林男孩在歌声与冒险中寻找归属。",
-      "descriptionEn": null,
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004962"
-    },
-    {
       "id": "the-name-of-the-rose",
       "canonicalTitle": "The Name of the Rose",
       "displayTitle": "The Name of the Rose",
@@ -1282,17 +1183,6 @@
       "descriptionZh": null,
       "descriptionEn": null,
       "descriptionSource": null
-    },
-    {
-      "id": "the-rain-people",
-      "canonicalTitle": "THE RAIN PEOPLE",
-      "displayTitle": "THE RAIN PEOPLE",
-      "year": null,
-      "director": null,
-      "runtimeMinutes": null,
-      "descriptionZh": "一名郊区主妇突然离家，独自驾车横越美国寻找生活的另一种可能。",
-      "descriptionEn": null,
-      "descriptionSource": "https://www.tcm.com/watchtcm/titles/87618"
     },
     {
       "id": "the-rainmaker",
@@ -1328,15 +1218,15 @@
       "descriptionSource": "https://www.ifccenter.com/films/the-samurai-and-the-prisoner/"
     },
     {
-      "id": "the-son-of-the-sheik",
-      "canonicalTitle": "THE SON OF THE SHEIK",
-      "displayTitle": "THE SON OF THE SHEIK",
-      "year": null,
-      "director": null,
-      "runtimeMinutes": null,
-      "descriptionZh": "一名阿拉伯骑士在沙漠匪徒的威胁下，设法保护自己爱上的舞女。",
+      "id": "the-sound-of-music",
+      "canonicalTitle": "The Sound of Music",
+      "displayTitle": "The Sound of Music",
+      "year": 1965,
+      "director": "Robert Wise",
+      "runtimeMinutes": 172,
+      "descriptionZh": null,
       "descriptionEn": null,
-      "descriptionSource": "https://www.tcm.com/watchtcm/titles/326475"
+      "descriptionSource": null
     },
     {
       "id": "the-straight-story-35mm-presented-by-slow-pulp",
@@ -1449,17 +1339,6 @@
       "descriptionSource": null
     },
     {
-      "id": "when-marnie-was-there",
-      "canonicalTitle": "When Marnie Was There",
-      "displayTitle": "When Marnie Was There",
-      "year": null,
-      "director": null,
-      "runtimeMinutes": null,
-      "descriptionZh": "在北海道濕地，孤獨女孩安娜與神秘少女馬妮結下深刻而微妙的友誼。",
-      "descriptionEn": null,
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004968"
-    },
-    {
       "id": "when-we-saw-each-other-more-often-q-a",
       "canonicalTitle": "When We Saw Each Other More Often + Q&A",
       "displayTitle": "When We Saw Each Other More Often + Q&A",
@@ -1480,17 +1359,6 @@
       "descriptionZh": "关于纽约明星猫头鹰 Flaco 与城市投射的纪录片。",
       "descriptionEn": null,
       "descriptionSource": "https://www.ifccenter.com/films/wild-inside/"
-    },
-    {
-      "id": "withnail-and-i",
-      "canonicalTitle": "Withnail and I",
-      "displayTitle": "Withnail and I",
-      "year": null,
-      "director": null,
-      "runtimeMinutes": null,
-      "descriptionZh": "兩位窮困演員郁郁不得志，誤打誤撞到鄉間度假爆發喝酒、鬥嘴與囧事。",
-      "descriptionEn": null,
-      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004966"
     },
     {
       "id": "women-on-the-verge-of-a-nervous-breakdown",
@@ -1516,1315 +1384,6 @@
     }
   ],
   "showings": [
-    {
-      "id": "ifc-center-574452",
-      "cinemaId": "ifc-center",
-      "filmId": "the-samurai-and-the-prisoner",
-      "startsAt": "2026-08-23T10:50:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "10:50",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/the-samurai-and-the-prisoner/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574452~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574453",
-      "cinemaId": "ifc-center",
-      "filmId": "how-to-divorce-during-the-war",
-      "startsAt": "2026-08-23T10:55:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "10:55",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/how-to-divorce-during-the-war/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574453~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574450",
-      "cinemaId": "ifc-center",
-      "filmId": "catvideofest-2026",
-      "startsAt": "2026-08-23T11:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "11:00",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/catvideofest-2026/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574450~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "metrograph-30595",
-      "cinemaId": "metrograph",
-      "filmId": "e-t-the-extra-terrestrial",
-      "startsAt": "2026-08-23T11:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "11:00",
-      "format": "4K DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999000571",
-      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30595",
-      "availability": "available",
-      "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "metrograph-sold-out-the-jungle-book-2026-08-23-1100",
-      "cinemaId": "metrograph",
-      "filmId": "the-jungle-book",
-      "startsAt": "2026-08-23T11:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "11:00",
-      "format": "35mm",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004962",
-      "ticketUrl": null,
-      "availability": "sold_out",
-      "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "paris-theater-2001-2863",
-      "cinemaId": "paris-theater",
-      "filmId": "barbie",
-      "startsAt": "2026-08-23T11:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "11:00",
-      "format": "4K DCP",
-      "eventType": "other",
-      "eventNote": "Atmos",
-      "detailUrl": "https://www.paristheaternyc.com/film/barbie-paris",
-      "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2863/seats",
-      "availability": "available",
-      "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574454",
-      "cinemaId": "ifc-center",
-      "filmId": "union-county",
-      "startsAt": "2026-08-23T11:05:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "11:05",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/union-county/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574454~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574451",
-      "cinemaId": "ifc-center",
-      "filmId": "mysterious-skin",
-      "startsAt": "2026-08-23T11:30:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "11:30",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/mysterious-skin/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574451~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-at-lincoln-center-84027",
-      "cinemaId": "film-at-lincoln-center",
-      "filmId": "the-samurai-and-the-prisoner",
-      "startsAt": "2026-08-23T12:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "12:00",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.filmlinc.org/films/the-samurai-and-the-prisoner/",
-      "ticketUrl": "https://purchase.filmlinc.org/83373/84027",
-      "availability": "available",
-      "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-22T09:32:12.952Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52383",
-      "cinemaId": "film-forum",
-      "filmId": "late-fame",
-      "startsAt": "2026-08-23T12:15:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "12:15",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/late-fame",
-      "ticketUrl": "https://my.filmforum.org/late-fame/52383",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52457",
-      "cinemaId": "film-forum",
-      "filmId": "the-same-river-twice",
-      "startsAt": "2026-08-23T12:15:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "12:15",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/same-river-twice",
-      "ticketUrl": "https://my.filmforum.org/same-river-twice/52457",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52413",
-      "cinemaId": "film-forum",
-      "filmId": "billy-liar",
-      "startsAt": "2026-08-23T12:20:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "12:20",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/billy-liar-4k",
-      "ticketUrl": "https://my.filmforum.org/billy-liar-4k/52413",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-at-lincoln-center-83712",
-      "cinemaId": "film-at-lincoln-center",
-      "filmId": "franz",
-      "startsAt": "2026-08-23T12:30:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "12:30",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.filmlinc.org/films/franz/",
-      "ticketUrl": "https://purchase.filmlinc.org/83703/83712",
-      "availability": "available",
-      "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-22T09:32:12.952Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52005",
-      "cinemaId": "film-forum",
-      "filmId": "one-from-the-heart-reprise",
-      "startsAt": "2026-08-23T12:30:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "12:30",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/one-from-the-heart-reprise",
-      "ticketUrl": "https://my.filmforum.org/one-from-the-heart-reprise/52005",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-573465",
-      "cinemaId": "ifc-center",
-      "filmId": "it-ends",
-      "startsAt": "2026-08-23T12:35:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "12:35",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/it-ends/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573465~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "metrograph-30601",
-      "cinemaId": "metrograph",
-      "filmId": "when-marnie-was-there",
-      "startsAt": "2026-08-23T12:40:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "12:40",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004968",
-      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30601",
-      "availability": "available",
-      "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-at-lincoln-center-84057",
-      "cinemaId": "film-at-lincoln-center",
-      "filmId": "late-fame",
-      "startsAt": "2026-08-23T13:15:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "13:15",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.filmlinc.org/films/late-fame/",
-      "ticketUrl": "https://purchase.filmlinc.org/83634/84057",
-      "availability": "available",
-      "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-22T09:32:12.952Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574456",
-      "cinemaId": "ifc-center",
-      "filmId": "how-to-divorce-during-the-war",
-      "startsAt": "2026-08-23T13:25:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "13:25",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/how-to-divorce-during-the-war/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574456~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574457",
-      "cinemaId": "ifc-center",
-      "filmId": "union-county",
-      "startsAt": "2026-08-23T13:30:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "13:30",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/union-county/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574457~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "metrograph-30596",
-      "cinemaId": "metrograph",
-      "filmId": "the-dark-knight",
-      "startsAt": "2026-08-23T13:30:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "13:30",
-      "format": "35mm",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999003615",
-      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30596",
-      "availability": "available",
-      "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574455",
-      "cinemaId": "ifc-center",
-      "filmId": "wild-inside",
-      "startsAt": "2026-08-23T13:50:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "13:50",
-      "format": null,
-      "eventType": "qa",
-      "eventNote": "Q&A with director Penny Lane moderated by Judith Helfand after the 1:50 show!",
-      "detailUrl": "https://www.ifccenter.com/films/wild-inside/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574455~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/films/wild-inside/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574566",
-      "cinemaId": "ifc-center",
-      "filmId": "mysterious-skin",
-      "startsAt": "2026-08-23T13:55:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "13:55",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/mysterious-skin/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574566~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "paris-theater-2001-2967",
-      "cinemaId": "paris-theater",
-      "filmId": "aliens",
-      "startsAt": "2026-08-23T14:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "14:00",
-      "format": "70mm",
-      "eventType": "other",
-      "eventNote": "70MM",
-      "detailUrl": "https://www.paristheaternyc.com/film/aliens-paris",
-      "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2967/seats",
-      "availability": "available",
-      "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52384",
-      "cinemaId": "film-forum",
-      "filmId": "late-fame",
-      "startsAt": "2026-08-23T14:35:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "14:35",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/late-fame",
-      "ticketUrl": "https://my.filmforum.org/late-fame/52384",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52442",
-      "cinemaId": "film-forum",
-      "filmId": "sherman-s-march",
-      "startsAt": "2026-08-23T14:35:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "14:35",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/shermans-march",
-      "ticketUrl": "https://my.filmforum.org/shermans-march/52442",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-51947",
-      "cinemaId": "film-forum",
-      "filmId": "the-son-of-the-sheik",
-      "startsAt": "2026-08-23T14:40:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "14:40",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/son-of-the-sheik",
-      "ticketUrl": "https://my.filmforum.org/son-of-the-sheik/51947",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52427",
-      "cinemaId": "film-forum",
-      "filmId": "center-stage",
-      "startsAt": "2026-08-23T14:40:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "14:40",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/center-stage",
-      "ticketUrl": "https://my.filmforum.org/center-stage/52427",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-573468",
-      "cinemaId": "ifc-center",
-      "filmId": "it-ends",
-      "startsAt": "2026-08-23T14:40:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "14:40",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/it-ends/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573468~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "metrograph-sold-out-petite-maman-2026-08-23-1445",
-      "cinemaId": "metrograph",
-      "filmId": "petite-maman",
-      "startsAt": "2026-08-23T14:45:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "14:45",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004050",
-      "ticketUrl": null,
-      "availability": "sold_out",
-      "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "roxy-cinema-7686",
-      "cinemaId": "roxy-cinema",
-      "filmId": "click-35mm-2006-movies",
-      "startsAt": "2026-08-23T14:45:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "14:45",
-      "format": "35mm",
-      "eventType": "intro",
-      "eventNote": "Introduced by Hajin Yoo 8/18 and Laine Elliott 8/23.",
-      "detailUrl": "https://www.roxycinemanewyork.com/screenings/click-35mm/",
-      "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7686?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
-      "availability": "unknown",
-      "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-at-lincoln-center-84031",
-      "cinemaId": "film-at-lincoln-center",
-      "filmId": "the-samurai-and-the-prisoner",
-      "startsAt": "2026-08-23T15:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "15:00",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.filmlinc.org/films/the-samurai-and-the-prisoner/",
-      "ticketUrl": "https://purchase.filmlinc.org/83373/84031",
-      "availability": "available",
-      "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-22T09:32:12.952Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-at-lincoln-center-83713",
-      "cinemaId": "film-at-lincoln-center",
-      "filmId": "franz",
-      "startsAt": "2026-08-23T15:15:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "15:15",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.filmlinc.org/films/franz/",
-      "ticketUrl": "https://purchase.filmlinc.org/83703/83713",
-      "availability": "available",
-      "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-22T09:32:12.952Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-at-lincoln-center-84058",
-      "cinemaId": "film-at-lincoln-center",
-      "filmId": "late-fame",
-      "startsAt": "2026-08-23T15:45:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "15:45",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.filmlinc.org/films/late-fame/",
-      "ticketUrl": "https://purchase.filmlinc.org/83634/84058",
-      "availability": "available",
-      "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-22T09:32:12.952Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574459",
-      "cinemaId": "ifc-center",
-      "filmId": "how-to-divorce-during-the-war",
-      "startsAt": "2026-08-23T16:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "16:00",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/how-to-divorce-during-the-war/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574459~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "syndicated-6536",
-      "cinemaId": "syndicated",
-      "filmId": "syndicated-ST00002588",
-      "startsAt": "2026-08-23T16:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "16:00",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6536?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "availability": "available",
-      "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574460",
-      "cinemaId": "ifc-center",
-      "filmId": "the-samurai-and-the-prisoner",
-      "startsAt": "2026-08-23T16:05:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "16:05",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/the-samurai-and-the-prisoner/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574460~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574458",
-      "cinemaId": "ifc-center",
-      "filmId": "union-county",
-      "startsAt": "2026-08-23T16:10:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "16:10",
-      "format": null,
-      "eventType": "qa",
-      "eventNote": "Q&A with dir. Adam Meeks & star Will Poulter after the 4:10 show!",
-      "detailUrl": "https://www.ifccenter.com/films/union-county/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574458~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/films/union-county/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574554",
-      "cinemaId": "ifc-center",
-      "filmId": "train-to-busan",
-      "startsAt": "2026-08-23T16:25:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "16:25",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/train-to-busan-2/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574554~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "metrograph-sold-out-withnail-and-i-2026-08-23-1625",
-      "cinemaId": "metrograph",
-      "filmId": "withnail-and-i",
-      "startsAt": "2026-08-23T16:25:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "16:25",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004966",
-      "ticketUrl": null,
-      "availability": "sold_out",
-      "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "metrograph-30597",
-      "cinemaId": "metrograph",
-      "filmId": "pastorale",
-      "startsAt": "2026-08-23T16:30:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "16:30",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004971",
-      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30597",
-      "availability": "available",
-      "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-51986",
-      "cinemaId": "film-forum",
-      "filmId": "the-conversation",
-      "startsAt": "2026-08-23T16:40:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "16:40",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/the-conversation-coppola",
-      "ticketUrl": "https://my.filmforum.org/the-conversation-coppola/51986",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52385",
-      "cinemaId": "film-forum",
-      "filmId": "late-fame",
-      "startsAt": "2026-08-23T16:40:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "16:40",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/late-fame",
-      "ticketUrl": "https://my.filmforum.org/late-fame/52385",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-573470",
-      "cinemaId": "ifc-center",
-      "filmId": "it-ends",
-      "startsAt": "2026-08-23T16:55:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "16:55",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/it-ends/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573470~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "roxy-cinema-7682",
-      "cinemaId": "roxy-cinema",
-      "filmId": "crank-35mm-2006-movies",
-      "startsAt": "2026-08-23T17:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "17:00",
-      "format": "35mm",
-      "eventType": "intro",
-      "eventNote": "Introduced by Matthew Shen Goodman 8/23.",
-      "detailUrl": "https://www.roxycinemanewyork.com/screenings/crank-35mm/",
-      "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7682?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
-      "availability": "unknown",
-      "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52458",
-      "cinemaId": "film-forum",
-      "filmId": "the-same-river-twice",
-      "startsAt": "2026-08-23T17:45:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "17:45",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/same-river-twice",
-      "ticketUrl": "https://my.filmforum.org/same-river-twice/52458",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "paris-theater-2001-2865",
-      "cinemaId": "paris-theater",
-      "filmId": "2001-a-space-odyssey",
-      "startsAt": "2026-08-23T17:45:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "17:45",
-      "format": "70mm",
-      "eventType": "intro",
-      "eventNote": "2001: A SPACE ODYSSEY | Introduced by Matt Zoller Seitz | 70MM",
-      "detailUrl": "https://www.paristheaternyc.com/film/2001-a-space-odyssey-paris",
-      "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2865/seats",
-      "availability": "available",
-      "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-at-lincoln-center-83714",
-      "cinemaId": "film-at-lincoln-center",
-      "filmId": "franz",
-      "startsAt": "2026-08-23T18:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "18:00",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.filmlinc.org/films/franz/",
-      "ticketUrl": "https://purchase.filmlinc.org/83703/83714",
-      "availability": "available",
-      "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-22T09:32:12.952Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-at-lincoln-center-84032",
-      "cinemaId": "film-at-lincoln-center",
-      "filmId": "the-samurai-and-the-prisoner",
-      "startsAt": "2026-08-23T18:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "18:00",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.filmlinc.org/films/the-samurai-and-the-prisoner/",
-      "ticketUrl": "https://purchase.filmlinc.org/83373/84032",
-      "availability": "available",
-      "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-22T09:32:12.952Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52414",
-      "cinemaId": "film-forum",
-      "filmId": "billy-liar",
-      "startsAt": "2026-08-23T18:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "18:00",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/billy-liar-4k",
-      "ticketUrl": "https://my.filmforum.org/billy-liar-4k/52414",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "syndicated-6508",
-      "cinemaId": "syndicated",
-      "filmId": "syndicated-ST00002598",
-      "startsAt": "2026-08-23T18:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "18:00",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6508?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "availability": "available",
-      "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-at-lincoln-center-84059",
-      "cinemaId": "film-at-lincoln-center",
-      "filmId": "late-fame",
-      "startsAt": "2026-08-23T18:15:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "18:15",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.filmlinc.org/films/late-fame/",
-      "ticketUrl": "https://purchase.filmlinc.org/83634/84059",
-      "availability": "available",
-      "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-22T09:32:12.952Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574462",
-      "cinemaId": "ifc-center",
-      "filmId": "union-county",
-      "startsAt": "2026-08-23T18:30:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "18:30",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/union-county/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574462~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574463",
-      "cinemaId": "ifc-center",
-      "filmId": "how-to-divorce-during-the-war",
-      "startsAt": "2026-08-23T18:40:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "18:40",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/how-to-divorce-during-the-war/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574463~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "metrograph-30598",
-      "cinemaId": "metrograph",
-      "filmId": "bram-stoker-s-dracula",
-      "startsAt": "2026-08-23T18:40:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "18:40",
-      "format": "4K DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004970",
-      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30598",
-      "availability": "available",
-      "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "metrograph-sold-out-chasing-butterflies-2026-08-23-1845",
-      "cinemaId": "metrograph",
-      "filmId": "chasing-butterflies",
-      "startsAt": "2026-08-23T18:45:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "18:45",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004972",
-      "ticketUrl": null,
-      "availability": "sold_out",
-      "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52386",
-      "cinemaId": "film-forum",
-      "filmId": "late-fame",
-      "startsAt": "2026-08-23T18:50:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "18:50",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/late-fame",
-      "ticketUrl": "https://my.filmforum.org/late-fame/52386",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-51980",
-      "cinemaId": "film-forum",
-      "filmId": "the-rain-people",
-      "startsAt": "2026-08-23T19:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "19:00",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/the-rain-people",
-      "ticketUrl": "https://my.filmforum.org/the-rain-people/51980",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "roxy-cinema-7674",
-      "cinemaId": "roxy-cinema",
-      "filmId": "54-the-director-s-cut-q-a-this-is-cine-matographe",
-      "startsAt": "2026-08-23T19:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "19:00",
-      "format": null,
-      "eventType": "qa",
-      "eventNote": "Q&A with director Mark Christopher and producer Dolly Hall following screening.",
-      "detailUrl": "https://www.roxycinemanewyork.com/screenings/54-directors-cut-qa-2-2/",
-      "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7674?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
-      "availability": "unknown",
-      "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574464",
-      "cinemaId": "ifc-center",
-      "filmId": "wild-inside",
-      "startsAt": "2026-08-23T19:05:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "19:05",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/wild-inside/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574464~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-573472",
-      "cinemaId": "ifc-center",
-      "filmId": "it-ends",
-      "startsAt": "2026-08-23T19:10:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "19:10",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/it-ends/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=573472~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574461",
-      "cinemaId": "ifc-center",
-      "filmId": "mysterious-skin",
-      "startsAt": "2026-08-23T19:15:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "19:15",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/mysterious-skin/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574461~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52443",
-      "cinemaId": "film-forum",
-      "filmId": "sherman-s-march",
-      "startsAt": "2026-08-23T20:10:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "20:10",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/shermans-march",
-      "ticketUrl": "https://my.filmforum.org/shermans-march/52443",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52428",
-      "cinemaId": "film-forum",
-      "filmId": "center-stage",
-      "startsAt": "2026-08-23T20:15:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "20:15",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/center-stage",
-      "ticketUrl": "https://my.filmforum.org/center-stage/52428",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "syndicated-6533",
-      "cinemaId": "syndicated",
-      "filmId": "syndicated-ST00002586",
-      "startsAt": "2026-08-23T20:40:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "20:40",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6533?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "availability": "available",
-      "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-at-lincoln-center-83715",
-      "cinemaId": "film-at-lincoln-center",
-      "filmId": "franz",
-      "startsAt": "2026-08-23T20:45:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "20:45",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.filmlinc.org/films/franz/",
-      "ticketUrl": "https://purchase.filmlinc.org/83703/83715",
-      "availability": "available",
-      "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-22T09:32:12.952Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-at-lincoln-center-84060",
-      "cinemaId": "film-at-lincoln-center",
-      "filmId": "late-fame",
-      "startsAt": "2026-08-23T20:45:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "20:45",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.filmlinc.org/films/late-fame/",
-      "ticketUrl": "https://purchase.filmlinc.org/83634/84060",
-      "availability": "available",
-      "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-22T09:32:12.952Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574466",
-      "cinemaId": "ifc-center",
-      "filmId": "the-samurai-and-the-prisoner",
-      "startsAt": "2026-08-23T20:50:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "20:50",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/the-samurai-and-the-prisoner/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574466~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-at-lincoln-center-84033",
-      "cinemaId": "film-at-lincoln-center",
-      "filmId": "the-samurai-and-the-prisoner",
-      "startsAt": "2026-08-23T21:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "21:00",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.filmlinc.org/films/the-samurai-and-the-prisoner/",
-      "ticketUrl": "https://purchase.filmlinc.org/83373/84033",
-      "availability": "available",
-      "sourceUrl": "https://api.filmlinc.org/showtimes",
-      "fetchedAt": "2026-08-22T09:32:12.952Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-52387",
-      "cinemaId": "film-forum",
-      "filmId": "late-fame",
-      "startsAt": "2026-08-23T21:00:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "21:00",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/late-fame",
-      "ticketUrl": "https://my.filmforum.org/late-fame/52387",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "film-forum-51976",
-      "cinemaId": "film-forum",
-      "filmId": "dementia-13-director-s-cut",
-      "startsAt": "2026-08-23T21:10:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "21:10",
-      "format": null,
-      "eventType": "other",
-      "eventNote": null,
-      "detailUrl": "https://my.filmforum.org/dementia-13-directors-cut",
-      "ticketUrl": "https://my.filmforum.org/dementia-13-directors-cut/51976",
-      "availability": "available",
-      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574468",
-      "cinemaId": "ifc-center",
-      "filmId": "it-ends-open-captioning",
-      "startsAt": "2026-08-23T21:10:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "21:10",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/it-ends-open-captioning/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574468~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574549",
-      "cinemaId": "ifc-center",
-      "filmId": "train-to-busan",
-      "startsAt": "2026-08-23T21:15:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "21:15",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/train-to-busan-2/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574549~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "metrograph-30605",
-      "cinemaId": "metrograph",
-      "filmId": "in-my-skin",
-      "startsAt": "2026-08-23T21:15:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "21:15",
-      "format": "4K DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004973",
-      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30605",
-      "availability": "available",
-      "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574467",
-      "cinemaId": "ifc-center",
-      "filmId": "union-county",
-      "startsAt": "2026-08-23T21:20:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "21:20",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/union-county/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574467~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "metrograph-30599",
-      "cinemaId": "metrograph",
-      "filmId": "after-hours",
-      "startsAt": "2026-08-23T21:20:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "21:20",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999000970",
-      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30599",
-      "availability": "available",
-      "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "paris-theater-2001-2866",
-      "cinemaId": "paris-theater",
-      "filmId": "panic-room",
-      "startsAt": "2026-08-23T21:30:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "21:30",
-      "format": "DCP",
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.paristheaternyc.com/film/panic-room-paris",
-      "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2866/seats",
-      "availability": "available",
-      "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
-      "extractionStatus": "verified"
-    },
-    {
-      "id": "ifc-center-574465",
-      "cinemaId": "ifc-center",
-      "filmId": "mysterious-skin",
-      "startsAt": "2026-08-23T21:45:00-04:00",
-      "localDate": "2026-08-23",
-      "localTime": "21:45",
-      "format": null,
-      "eventType": "standard",
-      "eventNote": null,
-      "detailUrl": "https://www.ifccenter.com/films/mysterious-skin/",
-      "ticketUrl": "https://tickets.ifccenter.com/websales/pages/ticketsearchcriteria.aspx?evtinfo=574465~8722a542-64c1-4c0b-af02-c3e8a239d769&",
-      "availability": "unknown",
-      "sourceUrl": "https://www.ifccenter.com/",
-      "fetchedAt": "2026-08-22T09:32:12.940Z",
-      "extractionStatus": "verified"
-    },
     {
       "id": "ifc-center-574469",
       "cinemaId": "ifc-center",
@@ -2958,7 +1517,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52388",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -2975,7 +1534,7 @@
       "ticketUrl": "https://my.filmforum.org/same-river-twice/52459",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -2992,7 +1551,7 @@
       "ticketUrl": "https://my.filmforum.org/the-godfather-coppola/51989",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3009,7 +1568,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/52415",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3128,7 +1687,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52389",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3145,7 +1704,7 @@
       "ticketUrl": "https://my.filmforum.org/shermans-march/52444",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3162,7 +1721,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52429",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3230,7 +1789,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30734",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -3264,7 +1823,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30735",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -3281,7 +1840,7 @@
       "ticketUrl": "https://my.filmforum.org/rumble-fish/52015",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3366,7 +1925,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52390",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3400,7 +1959,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30736",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -3417,7 +1976,7 @@
       "ticketUrl": "https://my.filmforum.org/same-river-twice/52460",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3434,7 +1993,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30737",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -3468,7 +2027,7 @@
       "ticketUrl": "https://my.filmforum.org/tucker/52010",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3485,7 +2044,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/52416",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3519,7 +2078,7 @@
       "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6476?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
       "availability": "sold_out",
       "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
       "extractionStatus": "verified"
     },
     {
@@ -3553,7 +2112,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52391",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3570,7 +2129,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7690?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -3655,7 +2214,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30739",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -3672,7 +2231,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30738",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -3689,7 +2248,7 @@
       "ticketUrl": "https://my.filmforum.org/shermans-march/52445",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3706,7 +2265,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52430",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3723,7 +2282,7 @@
       "ticketUrl": "https://my.filmforum.org/the-outsiders-complete-novel/52020",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3791,7 +2350,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52392",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -3808,7 +2367,7 @@
       "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6477?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
       "availability": "available",
       "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
       "extractionStatus": "verified"
     },
     {
@@ -3876,7 +2435,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7699?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -3893,7 +2452,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30740",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -3927,7 +2486,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30741",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -4029,7 +2588,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2867/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -4063,7 +2622,7 @@
       "ticketUrl": "https://my.filmforum.org/same-river-twice/52461",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4080,7 +2639,7 @@
       "ticketUrl": "https://my.filmforum.org/youre-a-big-boy-now/52021",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4097,7 +2656,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/52417",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4148,7 +2707,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52394",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4250,7 +2809,7 @@
       "ticketUrl": "https://my.filmforum.org/apocalypse-final-cut/52024",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4267,7 +2826,7 @@
       "ticketUrl": "https://my.filmforum.org/shermans-march/52446",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4284,7 +2843,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52431",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4352,7 +2911,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52395",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4369,7 +2928,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2868/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -4488,7 +3047,7 @@
       "ticketUrl": "https://my.filmforum.org/same-river-twice/52462",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4539,7 +3098,7 @@
       "ticketUrl": "https://my.filmforum.org/tracking-shots-transit/51850",
       "availability": "sold_out",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4556,7 +3115,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52396",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4573,7 +3132,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/52418",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4607,7 +3166,7 @@
       "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6478?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
       "availability": "sold_out",
       "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
       "extractionStatus": "verified"
     },
     {
@@ -4658,7 +3217,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2869/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -4675,7 +3234,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7676?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -4743,7 +3302,7 @@
       "ticketUrl": null,
       "availability": "sold_out",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -4760,7 +3319,7 @@
       "ticketUrl": "https://my.filmforum.org/the-cotton-club-encore/52030",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4777,7 +3336,7 @@
       "ticketUrl": "https://my.filmforum.org/shermans-march/52447",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4794,7 +3353,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52432",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4811,7 +3370,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52397",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -4896,7 +3455,7 @@
       "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6479?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
       "availability": "sold_out",
       "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
       "extractionStatus": "verified"
     },
     {
@@ -4964,7 +3523,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7707?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -4998,7 +3557,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2870/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -5100,7 +3659,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2871/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -5134,7 +3693,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52398",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5151,7 +3710,7 @@
       "ticketUrl": "https://my.filmforum.org/same-river-twice/52463",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5168,7 +3727,7 @@
       "ticketUrl": "https://my.filmforum.org/the-outsiders-complete-novel/52018",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5219,7 +3778,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/52419",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5287,7 +3846,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30743",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -5304,7 +3863,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30744",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -5338,7 +3897,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52399",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5355,7 +3914,7 @@
       "ticketUrl": "https://my.filmforum.org/shermans-march/52448",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5389,7 +3948,7 @@
       "ticketUrl": "https://my.filmforum.org/the-godfather-ii/51995",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5423,7 +3982,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52433",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5457,7 +4016,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2872/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -5542,7 +4101,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30751",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -5576,7 +4135,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30745",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -5593,7 +4152,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52400",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5627,7 +4186,7 @@
       "ticketUrl": "https://my.filmforum.org/same-river-twice/52464",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5678,7 +4237,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/52420",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5695,7 +4254,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7678?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -5712,7 +4271,7 @@
       "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6535?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
       "availability": "available",
       "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
       "extractionStatus": "verified"
     },
     {
@@ -5746,7 +4305,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30750",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -5780,7 +4339,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2873/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -5814,7 +4373,7 @@
       "ticketUrl": "https://my.filmforum.org/youre-a-big-boy-now/52023",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5831,7 +4390,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30746",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -5848,7 +4407,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52401",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5899,7 +4458,7 @@
       "ticketUrl": "https://my.filmforum.org/shermans-march/52449",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5916,7 +4475,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52434",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -5933,7 +4492,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30749",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -5950,7 +4509,7 @@
       "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6509?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
       "availability": "available",
       "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
       "extractionStatus": "verified"
     },
     {
@@ -6001,7 +4560,7 @@
       "ticketUrl": "https://my.filmforum.org/peggy-sue-got-married/52033",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6052,7 +4611,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52402",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6069,7 +4628,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30747",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -6154,7 +4713,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7700?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -6171,7 +4730,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30748",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -6188,7 +4747,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2874/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -6290,7 +4849,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52403",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6307,7 +4866,7 @@
       "ticketUrl": "https://my.filmforum.org/same-river-twice/52465",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6324,7 +4883,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/52421",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6358,7 +4917,7 @@
       "ticketUrl": "https://my.filmforum.org/tucker/52012",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6409,7 +4968,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2918/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -6494,7 +5053,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30752",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -6511,7 +5070,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52404",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6528,7 +5087,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30759",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -6545,7 +5104,7 @@
       "ticketUrl": "https://my.filmforum.org/shermans-march/52450",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6562,7 +5121,7 @@
       "ticketUrl": "https://my.filmforum.org/center-stage/52435",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6596,7 +5155,7 @@
       "ticketUrl": "https://my.filmforum.org/peggy-sue-got-married/52031",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6647,7 +5206,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2876/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -6732,7 +5291,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30753",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -6749,7 +5308,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52405",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6783,7 +5342,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30758",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -6817,7 +5376,7 @@
       "ticketUrl": "https://my.filmforum.org/finians-rainbow/52035",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6834,7 +5393,7 @@
       "ticketUrl": "https://my.filmforum.org/same-river-twice/52466",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6885,7 +5444,7 @@
       "ticketUrl": "https://my.filmforum.org/filipinana/52467",
       "availability": "sold_out",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6936,7 +5495,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2970/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -6953,7 +5512,7 @@
       "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6537?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
       "availability": "available",
       "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
       "extractionStatus": "verified"
     },
     {
@@ -6970,7 +5529,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52406",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -6987,7 +5546,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30754",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7004,7 +5563,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7698?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -7072,7 +5631,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30757",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7089,7 +5648,7 @@
       "ticketUrl": "https://my.filmforum.org/shermans-march/52451",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -7106,7 +5665,7 @@
       "ticketUrl": "https://my.filmforum.org/one-from-the-heart-reprise/52009",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -7123,7 +5682,7 @@
       "ticketUrl": "https://my.filmforum.org/billy-liar-4k/52452",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -7208,7 +5767,7 @@
       "ticketUrl": "https://my.filmforum.org/late-fame/52407",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -7225,7 +5784,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7726?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -7293,7 +5852,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30755",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7310,7 +5869,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30756",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7344,7 +5903,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2879/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -7361,7 +5920,7 @@
       "ticketUrl": "https://my.filmforum.org/filipinana/51791",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -7395,7 +5954,7 @@
       "ticketUrl": "https://my.filmforum.org/the-rainmaker-coppola/52036",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -7446,7 +6005,7 @@
       "ticketUrl": "https://my.filmforum.org/filipinana/51792",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -7463,7 +6022,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2880/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -7480,7 +6039,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30700",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7514,7 +6073,7 @@
       "ticketUrl": "https://my.filmforum.org/one-from-the-heart-reprise/52006",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -7531,7 +6090,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30642",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7582,7 +6141,7 @@
       "ticketUrl": "https://my.filmforum.org/filipinana/51793",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -7599,7 +6158,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7748?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -7633,7 +6192,7 @@
       "ticketUrl": "https://my.filmforum.org/the-conversation-coppola/51987",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -7650,7 +6209,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30643",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7684,7 +6243,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30639",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7701,7 +6260,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2881/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -7735,7 +6294,7 @@
       "ticketUrl": "https://my.filmforum.org/filipinana/51794",
       "availability": "sold_out",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -7752,7 +6311,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7708?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -7769,7 +6328,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30644",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7803,7 +6362,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30640",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7820,7 +6379,7 @@
       "ticketUrl": "https://my.filmforum.org/bram-stokers-dracula/52040",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -7871,7 +6430,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7701?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -7888,7 +6447,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2882/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -7905,7 +6464,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30641",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7922,7 +6481,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30645",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7939,7 +6498,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30646",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7956,7 +6515,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30652",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -7973,7 +6532,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2883/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -7990,7 +6549,7 @@
       "ticketUrl": "https://my.filmforum.org/filipinana/51805",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -8007,7 +6566,7 @@
       "ticketUrl": "https://my.filmforum.org/finians-rainbow/52034",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -8024,7 +6583,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30647",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -8041,7 +6600,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30701",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -8058,7 +6617,7 @@
       "ticketUrl": "https://my.filmforum.org/filipinana/51801",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -8075,7 +6634,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7721?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -8092,7 +6651,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2884/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -8109,7 +6668,7 @@
       "ticketUrl": "https://my.filmforum.org/the-godfather-coppola/51993",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -8126,7 +6685,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30648",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -8143,7 +6702,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30654",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -8160,7 +6719,7 @@
       "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6540?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
       "availability": "available",
       "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
       "extractionStatus": "verified"
     },
     {
@@ -8177,7 +6736,7 @@
       "ticketUrl": "https://my.filmforum.org/filipinana/51803",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -8194,7 +6753,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7797?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -8211,7 +6770,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30649",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -8228,7 +6787,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30655",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -8243,9 +6802,9 @@
       "eventNote": null,
       "detailUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
       "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6522?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "availability": "available",
+      "availability": "sold_out",
       "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
       "extractionStatus": "verified"
     },
     {
@@ -8262,7 +6821,7 @@
       "ticketUrl": "https://my.filmforum.org/the-conversation-coppola/51988",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -8279,7 +6838,7 @@
       "ticketUrl": "https://my.filmforum.org/filipinana/51795",
       "availability": "sold_out",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -8296,7 +6855,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7702?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -8313,7 +6872,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30650",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -8330,7 +6889,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30656",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -8347,7 +6906,7 @@
       "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2885/seats",
       "availability": "available",
       "sourceUrl": "https://www.paristheaternyc.com/",
-      "fetchedAt": "2026-08-23T09:32:54.325Z",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
       "extractionStatus": "verified"
     },
     {
@@ -8364,7 +6923,7 @@
       "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6529?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
       "availability": "available",
       "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
-      "fetchedAt": "2026-08-23T09:32:54.327Z",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
       "extractionStatus": "verified"
     },
     {
@@ -8381,7 +6940,7 @@
       "ticketUrl": "https://my.filmforum.org/dementia-13-directors-cut/51977",
       "availability": "available",
       "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
-      "fetchedAt": "2026-08-23T09:32:54.306Z",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
       "extractionStatus": "verified"
     },
     {
@@ -8398,7 +6957,7 @@
       "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7734?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
       "availability": "unknown",
       "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
-      "fetchedAt": "2026-08-23T09:32:54.322Z",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
       "extractionStatus": "verified"
     },
     {
@@ -8415,7 +6974,7 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30651",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     },
     {
@@ -8432,7 +6991,483 @@
       "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30657",
       "availability": "available",
       "sourceUrl": "https://metrograph.com/film/",
-      "fetchedAt": "2026-08-23T09:32:54.323Z",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "metrograph-30658",
+      "cinemaId": "metrograph",
+      "filmId": "e-t-the-extra-terrestrial",
+      "startsAt": "2026-08-30T11:00:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "11:00",
+      "format": "4K DCP",
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999000571",
+      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30658",
+      "availability": "available",
+      "sourceUrl": "https://metrograph.com/film/",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "metrograph-30663",
+      "cinemaId": "metrograph",
+      "filmId": "goodbye-dragon-inn",
+      "startsAt": "2026-08-30T11:15:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "11:15",
+      "format": "DCP",
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999000006",
+      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30663",
+      "availability": "available",
+      "sourceUrl": "https://metrograph.com/film/",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "paris-theater-2001-2886",
+      "cinemaId": "paris-theater",
+      "filmId": "the-sound-of-music",
+      "startsAt": "2026-08-30T12:00:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "12:00",
+      "format": "70mm",
+      "eventType": "other",
+      "eventNote": "70MM",
+      "detailUrl": "https://www.paristheaternyc.com/film/the-sound-of-music-big-and-loud",
+      "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2886/seats",
+      "availability": "available",
+      "sourceUrl": "https://www.paristheaternyc.com/",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "film-forum-51806",
+      "cinemaId": "film-forum",
+      "filmId": "filipinana",
+      "startsAt": "2026-08-30T12:20:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "12:20",
+      "format": null,
+      "eventType": "other",
+      "eventNote": null,
+      "detailUrl": "https://my.filmforum.org/filipinana",
+      "ticketUrl": "https://my.filmforum.org/filipinana/51806",
+      "availability": "available",
+      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "film-forum-51990",
+      "cinemaId": "film-forum",
+      "filmId": "the-godfather",
+      "startsAt": "2026-08-30T12:30:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "12:30",
+      "format": null,
+      "eventType": "other",
+      "eventNote": null,
+      "detailUrl": "https://my.filmforum.org/the-godfather-coppola",
+      "ticketUrl": "https://my.filmforum.org/the-godfather-coppola/51990",
+      "availability": "available",
+      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "metrograph-30664",
+      "cinemaId": "metrograph",
+      "filmId": "lady-in-the-water",
+      "startsAt": "2026-08-30T13:00:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "13:00",
+      "format": "35mm",
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004976",
+      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30664",
+      "availability": "available",
+      "sourceUrl": "https://metrograph.com/film/",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "metrograph-30659",
+      "cinemaId": "metrograph",
+      "filmId": "bram-stoker-s-dracula",
+      "startsAt": "2026-08-30T13:25:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "13:25",
+      "format": "4K DCP",
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004970",
+      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30659",
+      "availability": "available",
+      "sourceUrl": "https://metrograph.com/film/",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "roxy-cinema-7677",
+      "cinemaId": "roxy-cinema",
+      "filmId": "a-rimbaud",
+      "startsAt": "2026-08-30T13:30:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "13:30",
+      "format": null,
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://www.roxycinemanewyork.com/screenings/a-rimbaud-2/",
+      "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7677?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
+      "availability": "unknown",
+      "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "film-forum-51802",
+      "cinemaId": "film-forum",
+      "filmId": "filipinana",
+      "startsAt": "2026-08-30T14:30:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "14:30",
+      "format": null,
+      "eventType": "other",
+      "eventNote": null,
+      "detailUrl": "https://my.filmforum.org/filipinana",
+      "ticketUrl": "https://my.filmforum.org/filipinana/51802",
+      "availability": "available",
+      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "metrograph-30665",
+      "cinemaId": "metrograph",
+      "filmId": "der-fan",
+      "startsAt": "2026-08-30T15:15:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "15:15",
+      "format": "4K DCP",
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004975",
+      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30665",
+      "availability": "available",
+      "sourceUrl": "https://metrograph.com/film/",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "metrograph-30660",
+      "cinemaId": "metrograph",
+      "filmId": "mulholland-drive-35mm",
+      "startsAt": "2026-08-30T16:00:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "16:00",
+      "format": "35mm",
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999002169",
+      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30660",
+      "availability": "available",
+      "sourceUrl": "https://metrograph.com/film/",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "film-forum-52000",
+      "cinemaId": "film-forum",
+      "filmId": "the-godfather-ii",
+      "startsAt": "2026-08-30T16:10:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "16:10",
+      "format": null,
+      "eventType": "other",
+      "eventNote": null,
+      "detailUrl": "https://my.filmforum.org/the-godfather-ii",
+      "ticketUrl": "https://my.filmforum.org/the-godfather-ii/52000",
+      "availability": "available",
+      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "syndicated-6541",
+      "cinemaId": "syndicated",
+      "filmId": "syndicated-ST00002592",
+      "startsAt": "2026-08-30T16:10:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "16:10",
+      "format": null,
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6541?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "availability": "available",
+      "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "paris-theater-2001-2887",
+      "cinemaId": "paris-theater",
+      "filmId": "lawrence-of-arabia",
+      "startsAt": "2026-08-30T16:20:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "16:20",
+      "format": "70mm",
+      "eventType": "other",
+      "eventNote": "70MM",
+      "detailUrl": "https://www.paristheaternyc.com/film/lawrence-of-arabia-paris",
+      "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2887/seats",
+      "availability": "available",
+      "sourceUrl": "https://www.paristheaternyc.com/",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "film-forum-51804",
+      "cinemaId": "film-forum",
+      "filmId": "filipinana",
+      "startsAt": "2026-08-30T16:45:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "16:45",
+      "format": null,
+      "eventType": "other",
+      "eventNote": null,
+      "detailUrl": "https://my.filmforum.org/filipinana",
+      "ticketUrl": "https://my.filmforum.org/filipinana/51804",
+      "availability": "available",
+      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "roxy-cinema-7732",
+      "cinemaId": "roxy-cinema",
+      "filmId": "when-we-saw-each-other-more-often-q-a",
+      "startsAt": "2026-08-30T17:00:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "17:00",
+      "format": null,
+      "eventType": "qa",
+      "eventNote": "Q&A with writer/director William Wrubel to follow!",
+      "detailUrl": "https://www.roxycinemanewyork.com/screenings/when-we-saw-each-other-more-often-qa/",
+      "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7732?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
+      "availability": "unknown",
+      "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "metrograph-30666",
+      "cinemaId": "metrograph",
+      "filmId": "eve-s-bayou",
+      "startsAt": "2026-08-30T17:15:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "17:15",
+      "format": "DCP",
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999001795",
+      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30666",
+      "availability": "available",
+      "sourceUrl": "https://metrograph.com/film/",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "syndicated-6542",
+      "cinemaId": "syndicated",
+      "filmId": "syndicated-ST00002586",
+      "startsAt": "2026-08-30T18:25:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "18:25",
+      "format": null,
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6542?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "availability": "available",
+      "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "film-forum-51796",
+      "cinemaId": "film-forum",
+      "filmId": "filipinana",
+      "startsAt": "2026-08-30T19:00:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "19:00",
+      "format": null,
+      "eventType": "other",
+      "eventNote": null,
+      "detailUrl": "https://my.filmforum.org/filipinana",
+      "ticketUrl": "https://my.filmforum.org/filipinana/51796",
+      "availability": "available",
+      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "metrograph-30661",
+      "cinemaId": "metrograph",
+      "filmId": "2046",
+      "startsAt": "2026-08-30T19:00:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "19:00",
+      "format": "DCP",
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004396",
+      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30661",
+      "availability": "available",
+      "sourceUrl": "https://metrograph.com/film/",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "metrograph-sold-out-jennifer-s-body-2026-08-30-1930",
+      "cinemaId": "metrograph",
+      "filmId": "jennifer-s-body",
+      "startsAt": "2026-08-30T19:30:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "19:30",
+      "format": "DCP",
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004974",
+      "ticketUrl": null,
+      "availability": "sold_out",
+      "sourceUrl": "https://metrograph.com/film/",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "roxy-cinema-7703",
+      "cinemaId": "roxy-cinema",
+      "filmId": "i-want-your-sex",
+      "startsAt": "2026-08-30T20:00:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "20:00",
+      "format": null,
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://www.roxycinemanewyork.com/screenings/i-want-your-sex/",
+      "ticketUrl": "https://ticketing.uswest.veezi.com/purchase/7703?siteToken=tt17e5ajy3v48kh5b2kremvnz4",
+      "availability": "unknown",
+      "sourceUrl": "https://www.roxycinemanewyork.com/now-showing/",
+      "fetchedAt": "2026-08-24T09:53:49.263Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "film-forum-52055",
+      "cinemaId": "film-forum",
+      "filmId": "the-godfather-coda",
+      "startsAt": "2026-08-30T20:10:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "20:10",
+      "format": null,
+      "eventType": "other",
+      "eventNote": null,
+      "detailUrl": "https://my.filmforum.org/godfather-coda",
+      "ticketUrl": "https://my.filmforum.org/godfather-coda/52055",
+      "availability": "available",
+      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "syndicated-6523",
+      "cinemaId": "syndicated",
+      "filmId": "syndicated-ST00002590",
+      "startsAt": "2026-08-30T21:00:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "21:00",
+      "format": null,
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "ticketUrl": "https://ticketing.useast.veezi.com/purchase/6523?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "availability": "available",
+      "sourceUrl": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c",
+      "fetchedAt": "2026-08-24T09:53:49.268Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "film-forum-51798",
+      "cinemaId": "film-forum",
+      "filmId": "filipinana",
+      "startsAt": "2026-08-30T21:10:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "21:10",
+      "format": null,
+      "eventType": "other",
+      "eventNote": null,
+      "detailUrl": "https://my.filmforum.org/filipinana",
+      "ticketUrl": "https://my.filmforum.org/filipinana/51798",
+      "availability": "available",
+      "sourceUrl": "https://my.filmforum.org/api/products/productionseasons",
+      "fetchedAt": "2026-08-24T09:53:49.249Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "paris-theater-2001-2973",
+      "cinemaId": "paris-theater",
+      "filmId": "michael-mann-s-manhunter-the-final-cut",
+      "startsAt": "2026-08-30T21:15:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "21:15",
+      "format": "DCP",
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://www.paristheaternyc.com/film/michael-manns-manhunter-final-cut-paris",
+      "ticketUrl": "https://tickets.paristheaternyc.com/order/showtimes/2001-2973/seats",
+      "availability": "available",
+      "sourceUrl": "https://www.paristheaternyc.com/",
+      "fetchedAt": "2026-08-24T09:53:49.266Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "metrograph-30662",
+      "cinemaId": "metrograph",
+      "filmId": "after-hours",
+      "startsAt": "2026-08-30T21:40:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "21:40",
+      "format": "DCP",
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999000970",
+      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30662",
+      "availability": "available",
+      "sourceUrl": "https://metrograph.com/film/",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
+      "extractionStatus": "verified"
+    },
+    {
+      "id": "metrograph-30668",
+      "cinemaId": "metrograph",
+      "filmId": "in-my-skin",
+      "startsAt": "2026-08-30T21:45:00-04:00",
+      "localDate": "2026-08-30",
+      "localTime": "21:45",
+      "format": "4K DCP",
+      "eventType": "standard",
+      "eventNote": null,
+      "detailUrl": "https://metrograph.com/film/?vista_film_id=9999004973",
+      "ticketUrl": "https://t.metrograph.com/Ticketing/visSelectTickets.aspx?cinemacode=9999&txtSessionId=30668",
+      "availability": "available",
+      "sourceUrl": "https://metrograph.com/film/",
+      "fetchedAt": "2026-08-24T09:53:49.264Z",
       "extractionStatus": "verified"
     }
   ]
