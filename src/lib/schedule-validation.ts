@@ -70,7 +70,11 @@ function hostMatches(sourceUrl: string, allowedUrls: string[]): boolean {
 
 export function validateScheduleData(
   data: ScheduleData,
-  options: { now?: Date; staleAfterHours?: number } = {},
+  options: {
+    now?: Date;
+    staleAfterHours?: number;
+    staleExemptShowingIds?: ReadonlySet<string>;
+  } = {},
 ): ValidationReport {
   const issues: ValidationIssue[] = [];
   const now = options.now ?? new Date();
@@ -180,7 +184,10 @@ export function validateScheduleData(
       const fetchedAt = new Date(showing.fetchedAt);
       if (Number.isNaN(fetchedAt.getTime())) {
         add("error", "invalid_fetched_at", `${path}.fetchedAt`, showing.fetchedAt);
-      } else if (now.getTime() - fetchedAt.getTime() > staleAfterMs) {
+      } else if (
+        now.getTime() - fetchedAt.getTime() > staleAfterMs &&
+        !options.staleExemptShowingIds?.has(showing.id)
+      ) {
         add("warning", "stale_showing", `${path}.fetchedAt`, showing.fetchedAt);
       }
     }

@@ -63,6 +63,7 @@ export function compileWeeklyCandidate(
   }
   const films = new Map<string, Film>();
   const showings = new Map<string, Showing>();
+  const approvedFallbackShowingIds = new Set<string>();
   for (const adapter of bundle.adapters) {
     if (adapter.publicationFallback) {
       const fallbackAt = adapter.publicationFallback.sourceGeneratedAt
@@ -76,6 +77,17 @@ export function compileWeeklyCandidate(
         (fallbackAt !== null && fallbackAt > currentAt)
       ) {
         throw new Error(`Adapter ${adapter.cinemaId} has invalid approved fallback metadata.`);
+      }
+      const fallbackDates = adapter.publicationFallback.fallbackDates;
+      if (adapter.publicationFallback.mode === "date_scoped" && !fallbackDates) {
+        throw new Error(`Adapter ${adapter.cinemaId} is missing date-scoped approved fallback metadata.`);
+      }
+      const fallbackDateSet = fallbackDates ? new Set(fallbackDates) : null;
+      for (const showing of adapter.showings) {
+        if (fallbackDateSet && !fallbackDateSet.has(showing.localDate)) {
+          throw new Error(`Adapter ${adapter.cinemaId} has a showing outside its approved fallback dates.`);
+        }
+        approvedFallbackShowingIds.add(showing.id);
       }
     }
     for (const film of adapter.films) {
@@ -166,7 +178,11 @@ export function compileWeeklyCandidate(
     films: enrichedFilms.sort((a, b) => a.displayTitle.localeCompare(b.displayTitle)),
     showings: unique.showings.sort((a, b) => a.startsAt.localeCompare(b.startsAt) || a.id.localeCompare(b.id)),
   };
-  const validation = validateScheduleData(schedule, { now: new Date(bundle.generatedAt), staleAfterHours: 72 });
+  const validation = validateScheduleData(schedule, {
+    now: new Date(bundle.generatedAt),
+    staleAfterHours: 72,
+    staleExemptShowingIds: approvedFallbackShowingIds,
+  });
   if (!validation.publishable) {
     const messages = validation.issues.map((issue) => `${issue.path}: ${issue.message}`);
     throw new Error(`Compiled candidate failed validation: ${messages.join(" ")}`);

@@ -112,6 +112,29 @@ describe("weekly candidate compiler", () => {
       .not.toThrow();
   });
 
+  it("preserves stale provenance for an explicitly approved fallback", () => {
+    const reconciled = bundle();
+    reconciled.generatedAt = "2026-08-14T14:00:00Z";
+    const fallback = reconciled.adapters.find((item) => item.cinemaId === "film-forum")!;
+    fallback.snapshot.result = "failed";
+    fallback.warnings = ["current source unavailable"];
+    fallback.publicationFallback = {
+      mode: "date_scoped",
+      sourceGeneratedAt: "2026-08-10T14:00:00Z",
+      fallbackDates: ["2026-08-10"],
+      unavailableDates: ["2026-08-11", "2026-08-12", "2026-08-13", "2026-08-14", "2026-08-15", "2026-08-16"],
+    };
+
+    const result = compileWeeklyCandidate(reconciled, undefined, { requireCleanSources: true });
+    expect(result.schedule.showings[0].fetchedAt).toBe("2026-08-10T14:00:00Z");
+  });
+
+  it("still rejects stale evidence from a clean current feed", () => {
+    const current = bundle();
+    current.generatedAt = "2026-08-14T14:00:00Z";
+    expect(() => compileWeeklyCandidate(current)).toThrow("Compiled candidate failed validation");
+  });
+
   it("promotes only the exact compiled facts covered by approval", async () => {
     const source = bundle();
     const compiled = compileWeeklyCandidate(source, undefined, { requireCleanSources: true });
