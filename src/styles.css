@@ -55,6 +55,7 @@ a { color: inherit; }
 .auth-form label { color: #575851; gap: 6px; font-size: 12px; font-weight: 700; display: grid; }
 .auth-form input { border: 1px solid #aaa69c; background: #fff; border-radius: 4px; width: 100%; padding: 11px 12px; outline: 0; }
 .auth-form input:focus { border-color: var(--ink); box-shadow: 0 0 0 2px #1718131c; }
+.turnstile-widget { min-height: 65px; width: 100%; overflow: hidden; }
 .auth-message { color: #873b2b; background: #fff1df; margin: 0; padding: 9px 11px; font-size: 12px; line-height: 1.4; }
 .auth-submit { color: #fff; background: var(--ink); border: 0; border-radius: 4px; padding: 12px 16px; font-weight: 700; }
 .auth-submit:disabled { opacity: .6; }
@@ -246,6 +247,7 @@ footer a { color: #e5e0d5; text-decoration: none; }
 .channel-member-row > button { color: #f0b5aa; background: transparent; border: 0; margin-left: auto; padding: 4px; font-size: 9px; }
 .channel-member-row > small + small, .channel-member-row > small + button { margin-left: 0; }
 .channel-invite-footer { background: #20211d; border-top: 1px solid #3e4037; padding: 11px 14px 13px; }
+.channel-invite-note { color: #aaa99e; margin: -3px 0 9px; font-size: 10px; line-height: 1.4; display: block; }
 .channel-invite-footer .channel-invite { grid-template-columns: 1fr; gap: 5px; margin: 8px 0; display: grid; }
 .channel-invite-footer .channel-invite input, .channel-invite-footer .channel-invite select { width: 100%; padding: 7px 8px; font-size: 11px; }
 .channel-invite-footer .channel-invite button, .channel-invite-footer .copy-invite { padding: 7px 9px; font-size: 11px; }

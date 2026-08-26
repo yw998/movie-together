@@ -31,6 +31,7 @@
     "db:verify-export": "node --import tsx scripts/db/verify-export.ts",
     "db:verify-rolling": "node --import tsx scripts/db/verify-rolling-export.ts",
     "db:verify-watch-marks": "node --env-file-if-exists=.env.local scripts/db/verify-watch-mark-parents.mjs",
+    "auth:audit-email": "node --env-file-if-exists=.env.local scripts/auth/audit-email-config.mjs",
     "build": "tsc -b && vite build",
     "automation:week-info": "tsx scripts/automation/week-info.ts",
     "automation:rolling-info": "tsx scripts/automation/rolling-info.ts",

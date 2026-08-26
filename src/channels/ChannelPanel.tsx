@@ -327,7 +327,7 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
         });
         showInviteNotice(result.message);
       } catch {
-        showInviteNotice(copy("无法发送邮箱邀请。", "Could not send the email invitation."));
+        showInviteNotice(copy("无法通过该注册邮箱创建站内邀请。", "Could not create an in-app invitation for that registered email."));
       }
     } else {
       const { error } = await client!.rpc("invite_channel_user_by_friend_id", {
@@ -532,10 +532,11 @@ function RegisteredChannelPanel({ activeChannelId, notificationsOpen, onNavigate
         {user && owner && selectedChannel && <div className="channel-invite-footer">
           <b>{copy("邀请成员", "Invite members")}</b>
           <form className="channel-invite" onSubmit={inviteUser}>
-            <select name="kind"><option value="friend_id">Friend ID</option><option value="email">{copy("邮箱", "Email")}</option></select>
+            <select name="kind"><option value="friend_id">Friend ID</option><option value="email">{copy("已注册邮箱", "Registered email")}</option></select>
             <input name="identifier" placeholder={copy("输入准确账号标识", "Enter the exact account identifier")} required />
             <button disabled={busy} type="submit">{copy("邀请", "Invite")}</button>
           </form>
+          <small className="channel-invite-note">{copy("邮箱方式只创建站内邀请，不会发送邮件；对方需要已经注册。", "Email lookup creates an in-app invitation only; the person must already have an account.")}</small>
           <button className="copy-invite" disabled={busy} onClick={() => void createLink()} type="button">{copy("复制分享链接", "Copy invitation link")}</button>
           {inviteLinks.filter((link) => !link.revoked_at).map((link) => <div className="identity-invite-link" key={link.id}>
             <small>{copy(`${link.use_count}/${link.max_uses} 次`, `${link.use_count}/${link.max_uses} uses`)} · {new Date(link.expires_at).toLocaleDateString(locale)}</small>

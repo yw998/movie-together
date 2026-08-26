@@ -813,6 +813,12 @@ Email is used only for:
 
 Email must never be displayed publicly or in Channel member views.
 
+Production account email is delivered by Supabase Auth through a verified
+custom SMTP provider. Confirmation and recovery links return only to an
+allow-listed canonical application origin. Public email-triggering forms use
+server-validated CAPTCHA when configured. Reviewed bilingual templates are
+version-controlled without tracking pixels or remote images.
+
 People who do not want a formal account may use a Channel-only identity. A
 Channel-only identity is not a Supabase Auth user, has no email address, and is
 authorized for exactly one Channel. It uses a separate server-validated session
@@ -997,6 +1003,10 @@ Friend IDs:
 ## 16.3 Email lookup
 
 Email invitation matching must occur only in trusted server-side code.
+
+Email lookup creates an in-application invitation for an already registered
+account. It does not send an email and must be labelled accordingly. Inviting an
+unregistered address by email would require a separate token and delivery flow.
 
 The interface must not reveal whether arbitrary email addresses correspond to registered users.
 

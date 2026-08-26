@@ -69,6 +69,38 @@ Production Branch: main
 Every validated weekly JSON commit to `main` will trigger a production build.
 Pull requests receive Vercel preview deployments.
 
+### Production account email
+
+Supabase Auth remains responsible for confirmation and recovery tokens. Before
+public registration, configure a verified custom SMTP provider in Supabase and
+publish SPF, DKIM, and DMARC for its sending domain. Do not put SMTP credentials
+in Git or any `VITE_*` variable.
+
+Set the Vercel variables:
+
+```text
+VITE_PUBLIC_SITE_URL=https://movie-together-nu.vercel.app
+VITE_TURNSTILE_SITE_KEY=YOUR_BROWSER_SAFE_SITE_KEY
+```
+
+Put the Turnstile secret only in **Supabase Dashboard → Authentication → Bot
+and Abuse Protection**, then enable CAPTCHA. Set the Auth Site URL to the same
+production origin and allow only intentional production/development redirects.
+Upload the reviewed subjects and HTML from `supabase/email-templates` in the
+Auth Email Templates screen.
+
+With a current local Supabase Management API token, run the read-only audit:
+
+```text
+npm run auth:audit-email
+npm run auth:audit-email -- --strict
+```
+
+The strict form fails while custom SMTP, confirmation, canonical redirects, or
+CAPTCHA are missing. It never prints SMTP credentials. Finally test one new
+confirmation, one resend, and one recovery message in real inboxes and inspect
+SPF/DKIM/DMARC results before inviting users.
+
 On Vercel Hobby, automated commits use the GitHub workflow actor as the commit
 author so the deployment remains associated with the repository owner.
 
