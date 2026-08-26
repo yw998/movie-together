@@ -5,7 +5,7 @@ import type { Film, Showing } from "../../types/schedule";
 import type { AdapterResult, SourceSnapshot } from "../types";
 
 export const IFC_CENTER_SOURCE_URL = "https://www.ifccenter.com/";
-export const IFC_CENTER_PARSER_VERSION = "ifc-center-html-v2";
+export const IFC_CENTER_PARSER_VERSION = "ifc-center-html-v3";
 
 type ParseOptions = {
   fetchedAt: string;
@@ -31,12 +31,12 @@ function normalizeDateLabel(value: string): string {
   return cleanText(value).replace(/,/g, "").toLowerCase();
 }
 
-function dateRange(start: string, end: string): string[] {
+function dateRange(start: string, end: string, maxDays = 32): string[] {
   const dates: string[] = [];
   const cursor = new Date(`${start}T12:00:00Z`);
   const last = new Date(`${end}T12:00:00Z`);
   if (Number.isNaN(cursor.getTime()) || Number.isNaN(last.getTime())) return dates;
-  while (cursor <= last && dates.length <= 31) {
+  while (cursor <= last && dates.length < maxDays) {
     dates.push(cursor.toISOString().slice(0, 10));
     cursor.setUTCDate(cursor.getUTCDate() + 1);
   }
@@ -66,13 +66,14 @@ function shiftDate(value: string, days: number): string {
   return date.toISOString().slice(0, 10);
 }
 
-function resolveNearbyDate(label: string, options: ParseOptions): string | null {
+function isRecognizableOutsideDate(label: string, options: ParseOptions): boolean {
   const normalized = normalizeDateLabel(label);
   const matches = dateRange(
-    shiftDate(options.windowStart, -7),
-    shiftDate(options.windowEnd, 7),
+    shiftDate(options.windowStart, -370),
+    shiftDate(options.windowEnd, 370),
+    750,
   ).filter((date) => normalizeDateLabel(officialDateLabel(date)) === normalized);
-  return matches.length === 1 ? matches[0] : null;
+  return matches.length > 0;
 }
 
 function getTicketId(ticketUrl: string): string | null {
@@ -166,7 +167,7 @@ export function parseIfcCenterHtml(
     const localDate = resolveDate(dateLabel, options);
     if (!localDate) {
       if (dateLabel.toLowerCase() === "coming soon") return;
-      if (resolveNearbyDate(dateLabel, options)) return;
+      if (isRecognizableOutsideDate(dateLabel, options)) return;
       warnings.push(`daily-schedule[${scheduleIndex}] has an unresolved date: ${dateLabel}`);
       return;
     }
@@ -253,7 +254,7 @@ export function parseIfcCenterHtml(
     if (seenSpecialEvents.has(eventIdentity)) return;
     seenSpecialEvents.add(eventIdentity);
     const localDate = resolveDate(dateText, options);
-    if (!localDate && resolveNearbyDate(dateText, options)) return;
+    if (!localDate && isRecognizableOutsideDate(dateText, options)) return;
     const eventDetailUrl = event.find(".ipe-title a").first().attr("href")?.trim() ?? "";
     const detailEventTickets = getDetailEventTickets(
       options.detailPages?.get(eventDetailUrl),
