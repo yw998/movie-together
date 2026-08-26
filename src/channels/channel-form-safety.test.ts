@@ -19,7 +19,8 @@ describe("async channel forms", () => {
 
     expect(source).toContain('className="invite-copy-notice"');
     expect(source).toContain('copy("没有找到这个 Friend ID');
-    expect(source).toContain('showInviteNotice(copy("无法发送邮箱邀请。"');
+    expect(source).toContain('showInviteNotice(copy("无法通过该注册邮箱创建站内邀请。"');
+    expect(source).toContain('copy("邮箱方式只创建站内邀请，不会发送邮件；对方需要已经注册。"');
     expect(source).toContain('showInviteNotice(copy("无法生成邀请链接。"');
     expect(source).toContain("{inviteNotice.text}");
     expect(source).toContain("}, 3000)");

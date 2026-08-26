@@ -60,6 +60,12 @@ built-in email provider is intended for initial testing and is rate-limited; an
 earlier confirmation link remains usable for its configured validity period.
 Production growth requires custom SMTP plus CAPTCHA rather than encouraging
 users to submit the signup form repeatedly.
+The repository contains reviewed bilingual Auth templates under
+`supabase/email-templates`, a canonical redirect helper, optional Cloudflare
+Turnstile support, and a read-only `npm run auth:audit-email` check. These code
+paths do not prove that SMTP, DNS, CAPTCHA, or templates are enabled in the
+hosted Supabase project; dashboard configuration and delivery tests remain
+required.
 An `otp_expired` redirect is consumed by the account UI, shown as a recovery
 message, and removed from the address bar. The user is routed to the resend form
 instead of seeing an unexplained URL fragment.

@@ -8,6 +8,8 @@ import { useTransientMessage } from "../lib/useTransientMessage";
 import { useChannelIdentity } from "../channels/ChannelIdentityContext";
 import { notifyChannelsChanged } from "../channels/channel-api";
 import { useI18n } from "../i18n/I18nContext";
+import { authRedirectUrl } from "./auth-redirect";
+import { TurnstileWidget, turnstileSiteKey } from "./TurnstileWidget";
 
 type Mode = "login" | "signup" | "resend" | "reset" | "update_password" | "account_summary" | "change_password"
   | "channel_login" | "channel_create_choice" | "channel_create" | "channel_identity" | "channel_merge";
@@ -20,6 +22,8 @@ type AccountControlProps = {
 };
 
 const IDENTITY_UPGRADE_PENDING_KEY = "movie-together:identity-upgrade-pending";
+const RESEND_COOLDOWN_SECONDS = 60;
+const CAPTCHA_MODES = new Set<Mode>(["login", "signup", "resend", "reset"]);
 
 type AccountSummary = {
   markedFilmCount: number;
@@ -53,6 +57,20 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
   const [identityUpgradePending, setIdentityUpgradePending] = useState(
     () => localStorage.getItem(IDENTITY_UPGRADE_PENDING_KEY) === "true",
   );
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaResetKey, setCaptchaResetKey] = useState(0);
+  const [resendCooldown, setResendCooldown] = useState(0);
+
+  useEffect(() => {
+    setCaptchaToken(null);
+    setCaptchaResetKey((current) => current + 1);
+  }, [mode]);
+
+  useEffect(() => {
+    if (resendCooldown <= 0) return;
+    const timer = window.setTimeout(() => setResendCooldown((current) => Math.max(0, current - 1)), 1_000);
+    return () => window.clearTimeout(timer);
+  }, [resendCooldown]);
 
   useEffect(() => {
     if (!user || !channelIdentity.identity || !identityUpgradePending || upgradeMergeRef.current) return;
@@ -200,27 +218,44 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
     const currentPassword = String(form.get("current_password") ?? "");
     const passwordConfirmation = String(form.get("password_confirmation") ?? "");
     setMessage(null);
+    const captchaRequired = Boolean(turnstileSiteKey) && CAPTCHA_MODES.has(mode);
+    if (captchaRequired && !captchaToken) {
+      setMessage(copy("请先完成人机验证。", "Complete the bot check first."));
+      return;
+    }
+    const redirectUrl = authRedirectUrl();
+    const resetCaptcha = () => {
+      setCaptchaToken(null);
+      setCaptchaResetKey((current) => current + 1);
+    };
     if (mode === "resend") {
+      if (resendCooldown > 0) {
+        setMessage(copy(`请等待 ${resendCooldown} 秒后再试。`, `Try again in ${resendCooldown} seconds.`));
+        return;
+      }
       setBusy(true);
       const { error } = await client!.auth.resend({
         type: "signup",
         email,
-        options: { emailRedirectTo: window.location.origin },
+        options: { emailRedirectTo: redirectUrl, captchaToken: captchaToken ?? undefined },
       });
+      if (!error || error.status === 429) setResendCooldown(RESEND_COOLDOWN_SECONDS);
       setMessage(
         error
           ? error.status === 429
-            ? copy("发送次数已达限制。7 分钟前的邮件仍有效，请先使用旧邮件，或稍后再试。", "The sending limit was reached. A message sent within the last 7 minutes is still valid; use it or try later.")
+            ? copy("发送频率已达限制。请使用最近收到的邮件，或等待倒计时结束后再试。", "The sending limit was reached. Use the most recent email, or wait for the countdown before trying again.")
             : copy("无法重新发送。请确认已用该邮箱注册，或稍后再试。", "Could not resend the email. Confirm that this email is registered, or try later.")
           : copy("验证邮件已重新发送；若未看到，请检查垃圾邮件。", "Verification email resent. Check your spam folder if you do not see it."),
       );
       setBusy(false);
+      resetCaptcha();
       return;
     }
     if (mode === "reset") {
       setBusy(true);
       const { error } = await client!.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.origin,
+        redirectTo: redirectUrl,
+        captchaToken: captchaToken ?? undefined,
       });
       setMessage(
         error
@@ -228,6 +263,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
           : copy("如果该邮箱已注册，重设密码邮件将很快送达。", "If this email is registered, a password-reset message will arrive shortly."),
       );
       setBusy(false);
+      resetCaptcha();
       return;
     }
     if (mode === "change_password") {
@@ -270,7 +306,8 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
         password,
         options: {
           data: { username: normalizeUsername(requestedUsername) },
-          emailRedirectTo: window.location.origin,
+          emailRedirectTo: redirectUrl,
+          captchaToken: captchaToken ?? undefined,
         },
       });
       const existingAccount = error?.code === "user_already_exists"
@@ -281,6 +318,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
         setLoginEmail(email);
         setMessage(copy("这个邮箱已经注册。请转到个人账号登录；登录成功后会继续连接当前小组身份。", "This email is already registered. Sign in to the personal account; after signing in, the current Film Fam profile will continue connecting."));
         setBusy(false);
+        resetCaptcha();
         return;
       }
       setMessage(
@@ -291,11 +329,16 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
             : copy("验证邮件已发送；请验证后登录。", "Verification email sent. Verify your email, then sign in."),
       );
     } else {
-      const { error } = await client!.auth.signInWithPassword({ email, password });
+      const { error } = await client!.auth.signInWithPassword({
+        email,
+        password,
+        options: { captchaToken: captchaToken ?? undefined },
+      });
       setMessage(error ? copy("登录失败，请检查邮箱和密码。", "Sign-in failed. Check your email and password.") : null);
       if (!error) dialogRef.current?.close();
     }
     setBusy(false);
+    if (CAPTCHA_MODES.has(mode)) resetCaptcha();
   }
 
   async function signOut() {
@@ -370,6 +413,7 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
   const submitLabel = busy ? copy("请稍候…", "Please wait…")
     : mode === "login" ? copy("登录", "Sign in")
     : mode === "signup" ? copy("创建个人账号", "Create personal account")
+    : mode === "resend" && resendCooldown > 0 ? copy(`${resendCooldown} 秒后可重发`, `Resend in ${resendCooldown}s`)
     : mode === "resend" ? copy("重新发送", "Resend")
     : mode === "reset" ? copy("发送重设邮件", "Send reset email")
     : mode === "change_password" ? copy("保存新密码", "Save new password")
@@ -483,7 +527,15 @@ export function AccountControl({ lightBackground = false, notificationRefreshKey
             <label>{copy("确认新密码", "Confirm new password")}<input autoComplete="new-password" minLength={8} name="password_confirmation" required type="password" /></label>
           </> : !mode.startsWith("channel_") && mode !== "reset" && mode !== "resend" && <label>{copy("密码", "Password")}<input autoComplete={mode === "login" ? "current-password" : "new-password"} minLength={8} name="password" required type="password" /></label>}
           {message && <p className="auth-message" role="status">{message}</p>}
-          <button className="auth-submit" disabled={busy} type="submit">{submitLabel}</button>
+          {turnstileSiteKey && CAPTCHA_MODES.has(mode) && <TurnstileWidget
+            onTokenChange={setCaptchaToken}
+            resetKey={captchaResetKey}
+          />}
+          <button
+            className="auth-submit"
+            disabled={busy || (mode === "resend" && resendCooldown > 0) || (Boolean(turnstileSiteKey) && CAPTCHA_MODES.has(mode) && !captchaToken)}
+            type="submit"
+          >{submitLabel}</button>
           {mode === "channel_login" && <button className="auth-link" onClick={() => { setMode("channel_create_choice"); setMessage(null); }} type="button">{copy("还没有观影小组？创建一个", "No Film Fam yet? Create one")}</button>}
           {mode === "channel_create" && <button className="auth-link" onClick={() => { setMode("channel_login"); setMessage(null); }} type="button">{copy("已有小组编号和个人代码", "I have a Film Fam ID and personal code")}</button>}
           {mode === "login" && <button className="auth-link" onClick={() => { setMode("signup"); setMessage(null); }} type="button">{copy("还没有个人账号？注册", "No personal account? Register")}</button>}
