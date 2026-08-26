@@ -107,6 +107,15 @@ describe("schedule validation", () => {
     expect(codes).toContain("stale_showing");
   });
 
+  it("can exempt an explicitly approved fallback showing from freshness only", () => {
+    const report = validateScheduleData(baseData, {
+      now: new Date("2026-08-20T12:00:00-04:00"),
+      staleAfterHours: 72,
+      staleExemptShowingIds: new Set([baseShowing.id]),
+    });
+    expect(report.issues).toEqual([]);
+  });
+
   it("requires Chinese descriptions and provenance URLs to appear together", () => {
     const data: ScheduleData = {
       ...baseData,
