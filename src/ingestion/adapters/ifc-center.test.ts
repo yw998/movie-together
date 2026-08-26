@@ -33,7 +33,7 @@ describe("IFC Center official HTML adapter", () => {
     const result = parseIfcCenterHtml(fixture, options);
     expect(result.snapshot).toMatchObject({
       result: "success",
-      parserVersion: "ifc-center-html-v2",
+      parserVersion: "ifc-center-html-v3",
       contentHash: "fixture-hash",
     });
     expect(result.showings).toHaveLength(2);
@@ -99,6 +99,14 @@ describe("IFC Center official HTML adapter", () => {
     const adjacent = fixture.replaceAll("Tue Aug 11", "Tue Aug 18");
     const result = parseIfcCenterHtml(`${fixture}${adjacent}`, options);
     expect(result.snapshot.result).toBe("success");
+    expect(result.showings).toHaveLength(2);
+  });
+
+  it("ignores recognizable special-event dates well outside the requested window", () => {
+    const distantEvent = fixture.replaceAll("Tue Aug 11", "Tue Sep 15");
+    const result = parseIfcCenterHtml(`${fixture}${distantEvent}`, options);
+    expect(result.snapshot.result).toBe("success");
+    expect(result.warnings).toEqual([]);
     expect(result.showings).toHaveLength(2);
   });
 

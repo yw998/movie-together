@@ -3,7 +3,8 @@ import type { AdapterResult, SourceSnapshot } from "../types";
 
 export const FILM_LINC_SHOWTIMES_URL = "https://api.filmlinc.org/showtimes";
 export const FILM_LINC_GRAPHQL_URL = "https://api.filmlinc.org/wordpress/graphql";
-export const FILM_LINC_PARSER_VERSION = "film-linc-api-graphql-v1";
+export const FILM_LINC_NOW_PLAYING_URL = "https://www.filmlinc.org/now-playing/";
+export const FILM_LINC_PARSER_VERSION = "film-linc-api-graphql-v2";
 
 type Showtime = {
   id?: unknown;
@@ -17,6 +18,7 @@ type Showtime = {
   openCaptions?: unknown;
   freeEvent?: unknown;
   status?: unknown;
+  description?: unknown;
 };
 
 type ShowtimeFilm = {
@@ -88,6 +90,13 @@ function availability(status: unknown, available: unknown): Showing["availabilit
   return "unknown";
 }
 
+function isVerifiedGalleryEvent(showing: Showtime): boolean {
+  return showing.freeEvent === true &&
+    showing.venue === "Furman Gallery" &&
+    typeof showing.description === "string" &&
+    showing.description.trim().length > 0;
+}
+
 function eventFacts(
   showingId: string,
   openCaptions: boolean,
@@ -145,18 +154,21 @@ export function parseFilmLincPayload(
     // Passes are products rather than screenings and use the API's synthetic Pass Venue.
     if (inWindow.every((showing) => showing.venue === "Pass Venue")) return;
     const details = detailsBySlug.get(slug);
-    if (!details) {
+    const isGalleryEvent = !details && inWindow.every(isVerifiedGalleryEvent);
+    if (!details && !isGalleryEvent) {
       warnings.push(`films[${filmIndex}] (${slug}) has no official GraphQL details.`);
       return;
     }
-    const detailUrl = `https://www.filmlinc.org/films/${slug}/`;
+    const detailUrl = details
+      ? `https://www.filmlinc.org/films/${slug}/`
+      : FILM_LINC_NOW_PLAYING_URL;
     films.push({
       id: slug,
-      canonicalTitle: details.title.trim() || title,
-      displayTitle: details.title.trim() || title,
-      year: details.year,
-      director: details.director,
-      runtimeMinutes: details.runtimeMinutes,
+      canonicalTitle: details?.title.trim() || title,
+      displayTitle: details?.title.trim() || title,
+      year: details?.year ?? null,
+      director: details?.director ?? null,
+      runtimeMinutes: details?.runtimeMinutes ?? null,
         descriptionZh: null,
         descriptionEn: null,
       descriptionSource: null,
@@ -177,7 +189,12 @@ export function parseFilmLincPayload(
         return;
       }
       const localTime = showing.dateTimeET.slice(11, 16);
-      const facts = eventFacts(id, showing.openCaptions === true, details);
+      const facts = details
+        ? eventFacts(id, showing.openCaptions === true, details)
+        : {
+            eventType: "other" as const,
+            eventNote: String(showing.venue),
+          };
       const currentAvailability = availability(showing.status, showing.available);
       const notes = [facts.eventNote];
       if (showing.status === "standby") notes.push("Standby Only");
@@ -189,7 +206,7 @@ export function parseFilmLincPayload(
         startsAt: showing.dateTimeET,
         localDate,
         localTime,
-        format: formatFor(details),
+        format: details ? formatFor(details) : null,
         eventType: facts.eventType,
         eventNote: [...new Set(notes.filter((note): note is string => Boolean(note)))].join(" · ") || null,
         detailUrl,

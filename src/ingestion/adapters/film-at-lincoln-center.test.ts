@@ -49,7 +49,7 @@ describe("Film at Lincoln Center official API adapter", () => {
     const result = parseFilmLincPayload(payload, new Map([["cam", details]]), options);
     expect(result.snapshot).toMatchObject({
       result: "success",
-      parserVersion: "film-linc-api-graphql-v1",
+      parserVersion: "film-linc-api-graphql-v2",
     });
     expect(result.films).toEqual([expect.objectContaining({
       id: "cam",
@@ -77,6 +77,48 @@ describe("Film at Lincoln Center official API adapter", () => {
     expect(result.showings[0]).toMatchObject({
       availability: "sold_out",
       eventNote: "Q&A with Daniel Goldhaber and Madeline Brewer · Standby Only",
+    });
+  });
+
+  it("publishes an official free gallery event without film GraphQL details", () => {
+    const galleryEvent = {
+      films: [{
+        id: "83772",
+        title: "FLC Book Fair",
+        slug: "flc-book-fair",
+        showtimes: [{
+          id: "83774",
+          productionSeasonId: "83772",
+          date: "2026-08-13",
+          time: "2:30 PM",
+          dateTimeET: "2026-08-13T14:30:00-04:00",
+          venue: "Furman Gallery",
+          available: true,
+          ticketsUrl: "https://purchase.filmlinc.org/83772/83774",
+          openCaptions: false,
+          freeEvent: true,
+          status: "available",
+          description: "FLC Book Fair",
+        }],
+      }],
+    };
+
+    const result = parseFilmLincPayload(galleryEvent, new Map(), options);
+    expect(result.snapshot.result).toBe("success");
+    expect(result.films[0]).toMatchObject({
+      id: "flc-book-fair",
+      displayTitle: "FLC Book Fair",
+      year: null,
+      director: null,
+      runtimeMinutes: null,
+    });
+    expect(result.showings[0]).toMatchObject({
+      id: "film-at-lincoln-center-83774",
+      eventType: "other",
+      eventNote: "Furman Gallery · Free Event",
+      detailUrl: "https://www.filmlinc.org/now-playing/",
+      ticketUrl: "https://purchase.filmlinc.org/83772/83774",
+      availability: "available",
     });
   });
 
