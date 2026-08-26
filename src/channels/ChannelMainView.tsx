@@ -9,6 +9,7 @@ import { useTransientMessage } from "../lib/useTransientMessage";
 import { useChannelIdentity } from "./ChannelIdentityContext";
 import { useI18n } from "../i18n/I18nContext";
 import { formatCalendarDate } from "../lib/date-display";
+import { officialShowingUrl } from "../lib/showing-presentation";
 
 type SharedMark = { showing_id: string; user_id: string; username: string };
 type Member = { user_id: string; role: "owner" | "member"; username: string; kind?: "account" | "channel_only" };
@@ -127,7 +128,7 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
                   {activity.marks.map((mark) => <span key={mark.user_id} style={{ background: avatarColor(mark.username) }} title={`@${mark.username}`}>{mark.username[0]?.toUpperCase()}</span>)}
                 </div>
                 <div className="channel-card-actions">
-                  {activity.showing && <a href={activity.showing.detailUrl} rel="noreferrer" target="_blank">{t("showing.official")}</a>}
+                  {activity.showing && <a href={officialShowingUrl(activity.showing)} rel="noreferrer" target="_blank">{t("showing.official")}</a>}
                   {activity.showing && <div className="channel-mark-control">
                     <button
                       aria-expanded={currentUserShared ? removePrompt === activity.showingId : undefined}

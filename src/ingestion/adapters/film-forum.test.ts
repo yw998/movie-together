@@ -35,7 +35,7 @@ describe("Film Forum official API adapter", () => {
 
     expect(result.snapshot).toMatchObject({
       result: "success",
-      parserVersion: "film-forum-api-v1",
+      parserVersion: "film-forum-api-v2",
       contentHash: "abc123",
     });
     expect(result.showings).toEqual([
@@ -45,6 +45,8 @@ describe("Film Forum official API adapter", () => {
         localDate: "2026-08-12",
         localTime: "12:15",
         ticketUrl: "https://my.filmforum.org/late-fame/51727",
+        eventType: "standard",
+        eventNote: null,
         availability: "available",
         extractionStatus: "verified",
       }),
@@ -86,8 +88,54 @@ describe("Film Forum official API adapter", () => {
     expect(result.showings).toHaveLength(1);
     expect(result.showings[0]).toMatchObject({
       availability: "sold_out",
-      eventNote: "Sold Out",
+      eventType: "standard",
+      eventNote: null,
     });
+  });
+
+  it("preserves distinct performance links and only marks explicit events", () => {
+    const result = parseFilmForumPayload({
+      productions: [{
+        productionTitle: "ONE FILM",
+        productionSeasonActionUrl: "https://my.filmforum.org/one-film",
+        performances: [
+          {
+            id: 10,
+            iso8601DateString: "2026-08-12T17:00:00.0000000-04:00",
+            performanceTitle: "ONE FILM",
+            actionUrl: "https://my.filmforum.org/one-film/10",
+            isPerformanceVisible: true,
+            isOnSale: true,
+            performanceStatusMessage: "",
+          },
+          {
+            id: 11,
+            iso8601DateString: "2026-08-12T19:00:00.0000000-04:00",
+            performanceTitle: "ONE FILM — Q&A with the director",
+            actionUrl: "https://my.filmforum.org/one-film/11",
+            isPerformanceVisible: true,
+            isOnSale: true,
+            performanceStatusMessage: "",
+          },
+        ],
+      }],
+    }, options);
+
+    expect(result.snapshot.result).toBe("success");
+    expect(result.showings).toEqual([
+      expect.objectContaining({
+        id: "film-forum-10",
+        ticketUrl: "https://my.filmforum.org/one-film/10",
+        eventType: "standard",
+        eventNote: null,
+      }),
+      expect.objectContaining({
+        id: "film-forum-11",
+        ticketUrl: "https://my.filmforum.org/one-film/11",
+        eventType: "qa",
+        eventNote: "ONE FILM — Q&A with the director",
+      }),
+    ]);
   });
 
   it("fails visibly when the API shape changes", () => {
