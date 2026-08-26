@@ -2,7 +2,7 @@ import { writeFile } from "node:fs/promises";
 import { createDatabaseClient } from "../../src/db/client";
 import { zonedLocalDateTimeToIso } from "../../src/lib/timezone";
 import { validateScheduleData } from "../../src/lib/schedule-validation";
-import type { Cinema, Film, ScheduleData, Showing } from "../../src/types/schedule";
+import type { Cinema, Film, PublishedScheduleData, PublishedShowing } from "../../src/types/schedule";
 
 const [, , outputPath, anchorLocalDate] = process.argv;
 if (!outputPath || !/^\d{4}-\d{2}-\d{2}$/.test(anchorLocalDate ?? "")) {
@@ -67,11 +67,12 @@ try {
     year: row.release_year, director: row.director, runtimeMinutes: row.runtime_minutes,
     descriptionZh: row.description_zh, descriptionEn: row.description_en, descriptionSource: row.description_source,
   }));
-  const showings: Showing[] = showingRows.map((row) => {
+  const showings: PublishedShowing[] = showingRows.map((row) => {
     const localDate = dateText(row.local_date);
     const localTime = String(row.local_time).slice(0, 5);
     return {
-      id: row.id, cinemaId: row.cinema_id, filmId: row.film_id,
+      id: row.id, storageWindowStart: dateText(row.window_start),
+      cinemaId: row.cinema_id, filmId: row.film_id,
       startsAt: zonedLocalDateTimeToIso(localDate, localTime), localDate, localTime,
       format: row.format, eventType: row.event_type, eventNote: row.event_note,
       detailUrl: row.detail_url, ticketUrl: row.ticket_url, availability: row.availability,
@@ -79,7 +80,7 @@ try {
       extractionStatus: row.extraction_status,
     };
   });
-  const schedule: ScheduleData = {
+  const schedule: PublishedScheduleData = {
     metadata: {
       timezone: "America/New_York",
       windowStart: rollingStart,
@@ -94,7 +95,10 @@ try {
     films,
     showings,
   };
-  const validation = validateScheduleData(schedule, { staleAfterHours: Number.POSITIVE_INFINITY });
+  const validation = validateScheduleData(schedule, {
+    staleAfterHours: Number.POSITIVE_INFINITY,
+    requireStorageIdentity: true,
+  });
   if (validation.errors > 0) {
     throw new Error(`Database export failed validation: ${validation.issues.map((issue) => issue.message).join(" ")}`);
   }

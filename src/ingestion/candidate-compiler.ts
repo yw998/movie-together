@@ -176,12 +176,15 @@ export function compileWeeklyCandidate(
     },
     cinemas: cinemaCatalog,
     films: enrichedFilms.sort((a, b) => a.displayTitle.localeCompare(b.displayTitle)),
-    showings: unique.showings.sort((a, b) => a.startsAt.localeCompare(b.startsAt) || a.id.localeCompare(b.id)),
+    showings: unique.showings
+      .map((showing) => ({ ...showing, storageWindowStart: bundle.windowStart }))
+      .sort((a, b) => a.startsAt.localeCompare(b.startsAt) || a.id.localeCompare(b.id)),
   };
   const validation = validateScheduleData(schedule, {
     now: new Date(bundle.generatedAt),
     staleAfterHours: 72,
     staleExemptShowingIds: approvedFallbackShowingIds,
+    requireStorageIdentity: true,
   });
   if (!validation.publishable) {
     const messages = validation.issues.map((issue) => `${issue.path}: ${issue.message}`);

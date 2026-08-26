@@ -1716,6 +1716,7 @@
   "showings": [
     {
       "id": "ifc-center-574508",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "maddie-s-secret",
       "startsAt": "2026-08-26T10:35:00-04:00",
@@ -1733,6 +1734,7 @@
     },
     {
       "id": "ifc-center-574511",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-26T10:50:00-04:00",
@@ -1750,6 +1752,7 @@
     },
     {
       "id": "ifc-center-574509",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-26T10:55:00-04:00",
@@ -1767,6 +1770,7 @@
     },
     {
       "id": "ifc-center-574510",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-26T11:05:00-04:00",
@@ -1784,6 +1788,7 @@
     },
     {
       "id": "film-at-lincoln-center-84041",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-26T12:00:00-04:00",
@@ -1801,6 +1806,7 @@
     },
     {
       "id": "paris-theater-2001-2871",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "speed-racer",
       "startsAt": "2026-08-26T12:00:00-04:00",
@@ -1818,6 +1824,7 @@
     },
     {
       "id": "ifc-center-574514",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-26T12:10:00-04:00",
@@ -1835,6 +1842,7 @@
     },
     {
       "id": "film-forum-52398",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-26T12:15:00-04:00",
@@ -1852,6 +1860,7 @@
     },
     {
       "id": "film-forum-52463",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-same-river-twice",
       "startsAt": "2026-08-26T12:15:00-04:00",
@@ -1869,6 +1878,7 @@
     },
     {
       "id": "film-forum-52018",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-outsiders-complete-novel",
       "startsAt": "2026-08-26T12:20:00-04:00",
@@ -1886,6 +1896,7 @@
     },
     {
       "id": "film-at-lincoln-center-83724",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-26T12:30:00-04:00",
@@ -1903,6 +1914,7 @@
     },
     {
       "id": "ifc-center-573485",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-26T12:35:00-04:00",
@@ -1920,6 +1932,7 @@
     },
     {
       "id": "film-forum-52419",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "billy-liar",
       "startsAt": "2026-08-26T13:00:00-04:00",
@@ -1937,6 +1950,7 @@
     },
     {
       "id": "film-at-lincoln-center-84069",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-08-26T13:15:00-04:00",
@@ -1954,6 +1968,7 @@
     },
     {
       "id": "ifc-center-574512",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-26T13:25:00-04:00",
@@ -1971,6 +1986,7 @@
     },
     {
       "id": "ifc-center-574515",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-08-26T13:50:00-04:00",
@@ -1988,6 +2004,7 @@
     },
     {
       "id": "metrograph-30743",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "la-notte",
       "startsAt": "2026-08-26T14:00:00-04:00",
@@ -2005,6 +2022,7 @@
     },
     {
       "id": "metrograph-30744",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "girlhood",
       "startsAt": "2026-08-26T14:00:00-04:00",
@@ -2022,6 +2040,7 @@
     },
     {
       "id": "ifc-center-574518",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-26T14:10:00-04:00",
@@ -2039,6 +2058,7 @@
     },
     {
       "id": "film-forum-52399",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-26T14:25:00-04:00",
@@ -2056,6 +2076,7 @@
     },
     {
       "id": "film-forum-52448",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "sherman-s-march",
       "startsAt": "2026-08-26T14:35:00-04:00",
@@ -2073,6 +2094,7 @@
     },
     {
       "id": "ifc-center-573488",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-26T14:40:00-04:00",
@@ -2090,6 +2112,7 @@
     },
     {
       "id": "film-forum-51995",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-godfather-ii",
       "startsAt": "2026-08-26T14:45:00-04:00",
@@ -2107,6 +2130,7 @@
     },
     {
       "id": "film-at-lincoln-center-84042",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-26T15:00:00-04:00",
@@ -2124,6 +2148,7 @@
     },
     {
       "id": "film-forum-52433",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "center-stage",
       "startsAt": "2026-08-26T15:00:00-04:00",
@@ -2141,6 +2166,7 @@
     },
     {
       "id": "film-at-lincoln-center-83725",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-26T15:15:00-04:00",
@@ -2158,6 +2184,7 @@
     },
     {
       "id": "paris-theater-2001-2872",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "panic-room",
       "startsAt": "2026-08-26T15:20:00-04:00",
@@ -2175,6 +2202,7 @@
     },
     {
       "id": "film-at-lincoln-center-84070",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-08-26T15:45:00-04:00",
@@ -2192,6 +2220,7 @@
     },
     {
       "id": "ifc-center-574516",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-26T16:00:00-04:00",
@@ -2209,6 +2238,7 @@
     },
     {
       "id": "ifc-center-574519",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-26T16:05:00-04:00",
@@ -2226,6 +2256,7 @@
     },
     {
       "id": "metrograph-30751",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "les-bonnes-femmes",
       "startsAt": "2026-08-26T16:15:00-04:00",
@@ -2243,6 +2274,7 @@
     },
     {
       "id": "ifc-center-574517",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-26T16:20:00-04:00",
@@ -2260,6 +2292,7 @@
     },
     {
       "id": "ifc-center-574546",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "train-to-busan",
       "startsAt": "2026-08-26T16:25:00-04:00",
@@ -2277,6 +2310,7 @@
     },
     {
       "id": "metrograph-30745",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "before-sunrise",
       "startsAt": "2026-08-26T16:30:00-04:00",
@@ -2294,6 +2328,7 @@
     },
     {
       "id": "film-forum-52400",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-26T16:40:00-04:00",
@@ -2311,6 +2346,7 @@
     },
     {
       "id": "ifc-center-573491",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-26T16:40:00-04:00",
@@ -2328,6 +2364,7 @@
     },
     {
       "id": "film-forum-52464",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-same-river-twice",
       "startsAt": "2026-08-26T17:45:00-04:00",
@@ -2345,6 +2382,7 @@
     },
     {
       "id": "film-at-lincoln-center-83726",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-26T18:00:00-04:00",
@@ -2362,6 +2400,7 @@
     },
     {
       "id": "film-at-lincoln-center-84043",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-26T18:00:00-04:00",
@@ -2379,6 +2418,7 @@
     },
     {
       "id": "film-forum-52420",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "billy-liar",
       "startsAt": "2026-08-26T18:00:00-04:00",
@@ -2396,6 +2436,7 @@
     },
     {
       "id": "roxy-cinema-7678",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "in-the-family-35mm-q-a",
       "startsAt": "2026-08-26T18:00:00-04:00",
@@ -2413,6 +2454,7 @@
     },
     {
       "id": "syndicated-6535",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "syndicated",
       "filmId": "syndicated-ST00002574",
       "startsAt": "2026-08-26T18:10:00-04:00",
@@ -2430,6 +2472,7 @@
     },
     {
       "id": "film-at-lincoln-center-84071",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-08-26T18:15:00-04:00",
@@ -2447,6 +2490,7 @@
     },
     {
       "id": "metrograph-30750",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "and-then-there-was-light",
       "startsAt": "2026-08-26T18:20:00-04:00",
@@ -2464,6 +2508,7 @@
     },
     {
       "id": "ifc-center-574521",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-26T18:30:00-04:00",
@@ -2481,6 +2526,7 @@
     },
     {
       "id": "paris-theater-2001-2873",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "babylon",
       "startsAt": "2026-08-26T18:30:00-04:00",
@@ -2498,6 +2544,7 @@
     },
     {
       "id": "ifc-center-574520",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-26T18:40:00-04:00",
@@ -2515,6 +2562,7 @@
     },
     {
       "id": "film-forum-52023",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "you-re-a-big-boy-now",
       "startsAt": "2026-08-26T18:45:00-04:00",
@@ -2532,6 +2580,7 @@
     },
     {
       "id": "metrograph-30746",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "the-hunger",
       "startsAt": "2026-08-26T18:45:00-04:00",
@@ -2549,6 +2598,7 @@
     },
     {
       "id": "film-forum-52401",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-26T18:50:00-04:00",
@@ -2566,6 +2616,7 @@
     },
     {
       "id": "ifc-center-574522",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-08-26T19:05:00-04:00",
@@ -2583,6 +2634,7 @@
     },
     {
       "id": "ifc-center-573498",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-26T19:10:00-04:00",
@@ -2600,6 +2652,7 @@
     },
     {
       "id": "film-forum-52449",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "sherman-s-march",
       "startsAt": "2026-08-26T20:10:00-04:00",
@@ -2617,6 +2670,7 @@
     },
     {
       "id": "film-forum-52434",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "center-stage",
       "startsAt": "2026-08-26T20:15:00-04:00",
@@ -2634,6 +2688,7 @@
     },
     {
       "id": "metrograph-sold-out-je-tu-il-elle-2026-08-26-2030",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "je-tu-il-elle",
       "startsAt": "2026-08-26T20:30:00-04:00",
@@ -2651,6 +2706,7 @@
     },
     {
       "id": "syndicated-6509",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "syndicated",
       "filmId": "syndicated-ST00002600",
       "startsAt": "2026-08-26T20:40:00-04:00",
@@ -2668,6 +2724,7 @@
     },
     {
       "id": "film-at-lincoln-center-83727",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-26T20:45:00-04:00",
@@ -2685,6 +2742,7 @@
     },
     {
       "id": "film-at-lincoln-center-84072",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-08-26T20:45:00-04:00",
@@ -2702,6 +2760,7 @@
     },
     {
       "id": "film-forum-52033",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "peggy-sue-got-married",
       "startsAt": "2026-08-26T20:50:00-04:00",
@@ -2719,6 +2778,7 @@
     },
     {
       "id": "ifc-center-574523",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-26T20:50:00-04:00",
@@ -2736,6 +2796,7 @@
     },
     {
       "id": "film-at-lincoln-center-84044",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-26T21:00:00-04:00",
@@ -2753,6 +2814,7 @@
     },
     {
       "id": "film-forum-52402",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-26T21:00:00-04:00",
@@ -2770,6 +2832,7 @@
     },
     {
       "id": "metrograph-30747",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "solaris",
       "startsAt": "2026-08-26T21:00:00-04:00",
@@ -2787,6 +2850,7 @@
     },
     {
       "id": "ifc-center-574551",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "train-to-busan",
       "startsAt": "2026-08-26T21:15:00-04:00",
@@ -2804,6 +2868,7 @@
     },
     {
       "id": "ifc-center-574524",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-26T21:20:00-04:00",
@@ -2821,6 +2886,7 @@
     },
     {
       "id": "ifc-center-574525",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-26T21:25:00-04:00",
@@ -2838,6 +2904,7 @@
     },
     {
       "id": "ifc-center-573495",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-26T21:30:00-04:00",
@@ -2855,6 +2922,7 @@
     },
     {
       "id": "roxy-cinema-7700",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "maddie-s-secret",
       "startsAt": "2026-08-26T21:45:00-04:00",
@@ -2872,6 +2940,7 @@
     },
     {
       "id": "metrograph-30748",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "obsession",
       "startsAt": "2026-08-26T22:20:00-04:00",
@@ -2889,6 +2958,7 @@
     },
     {
       "id": "paris-theater-2001-2874",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "back-to-the-future",
       "startsAt": "2026-08-26T22:30:00-04:00",
@@ -2906,6 +2976,7 @@
     },
     {
       "id": "ifc-center-574526",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "maddie-s-secret",
       "startsAt": "2026-08-27T10:35:00-04:00",
@@ -2923,6 +2994,7 @@
     },
     {
       "id": "ifc-center-574530",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-27T10:50:00-04:00",
@@ -2940,6 +3012,7 @@
     },
     {
       "id": "ifc-center-574527",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-27T10:55:00-04:00",
@@ -2957,6 +3030,7 @@
     },
     {
       "id": "film-at-lincoln-center-84045",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-27T12:00:00-04:00",
@@ -2974,6 +3048,7 @@
     },
     {
       "id": "ifc-center-574528",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-27T12:10:00-04:00",
@@ -2991,6 +3066,7 @@
     },
     {
       "id": "film-forum-52403",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-27T12:15:00-04:00",
@@ -3008,6 +3084,7 @@
     },
     {
       "id": "film-forum-52465",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-same-river-twice",
       "startsAt": "2026-08-27T12:15:00-04:00",
@@ -3025,6 +3102,7 @@
     },
     {
       "id": "film-forum-52421",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "billy-liar",
       "startsAt": "2026-08-27T12:20:00-04:00",
@@ -3042,6 +3120,7 @@
     },
     {
       "id": "film-at-lincoln-center-83728",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-27T12:30:00-04:00",
@@ -3059,6 +3138,7 @@
     },
     {
       "id": "film-forum-52012",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "tucker-the-man-and-his-dream",
       "startsAt": "2026-08-27T12:30:00-04:00",
@@ -3076,6 +3156,7 @@
     },
     {
       "id": "ifc-center-573486",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-27T12:35:00-04:00",
@@ -3093,6 +3174,7 @@
     },
     {
       "id": "ifc-center-574533",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-27T13:00:00-04:00",
@@ -3110,6 +3192,7 @@
     },
     {
       "id": "paris-theater-2001-2918",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "alice-in-wonderland-1951",
       "startsAt": "2026-08-27T13:00:00-04:00",
@@ -3127,6 +3210,7 @@
     },
     {
       "id": "film-at-lincoln-center-84073",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-08-27T13:15:00-04:00",
@@ -3144,6 +3228,7 @@
     },
     {
       "id": "ifc-center-574531",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-27T13:25:00-04:00",
@@ -3161,6 +3246,7 @@
     },
     {
       "id": "ifc-center-574532",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-27T13:30:00-04:00",
@@ -3178,6 +3264,7 @@
     },
     {
       "id": "ifc-center-574534",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-08-27T14:15:00-04:00",
@@ -3195,6 +3282,7 @@
     },
     {
       "id": "metrograph-30752",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "deliverance",
       "startsAt": "2026-08-27T14:15:00-04:00",
@@ -3212,6 +3300,7 @@
     },
     {
       "id": "film-forum-52404",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-27T14:25:00-04:00",
@@ -3229,6 +3318,7 @@
     },
     {
       "id": "metrograph-30759",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "chocolat",
       "startsAt": "2026-08-27T14:25:00-04:00",
@@ -3246,6 +3336,7 @@
     },
     {
       "id": "film-forum-52450",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "sherman-s-march",
       "startsAt": "2026-08-27T14:35:00-04:00",
@@ -3263,6 +3354,7 @@
     },
     {
       "id": "film-forum-52435",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "center-stage",
       "startsAt": "2026-08-27T14:40:00-04:00",
@@ -3280,6 +3372,7 @@
     },
     {
       "id": "ifc-center-573489",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-27T14:40:00-04:00",
@@ -3297,6 +3390,7 @@
     },
     {
       "id": "film-forum-52031",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "peggy-sue-got-married",
       "startsAt": "2026-08-27T14:50:00-04:00",
@@ -3314,6 +3408,7 @@
     },
     {
       "id": "film-at-lincoln-center-84046",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-27T15:00:00-04:00",
@@ -3331,6 +3426,7 @@
     },
     {
       "id": "film-at-lincoln-center-83729",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-27T15:15:00-04:00",
@@ -3348,6 +3444,7 @@
     },
     {
       "id": "paris-theater-2001-2876",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "atomic-blonde",
       "startsAt": "2026-08-27T15:30:00-04:00",
@@ -3365,6 +3462,7 @@
     },
     {
       "id": "film-at-lincoln-center-84074",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-08-27T15:45:00-04:00",
@@ -3382,6 +3480,7 @@
     },
     {
       "id": "ifc-center-574535",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-27T16:00:00-04:00",
@@ -3399,6 +3498,7 @@
     },
     {
       "id": "ifc-center-574537",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-27T16:05:00-04:00",
@@ -3416,6 +3516,7 @@
     },
     {
       "id": "ifc-center-574536",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-27T16:15:00-04:00",
@@ -3433,6 +3534,7 @@
     },
     {
       "id": "metrograph-30753",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "3-women",
       "startsAt": "2026-08-27T16:30:00-04:00",
@@ -3450,6 +3552,7 @@
     },
     {
       "id": "film-forum-52405",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-27T16:40:00-04:00",
@@ -3467,6 +3570,7 @@
     },
     {
       "id": "ifc-center-573492",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-27T16:40:00-04:00",
@@ -3484,6 +3588,7 @@
     },
     {
       "id": "metrograph-30758",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "conversation-piece",
       "startsAt": "2026-08-27T16:45:00-04:00",
@@ -3501,6 +3606,7 @@
     },
     {
       "id": "ifc-center-574557",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "train-to-busan",
       "startsAt": "2026-08-27T16:50:00-04:00",
@@ -3518,6 +3624,7 @@
     },
     {
       "id": "film-forum-52035",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "finian-s-rainbow",
       "startsAt": "2026-08-27T17:30:00-04:00",
@@ -3535,6 +3642,7 @@
     },
     {
       "id": "film-forum-52466",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-same-river-twice",
       "startsAt": "2026-08-27T17:45:00-04:00",
@@ -3552,6 +3660,7 @@
     },
     {
       "id": "film-at-lincoln-center-83730",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-27T18:00:00-04:00",
@@ -3569,6 +3678,7 @@
     },
     {
       "id": "film-at-lincoln-center-84047",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-27T18:00:00-04:00",
@@ -3586,6 +3696,7 @@
     },
     {
       "id": "film-forum-52467",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-27T18:00:00-04:00",
@@ -3603,6 +3714,7 @@
     },
     {
       "id": "film-at-lincoln-center-84075",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-08-27T18:15:00-04:00",
@@ -3620,6 +3732,7 @@
     },
     {
       "id": "ifc-center-574538",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-27T18:30:00-04:00",
@@ -3637,6 +3750,7 @@
     },
     {
       "id": "paris-theater-2001-2970",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "lawrence-of-arabia",
       "startsAt": "2026-08-27T18:45:00-04:00",
@@ -3654,6 +3768,7 @@
     },
     {
       "id": "syndicated-6537",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "syndicated",
       "filmId": "syndicated-ST00002592",
       "startsAt": "2026-08-27T18:45:00-04:00",
@@ -3671,6 +3786,7 @@
     },
     {
       "id": "film-forum-52406",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-27T18:50:00-04:00",
@@ -3688,6 +3804,7 @@
     },
     {
       "id": "metrograph-30754",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "collateral",
       "startsAt": "2026-08-27T19:00:00-04:00",
@@ -3705,6 +3822,7 @@
     },
     {
       "id": "roxy-cinema-7698",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "maddie-s-secret",
       "startsAt": "2026-08-27T19:00:00-04:00",
@@ -3722,6 +3840,7 @@
     },
     {
       "id": "ifc-center-574539",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-08-27T19:05:00-04:00",
@@ -3739,6 +3858,7 @@
     },
     {
       "id": "ifc-center-573499",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-27T19:10:00-04:00",
@@ -3756,6 +3876,7 @@
     },
     {
       "id": "ifc-center-574541",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-27T19:15:00-04:00",
@@ -3773,6 +3894,7 @@
     },
     {
       "id": "metrograph-30757",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "my-night-at-maud-s",
       "startsAt": "2026-08-27T19:15:00-04:00",
@@ -3790,6 +3912,7 @@
     },
     {
       "id": "film-forum-52451",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "sherman-s-march",
       "startsAt": "2026-08-27T20:10:00-04:00",
@@ -3807,6 +3930,7 @@
     },
     {
       "id": "film-forum-52009",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "one-from-the-heart-reprise",
       "startsAt": "2026-08-27T20:20:00-04:00",
@@ -3824,6 +3948,7 @@
     },
     {
       "id": "film-forum-52452",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "billy-liar",
       "startsAt": "2026-08-27T20:40:00-04:00",
@@ -3841,6 +3966,7 @@
     },
     {
       "id": "film-at-lincoln-center-83731",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-27T20:45:00-04:00",
@@ -3858,6 +3984,7 @@
     },
     {
       "id": "film-at-lincoln-center-84076",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-08-27T20:45:00-04:00",
@@ -3875,6 +4002,7 @@
     },
     {
       "id": "ifc-center-574540",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-27T20:50:00-04:00",
@@ -3892,6 +4020,7 @@
     },
     {
       "id": "film-at-lincoln-center-84048",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-27T21:00:00-04:00",
@@ -3909,6 +4038,7 @@
     },
     {
       "id": "film-forum-52407",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-27T21:00:00-04:00",
@@ -3926,6 +4056,7 @@
     },
     {
       "id": "roxy-cinema-7726",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "the-straight-story-35mm-presented-by-slow-pulp",
       "startsAt": "2026-08-27T21:00:00-04:00",
@@ -3943,6 +4074,7 @@
     },
     {
       "id": "ifc-center-574552",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "train-to-busan",
       "startsAt": "2026-08-27T21:15:00-04:00",
@@ -3960,6 +4092,7 @@
     },
     {
       "id": "ifc-center-574542",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-27T21:20:00-04:00",
@@ -3977,6 +4110,7 @@
     },
     {
       "id": "ifc-center-573496",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-27T21:30:00-04:00",
@@ -3994,6 +4128,7 @@
     },
     {
       "id": "metrograph-30755",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "drunken-master-ii",
       "startsAt": "2026-08-27T21:30:00-04:00",
@@ -4011,6 +4146,7 @@
     },
     {
       "id": "metrograph-30756",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "love-in-the-afternoon",
       "startsAt": "2026-08-27T21:35:00-04:00",
@@ -4028,6 +4164,7 @@
     },
     {
       "id": "ifc-center-574543",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-27T21:45:00-04:00",
@@ -4045,6 +4182,7 @@
     },
     {
       "id": "ifc-center-576427",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-08-28T10:35:00-04:00",
@@ -4062,6 +4200,7 @@
     },
     {
       "id": "ifc-center-577082",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "local-one",
       "startsAt": "2026-08-28T10:40:00-04:00",
@@ -4079,6 +4218,7 @@
     },
     {
       "id": "ifc-center-576893",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-28T10:45:00-04:00",
@@ -4096,6 +4236,7 @@
     },
     {
       "id": "ifc-center-576426",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-28T10:50:00-04:00",
@@ -4113,6 +4254,7 @@
     },
     {
       "id": "ifc-center-576425",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "maddie-s-secret",
       "startsAt": "2026-08-28T11:00:00-04:00",
@@ -4130,6 +4272,7 @@
     },
     {
       "id": "ifc-center-576428",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-28T11:05:00-04:00",
@@ -4147,6 +4290,7 @@
     },
     {
       "id": "paris-theater-2001-2879",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "die-hard",
       "startsAt": "2026-08-28T11:30:00-04:00",
@@ -4164,6 +4308,7 @@
     },
     {
       "id": "film-at-lincoln-center-84429",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-28T12:00:00-04:00",
@@ -4181,6 +4326,7 @@
     },
     {
       "id": "film-forum-52468",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-28T12:15:00-04:00",
@@ -4198,6 +4344,7 @@
     },
     {
       "id": "film-forum-51791",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-28T12:20:00-04:00",
@@ -4215,6 +4362,7 @@
     },
     {
       "id": "film-forum-52574",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "billy-liar",
       "startsAt": "2026-08-28T12:20:00-04:00",
@@ -4232,6 +4380,7 @@
     },
     {
       "id": "film-at-lincoln-center-83831",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-28T12:30:00-04:00",
@@ -4249,6 +4398,7 @@
     },
     {
       "id": "ifc-center-576429",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-28T12:30:00-04:00",
@@ -4266,6 +4416,7 @@
     },
     {
       "id": "ifc-center-576431",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-28T12:35:00-04:00",
@@ -4283,6 +4434,7 @@
     },
     {
       "id": "film-forum-52036",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-rainmaker",
       "startsAt": "2026-08-28T13:00:00-04:00",
@@ -4300,6 +4452,7 @@
     },
     {
       "id": "ifc-center-576430",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-28T13:05:00-04:00",
@@ -4317,6 +4470,7 @@
     },
     {
       "id": "ifc-center-573829",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-28T13:20:00-04:00",
@@ -4334,6 +4488,7 @@
     },
     {
       "id": "ifc-center-576432",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-08-28T13:30:00-04:00",
@@ -4351,6 +4506,7 @@
     },
     {
       "id": "film-forum-52469",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-28T14:25:00-04:00",
@@ -4368,6 +4524,7 @@
     },
     {
       "id": "film-at-lincoln-center-83832",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-28T14:30:00-04:00",
@@ -4385,6 +4542,7 @@
     },
     {
       "id": "film-forum-51792",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-28T14:30:00-04:00",
@@ -4402,6 +4560,7 @@
     },
     {
       "id": "film-forum-52566",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "center-stage",
       "startsAt": "2026-08-28T14:35:00-04:00",
@@ -4419,6 +4578,7 @@
     },
     {
       "id": "ifc-center-576854",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-28T14:45:00-04:00",
@@ -4436,6 +4596,7 @@
     },
     {
       "id": "paris-theater-2001-2880",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "heat",
       "startsAt": "2026-08-28T14:45:00-04:00",
@@ -4453,6 +4614,7 @@
     },
     {
       "id": "film-at-lincoln-center-84443",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-28T15:00:00-04:00",
@@ -4470,6 +4632,7 @@
     },
     {
       "id": "ifc-center-576434",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-28T15:00:00-04:00",
@@ -4487,6 +4650,7 @@
     },
     {
       "id": "metrograph-30700",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "the-dark-knight",
       "startsAt": "2026-08-28T15:25:00-04:00",
@@ -4504,6 +4668,7 @@
     },
     {
       "id": "ifc-center-576435",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-28T15:45:00-04:00",
@@ -4521,6 +4686,7 @@
     },
     {
       "id": "film-at-lincoln-center-83747",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "curse-of-the-demon",
       "startsAt": "2026-08-28T16:00:00-04:00",
@@ -4538,6 +4704,7 @@
     },
     {
       "id": "film-forum-52006",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "one-from-the-heart-reprise",
       "startsAt": "2026-08-28T16:00:00-04:00",
@@ -4555,6 +4722,7 @@
     },
     {
       "id": "metrograph-30642",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "days-and-nights-in-the-forest",
       "startsAt": "2026-08-28T16:00:00-04:00",
@@ -4572,6 +4740,7 @@
     },
     {
       "id": "ifc-center-573832",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-28T16:05:00-04:00",
@@ -4589,6 +4758,7 @@
     },
     {
       "id": "ifc-center-576433",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-28T16:10:00-04:00",
@@ -4606,6 +4776,7 @@
     },
     {
       "id": "film-at-lincoln-center-83833",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-28T16:30:00-04:00",
@@ -4623,6 +4794,7 @@
     },
     {
       "id": "film-forum-52470",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-28T16:40:00-04:00",
@@ -4640,6 +4812,7 @@
     },
     {
       "id": "film-forum-51793",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-28T16:45:00-04:00",
@@ -4657,6 +4830,7 @@
     },
     {
       "id": "ifc-center-576436",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-28T16:50:00-04:00",
@@ -4674,6 +4848,7 @@
     },
     {
       "id": "roxy-cinema-7748",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "her-private-hell",
       "startsAt": "2026-08-28T17:00:00-04:00",
@@ -4691,6 +4866,7 @@
     },
     {
       "id": "ifc-center-576890",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-28T17:20:00-04:00",
@@ -4708,6 +4884,7 @@
     },
     {
       "id": "film-forum-52583",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "billy-liar",
       "startsAt": "2026-08-28T17:45:00-04:00",
@@ -4725,6 +4902,7 @@
     },
     {
       "id": "film-at-lincoln-center-83749",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-name-of-the-rose",
       "startsAt": "2026-08-28T18:00:00-04:00",
@@ -4742,6 +4920,7 @@
     },
     {
       "id": "film-at-lincoln-center-84450",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-08-28T18:00:00-04:00",
@@ -4759,6 +4938,7 @@
     },
     {
       "id": "film-forum-51987",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-conversation",
       "startsAt": "2026-08-28T18:10:00-04:00",
@@ -4776,6 +4956,7 @@
     },
     {
       "id": "metrograph-sold-out-jennifer-s-body-2026-08-28-1815",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "jennifer-s-body",
       "startsAt": "2026-08-28T18:15:00-04:00",
@@ -4793,6 +4974,7 @@
     },
     {
       "id": "ifc-center-576438",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-28T18:20:00-04:00",
@@ -4810,6 +4992,7 @@
     },
     {
       "id": "film-at-lincoln-center-83834",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-28T18:30:00-04:00",
@@ -4827,6 +5010,7 @@
     },
     {
       "id": "metrograph-30639",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "women-on-the-verge-of-a-nervous-breakdown",
       "startsAt": "2026-08-28T18:30:00-04:00",
@@ -4844,6 +5028,7 @@
     },
     {
       "id": "ifc-center-576437",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-28T18:45:00-04:00",
@@ -4861,6 +5046,7 @@
     },
     {
       "id": "paris-theater-2001-2881",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "boogie-nights",
       "startsAt": "2026-08-28T18:45:00-04:00",
@@ -4878,6 +5064,7 @@
     },
     {
       "id": "film-forum-52471",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-28T18:50:00-04:00",
@@ -4895,6 +5082,7 @@
     },
     {
       "id": "ifc-center-573835",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-28T18:55:00-04:00",
@@ -4912,6 +5100,7 @@
     },
     {
       "id": "film-forum-51794",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-28T19:00:00-04:00",
@@ -4929,6 +5118,7 @@
     },
     {
       "id": "ifc-center-576847",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-28T19:05:00-04:00",
@@ -4946,6 +5136,7 @@
     },
     {
       "id": "roxy-cinema-7708",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "the-black-dahlia-35mm-2006-movies",
       "startsAt": "2026-08-28T19:15:00-04:00",
@@ -4963,6 +5154,7 @@
     },
     {
       "id": "ifc-center-576440",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-28T19:25:00-04:00",
@@ -4980,6 +5172,7 @@
     },
     {
       "id": "film-forum-52587",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-28T20:00:00-04:00",
@@ -4997,6 +5190,7 @@
     },
     {
       "id": "film-at-lincoln-center-84432",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-28T20:15:00-04:00",
@@ -5014,6 +5208,7 @@
     },
     {
       "id": "metrograph-30644",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "eve-s-bayou",
       "startsAt": "2026-08-28T20:25:00-04:00",
@@ -5031,6 +5226,7 @@
     },
     {
       "id": "film-at-lincoln-center-83835",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-28T20:30:00-04:00",
@@ -5048,6 +5244,7 @@
     },
     {
       "id": "ifc-center-576441",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-28T20:30:00-04:00",
@@ -5065,6 +5262,7 @@
     },
     {
       "id": "metrograph-30640",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "der-fan",
       "startsAt": "2026-08-28T20:30:00-04:00",
@@ -5082,6 +5280,7 @@
     },
     {
       "id": "film-forum-52040",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "bram-stoker-s-dracula",
       "startsAt": "2026-08-28T20:40:00-04:00",
@@ -5099,6 +5298,7 @@
     },
     {
       "id": "film-at-lincoln-center-83751",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "book-of-secrets",
       "startsAt": "2026-08-28T20:45:00-04:00",
@@ -5116,6 +5316,7 @@
     },
     {
       "id": "film-forum-52472",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-28T21:00:00-04:00",
@@ -5133,6 +5334,7 @@
     },
     {
       "id": "ifc-center-576897",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-28T21:15:00-04:00",
@@ -5150,6 +5352,7 @@
     },
     {
       "id": "ifc-center-576439",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-28T21:20:00-04:00",
@@ -5167,6 +5370,7 @@
     },
     {
       "id": "ifc-center-573838",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-28T21:40:00-04:00",
@@ -5184,6 +5388,7 @@
     },
     {
       "id": "ifc-center-576443",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-28T21:45:00-04:00",
@@ -5201,6 +5406,7 @@
     },
     {
       "id": "roxy-cinema-7701",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "i-want-your-sex",
       "startsAt": "2026-08-28T21:45:00-04:00",
@@ -5218,6 +5424,7 @@
     },
     {
       "id": "paris-theater-2001-2882",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "mad-max-fury-road",
       "startsAt": "2026-08-28T22:15:00-04:00",
@@ -5235,6 +5442,7 @@
     },
     {
       "id": "metrograph-30641",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "house",
       "startsAt": "2026-08-28T22:30:00-04:00",
@@ -5252,6 +5460,7 @@
     },
     {
       "id": "metrograph-30645",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "raw",
       "startsAt": "2026-08-28T22:35:00-04:00",
@@ -5269,6 +5478,7 @@
     },
     {
       "id": "ifc-center-576888",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-departed",
       "startsAt": "2026-08-28T23:15:00-04:00",
@@ -5286,6 +5496,7 @@
     },
     {
       "id": "ifc-center-576444",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "jawbreaker",
       "startsAt": "2026-08-28T23:35:00-04:00",
@@ -5303,6 +5514,7 @@
     },
     {
       "id": "ifc-center-576442",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "michael-mann-s-manhunter-the-final-cut",
       "startsAt": "2026-08-28T23:40:00-04:00",
@@ -5320,6 +5532,7 @@
     },
     {
       "id": "ifc-center-576445",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "dead-ringers",
       "startsAt": "2026-08-28T23:45:00-04:00",
@@ -5337,6 +5550,7 @@
     },
     {
       "id": "ifc-center-576870",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "clue",
       "startsAt": "2026-08-28T23:59:00-04:00",
@@ -5354,6 +5568,7 @@
     },
     {
       "id": "ifc-center-576447",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-08-29T10:35:00-04:00",
@@ -5371,6 +5586,7 @@
     },
     {
       "id": "ifc-center-577076",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "local-one",
       "startsAt": "2026-08-29T10:40:00-04:00",
@@ -5388,6 +5604,7 @@
     },
     {
       "id": "ifc-center-576894",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-29T10:45:00-04:00",
@@ -5405,6 +5622,7 @@
     },
     {
       "id": "ifc-center-572470",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "national-theatre-live-inter-alia",
       "startsAt": "2026-08-29T11:00:00-04:00",
@@ -5422,6 +5640,7 @@
     },
     {
       "id": "ifc-center-576448",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-29T11:00:00-04:00",
@@ -5439,6 +5658,7 @@
     },
     {
       "id": "ifc-center-576876",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-open-captioning",
       "startsAt": "2026-08-29T11:30:00-04:00",
@@ -5456,6 +5676,7 @@
     },
     {
       "id": "ifc-center-576880",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county-open-captioning",
       "startsAt": "2026-08-29T11:30:00-04:00",
@@ -5473,6 +5694,7 @@
     },
     {
       "id": "metrograph-30646",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "old-joy",
       "startsAt": "2026-08-29T11:30:00-04:00",
@@ -5490,6 +5712,7 @@
     },
     {
       "id": "metrograph-30652",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "petite-maman",
       "startsAt": "2026-08-29T11:45:00-04:00",
@@ -5507,6 +5730,7 @@
     },
     {
       "id": "film-at-lincoln-center-84430",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-29T12:00:00-04:00",
@@ -5524,6 +5748,7 @@
     },
     {
       "id": "paris-theater-2001-2883",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "back-to-the-future",
       "startsAt": "2026-08-29T12:00:00-04:00",
@@ -5541,6 +5766,7 @@
     },
     {
       "id": "film-forum-52473",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-29T12:15:00-04:00",
@@ -5558,6 +5784,7 @@
     },
     {
       "id": "film-forum-51805",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-29T12:20:00-04:00",
@@ -5575,6 +5802,7 @@
     },
     {
       "id": "film-forum-52575",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "billy-liar",
       "startsAt": "2026-08-29T12:20:00-04:00",
@@ -5592,6 +5820,7 @@
     },
     {
       "id": "film-at-lincoln-center-83836",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-29T12:30:00-04:00",
@@ -5609,6 +5838,7 @@
     },
     {
       "id": "film-forum-52034",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "finian-s-rainbow",
       "startsAt": "2026-08-29T12:30:00-04:00",
@@ -5626,6 +5856,7 @@
     },
     {
       "id": "ifc-center-576450",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-29T12:35:00-04:00",
@@ -5643,6 +5874,7 @@
     },
     {
       "id": "ifc-center-576449",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-29T13:05:00-04:00",
@@ -5660,6 +5892,7 @@
     },
     {
       "id": "ifc-center-573830",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-29T13:20:00-04:00",
@@ -5677,6 +5910,7 @@
     },
     {
       "id": "metrograph-30647",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "mississippi-mermaid",
       "startsAt": "2026-08-29T13:20:00-04:00",
@@ -5694,6 +5928,7 @@
     },
     {
       "id": "ifc-center-576451",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-08-29T13:30:00-04:00",
@@ -5711,6 +5946,7 @@
     },
     {
       "id": "metrograph-30701",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "chungking-express",
       "startsAt": "2026-08-29T13:30:00-04:00",
@@ -5728,6 +5964,7 @@
     },
     {
       "id": "film-forum-52498",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-29T14:25:00-04:00",
@@ -5745,6 +5982,7 @@
     },
     {
       "id": "film-at-lincoln-center-83774",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "flc-book-fair",
       "startsAt": "2026-08-29T14:30:00-04:00",
@@ -5762,6 +6000,7 @@
     },
     {
       "id": "film-at-lincoln-center-83837",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-29T14:30:00-04:00",
@@ -5779,6 +6018,7 @@
     },
     {
       "id": "film-forum-51801",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-29T14:30:00-04:00",
@@ -5796,6 +6036,7 @@
     },
     {
       "id": "roxy-cinema-7721",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "the-wind-that-shakes-the-barley-35mm-2006-movies",
       "startsAt": "2026-08-29T14:30:00-04:00",
@@ -5813,6 +6054,7 @@
     },
     {
       "id": "film-forum-52572",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "center-stage",
       "startsAt": "2026-08-29T14:35:00-04:00",
@@ -5830,6 +6072,7 @@
     },
     {
       "id": "ifc-center-576855",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-29T14:45:00-04:00",
@@ -5847,6 +6090,7 @@
     },
     {
       "id": "film-at-lincoln-center-84444",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-29T15:00:00-04:00",
@@ -5864,6 +6108,7 @@
     },
     {
       "id": "ifc-center-576453",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-29T15:00:00-04:00",
@@ -5881,6 +6126,7 @@
     },
     {
       "id": "paris-theater-2001-2884",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "kill-bill-the-whole-bloody-affair",
       "startsAt": "2026-08-29T15:05:00-04:00",
@@ -5898,6 +6144,7 @@
     },
     {
       "id": "film-forum-51993",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-godfather",
       "startsAt": "2026-08-29T15:20:00-04:00",
@@ -5915,6 +6162,7 @@
     },
     {
       "id": "film-at-lincoln-center-83753",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "indiana-jones-the-last-crusade",
       "startsAt": "2026-08-29T15:45:00-04:00",
@@ -5932,6 +6180,7 @@
     },
     {
       "id": "ifc-center-576454",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-29T15:45:00-04:00",
@@ -5949,6 +6198,7 @@
     },
     {
       "id": "metrograph-30648",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "stand-by-me",
       "startsAt": "2026-08-29T15:45:00-04:00",
@@ -5966,6 +6216,7 @@
     },
     {
       "id": "metrograph-30654",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "in-my-skin",
       "startsAt": "2026-08-29T15:50:00-04:00",
@@ -5983,6 +6234,7 @@
     },
     {
       "id": "ifc-center-573833",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-29T16:05:00-04:00",
@@ -6000,6 +6252,7 @@
     },
     {
       "id": "syndicated-6540",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "syndicated",
       "filmId": "syndicated-ST00002590",
       "startsAt": "2026-08-29T16:05:00-04:00",
@@ -6017,6 +6270,7 @@
     },
     {
       "id": "ifc-center-576452",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-29T16:10:00-04:00",
@@ -6034,6 +6288,7 @@
     },
     {
       "id": "film-at-lincoln-center-83838",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-29T16:30:00-04:00",
@@ -6051,6 +6306,7 @@
     },
     {
       "id": "film-forum-52499",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-29T16:40:00-04:00",
@@ -6068,6 +6324,7 @@
     },
     {
       "id": "film-forum-51803",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-29T16:45:00-04:00",
@@ -6085,6 +6342,7 @@
     },
     {
       "id": "ifc-center-576455",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-29T16:50:00-04:00",
@@ -6102,6 +6360,7 @@
     },
     {
       "id": "roxy-cinema-7797",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "the-invite-q-a",
       "startsAt": "2026-08-29T17:00:00-04:00",
@@ -6119,6 +6378,7 @@
     },
     {
       "id": "ifc-center-576891",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-29T17:20:00-04:00",
@@ -6136,6 +6396,7 @@
     },
     {
       "id": "metrograph-30649",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "2046",
       "startsAt": "2026-08-29T17:40:00-04:00",
@@ -6153,6 +6414,7 @@
     },
     {
       "id": "film-forum-52584",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "billy-liar",
       "startsAt": "2026-08-29T17:45:00-04:00",
@@ -6170,6 +6432,7 @@
     },
     {
       "id": "film-at-lincoln-center-84451",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-08-29T18:00:00-04:00",
@@ -6187,6 +6450,7 @@
     },
     {
       "id": "metrograph-30655",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "lady-in-the-water",
       "startsAt": "2026-08-29T18:00:00-04:00",
@@ -6204,6 +6468,7 @@
     },
     {
       "id": "ifc-center-576457",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-29T18:20:00-04:00",
@@ -6221,6 +6486,7 @@
     },
     {
       "id": "film-at-lincoln-center-83755",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-changeling",
       "startsAt": "2026-08-29T18:30:00-04:00",
@@ -6238,6 +6504,7 @@
     },
     {
       "id": "film-at-lincoln-center-83839",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-29T18:30:00-04:00",
@@ -6255,6 +6522,7 @@
     },
     {
       "id": "syndicated-6522",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "syndicated",
       "filmId": "syndicated-ST00002590",
       "startsAt": "2026-08-29T18:40:00-04:00",
@@ -6272,6 +6540,7 @@
     },
     {
       "id": "film-forum-51988",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-conversation",
       "startsAt": "2026-08-29T18:45:00-04:00",
@@ -6289,6 +6558,7 @@
     },
     {
       "id": "ifc-center-576456",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-29T18:45:00-04:00",
@@ -6306,6 +6576,7 @@
     },
     {
       "id": "film-forum-52492",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-29T18:50:00-04:00",
@@ -6323,6 +6594,7 @@
     },
     {
       "id": "ifc-center-573836",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-29T18:55:00-04:00",
@@ -6340,6 +6612,7 @@
     },
     {
       "id": "film-forum-51795",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-29T19:00:00-04:00",
@@ -6357,6 +6630,7 @@
     },
     {
       "id": "ifc-center-576848",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-29T19:05:00-04:00",
@@ -6374,6 +6648,7 @@
     },
     {
       "id": "ifc-center-576459",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-29T19:25:00-04:00",
@@ -6391,6 +6666,7 @@
     },
     {
       "id": "roxy-cinema-7702",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "i-want-your-sex",
       "startsAt": "2026-08-29T19:45:00-04:00",
@@ -6408,6 +6684,7 @@
     },
     {
       "id": "film-forum-52588",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-29T20:00:00-04:00",
@@ -6425,6 +6702,7 @@
     },
     {
       "id": "film-at-lincoln-center-84431",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-29T20:15:00-04:00",
@@ -6442,6 +6720,7 @@
     },
     {
       "id": "metrograph-30650",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "nenette-and-boni",
       "startsAt": "2026-08-29T20:15:00-04:00",
@@ -6459,6 +6738,7 @@
     },
     {
       "id": "film-at-lincoln-center-83840",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-29T20:30:00-04:00",
@@ -6476,6 +6756,7 @@
     },
     {
       "id": "ifc-center-576460",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-29T20:30:00-04:00",
@@ -6493,6 +6774,7 @@
     },
     {
       "id": "metrograph-30656",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "der-fan",
       "startsAt": "2026-08-29T20:30:00-04:00",
@@ -6510,6 +6792,7 @@
     },
     {
       "id": "film-at-lincoln-center-83757",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "thesis",
       "startsAt": "2026-08-29T20:45:00-04:00",
@@ -6527,6 +6810,7 @@
     },
     {
       "id": "paris-theater-2001-2885",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "heat",
       "startsAt": "2026-08-29T20:45:00-04:00",
@@ -6544,6 +6828,7 @@
     },
     {
       "id": "film-forum-52495",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-29T21:00:00-04:00",
@@ -6561,6 +6846,7 @@
     },
     {
       "id": "syndicated-6529",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "syndicated",
       "filmId": "syndicated-ST00002602",
       "startsAt": "2026-08-29T21:05:00-04:00",
@@ -6578,6 +6864,7 @@
     },
     {
       "id": "film-forum-51977",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "dementia-13-director-s-cut",
       "startsAt": "2026-08-29T21:10:00-04:00",
@@ -6595,6 +6882,7 @@
     },
     {
       "id": "ifc-center-576898",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-29T21:15:00-04:00",
@@ -6612,6 +6900,7 @@
     },
     {
       "id": "ifc-center-576458",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-29T21:20:00-04:00",
@@ -6629,6 +6918,7 @@
     },
     {
       "id": "ifc-center-573839",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-29T21:40:00-04:00",
@@ -6646,6 +6936,7 @@
     },
     {
       "id": "ifc-center-576462",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-29T21:45:00-04:00",
@@ -6663,6 +6954,7 @@
     },
     {
       "id": "roxy-cinema-7734",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "city-dudes",
       "startsAt": "2026-08-29T21:45:00-04:00",
@@ -6680,6 +6972,7 @@
     },
     {
       "id": "metrograph-30651",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "mulholland-drive-35mm",
       "startsAt": "2026-08-29T22:30:00-04:00",
@@ -6697,6 +6990,7 @@
     },
     {
       "id": "metrograph-30657",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "true-romance",
       "startsAt": "2026-08-29T22:45:00-04:00",
@@ -6714,6 +7008,7 @@
     },
     {
       "id": "ifc-center-576889",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-departed",
       "startsAt": "2026-08-29T23:15:00-04:00",
@@ -6731,6 +7026,7 @@
     },
     {
       "id": "ifc-center-576463",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "jawbreaker",
       "startsAt": "2026-08-29T23:35:00-04:00",
@@ -6748,6 +7044,7 @@
     },
     {
       "id": "ifc-center-576461",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "michael-mann-s-manhunter-the-final-cut",
       "startsAt": "2026-08-29T23:40:00-04:00",
@@ -6765,6 +7062,7 @@
     },
     {
       "id": "ifc-center-576464",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "dead-ringers",
       "startsAt": "2026-08-29T23:45:00-04:00",
@@ -6782,6 +7080,7 @@
     },
     {
       "id": "ifc-center-576874",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "clue",
       "startsAt": "2026-08-29T23:59:00-04:00",
@@ -6799,6 +7098,7 @@
     },
     {
       "id": "ifc-center-576466",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-08-30T10:35:00-04:00",
@@ -6816,6 +7116,7 @@
     },
     {
       "id": "ifc-center-577077",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "local-one",
       "startsAt": "2026-08-30T10:40:00-04:00",
@@ -6833,6 +7134,7 @@
     },
     {
       "id": "ifc-center-576895",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-30T10:45:00-04:00",
@@ -6850,6 +7152,7 @@
     },
     {
       "id": "ifc-center-572471",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "national-theatre-live-inter-alia",
       "startsAt": "2026-08-30T11:00:00-04:00",
@@ -6867,6 +7170,7 @@
     },
     {
       "id": "ifc-center-576467",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-30T11:00:00-04:00",
@@ -6884,6 +7188,7 @@
     },
     {
       "id": "metrograph-30658",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "e-t-the-extra-terrestrial",
       "startsAt": "2026-08-30T11:00:00-04:00",
@@ -6901,6 +7206,7 @@
     },
     {
       "id": "metrograph-30663",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "goodbye-dragon-inn",
       "startsAt": "2026-08-30T11:15:00-04:00",
@@ -6918,6 +7224,7 @@
     },
     {
       "id": "ifc-center-576877",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county-open-captioning",
       "startsAt": "2026-08-30T11:30:00-04:00",
@@ -6935,6 +7242,7 @@
     },
     {
       "id": "film-at-lincoln-center-84433",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-30T12:00:00-04:00",
@@ -6952,6 +7260,7 @@
     },
     {
       "id": "paris-theater-2001-2886",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "the-sound-of-music",
       "startsAt": "2026-08-30T12:00:00-04:00",
@@ -6969,6 +7278,7 @@
     },
     {
       "id": "film-forum-52474",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-30T12:15:00-04:00",
@@ -6986,6 +7296,7 @@
     },
     {
       "id": "film-forum-51806",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-30T12:20:00-04:00",
@@ -7003,6 +7314,7 @@
     },
     {
       "id": "film-forum-52586",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-conversation",
       "startsAt": "2026-08-30T12:20:00-04:00",
@@ -7020,6 +7332,7 @@
     },
     {
       "id": "film-at-lincoln-center-83752",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "book-of-secrets",
       "startsAt": "2026-08-30T12:30:00-04:00",
@@ -7037,6 +7350,7 @@
     },
     {
       "id": "film-at-lincoln-center-83841",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-30T12:30:00-04:00",
@@ -7054,6 +7368,7 @@
     },
     {
       "id": "film-forum-51990",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-godfather",
       "startsAt": "2026-08-30T12:30:00-04:00",
@@ -7071,6 +7386,7 @@
     },
     {
       "id": "ifc-center-576469",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-30T12:35:00-04:00",
@@ -7088,6 +7404,7 @@
     },
     {
       "id": "metrograph-30664",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "lady-in-the-water",
       "startsAt": "2026-08-30T13:00:00-04:00",
@@ -7105,6 +7422,7 @@
     },
     {
       "id": "ifc-center-576468",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-30T13:05:00-04:00",
@@ -7122,6 +7440,7 @@
     },
     {
       "id": "ifc-center-573831",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-30T13:20:00-04:00",
@@ -7139,6 +7458,7 @@
     },
     {
       "id": "metrograph-30659",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "bram-stoker-s-dracula",
       "startsAt": "2026-08-30T13:25:00-04:00",
@@ -7156,6 +7476,7 @@
     },
     {
       "id": "ifc-center-576472",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-30T13:30:00-04:00",
@@ -7173,6 +7494,7 @@
     },
     {
       "id": "roxy-cinema-7677",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "a-rimbaud",
       "startsAt": "2026-08-30T13:30:00-04:00",
@@ -7190,6 +7512,7 @@
     },
     {
       "id": "film-forum-52500",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-30T14:25:00-04:00",
@@ -7207,6 +7530,7 @@
     },
     {
       "id": "film-at-lincoln-center-83845",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-30T14:30:00-04:00",
@@ -7224,6 +7548,7 @@
     },
     {
       "id": "film-forum-51802",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-30T14:30:00-04:00",
@@ -7241,6 +7566,7 @@
     },
     {
       "id": "ifc-center-576857",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-30T14:45:00-04:00",
@@ -7258,6 +7584,7 @@
     },
     {
       "id": "film-forum-52573",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "center-stage",
       "startsAt": "2026-08-30T14:50:00-04:00",
@@ -7275,6 +7602,7 @@
     },
     {
       "id": "film-at-lincoln-center-83759",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "ball-of-fire",
       "startsAt": "2026-08-30T15:00:00-04:00",
@@ -7292,6 +7620,7 @@
     },
     {
       "id": "film-at-lincoln-center-84445",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-30T15:00:00-04:00",
@@ -7309,6 +7638,7 @@
     },
     {
       "id": "ifc-center-576470",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-08-30T15:00:00-04:00",
@@ -7326,6 +7656,7 @@
     },
     {
       "id": "metrograph-30665",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "der-fan",
       "startsAt": "2026-08-30T15:15:00-04:00",
@@ -7343,6 +7674,7 @@
     },
     {
       "id": "ifc-center-576473",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-30T15:45:00-04:00",
@@ -7360,6 +7692,7 @@
     },
     {
       "id": "metrograph-sold-out-mulholland-drive-35mm-2026-08-30-1600",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "mulholland-drive-35mm",
       "startsAt": "2026-08-30T16:00:00-04:00",
@@ -7377,6 +7710,7 @@
     },
     {
       "id": "ifc-center-573834",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-30T16:05:00-04:00",
@@ -7394,6 +7728,7 @@
     },
     {
       "id": "film-forum-52000",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-godfather-ii",
       "startsAt": "2026-08-30T16:10:00-04:00",
@@ -7411,6 +7746,7 @@
     },
     {
       "id": "ifc-center-576471",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-30T16:10:00-04:00",
@@ -7428,6 +7764,7 @@
     },
     {
       "id": "syndicated-6541",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "syndicated",
       "filmId": "syndicated-ST00002592",
       "startsAt": "2026-08-30T16:10:00-04:00",
@@ -7445,6 +7782,7 @@
     },
     {
       "id": "paris-theater-2001-2887",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "lawrence-of-arabia",
       "startsAt": "2026-08-30T16:20:00-04:00",
@@ -7462,6 +7800,7 @@
     },
     {
       "id": "film-at-lincoln-center-83842",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-30T16:30:00-04:00",
@@ -7479,6 +7818,7 @@
     },
     {
       "id": "film-forum-52501",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-30T16:40:00-04:00",
@@ -7496,6 +7836,7 @@
     },
     {
       "id": "film-forum-51804",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-30T16:45:00-04:00",
@@ -7513,6 +7854,7 @@
     },
     {
       "id": "ifc-center-576474",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-30T16:50:00-04:00",
@@ -7530,6 +7872,7 @@
     },
     {
       "id": "roxy-cinema-7732",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "when-we-saw-each-other-more-often-q-a",
       "startsAt": "2026-08-30T17:00:00-04:00",
@@ -7547,6 +7890,7 @@
     },
     {
       "id": "metrograph-30666",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "eve-s-bayou",
       "startsAt": "2026-08-30T17:15:00-04:00",
@@ -7564,6 +7908,7 @@
     },
     {
       "id": "ifc-center-576892",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-30T17:20:00-04:00",
@@ -7581,6 +7926,7 @@
     },
     {
       "id": "film-at-lincoln-center-83761",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "copycat",
       "startsAt": "2026-08-30T17:30:00-04:00",
@@ -7598,6 +7944,7 @@
     },
     {
       "id": "film-at-lincoln-center-84452",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-08-30T18:00:00-04:00",
@@ -7615,6 +7962,7 @@
     },
     {
       "id": "film-forum-52585",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "billy-liar",
       "startsAt": "2026-08-30T18:00:00-04:00",
@@ -7632,6 +7980,7 @@
     },
     {
       "id": "ifc-center-576476",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-30T18:20:00-04:00",
@@ -7649,6 +7998,7 @@
     },
     {
       "id": "syndicated-6542",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "syndicated",
       "filmId": "syndicated-ST00002586",
       "startsAt": "2026-08-30T18:25:00-04:00",
@@ -7666,6 +8016,7 @@
     },
     {
       "id": "film-at-lincoln-center-83843",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-30T18:30:00-04:00",
@@ -7683,6 +8034,7 @@
     },
     {
       "id": "ifc-center-576475",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-30T18:45:00-04:00",
@@ -7700,6 +8052,7 @@
     },
     {
       "id": "film-forum-52493",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-30T18:50:00-04:00",
@@ -7717,6 +8070,7 @@
     },
     {
       "id": "ifc-center-573837",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-30T18:55:00-04:00",
@@ -7734,6 +8088,7 @@
     },
     {
       "id": "film-forum-51796",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-30T19:00:00-04:00",
@@ -7751,6 +8106,7 @@
     },
     {
       "id": "metrograph-30661",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "2046",
       "startsAt": "2026-08-30T19:00:00-04:00",
@@ -7768,6 +8124,7 @@
     },
     {
       "id": "ifc-center-576849",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-30T19:05:00-04:00",
@@ -7785,6 +8142,7 @@
     },
     {
       "id": "ifc-center-576478",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-30T19:25:00-04:00",
@@ -7802,6 +8160,7 @@
     },
     {
       "id": "metrograph-sold-out-jennifer-s-body-2026-08-30-1930",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "jennifer-s-body",
       "startsAt": "2026-08-30T19:30:00-04:00",
@@ -7819,6 +8178,7 @@
     },
     {
       "id": "film-at-lincoln-center-83763",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-bone-collector",
       "startsAt": "2026-08-30T20:00:00-04:00",
@@ -7836,6 +8196,7 @@
     },
     {
       "id": "roxy-cinema-7703",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "i-want-your-sex",
       "startsAt": "2026-08-30T20:00:00-04:00",
@@ -7853,6 +8214,7 @@
     },
     {
       "id": "film-forum-52055",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-godfather-coda",
       "startsAt": "2026-08-30T20:10:00-04:00",
@@ -7870,6 +8232,7 @@
     },
     {
       "id": "film-at-lincoln-center-84434",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-30T20:15:00-04:00",
@@ -7887,6 +8250,7 @@
     },
     {
       "id": "film-forum-52589",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-30T20:15:00-04:00",
@@ -7904,6 +8268,7 @@
     },
     {
       "id": "film-at-lincoln-center-83844",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-30T20:30:00-04:00",
@@ -7921,6 +8286,7 @@
     },
     {
       "id": "ifc-center-576479",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-30T20:30:00-04:00",
@@ -7938,6 +8304,7 @@
     },
     {
       "id": "film-forum-52496",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-30T21:00:00-04:00",
@@ -7955,6 +8322,7 @@
     },
     {
       "id": "syndicated-6523",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "syndicated",
       "filmId": "syndicated-ST00002590",
       "startsAt": "2026-08-30T21:00:00-04:00",
@@ -7972,6 +8340,7 @@
     },
     {
       "id": "film-forum-51798",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-30T21:10:00-04:00",
@@ -7989,6 +8358,7 @@
     },
     {
       "id": "ifc-center-576899",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-30T21:15:00-04:00",
@@ -8006,6 +8376,7 @@
     },
     {
       "id": "paris-theater-2001-2973",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "michael-mann-s-manhunter-the-final-cut",
       "startsAt": "2026-08-30T21:15:00-04:00",
@@ -8023,6 +8394,7 @@
     },
     {
       "id": "ifc-center-576477",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-30T21:20:00-04:00",
@@ -8040,6 +8412,7 @@
     },
     {
       "id": "ifc-center-573840",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-30T21:40:00-04:00",
@@ -8057,6 +8430,7 @@
     },
     {
       "id": "metrograph-30662",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "after-hours",
       "startsAt": "2026-08-30T21:40:00-04:00",
@@ -8074,6 +8448,7 @@
     },
     {
       "id": "ifc-center-576480",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-30T21:45:00-04:00",
@@ -8091,6 +8466,7 @@
     },
     {
       "id": "metrograph-30668",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "in-my-skin",
       "startsAt": "2026-08-30T21:45:00-04:00",
@@ -8108,6 +8484,7 @@
     },
     {
       "id": "ifc-center-577078",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "local-one",
       "startsAt": "2026-08-31T10:40:00-04:00",
@@ -8125,6 +8502,7 @@
     },
     {
       "id": "ifc-center-576900",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-31T10:45:00-04:00",
@@ -8142,6 +8520,7 @@
     },
     {
       "id": "ifc-center-576481",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "maddie-s-secret",
       "startsAt": "2026-08-31T11:00:00-04:00",
@@ -8159,6 +8538,7 @@
     },
     {
       "id": "ifc-center-576482",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-31T11:05:00-04:00",
@@ -8176,6 +8556,7 @@
     },
     {
       "id": "film-at-lincoln-center-84435",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-31T12:00:00-04:00",
@@ -8193,6 +8574,7 @@
     },
     {
       "id": "film-forum-52475",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-31T12:15:00-04:00",
@@ -8210,6 +8592,7 @@
     },
     {
       "id": "film-forum-51807",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-31T12:20:00-04:00",
@@ -8227,6 +8610,7 @@
     },
     {
       "id": "film-forum-52027",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-cotton-club-encore",
       "startsAt": "2026-08-31T12:20:00-04:00",
@@ -8244,6 +8628,7 @@
     },
     {
       "id": "film-forum-52576",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "billy-liar",
       "startsAt": "2026-08-31T12:20:00-04:00",
@@ -8261,6 +8646,7 @@
     },
     {
       "id": "film-at-lincoln-center-83846",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-31T12:30:00-04:00",
@@ -8278,6 +8664,7 @@
     },
     {
       "id": "paris-theater-2001-2974",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "josie-and-the-pussycats",
       "startsAt": "2026-08-31T12:30:00-04:00",
@@ -8295,6 +8682,7 @@
     },
     {
       "id": "film-at-lincoln-center-83760",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "ball-of-fire",
       "startsAt": "2026-08-31T13:00:00-04:00",
@@ -8312,6 +8700,7 @@
     },
     {
       "id": "ifc-center-576483",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-31T13:05:00-04:00",
@@ -8329,6 +8718,7 @@
     },
     {
       "id": "ifc-center-576486",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-08-31T13:30:00-04:00",
@@ -8346,6 +8736,7 @@
     },
     {
       "id": "ifc-center-573841",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-31T13:50:00-04:00",
@@ -8363,6 +8754,7 @@
     },
     {
       "id": "film-forum-52479",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-31T14:25:00-04:00",
@@ -8380,6 +8772,7 @@
     },
     {
       "id": "film-at-lincoln-center-83847",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-31T14:30:00-04:00",
@@ -8397,6 +8790,7 @@
     },
     {
       "id": "film-forum-51824",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-31T14:30:00-04:00",
@@ -8414,6 +8808,7 @@
     },
     {
       "id": "film-forum-52567",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "center-stage",
       "startsAt": "2026-08-31T14:35:00-04:00",
@@ -8431,6 +8826,7 @@
     },
     {
       "id": "ifc-center-576858",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-31T14:45:00-04:00",
@@ -8448,6 +8844,7 @@
     },
     {
       "id": "film-at-lincoln-center-84446",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-08-31T15:00:00-04:00",
@@ -8465,6 +8862,7 @@
     },
     {
       "id": "ifc-center-576487",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-08-31T15:10:00-04:00",
@@ -8482,6 +8880,7 @@
     },
     {
       "id": "film-at-lincoln-center-83750",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-name-of-the-rose",
       "startsAt": "2026-08-31T15:15:00-04:00",
@@ -8499,6 +8898,7 @@
     },
     {
       "id": "film-forum-52038",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "bram-stoker-s-dracula",
       "startsAt": "2026-08-31T15:15:00-04:00",
@@ -8516,6 +8916,7 @@
     },
     {
       "id": "paris-theater-2001-2890",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "fight-club",
       "startsAt": "2026-08-31T15:15:00-04:00",
@@ -8533,6 +8934,7 @@
     },
     {
       "id": "ifc-center-576488",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-31T15:45:00-04:00",
@@ -8550,6 +8952,7 @@
     },
     {
       "id": "ifc-center-573842",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-31T16:05:00-04:00",
@@ -8567,6 +8970,7 @@
     },
     {
       "id": "ifc-center-576484",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-31T16:10:00-04:00",
@@ -8584,6 +8988,7 @@
     },
     {
       "id": "metrograph-30858",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "rebecca",
       "startsAt": "2026-08-31T16:20:00-04:00",
@@ -8601,6 +9006,7 @@
     },
     {
       "id": "film-at-lincoln-center-83848",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-31T16:30:00-04:00",
@@ -8618,6 +9024,7 @@
     },
     {
       "id": "film-forum-52483",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-31T16:40:00-04:00",
@@ -8635,6 +9042,7 @@
     },
     {
       "id": "film-forum-51825",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-31T16:45:00-04:00",
@@ -8652,6 +9060,7 @@
     },
     {
       "id": "metrograph-30860",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "a-day-in-the-country-people-on-sunday",
       "startsAt": "2026-08-31T16:45:00-04:00",
@@ -8669,6 +9078,7 @@
     },
     {
       "id": "ifc-center-576485",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-31T16:50:00-04:00",
@@ -8686,6 +9096,7 @@
     },
     {
       "id": "ifc-center-576904",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-31T17:30:00-04:00",
@@ -8703,6 +9114,7 @@
     },
     {
       "id": "film-at-lincoln-center-83867",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-kill-off-my-new-gun",
       "startsAt": "2026-08-31T18:00:00-04:00",
@@ -8720,6 +9132,7 @@
     },
     {
       "id": "film-at-lincoln-center-84453",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-08-31T18:00:00-04:00",
@@ -8737,6 +9150,7 @@
     },
     {
       "id": "film-forum-52011",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "tucker-the-man-and-his-dream",
       "startsAt": "2026-08-31T18:00:00-04:00",
@@ -8754,6 +9168,7 @@
     },
     {
       "id": "ifc-center-576492",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-08-31T18:20:00-04:00",
@@ -8771,6 +9186,7 @@
     },
     {
       "id": "film-at-lincoln-center-83849",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-31T18:30:00-04:00",
@@ -8788,6 +9204,7 @@
     },
     {
       "id": "ifc-center-572472",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "national-theatre-live-inter-alia",
       "startsAt": "2026-08-31T18:30:00-04:00",
@@ -8805,6 +9222,7 @@
     },
     {
       "id": "syndicated-6524",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "syndicated",
       "filmId": "syndicated-ST00002590",
       "startsAt": "2026-08-31T18:40:00-04:00",
@@ -8822,6 +9240,7 @@
     },
     {
       "id": "paris-theater-2001-2891",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "morvern-callar",
       "startsAt": "2026-08-31T18:45:00-04:00",
@@ -8839,6 +9258,7 @@
     },
     {
       "id": "film-forum-52494",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-31T18:50:00-04:00",
@@ -8856,6 +9276,7 @@
     },
     {
       "id": "ifc-center-573843",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-31T18:55:00-04:00",
@@ -8873,6 +9294,7 @@
     },
     {
       "id": "film-forum-51797",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-31T19:00:00-04:00",
@@ -8890,6 +9312,7 @@
     },
     {
       "id": "ifc-center-576489",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-sun-never-sets",
       "startsAt": "2026-08-31T19:00:00-04:00",
@@ -8907,6 +9330,7 @@
     },
     {
       "id": "metrograph-30859",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "possession-35mm",
       "startsAt": "2026-08-31T19:00:00-04:00",
@@ -8924,6 +9348,7 @@
     },
     {
       "id": "roxy-cinema-7709",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "the-lake-house-35mm-2006-movies",
       "startsAt": "2026-08-31T19:00:00-04:00",
@@ -8941,6 +9366,7 @@
     },
     {
       "id": "metrograph-30861",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "jonah-who-will-be-25-in-the-year-2000",
       "startsAt": "2026-08-31T19:10:00-04:00",
@@ -8958,6 +9384,7 @@
     },
     {
       "id": "ifc-center-576850",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-31T19:15:00-04:00",
@@ -8975,6 +9402,7 @@
     },
     {
       "id": "film-forum-52590",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-31T20:00:00-04:00",
@@ -8992,6 +9420,7 @@
     },
     {
       "id": "film-at-lincoln-center-84436",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-08-31T20:15:00-04:00",
@@ -9009,6 +9438,7 @@
     },
     {
       "id": "film-forum-52044",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "tetro",
       "startsAt": "2026-08-31T20:20:00-04:00",
@@ -9026,6 +9456,7 @@
     },
     {
       "id": "film-at-lincoln-center-83850",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-08-31T20:30:00-04:00",
@@ -9043,6 +9474,7 @@
     },
     {
       "id": "ifc-center-576878",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county-open-captioning",
       "startsAt": "2026-08-31T20:45:00-04:00",
@@ -9060,6 +9492,7 @@
     },
     {
       "id": "film-forum-52497",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-08-31T21:00:00-04:00",
@@ -9077,6 +9510,7 @@
     },
     {
       "id": "ifc-center-576490",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-08-31T21:00:00-04:00",
@@ -9094,6 +9528,7 @@
     },
     {
       "id": "roxy-cinema-7727",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "the-straight-story-35mm",
       "startsAt": "2026-08-31T21:00:00-04:00",
@@ -9111,6 +9546,7 @@
     },
     {
       "id": "syndicated-6530",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "syndicated",
       "filmId": "syndicated-ST00002072",
       "startsAt": "2026-08-31T21:00:00-04:00",
@@ -9128,6 +9564,7 @@
     },
     {
       "id": "film-forum-51799",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-08-31T21:10:00-04:00",
@@ -9145,6 +9582,7 @@
     },
     {
       "id": "ifc-center-576905",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-08-31T21:25:00-04:00",
@@ -9162,6 +9600,7 @@
     },
     {
       "id": "metrograph-30863",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "the-night-is-short-walk-on-girl",
       "startsAt": "2026-08-31T21:30:00-04:00",
@@ -9179,6 +9618,7 @@
     },
     {
       "id": "paris-theater-2001-2892",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "elevator-to-the-gallows",
       "startsAt": "2026-08-31T21:30:00-04:00",
@@ -9196,6 +9636,7 @@
     },
     {
       "id": "metrograph-30862",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "der-fan",
       "startsAt": "2026-08-31T21:35:00-04:00",
@@ -9213,6 +9654,7 @@
     },
     {
       "id": "ifc-center-573844",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-08-31T21:40:00-04:00",
@@ -9230,6 +9672,7 @@
     },
     {
       "id": "ifc-center-576491",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-08-31T21:45:00-04:00",
@@ -9247,6 +9690,7 @@
     },
     {
       "id": "ifc-center-576496",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-09-01T10:35:00-04:00",
@@ -9264,6 +9708,7 @@
     },
     {
       "id": "ifc-center-577079",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "local-one",
       "startsAt": "2026-09-01T10:40:00-04:00",
@@ -9281,6 +9726,7 @@
     },
     {
       "id": "ifc-center-576901",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-09-01T10:45:00-04:00",
@@ -9298,6 +9744,7 @@
     },
     {
       "id": "ifc-center-576879",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county-open-captioning",
       "startsAt": "2026-09-01T10:50:00-04:00",
@@ -9315,6 +9762,7 @@
     },
     {
       "id": "ifc-center-576494",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "maddie-s-secret",
       "startsAt": "2026-09-01T11:00:00-04:00",
@@ -9332,6 +9780,7 @@
     },
     {
       "id": "ifc-center-576497",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-09-01T11:05:00-04:00",
@@ -9349,6 +9798,7 @@
     },
     {
       "id": "film-at-lincoln-center-84437",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-09-01T12:00:00-04:00",
@@ -9366,6 +9816,7 @@
     },
     {
       "id": "film-forum-51974",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "dementia-13-director-s-cut",
       "startsAt": "2026-09-01T12:15:00-04:00",
@@ -9383,6 +9834,7 @@
     },
     {
       "id": "film-forum-52476",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-09-01T12:15:00-04:00",
@@ -9400,6 +9852,7 @@
     },
     {
       "id": "film-forum-51809",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-09-01T12:20:00-04:00",
@@ -9417,6 +9870,7 @@
     },
     {
       "id": "film-forum-52577",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "billy-liar",
       "startsAt": "2026-09-01T12:20:00-04:00",
@@ -9434,6 +9888,7 @@
     },
     {
       "id": "film-at-lincoln-center-83851",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-09-01T12:30:00-04:00",
@@ -9451,6 +9906,7 @@
     },
     {
       "id": "paris-theater-2001-2975",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "sorcerer",
       "startsAt": "2026-09-01T12:30:00-04:00",
@@ -9468,6 +9924,7 @@
     },
     {
       "id": "ifc-center-576499",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-09-01T12:35:00-04:00",
@@ -9485,6 +9942,7 @@
     },
     {
       "id": "ifc-center-576498",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-09-01T13:05:00-04:00",
@@ -9502,6 +9960,7 @@
     },
     {
       "id": "ifc-center-573845",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-09-01T13:20:00-04:00",
@@ -9519,6 +9978,7 @@
     },
     {
       "id": "ifc-center-576500",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "wild-inside",
       "startsAt": "2026-09-01T13:30:00-04:00",
@@ -9536,6 +9996,7 @@
     },
     {
       "id": "film-forum-52045",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "b-twixt-now-and-sunrise",
       "startsAt": "2026-09-01T13:50:00-04:00",
@@ -9553,6 +10014,7 @@
     },
     {
       "id": "film-forum-52480",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-09-01T14:25:00-04:00",
@@ -9570,6 +10032,7 @@
     },
     {
       "id": "film-at-lincoln-center-83853",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-09-01T14:30:00-04:00",
@@ -9587,6 +10050,7 @@
     },
     {
       "id": "film-forum-51812",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-09-01T14:30:00-04:00",
@@ -9604,6 +10068,7 @@
     },
     {
       "id": "film-forum-52568",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "center-stage",
       "startsAt": "2026-09-01T14:35:00-04:00",
@@ -9621,6 +10086,7 @@
     },
     {
       "id": "ifc-center-576859",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-09-01T14:45:00-04:00",
@@ -9638,6 +10104,7 @@
     },
     {
       "id": "film-at-lincoln-center-84447",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-09-01T15:00:00-04:00",
@@ -9655,6 +10122,7 @@
     },
     {
       "id": "ifc-center-576502",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "union-county",
       "startsAt": "2026-09-01T15:00:00-04:00",
@@ -9672,6 +10140,7 @@
     },
     {
       "id": "paris-theater-2001-2894",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "barbie",
       "startsAt": "2026-09-01T15:30:00-04:00",
@@ -9689,6 +10158,7 @@
     },
     {
       "id": "film-at-lincoln-center-83756",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "the-changeling",
       "startsAt": "2026-09-01T15:45:00-04:00",
@@ -9706,6 +10176,7 @@
     },
     {
       "id": "ifc-center-576503",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-09-01T15:45:00-04:00",
@@ -9723,6 +10194,7 @@
     },
     {
       "id": "film-forum-52047",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "hearts-of-darkness",
       "startsAt": "2026-09-01T15:50:00-04:00",
@@ -9740,6 +10212,7 @@
     },
     {
       "id": "metrograph-30864",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "vertigo",
       "startsAt": "2026-09-01T16:00:00-04:00",
@@ -9757,6 +10230,7 @@
     },
     {
       "id": "metrograph-30870",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "walkabout",
       "startsAt": "2026-09-01T16:00:00-04:00",
@@ -9774,6 +10248,7 @@
     },
     {
       "id": "ifc-center-573848",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-09-01T16:05:00-04:00",
@@ -9791,6 +10266,7 @@
     },
     {
       "id": "ifc-center-576501",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-09-01T16:10:00-04:00",
@@ -9808,6 +10284,7 @@
     },
     {
       "id": "film-at-lincoln-center-83852",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-09-01T16:30:00-04:00",
@@ -9825,6 +10302,7 @@
     },
     {
       "id": "film-forum-52484",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-09-01T16:40:00-04:00",
@@ -9842,6 +10320,7 @@
     },
     {
       "id": "film-forum-51813",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-09-01T16:45:00-04:00",
@@ -9859,6 +10338,7 @@
     },
     {
       "id": "ifc-center-576505",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-09-01T16:50:00-04:00",
@@ -9876,6 +10356,7 @@
     },
     {
       "id": "film-forum-52578",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "billy-liar",
       "startsAt": "2026-09-01T17:45:00-04:00",
@@ -9893,6 +10374,7 @@
     },
     {
       "id": "film-at-lincoln-center-83765",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "classical-period",
       "startsAt": "2026-09-01T18:00:00-04:00",
@@ -9910,6 +10392,7 @@
     },
     {
       "id": "film-at-lincoln-center-84454",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "late-fame",
       "startsAt": "2026-09-01T18:00:00-04:00",
@@ -9927,6 +10410,7 @@
     },
     {
       "id": "film-forum-52001",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "apocalypse-now-roadshow",
       "startsAt": "2026-09-01T18:00:00-04:00",
@@ -9944,6 +10428,7 @@
     },
     {
       "id": "metrograph-30869",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "the-triplets-of-belleville",
       "startsAt": "2026-09-01T18:00:00-04:00",
@@ -9961,6 +10446,7 @@
     },
     {
       "id": "ifc-center-576506",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-09-01T18:20:00-04:00",
@@ -9978,6 +10464,7 @@
     },
     {
       "id": "film-at-lincoln-center-83854",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-09-01T18:30:00-04:00",
@@ -9995,6 +10482,7 @@
     },
     {
       "id": "metrograph-30865",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "the-dark-knight",
       "startsAt": "2026-09-01T18:40:00-04:00",
@@ -10012,6 +10500,7 @@
     },
     {
       "id": "paris-theater-2001-2976",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "the-razor-s-edge",
       "startsAt": "2026-09-01T18:45:00-04:00",
@@ -10029,6 +10518,7 @@
     },
     {
       "id": "film-forum-52487",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-09-01T18:50:00-04:00",
@@ -10046,6 +10536,7 @@
     },
     {
       "id": "ifc-center-573851",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-09-01T18:55:00-04:00",
@@ -10063,6 +10554,7 @@
     },
     {
       "id": "film-forum-51814",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-09-01T19:00:00-04:00",
@@ -10080,6 +10572,7 @@
     },
     {
       "id": "ifc-center-576504",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-sun-never-sets",
       "startsAt": "2026-09-01T19:00:00-04:00",
@@ -10097,6 +10590,7 @@
     },
     {
       "id": "roxy-cinema-7805",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "the-invite",
       "startsAt": "2026-09-01T19:00:00-04:00",
@@ -10114,6 +10608,7 @@
     },
     {
       "id": "ifc-center-576851",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-09-01T19:05:00-04:00",
@@ -10131,6 +10626,7 @@
     },
     {
       "id": "ifc-center-576508",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "how-to-divorce-during-the-war",
       "startsAt": "2026-09-01T19:20:00-04:00",
@@ -10148,6 +10644,7 @@
     },
     {
       "id": "metrograph-30868",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "claire-s-knee",
       "startsAt": "2026-09-01T19:45:00-04:00",
@@ -10165,6 +10662,7 @@
     },
     {
       "id": "film-at-lincoln-center-83754",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "indiana-jones-the-last-crusade",
       "startsAt": "2026-09-01T20:00:00-04:00",
@@ -10182,6 +10680,7 @@
     },
     {
       "id": "film-forum-52591",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-09-01T20:00:00-04:00",
@@ -10199,6 +10698,7 @@
     },
     {
       "id": "film-at-lincoln-center-84438",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "franz",
       "startsAt": "2026-09-01T20:15:00-04:00",
@@ -10216,6 +10716,7 @@
     },
     {
       "id": "film-at-lincoln-center-83855",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-at-lincoln-center",
       "filmId": "samba-traore",
       "startsAt": "2026-09-01T20:30:00-04:00",
@@ -10233,6 +10734,7 @@
     },
     {
       "id": "ifc-center-576509",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "the-samurai-and-the-prisoner",
       "startsAt": "2026-09-01T20:30:00-04:00",
@@ -10250,6 +10752,7 @@
     },
     {
       "id": "film-forum-52200",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "the-warriors",
       "startsAt": "2026-09-01T21:00:00-04:00",
@@ -10267,6 +10770,7 @@
     },
     {
       "id": "film-forum-52488",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "late-fame",
       "startsAt": "2026-09-01T21:00:00-04:00",
@@ -10284,6 +10788,7 @@
     },
     {
       "id": "film-forum-51815",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "film-forum",
       "filmId": "filipinana",
       "startsAt": "2026-09-01T21:10:00-04:00",
@@ -10301,6 +10806,7 @@
     },
     {
       "id": "ifc-center-576906",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "gandahar",
       "startsAt": "2026-09-01T21:15:00-04:00",
@@ -10318,6 +10824,7 @@
     },
     {
       "id": "roxy-cinema-7749",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "roxy-cinema",
       "filmId": "her-private-hell",
       "startsAt": "2026-09-01T21:15:00-04:00",
@@ -10335,6 +10842,7 @@
     },
     {
       "id": "ifc-center-576507",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "mysterious-skin",
       "startsAt": "2026-09-01T21:35:00-04:00",
@@ -10352,6 +10860,7 @@
     },
     {
       "id": "ifc-center-573854",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "colony",
       "startsAt": "2026-09-01T21:40:00-04:00",
@@ -10369,6 +10878,7 @@
     },
     {
       "id": "ifc-center-576510",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "ifc-center",
       "filmId": "it-ends",
       "startsAt": "2026-09-01T21:45:00-04:00",
@@ -10386,6 +10896,7 @@
     },
     {
       "id": "metrograph-30866",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "tampopo",
       "startsAt": "2026-09-01T21:45:00-04:00",
@@ -10403,6 +10914,7 @@
     },
     {
       "id": "metrograph-30867",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "metrograph",
       "filmId": "der-fan",
       "startsAt": "2026-09-01T22:00:00-04:00",
@@ -10420,6 +10932,7 @@
     },
     {
       "id": "paris-theater-2001-2896",
+      "storageWindowStart": "2026-08-26",
       "cinemaId": "paris-theater",
       "filmId": "blade-runner-the-final-cut",
       "startsAt": "2026-09-01T22:15:00-04:00",

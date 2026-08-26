@@ -11,7 +11,8 @@ describe("personal mark and channel share flow", () => {
     const hook = await readFile(hookPath, "utf8");
     const app = await readFile(appPath, "utf8");
 
-    expect(hook).toContain('rpc("create_watch_mark_with_defaults"');
+    expect(hook).toContain('"create_watch_mark_with_defaults"');
+    expect(hook).toContain("watchMarkRpcIdentity({ id: showingId, storageWindowStart: windowStart })");
     expect(hook).toContain('action: "created", markId');
     expect(app).toContain('result?.action === "created"');
     expect(app).toContain("setSharePrompt");

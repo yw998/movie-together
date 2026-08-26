@@ -50,6 +50,7 @@ describe("weekly candidate compiler", () => {
     });
     expect(result.schedule).not.toHaveProperty("dateLabels");
     expect(result.schedule.showings).toHaveLength(1);
+    expect(result.schedule.showings[0].storageWindowStart).toBe("2026-08-10");
   });
 
   it("accepts an arbitrary seven-day rolling window", () => {
@@ -73,6 +74,7 @@ describe("weekly candidate compiler", () => {
       windowStart: "2026-08-12",
       windowEnd: "2026-08-18",
     });
+    expect(compileWeeklyCandidate(rolling).schedule.showings[0].storageWindowStart).toBe("2026-08-12");
   });
 
   it("applies only week-scoped, evidence-backed manual overrides", () => {

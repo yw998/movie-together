@@ -405,6 +405,9 @@ type Film = {
 type Showing = {
   id: string;
 
+  // Exact DB window key paired with `id` for watch-mark writes.
+  storageWindowStart: string;
+
   cinemaId: string;
   filmId: string;
 
@@ -501,6 +504,11 @@ Validated public static export
         ↓
 Frontend
 ```
+
+The public export must include the exact durable database identity used by
+interactive features. For a showing this is the composite
+`(storageWindowStart, id)` key. Publication must fail if that parent row is
+missing; the frontend must not reconstruct a storage key from `localDate`.
 
 The ingestion system and public frontend must remain separated.
 

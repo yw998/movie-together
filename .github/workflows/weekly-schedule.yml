@@ -107,6 +107,10 @@ jobs:
         if: ${{ env.DRY_RUN != 'true' }}
         run: npm run db:verify-rolling -- src/data/published-schedule.json "${{ steps.context.outputs.anchor }}" "${{ steps.context.outputs.run_dir }}/compiled-schedule.json"
 
+      - name: Verify published watch-mark parents
+        if: ${{ env.DRY_RUN != 'true' }}
+        run: npm run db:verify-watch-marks -- src/data/published-schedule.json
+
       - name: Commit validated rolling public data
         if: ${{ env.DRY_RUN != 'true' }}
         shell: bash
