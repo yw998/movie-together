@@ -2,37 +2,33 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { requestAccountDialog } from "../auth/account-events";
 import { supabase } from "../auth/supabase";
-import { calendarWeekFor } from "../lib/calendar-week";
 import { useTransientMessage } from "../lib/useTransientMessage";
 import { useI18n } from "../i18n/I18nContext";
+import type { PublishedShowing } from "../types/schedule";
 
-type WatchMarkRow = { id: string; window_start: string; showing_id: string };
+type WatchMarkRow = { id: string; showing_id: string };
 export const WATCH_MARKS_CHANGED_EVENT = "movie-together:watch-marks-changed";
 export type WatchMarkToggleResult =
   | { action: "created"; markId: string }
   | { action: "removed" }
   | null;
 
-export function showingMarkKey(windowStart: string, showingId: string): string {
-  return `${windowStart}:${showingId}`;
-}
-
-export function showingStorageWindow(localDate: string): string {
-  return calendarWeekFor(localDate).start;
+export function watchMarkRpcIdentity(showing: Pick<PublishedShowing, "id" | "storageWindowStart">) {
+  return {
+    target_window_start: showing.storageWindowStart,
+    target_showing_id: showing.id,
+  };
 }
 
 export function countMarkedShowings(
-  markKeys: Iterable<string>,
-  showings: readonly { id: string; localDate: string }[],
+  markedShowingIds: Iterable<string>,
+  showings: readonly { id: string }[],
 ): number {
-  const visibleKeys = new Set(showings.map((showing) => showingMarkKey(
-    showingStorageWindow(showing.localDate),
-    showing.id,
-  )));
-  return new Set([...markKeys].filter((key) => visibleKeys.has(key))).size;
+  const visibleIds = new Set(showings.map((showing) => showing.id));
+  return new Set([...markedShowingIds].filter((id) => visibleIds.has(id))).size;
 }
 
-export function useWatchMarks(showings: readonly { id: string; localDate: string }[]) {
+export function useWatchMarks(showings: readonly Pick<PublishedShowing, "id" | "storageWindowStart">[]) {
   const { user } = useAuth();
   const { t } = useI18n();
   const [marks, setMarks] = useState<Map<string, string>>(new Map());
@@ -41,20 +37,16 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
   const [mutualCounts, setMutualCounts] = useState<Map<string, number>>(new Map());
   const [error, setError] = useTransientMessage();
   const showingWindows = useMemo(() => new Map(showings.map((showing) => [
-    showing.id,
-    showingStorageWindow(showing.localDate),
+    showing.id, showing.storageWindowStart,
   ])), [showings]);
-  const windowStarts = useMemo(() => [...new Set(showingWindows.values())].sort(), [showingWindows]);
-  const windowSignature = windowStarts.join(",");
+  const showingIds = useMemo(() => [...showingWindows.keys()], [showingWindows]);
+  const showingSignature = showingIds.join(",");
 
-  const keyFor = useCallback((showingId: string) => {
-    const windowStart = showingWindows.get(showingId);
-    return windowStart ? showingMarkKey(windowStart, showingId) : null;
-  }, [showingWindows]);
+  const keyFor = useCallback((showingId: string) => showingWindows.has(showingId) ? showingId : null, [showingWindows]);
 
   useEffect(() => {
     const client = supabase;
-    if (!client || !user || windowStarts.length === 0) {
+    if (!client || !user || showingIds.length === 0) {
       setMarks(new Map());
       setShareCounts(new Map());
       setError(null);
@@ -63,8 +55,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
     let active = true;
     void client
       .from("watch_marks")
-      .select("id,window_start,showing_id")
-      .in("window_start", windowStarts)
+      .select("id,showing_id")
       .then(async ({ data, error: queryError }) => {
         if (!active) return;
         if (queryError) {
@@ -72,15 +63,13 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
           return;
         }
         const rows = data as WatchMarkRow[];
-        setMarks(new Map(rows.map((row) => [
-          showingMarkKey(row.window_start, row.showing_id),
-          row.id,
-        ])));
-        if (rows.length > 0) {
+        const visibleRows = rows.filter((row) => showingWindows.has(row.showing_id));
+        setMarks(new Map(visibleRows.map((row) => [row.showing_id, row.id])));
+        if (visibleRows.length > 0) {
           const { data: shares } = await client
             .from("channel_mark_shares")
             .select("mark_id")
-            .in("mark_id", rows.map((row) => row.id));
+            .in("mark_id", visibleRows.map((row) => row.id));
           const counts = new Map<string, number>();
           for (const share of shares ?? []) counts.set(share.mark_id, (counts.get(share.mark_id) ?? 0) + 1);
           if (active) setShareCounts(counts);
@@ -90,7 +79,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
         setError(null);
       });
     return () => { active = false; };
-  }, [t, user, windowSignature]);
+  }, [showingSignature, showingWindows, t, user]);
 
   const loadMutualCounts = useCallback(async () => {
     const client = supabase;
@@ -114,14 +103,14 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
     for (const result of results) {
       if (result.error) continue;
       for (const mark of result.data ?? []) {
-        if (mark.user_id === user.id || !windowStarts.includes(mark.window_start)) continue;
+        if (mark.user_id === user.id || !showingWindows.has(mark.showing_id)) continue;
         const people = peopleByShowing.get(mark.showing_id) ?? new Set<string>();
         people.add(mark.user_id);
         peopleByShowing.set(mark.showing_id, people);
       }
     }
     setMutualCounts(new Map([...peopleByShowing].map(([showingId, people]) => [showingId, people.size])));
-  }, [user, windowSignature]);
+  }, [showingSignature, showingWindows, user]);
 
   useEffect(() => {
     void loadMutualCounts();
@@ -159,10 +148,10 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
       if (!deleteError) result = { action: "removed" };
       if (!deleteError) window.dispatchEvent(new Event(WATCH_MARKS_CHANGED_EVENT));
     } else {
-      const { data, error: insertError } = await client.rpc("create_watch_mark_with_defaults", {
-        target_window_start: windowStart,
-        target_showing_id: showingId,
-      });
+      const { data, error: insertError } = await client.rpc(
+        "create_watch_mark_with_defaults",
+        watchMarkRpcIdentity({ id: showingId, storageWindowStart: windowStart }),
+      );
       if (insertError) setError(t("marks.saveError"));
       else {
         const markId = data as string;
@@ -213,8 +202,7 @@ export function useWatchMarks(showings: readonly { id: string; localDate: string
     setBusy((current) => new Set(current).add(key));
     setError(null);
     const { data, error: shareError } = await client.rpc("add_watch_mark_to_channel", {
-      target_window_start: windowStart,
-      target_showing_id: showingId,
+      ...watchMarkRpcIdentity({ id: showingId, storageWindowStart: windowStart }),
       target_channel_id: channelId,
     });
     if (shareError) setError(t("marks.shareFamError"));

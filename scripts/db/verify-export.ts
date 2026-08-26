@@ -31,7 +31,10 @@ function byId<T extends { id: string }>(items: T[]): T[] {
 }
 
 const approvedValidation = validateScheduleData(approved, { staleAfterHours: Number.POSITIVE_INFINITY });
-const exportedValidation = validateScheduleData(exported, { staleAfterHours: Number.POSITIVE_INFINITY });
+const exportedValidation = validateScheduleData(exported, {
+  staleAfterHours: Number.POSITIVE_INFINITY,
+  requireStorageIdentity: true,
+});
 if (approvedValidation.errors || exportedValidation.errors) {
   throw new Error("Approved or exported schedule failed normalized validation.");
 }

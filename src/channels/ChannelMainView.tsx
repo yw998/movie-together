@@ -136,7 +136,7 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
                       className={`watch-mark${currentUserShared ? " marked" : ""}`}
                       disabled={watchMarks.isBusy(activity.showingId)}
                       onClick={() => channelIdentity.identity
-                        ? void channelIdentity.toggleMark(activity.showingId, activity.showing!.localDate)
+                        ? void channelIdentity.toggleMark(activity.showingId, activity.showing!.storageWindowStart)
                         : currentUserShared
                           ? setRemovePrompt((current) => current === activity.showingId ? null : activity.showingId)
                           : void watchMarks.addToChannel(activity.showingId, channelId)}

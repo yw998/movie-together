@@ -74,6 +74,7 @@ export function validateScheduleData(
     now?: Date;
     staleAfterHours?: number;
     staleExemptShowingIds?: ReadonlySet<string>;
+    requireStorageIdentity?: boolean;
   } = {},
 ): ValidationReport {
   const issues: ValidationIssue[] = [];
@@ -143,6 +144,14 @@ export function validateScheduleData(
       add("error", "duplicate_id", `${path}.id`, `Duplicate showing ID: ${showing.id}`);
     }
     ids.add(showing.id);
+    if (options.requireStorageIdentity && !/^\d{4}-\d{2}-\d{2}$/.test(showing.storageWindowStart ?? "")) {
+      add(
+        "error",
+        "missing_storage_identity",
+        `${path}.storageWindowStart`,
+        `Showing ${showing.id} cannot be published for interactive use without its database window key.`,
+      );
+    }
     if (!cinema) add("error", "unknown_cinema", `${path}.cinemaId`, showing.cinemaId);
     if (!film) add("error", "unknown_film", `${path}.filmId`, showing.filmId);
     if (!film?.displayTitle.trim()) {

@@ -45,7 +45,10 @@ for (const schedule of compiled) {
   for (const film of schedule.films) if (showingIds.has(film.id)) filmsById.set(film.id, film);
 }
 
-const validation = validateScheduleData(exported, { staleAfterHours: Number.POSITIVE_INFINITY });
+const validation = validateScheduleData(exported, {
+  staleAfterHours: Number.POSITIVE_INFINITY,
+  requireStorageIdentity: true,
+});
 if (validation.errors > 0) throw new Error("Rolling database export failed schedule validation.");
 if (exported.metadata.windowStart !== anchor || exported.metadata.windowEnd !== rollingEnd) {
   throw new Error(`Rolling export window is ${exported.metadata.windowStart} through ${exported.metadata.windowEnd}.`);

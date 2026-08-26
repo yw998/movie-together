@@ -1,6 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { callInvitationFunction, invitationUrl, type ChannelNotification } from "./channel-api";
-import { showingStorageWindow } from "../watch-marks/useWatchMarks";
 import { supabase } from "../auth/supabase";
 import { useI18n } from "../i18n/I18nContext";
 
@@ -63,7 +62,7 @@ type ChannelIdentityState = {
   refresh: () => Promise<boolean>;
   refreshNotifications: () => Promise<boolean>;
   markNotificationsRead: () => Promise<boolean>;
-  toggleMark: (showingId: string, localDate: string) => Promise<boolean>;
+  toggleMark: (showingId: string, storageWindowStart: string) => Promise<boolean>;
   rotateCode: () => Promise<string | null>;
   createInviteLink: () => Promise<string | null>;
   revokeInviteLink: (linkId: string) => Promise<boolean>;
@@ -227,13 +226,13 @@ export function ChannelIdentityProvider({ children }: { children: ReactNode }) {
     } catch { return null; }
   }, [acceptResponse]);
 
-  const toggleMark = useCallback(async (showingId: string, localDate: string) => {
+  const toggleMark = useCallback(async (showingId: string, storageWindowStart: string) => {
     if (!sessionToken) return false;
     try {
       const result = await callInvitationFunction<{ view: IdentityView }>(null, {
         action: "identity_toggle_mark",
         sessionToken,
-        windowStart: showingStorageWindow(localDate),
+        windowStart: storageWindowStart,
         showingId,
       });
       setView(result.view);

@@ -25,6 +25,9 @@ export type Film = {
 
 export type Showing = {
   id: string;
+
+  /** Exact database publication key paired with `id` for interactive writes. */
+  storageWindowStart?: string;
   cinemaId: string;
   filmId: string;
   startsAt: string;
@@ -65,4 +68,9 @@ export type ScheduleData = {
   cinemas: Cinema[];
   films: Film[];
   showings: Showing[];
+};
+
+export type PublishedShowing = Showing & { storageWindowStart: string };
+export type PublishedScheduleData = Omit<ScheduleData, "showings"> & {
+  showings: PublishedShowing[];
 };

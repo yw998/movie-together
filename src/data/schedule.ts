@@ -1,6 +1,6 @@
 import publishedData from "./published-schedule.json";
 import { validateScheduleData } from "../lib/schedule-validation";
-import type { ScheduleData } from "../types/schedule";
+import type { PublishedScheduleData, ScheduleData } from "../types/schedule";
 
 export const scheduleData = {
   ...publishedData,
@@ -12,8 +12,8 @@ export const scheduleData = {
     ...film,
     descriptionEn: (film as { descriptionEn?: string | null }).descriptionEn ?? null,
   })),
-} as ScheduleData;
-export const scheduleValidation = validateScheduleData(scheduleData);
+} as PublishedScheduleData;
+export const scheduleValidation = validateScheduleData(scheduleData, { requireStorageIdentity: true });
 
 if (scheduleValidation.errors > 0) {
   throw new Error(

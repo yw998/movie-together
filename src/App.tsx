@@ -14,7 +14,7 @@ import { formatCalendarDate, formatWindow, formatWindowYears } from "./lib/date-
 import { AccountControl } from "./auth/AccountControl";
 import { useAuth } from "./auth/AuthContext";
 import { supabase } from "./auth/supabase";
-import { countMarkedShowings, showingMarkKey, useWatchMarks } from "./watch-marks/useWatchMarks";
+import { countMarkedShowings, useWatchMarks } from "./watch-marks/useWatchMarks";
 import { ChannelPanel } from "./channels/ChannelPanel";
 import { ChannelMainView } from "./channels/ChannelMainView";
 import { ShareMarkPopover } from "./watch-marks/ShareMarkDialog";
@@ -72,7 +72,7 @@ export default function App() {
   const identityMarkedCount = useMemo(() => countMarkedShowings(
     channelIdentity.marks
       .filter((mark) => mark.id === `identity:${channelIdentity.identity?.id}`)
-      .map((mark) => showingMarkKey(mark.windowStart, mark.showingId)),
+      .map((mark) => mark.showingId),
     viewShowings,
   ), [channelIdentity.identity?.id, channelIdentity.marks, viewShowings]);
 
@@ -358,7 +358,7 @@ export default function App() {
                     onToggleMark={(button) => {
                       if (channelIdentity.identity) {
                         setIdentityBusy((current) => new Set(current).add(showing.id));
-                        void channelIdentity.toggleMark(showing.id, showing.localDate).finally(() => setIdentityBusy((current) => {
+                        void channelIdentity.toggleMark(showing.id, showing.storageWindowStart).finally(() => setIdentityBusy((current) => {
                           const next = new Set(current);
                           next.delete(showing.id);
                           return next;

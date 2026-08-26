@@ -64,6 +64,17 @@ describe("schedule validation", () => {
     expect(report).toMatchObject({ errors: 0, warnings: 0, publishable: true });
   });
 
+  it("rejects a public interactive export without an explicit database showing identity", () => {
+    const report = validateScheduleData(baseData, {
+      now: new Date("2026-08-12T12:00:00-04:00"),
+      requireStorageIdentity: true,
+    });
+    expect(report.issues).toContainEqual(expect.objectContaining({
+      code: "missing_storage_identity",
+      path: "showings[0].storageWindowStart",
+    }));
+  });
+
   it("accepts an official API subdomain when the cinema owns the parent domain", () => {
     const data: ScheduleData = {
       ...baseData,
