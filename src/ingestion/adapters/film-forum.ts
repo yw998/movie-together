@@ -3,7 +3,7 @@ import type { AdapterResult, SourceSnapshot } from "../types";
 
 export const FILM_FORUM_API_URL =
   "https://my.filmforum.org/api/products/productionseasons";
-export const FILM_FORUM_PARSER_VERSION = "film-forum-api-v1";
+export const FILM_FORUM_PARSER_VERSION = "film-forum-api-v2";
 
 type FilmForumPerformance = {
   id: number;
@@ -56,6 +56,37 @@ function normalizeOfficialIso(value: string): string | null {
 function isPayload(value: unknown): value is FilmForumPayload {
   if (!value || typeof value !== "object") return false;
   return Array.isArray((value as { productions?: unknown }).productions);
+}
+
+function performanceEvent(
+  productionTitle: string,
+  performanceTitle: unknown,
+  status: string,
+): {
+  eventType: Showing["eventType"];
+  eventNote: string | null;
+  warning: string | null;
+} {
+  const officialPerformanceTitle = typeof performanceTitle === "string"
+    ? performanceTitle.trim()
+    : "";
+  const distinctTitle = officialPerformanceTitle &&
+    officialPerformanceTitle.toLocaleLowerCase() !== productionTitle.toLocaleLowerCase()
+    ? officialPerformanceTitle
+    : "";
+  const nonAvailabilityStatus = status && !/sold\s*out/i.test(status) ? status : "";
+  const evidence = [distinctTitle, nonAvailabilityStatus].filter(Boolean).join(" · ");
+  if (!evidence) return { eventType: "standard", eventNote: null, warning: null };
+  if (/q\s*&\s*a/i.test(evidence)) return { eventType: "qa", eventNote: evidence, warning: null };
+  if (/\bintro(?:duction|duced)?\b/i.test(evidence)) return { eventType: "intro", eventNote: evidence, warning: null };
+  if (/members?\s+only/i.test(evidence)) return { eventType: "members_only", eventNote: evidence, warning: null };
+  if (/open\s+captions?/i.test(evidence)) return { eventType: "open_caption", eventNote: evidence, warning: null };
+  if (/\bspecial\s+event\b/i.test(evidence)) return { eventType: "other", eventNote: evidence, warning: null };
+  return {
+    eventType: "standard",
+    eventNote: null,
+    warning: `has unrecognized performance-specific text: ${evidence}`,
+  };
 }
 
 function snapshot(
@@ -154,6 +185,8 @@ export function parseFilmForumPayload(
           ? performance.performanceStatusMessage.trim()
           : "";
       const soldOut = /sold\s*out/i.test(status);
+      const event = performanceEvent(title, performance.performanceTitle, status);
+      if (event.warning) warnings.push(`${itemPath} ${event.warning}`);
       showings.push({
         id: `film-forum-${performance.id}`,
         cinemaId: "film-forum",
@@ -162,8 +195,8 @@ export function parseFilmForumPayload(
         localDate,
         localTime: startsAt.slice(11, 16),
         format: null,
-        eventType: "other",
-        eventNote: status || null,
+        eventType: event.eventType,
+        eventNote: event.eventNote,
         detailUrl:
           typeof production.productionSeasonActionUrl === "string" &&
           production.productionSeasonActionUrl.startsWith("https://my.filmforum.org/")

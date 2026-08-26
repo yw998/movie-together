@@ -25,6 +25,7 @@ import { ProductGuide } from "./product/ProductGuide";
 import { requestAccountDialog, requestChannelCreateDialog, requestGroupPanel } from "./auth/account-events";
 import { useI18n } from "./i18n/I18nContext";
 import { LanguageSwitch } from "./i18n/LanguageSwitch";
+import { officialShowingUrl, showSpecialEventLabel, visibleShowingEventNote } from "./lib/showing-presentation";
 
 const timeClusters: TimeCluster[] = ["morning", "afternoon", "evening", "lateNight"];
 const LAST_PERSONAL_GROUP_KEY = "movie-together:last-personal-group";
@@ -450,6 +451,7 @@ type ShowingCardProps = {
 function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, onEditShare, signedIn, shareCount, mutualCount, channelOnly, locale }: ShowingCardProps) {
   const { t } = useI18n();
   const description = locale === "zh-CN" ? film.descriptionZh : film.descriptionEn;
+  const eventNote = visibleShowingEventNote(showing);
   return (
     <article
       className="card"
@@ -463,14 +465,14 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
         </div>
         <h2>{film.displayTitle}</h2>
         {description && <p>{description}</p>}
-        {showing.eventType === "other" && <small className="event-label">{t("event.special")}</small>}
-        {showing.eventNote && <small>{showing.eventNote}</small>}
+        {showSpecialEventLabel(showing) && <small className="event-label">{t("event.special")}</small>}
+        {eventNote && <small>{eventNote}</small>}
         {mutualCount > 0 && <small className="mutual-interest">{t("showing.mutual", { count: mutualCount })}</small>}
         {marked && (channelOnly
           ? <small className="mutual-interest">{t("showing.synced")}</small>
           : <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? t("showing.shared", { count: shareCount }) : t("showing.privateShare")}</button>)}
         <div className="card-actions">
-          <a href={showing.detailUrl} rel="noreferrer" target="_blank">
+          <a href={officialShowingUrl(showing)} rel="noreferrer" target="_blank">
             {t("showing.official")}
           </a>
           <button
