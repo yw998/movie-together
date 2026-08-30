@@ -25,7 +25,7 @@ import { ProductGuide } from "./product/ProductGuide";
 import { requestAccountDialog, requestChannelCreateDialog, requestGroupPanel } from "./auth/account-events";
 import { useI18n } from "./i18n/I18nContext";
 import { LanguageSwitch } from "./i18n/LanguageSwitch";
-import { officialShowingUrl, showSpecialEventLabel, visibleShowingEventNote } from "./lib/showing-presentation";
+import { detailShowingUrl, independentTicketUrl, showSpecialEventLabel, visibleShowingEventNote } from "./lib/showing-presentation";
 
 const timeClusters: TimeCluster[] = ["morning", "afternoon", "evening", "lateNight"];
 const LAST_PERSONAL_GROUP_KEY = "movie-together:last-personal-group";
@@ -452,6 +452,7 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
   const { t } = useI18n();
   const description = locale === "zh-CN" ? film.descriptionZh : film.descriptionEn;
   const eventNote = visibleShowingEventNote(showing);
+  const ticketUrl = independentTicketUrl(showing);
   return (
     <article
       className="card"
@@ -472,9 +473,14 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
           ? <small className="mutual-interest">{t("showing.synced")}</small>
           : <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? t("showing.shared", { count: shareCount }) : t("showing.privateShare")}</button>)}
         <div className="card-actions">
-          <a href={officialShowingUrl(showing)} rel="noreferrer" target="_blank">
-            {t("showing.official")}
-          </a>
+          <div className="showing-links">
+            <a href={detailShowingUrl(showing)} rel="noreferrer" target="_blank">
+              {t("showing.details")}
+            </a>
+            {ticketUrl && <a className="ticket-link" href={ticketUrl} rel="noreferrer" target="_blank">
+              {t("showing.tickets")}
+            </a>}
+          </div>
           <button
             aria-pressed={marked}
             className={`watch-mark${marked ? " marked" : ""}`}

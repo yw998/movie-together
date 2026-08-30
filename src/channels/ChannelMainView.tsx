@@ -9,7 +9,7 @@ import { useTransientMessage } from "../lib/useTransientMessage";
 import { useChannelIdentity } from "./ChannelIdentityContext";
 import { useI18n } from "../i18n/I18nContext";
 import { formatCalendarDate } from "../lib/date-display";
-import { officialShowingUrl } from "../lib/showing-presentation";
+import { detailShowingUrl, independentTicketUrl } from "../lib/showing-presentation";
 
 type SharedMark = { showing_id: string; user_id: string; username: string };
 type Member = { user_id: string; role: "owner" | "member"; username: string; kind?: "account" | "channel_only" };
@@ -116,6 +116,7 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
           {group.rows.map((activity) => {
             const identityMarkOwner = channelIdentity.identity ? `identity:${channelIdentity.identity.id}` : null;
             const currentUserShared = activity.marks.some((mark) => mark.user_id === (identityMarkOwner ?? user?.id));
+            const ticketUrl = activity.showing ? independentTicketUrl(activity.showing) : null;
             return <article className="channel-shared-card" key={activity.showingId}>
               <div className="channel-shared-meta">
                 <span>{activity.showing ? formatDisplayTime(activity.showing.localTime) : t("fam.missingShowing")}</span>
@@ -128,7 +129,10 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
                   {activity.marks.map((mark) => <span key={mark.user_id} style={{ background: avatarColor(mark.username) }} title={`@${mark.username}`}>{mark.username[0]?.toUpperCase()}</span>)}
                 </div>
                 <div className="channel-card-actions">
-                  {activity.showing && <a href={officialShowingUrl(activity.showing)} rel="noreferrer" target="_blank">{t("showing.official")}</a>}
+                  {activity.showing && <div className="showing-links">
+                    <a href={detailShowingUrl(activity.showing)} rel="noreferrer" target="_blank">{t("showing.details")}</a>
+                    {ticketUrl && <a className="ticket-link" href={ticketUrl} rel="noreferrer" target="_blank">{t("showing.tickets")}</a>}
+                  </div>}
                   {activity.showing && <div className="channel-mark-control">
                     <button
                       aria-expanded={currentUserShared ? removePrompt === activity.showingId : undefined}

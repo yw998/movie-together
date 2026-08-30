@@ -3,8 +3,13 @@ import type { Showing } from "../types/schedule";
 type ShowingLink = Pick<Showing, "detailUrl" | "ticketUrl">;
 type ShowingEvent = Pick<Showing, "eventNote" | "eventType">;
 
-export function officialShowingUrl(showing: ShowingLink): string {
-  return showing.ticketUrl ?? showing.detailUrl;
+export function detailShowingUrl(showing: ShowingLink): string {
+  return showing.detailUrl;
+}
+
+export function independentTicketUrl(showing: ShowingLink): string | null {
+  const ticketUrl = showing.ticketUrl?.trim() ?? "";
+  return ticketUrl && ticketUrl !== showing.detailUrl.trim() ? ticketUrl : null;
 }
 
 export function visibleShowingEventNote(showing: ShowingEvent): string | null {

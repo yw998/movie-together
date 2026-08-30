@@ -1,20 +1,33 @@
 import { describe, expect, it } from "vitest";
 import {
-  officialShowingUrl,
+  independentTicketUrl,
+  detailShowingUrl,
   showSpecialEventLabel,
   visibleShowingEventNote,
 } from "./showing-presentation";
 
 describe("showing presentation", () => {
-  it("opens a performance-specific ticket URL when one exists", () => {
-    expect(officialShowingUrl({
+  it("keeps the official details link separate from ticketing", () => {
+    expect(detailShowingUrl({
+      detailUrl: "https://my.filmforum.org/one-film",
+      ticketUrl: "https://my.filmforum.org/one-film/11",
+    })).toBe("https://my.filmforum.org/one-film");
+    expect(independentTicketUrl({
       detailUrl: "https://my.filmforum.org/one-film",
       ticketUrl: "https://my.filmforum.org/one-film/11",
     })).toBe("https://my.filmforum.org/one-film/11");
-    expect(officialShowingUrl({
+    expect(detailShowingUrl({
       detailUrl: "https://cinema.example/film",
       ticketUrl: null,
     })).toBe("https://cinema.example/film");
+    expect(independentTicketUrl({
+      detailUrl: "https://cinema.example/film",
+      ticketUrl: null,
+    })).toBeNull();
+    expect(independentTicketUrl({
+      detailUrl: "https://cinema.example/film",
+      ticketUrl: "https://cinema.example/film",
+    })).toBeNull();
   });
 
   it("does not present availability text or a bare other value as a special event", () => {

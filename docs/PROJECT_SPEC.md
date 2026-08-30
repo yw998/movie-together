@@ -164,7 +164,7 @@ The public schedule should provide:
 * screening count where useful;
 * short Chinese or English film descriptions selected by the active interface language;
 * screening format and meaningful special-event information;
-* official detail or ticket links;
+* separate, explicitly labeled official detail and ticket links when both destinations are available;
 * visible data refresh information;
 * responsive desktop and mobile layouts.
 
