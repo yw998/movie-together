@@ -1,3 +1,4 @@
+-- migration-mode: manual
 -- Replace email-facing and Channel-only authentication with one username account model.
 -- Deployment must run during the documented write pause, after an encrypted backup.
 
