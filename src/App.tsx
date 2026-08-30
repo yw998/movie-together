@@ -14,12 +14,11 @@ import { formatCalendarDate, formatWindow, formatWindowYears } from "./lib/date-
 import { AccountControl } from "./auth/AccountControl";
 import { useAuth } from "./auth/AuthContext";
 import { supabase } from "./auth/supabase";
-import { countMarkedShowings, useWatchMarks } from "./watch-marks/useWatchMarks";
+import { useWatchMarks } from "./watch-marks/useWatchMarks";
 import { ChannelPanel } from "./channels/ChannelPanel";
 import { ChannelMainView } from "./channels/ChannelMainView";
 import { ShareMarkPopover } from "./watch-marks/ShareMarkDialog";
 import { NotificationsView } from "./notifications/NotificationsView";
-import { useChannelIdentity } from "./channels/ChannelIdentityContext";
 import { datesForWindow, rollingWindowFor } from "./lib/rolling-window";
 import { ProductGuide } from "./product/ProductGuide";
 import { requestAccountDialog, requestChannelCreateDialog, requestGroupPanel } from "./auth/account-events";
@@ -52,12 +51,9 @@ export default function App() {
   const [notificationRefreshKey, setNotificationRefreshKey] = useState(0);
   const [guideOpen, setGuideOpen] = useState(false);
   const [groupPanelOpen, setGroupPanelOpen] = useState(false);
-  const channelIdentity = useChannelIdentity();
   const { user } = useAuth();
-  const previousIdentityChannelRef = useRef<string | null>(null);
   const previousNotificationChannelRef = useRef<string | null>(null);
   const previousUserRef = useRef<string | null>(null);
-  const [identityBusy, setIdentityBusy] = useState<Set<string>>(new Set());
   const [sharePrompt, setSharePrompt] = useState<{
     markId: string;
     filmTitle: string;
@@ -69,12 +65,6 @@ export default function App() {
     [showings, viewWindow.end, viewWindow.start],
   );
   const watchMarks = useWatchMarks(viewShowings);
-  const identityMarkedCount = useMemo(() => countMarkedShowings(
-    channelIdentity.marks
-      .filter((mark) => mark.id === `identity:${channelIdentity.identity?.id}`)
-      .map((mark) => mark.showingId),
-    viewShowings,
-  ), [channelIdentity.identity?.id, channelIdentity.marks, viewShowings]);
 
   useEffect(() => {
     const refreshNow = () => setNowMs(Date.now());
@@ -93,15 +83,6 @@ export default function App() {
   }, [selectedDate, viewWindow.end, viewWindow.start]);
 
   useEffect(() => {
-    const previousChannelId = previousIdentityChannelRef.current;
-    if (channelIdentity.identity) setActiveChannelId(channelIdentity.identity.channelId);
-    if (!channelIdentity.identity && previousChannelId) {
-      setActiveChannelId((current) => current === previousChannelId ? null : current);
-    }
-    previousIdentityChannelRef.current = channelIdentity.identity?.channelId ?? null;
-  }, [channelIdentity.identity, channelIdentity.loading, channelIdentity.sessionToken]);
-
-  useEffect(() => {
     const previousUserId = previousUserRef.current;
     if (user && previousUserId !== user.id) {
       const lastGroup = localStorage.getItem(LAST_PERSONAL_GROUP_KEY);
@@ -118,11 +99,8 @@ export default function App() {
     if (user && supabase) {
       void supabase.rpc("mark_my_channel_notifications_read", { target_channel_id: channelId })
         .then(() => setNotificationRefreshKey((current) => current + 1));
-    } else if (channelIdentity.identity?.channelId === channelId) {
-      void channelIdentity.markNotificationsRead()
-        .then(() => setNotificationRefreshKey((current) => current + 1));
     }
-  }, [channelIdentity.identity?.channelId, channelIdentity.markNotificationsRead, user]);
+  }, [user]);
   const toggleNotifications = useCallback(() => {
     if (notificationsOpen) {
       setNotificationsOpen(false);
@@ -136,13 +114,7 @@ export default function App() {
     setSharePrompt(null);
   }, [activeChannelId, notificationsOpen]);
 
-  const openGroups = useCallback(() => {
-    if (channelIdentity.identity) {
-      navigateTogether(channelIdentity.identity.channelId);
-      return;
-    }
-    requestGroupPanel();
-  }, [channelIdentity.identity, navigateTogether]);
+  const openGroups = useCallback(() => requestGroupPanel(), []);
 
   const cinemaById = useMemo(
     () => new Map(cinemas.map((cinema) => [cinema.id, cinema])),
@@ -174,9 +146,7 @@ export default function App() {
           !hasShowingStarted(showing.startsAt, nowMs) &&
           (scheduleView === "personal" || showing.localDate === selectedDate) &&
           selectedCinemas.includes(showing.cinemaId) &&
-          (scheduleView === "all" || (channelIdentity.identity
-            ? channelIdentity.marks.some((mark) => mark.id === `identity:${channelIdentity.identity!.id}` && mark.showingId === showing.id)
-            : watchMarks.isMarked(showing.id))) &&
+          (scheduleView === "all" || watchMarks.isMarked(showing.id)) &&
           searchable.toLocaleLowerCase(locale).includes(normalizedQuery)
         );
       })
@@ -194,8 +164,6 @@ export default function App() {
     viewShowings,
     scheduleView,
     watchMarks,
-    channelIdentity.identity,
-    channelIdentity.marks,
     nowMs,
     locale,
   ]);
@@ -235,7 +203,6 @@ export default function App() {
         lightBackground={notificationsOpen}
         notificationRefreshKey={notificationRefreshKey}
         notificationsOpen={notificationsOpen}
-        onOpenGroup={navigateTogether}
         onOpenNotifications={toggleNotifications}
       />
       <nav aria-label={t("nav.primary")} className="primary-nav">
@@ -246,7 +213,6 @@ export default function App() {
       </nav>
       {activeChannelId ? <ChannelMainView channelId={activeChannelId} nowMs={nowMs} /> : notificationsOpen ? <NotificationsView
         onNotificationsChanged={() => setNotificationRefreshKey((current) => current + 1)}
-        onOpenChannel={(channelId) => navigateTogether(channelId)}
       /> : <>
       <header className="hero">
         <div className="eyebrow">
@@ -327,13 +293,11 @@ export default function App() {
         <div className="summary">
           <span>{scheduleView === "personal" ? t("schedule.personalHeading") : dateLabels[selectedDate]}</span>
           <div className="summary-tools">
-            {(watchMarks.signedIn || channelIdentity.identity) && <div className="view-switch">
+            {watchMarks.signedIn && <div className="view-switch">
               <button className={scheduleView === "all" ? "active" : ""} onClick={() => setScheduleView("all")} type="button">{t("schedule.all")}</button>
               <button className={scheduleView === "personal" ? "active" : ""} onClick={() => setScheduleView("personal")} type="button">{t("schedule.mine")}</button>
             </div>}
-            <b>{t("schedule.count", { count: visibleShowings.length })}{channelIdentity.identity
-              ? ` · ${t("schedule.markedCount", { count: identityMarkedCount })}`
-              : watchMarks.signedIn && ` · ${t("schedule.markedCount", { count: watchMarks.markedCount })}`}</b>
+            <b>{t("schedule.count", { count: visibleShowings.length })}{watchMarks.signedIn && ` · ${t("schedule.markedCount", { count: watchMarks.markedCount })}`}</b>
           </div>
         </div>
         {watchMarks.error && <aside className="mark-error" role="status">{watchMarks.error}</aside>}
@@ -350,32 +314,13 @@ export default function App() {
                     cinema={cinemaById.get(showing.cinemaId)!}
                     film={filmById.get(showing.filmId)!}
                     key={showing.id}
-                    markBusy={channelIdentity.identity ? identityBusy.has(showing.id) : watchMarks.isBusy(showing.id)}
-                    marked={channelIdentity.identity
-                      ? channelIdentity.marks.some((mark) => mark.id === `identity:${channelIdentity.identity!.id}` && mark.showingId === showing.id)
-                      : watchMarks.isMarked(showing.id)}
+                    markBusy={watchMarks.isBusy(showing.id)}
+                    marked={watchMarks.isMarked(showing.id)}
                     mutualCount={watchMarks.mutualCount(showing.id)}
-                    onToggleMark={(button) => {
-                      if (channelIdentity.identity) {
-                        setIdentityBusy((current) => new Set(current).add(showing.id));
-                        void channelIdentity.toggleMark(showing.id, showing.storageWindowStart).finally(() => setIdentityBusy((current) => {
-                          const next = new Set(current);
-                          next.delete(showing.id);
-                          return next;
-                        }));
-                        return;
-                      }
-                      const anchor = sharePopoverAnchor(button);
-                      void watchMarks.toggle(showing.id).then((result) => {
-                      if (result?.action === "created") setSharePrompt({
-                        markId: result.markId,
-                        filmTitle: filmById.get(showing.filmId)!.displayTitle,
-                        anchor,
-                      });
-                    });
+                    onToggleMark={() => {
+                      void watchMarks.toggle(showing.id);
                     }}
                     onEditShare={(button) => {
-                      if (channelIdentity.identity) return;
                       const markId = watchMarks.markId(showing.id);
                       if (markId) setSharePrompt({
                         markId,
@@ -383,9 +328,8 @@ export default function App() {
                         anchor: sharePopoverAnchor(button),
                       });
                     }}
-                    shareCount={channelIdentity.identity ? 1 : watchMarks.shareCount(showing.id)}
-                    signedIn={Boolean(channelIdentity.identity) || watchMarks.signedIn}
-                    channelOnly={Boolean(channelIdentity.identity)}
+                    shareCount={watchMarks.shareCount(showing.id)}
+                    signedIn={watchMarks.signedIn}
                     showing={showing}
                     locale={locale}
                   />
@@ -439,16 +383,15 @@ type ShowingCardProps = {
   showing: Showing;
   marked: boolean;
   markBusy: boolean;
-  onToggleMark: (button: HTMLButtonElement) => void;
+  onToggleMark: () => void;
   onEditShare: (button: HTMLButtonElement) => void;
   signedIn: boolean;
   shareCount: number;
   mutualCount: number;
-  channelOnly: boolean;
   locale: "zh-CN" | "en-US";
 };
 
-function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, onEditShare, signedIn, shareCount, mutualCount, channelOnly, locale }: ShowingCardProps) {
+function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, onEditShare, signedIn, shareCount, mutualCount, locale }: ShowingCardProps) {
   const { t } = useI18n();
   const description = locale === "zh-CN" ? film.descriptionZh : film.descriptionEn;
   const eventNote = visibleShowingEventNote(showing);
@@ -469,9 +412,7 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
         {showSpecialEventLabel(showing) && <small className="event-label">{t("event.special")}</small>}
         {eventNote && <small>{eventNote}</small>}
         {mutualCount > 0 && <small className="mutual-interest">{t("showing.mutual", { count: mutualCount })}</small>}
-        {marked && (channelOnly
-          ? <small className="mutual-interest">{t("showing.synced")}</small>
-          : <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? t("showing.shared", { count: shareCount }) : t("showing.privateShare")}</button>)}
+        {marked && <button className="share-count" onClick={(event) => onEditShare(event.currentTarget)} type="button">{shareCount > 0 ? t("showing.shared", { count: shareCount }) : t("showing.privateShare")}</button>}
         <div className="card-actions">
           <div className="showing-links">
             <a href={detailShowingUrl(showing)} rel="noreferrer" target="_blank">
@@ -485,8 +426,8 @@ function ShowingCard({ cinema, film, showing, marked, markBusy, onToggleMark, on
             aria-pressed={marked}
             className={`watch-mark${marked ? " marked" : ""}`}
             disabled={markBusy}
-            onClick={(event) => onToggleMark(event.currentTarget)}
-            title={channelOnly ? t("showing.channelOnlyTitle") : signedIn ? t("showing.privateTitle") : t("showing.signInTitle")}
+            onClick={() => onToggleMark()}
+            title={signedIn ? t("showing.privateTitle") : t("showing.signInTitle")}
             type="button"
           >
             {markBusy ? t("showing.saving") : marked ? t("showing.wanted") : t("showing.want")}

@@ -2,243 +2,107 @@ import { createDatabaseClient } from "../../src/db/client";
 
 const sql = createDatabaseClient();
 try {
-  const [tables] = await sql<{ profiles: string | null; watch_marks: string | null }[]>`
-    select
-      to_regclass('public.profiles')::text as profiles,
-      to_regclass('public.watch_marks')::text as watch_marks
-  `;
-  if (tables.profiles !== "profiles" || tables.watch_marks !== "watch_marks") {
-    throw new Error("Expected profiles and watch_marks tables are missing.");
-  }
-
-  const [showingStatus] = await sql<{ exists: boolean }[]>`
-    select exists (
-      select 1 from information_schema.columns
-      where table_schema = 'public'
-        and table_name = 'showings'
-        and column_name = 'publication_status'
-    ) as exists
-  `;
-  if (!showingStatus.exists) {
-    throw new Error("showings.publication_status is missing.");
-  }
-
-  const [usernameColumn] = await sql<{ exists: boolean }[]>`
-    select exists (
-      select 1 from information_schema.columns
-      where table_schema = 'public'
-        and table_name = 'profiles'
-        and column_name = 'username'
-    ) as exists
-  `;
-  if (!usernameColumn.exists) {
-    throw new Error("profiles.username is missing.");
-  }
-
-  const rlsRows = await sql<{ relname: string; relrowsecurity: boolean }[]>`
-    select relname, relrowsecurity
-    from pg_class
-    where oid in ('public.profiles'::regclass, 'public.watch_marks'::regclass)
-  `;
-  if (rlsRows.length !== 2 || rlsRows.some((row) => !row.relrowsecurity)) {
-    throw new Error("RLS is not enabled on every user table.");
-  }
-
-  const policies = await sql<{ policyname: string }[]>`
-    select policyname
-    from pg_policies
-    where schemaname = 'public'
-      and tablename in ('profiles', 'watch_marks')
-  `;
-  const expectedPolicies = [
-    "profiles_delete_own",
-    "profiles_insert_own",
-    "profiles_select_own",
-    "profiles_update_own",
-    "watch_marks_delete_own",
-    "watch_marks_insert_own",
-    "watch_marks_select_own",
+  const expectedTables = [
+    "profiles", "watch_marks", "channels", "channel_members", "channel_invite_links",
+    "channel_mark_shares", "channel_notification_reads", "account_recovery_credentials",
+    "deleted_usernames", "account_auth_attempts",
   ];
-  const actualPolicies = new Set(policies.map((row) => row.policyname));
-  const missingPolicies = expectedPolicies.filter((policy) => !actualPolicies.has(policy));
-  if (missingPolicies.length > 0) {
-    throw new Error(`Missing RLS policies: ${missingPolicies.join(", ")}`);
-  }
-
-  const foreignKeys = await sql<{ definition: string }[]>`
-    select pg_get_constraintdef(oid) as definition
-    from pg_constraint
-    where conrelid = 'public.watch_marks'::regclass
-      and contype = 'f'
+  const tables = await sql<{ table_name: string }[]>`
+    select table_name from information_schema.tables
+    where table_schema = 'public' and table_name = any(${expectedTables})
   `;
-  const hasShowingReference = foreignKeys.some((row) =>
-    row.definition.includes("FOREIGN KEY (window_start, showing_id)") &&
-    row.definition.includes("REFERENCES showings(window_start, id)"),
-  );
-  if (!hasShowingReference) {
-    throw new Error("watch_marks does not reference one exact showing.");
-  }
+  const found = new Set(tables.map((row) => row.table_name));
+  const missing = expectedTables.filter((table) => !found.has(table));
+  if (missing.length) throw new Error(`Missing account/group tables: ${missing.join(", ")}`);
 
-  const [signupTrigger] = await sql<{ exists: boolean }[]>`
-    select exists (
-      select 1 from pg_trigger
-      where tgrelid = 'auth.users'::regclass
-        and tgname = 'auth_user_create_profile'
-        and not tgisinternal
-    ) as exists
+  const removedObjects = [
+    "channel_identities", "channel_identity_sessions", "channel_identity_marks",
+    "channel_guests", "channel_invitations",
+  ];
+  const legacy = await sql<{ table_name: string }[]>`
+    select table_name from information_schema.tables
+    where table_schema = 'public' and table_name = any(${removedObjects})
   `;
-  if (!signupTrigger.exists) {
-    throw new Error("The private-email signup profile trigger is missing.");
-  }
+  if (legacy.length) throw new Error(`Legacy identity tables still exist: ${legacy.map((row) => row.table_name).join(", ")}`);
 
-  const channelTables = await sql<{ table_name: string }[]>`
-    select table_name
-    from information_schema.tables
-    where table_schema = 'public'
-      and table_name in (
-        'channels',
-        'channel_members',
-        'channel_invitations',
-        'channel_invite_links',
-        'channel_guests'
-      )
-  `;
-  if (channelTables.length !== 5) {
-    throw new Error("Expected channel and invitation tables are missing.");
-  }
-
-  const channelRls = await sql<{ relname: string; relrowsecurity: boolean }[]>`
-    select relname, relrowsecurity
-    from pg_class
+  const rls = await sql<{ relname: string; relrowsecurity: boolean }[]>`
+    select relname, relrowsecurity from pg_class
     where oid in (
-      'public.channels'::regclass,
-      'public.channel_members'::regclass,
-      'public.channel_invitations'::regclass,
-      'public.channel_invite_links'::regclass,
-      'public.channel_guests'::regclass
+      'public.profiles'::regclass, 'public.watch_marks'::regclass,
+      'public.channels'::regclass, 'public.channel_members'::regclass,
+      'public.channel_invite_links'::regclass, 'public.channel_mark_shares'::regclass,
+      'public.channel_notification_reads'::regclass,
+      'public.account_recovery_credentials'::regclass,
+      'public.deleted_usernames'::regclass, 'public.account_auth_attempts'::regclass
     )
   `;
-  if (channelRls.length !== 5 || channelRls.some((row) => !row.relrowsecurity)) {
-    throw new Error("RLS is not enabled on every channel table.");
+  if (rls.length !== expectedTables.length || rls.some((row) => !row.relrowsecurity)) {
+    throw new Error("RLS is not enabled on every active account/group table.");
   }
 
-  const [inviteDefaults] = await sql<{ seven_days: boolean; twenty_uses: boolean }[]>`
+  const [rules] = await sql<{
+    username_update: boolean;
+    profile_insert: boolean;
+    profile_delete: boolean;
+    owner_nullable: boolean;
+    auto_share: boolean;
+    friend_id: boolean;
+    invite_expiry: boolean;
+    invite_max: boolean;
+    invite_use_count: boolean;
+  }[]>`
     select
-      column_default like '%7 days%' as seven_days,
-      (
-        select column_default like '20%'
-        from information_schema.columns
-        where table_schema = 'public'
-          and table_name = 'channel_invite_links'
-          and column_name = 'max_uses'
-      ) as twenty_uses
-    from information_schema.columns
-    where table_schema = 'public'
-      and table_name = 'channel_invite_links'
-      and column_name = 'expires_at'
+      has_column_privilege('authenticated', 'public.profiles', 'username', 'UPDATE') as username_update,
+      has_table_privilege('authenticated', 'public.profiles', 'INSERT') as profile_insert,
+      has_table_privilege('authenticated', 'public.profiles', 'DELETE') as profile_delete,
+      (select is_nullable = 'YES' from information_schema.columns where table_schema='public' and table_name='channels' and column_name='owner_user_id') as owner_nullable,
+      exists (select 1 from information_schema.columns where table_schema='public' and table_name='channel_members' and column_name='auto_share_new_marks') as auto_share,
+      exists (select 1 from information_schema.columns where table_schema='public' and table_name='profiles' and column_name='friend_id') as friend_id,
+      exists (select 1 from information_schema.columns where table_schema='public' and table_name='channel_invite_links' and column_name='expires_at') as invite_expiry,
+      exists (select 1 from information_schema.columns where table_schema='public' and table_name='channel_invite_links' and column_name='max_uses') as invite_max,
+      exists (select 1 from information_schema.columns where table_schema='public' and table_name='channel_invite_links' and column_name='use_count') as invite_use_count
   `;
-  if (!inviteDefaults?.seven_days || !inviteDefaults.twenty_uses) {
-    throw new Error("Invite links do not use the confirmed seven-day/20-use defaults.");
+  if (rules.username_update || rules.profile_insert || rules.profile_delete || rules.owner_nullable || rules.auto_share || rules.friend_id) {
+    throw new Error("Immutable username or account-only group constraints are incomplete.");
+  }
+  if (rules.invite_expiry || rules.invite_max || rules.invite_use_count) {
+    throw new Error("Legacy invitation expiry/use-limit columns still exist.");
   }
 
-  const [trustedEndpoints] = await sql<{ attempts: string | null; joins: string | null; function_count: number }[]>`
-    select
-      to_regclass('public.channel_guest_access_attempts')::text as attempts,
-      to_regclass('public.channel_guest_join_attempts')::text as joins,
-      (
-        select count(*)::integer from pg_proc
-        where oid in (
-          'public.preview_channel_invite(text)'::regprocedure,
-          'public.create_channel_guest_limited(text,text,text)'::regprocedure,
-          'public.read_channel_as_guest(uuid,text)'::regprocedure,
-          'public.invite_channel_user_by_email(uuid,uuid,text)'::regprocedure,
-          'public.list_my_channel_invitations()'::regprocedure
-        )
-      ) as function_count
+  const requiredFunctions = [
+    "create_channel(text)", "create_channel_invite_link(uuid)", "preview_channel_invite(text)",
+    "accept_channel_invite_link(text)", "create_watch_mark_with_defaults(date,text)",
+    "set_watch_mark_channels(uuid,uuid[])", "list_channel_shared_marks(uuid)",
+    "list_channel_participants(uuid)",
+    "transfer_channel_ownership(uuid,uuid)", "list_my_channel_notifications()",
+    "account_auth_guard(text,text,text)", "set_account_recovery_code(uuid,text)",
+    "verify_account_recovery_code(text,text)", "revoke_all_account_sessions(uuid)",
+  ];
+  const functions = await sql<{ signature: string; exists: boolean }[]>`
+    select signature, to_regprocedure('public.' || signature) is not null as exists
+    from unnest(${requiredFunctions}::text[]) as signature
   `;
-  if (
-    trustedEndpoints.attempts !== "channel_guest_access_attempts" ||
-    trustedEndpoints.joins !== "channel_guest_join_attempts" ||
-    trustedEndpoints.function_count !== 5
-  ) {
-    throw new Error("Trusted guest/email endpoint database support is incomplete.");
+  const missingFunctions = functions.filter((row) => !row.exists).map((row) => row.signature);
+  if (missingFunctions.length) {
+    throw new Error(`Unified account/group functions are missing: ${missingFunctions.join(", ")}`);
   }
 
-  const [invitationMethods] = await sql<{ friend_id_enabled: boolean; generic_disabled: boolean }[]>`
-    select
-      has_function_privilege(
-        'authenticated',
-        'public.invite_channel_user_by_friend_id(uuid,text)',
-        'EXECUTE'
-      ) as friend_id_enabled,
-      not has_function_privilege(
-        'authenticated',
-        'public.invite_channel_user(uuid,text,text)',
-        'EXECUTE'
-      ) as generic_disabled
+  const forbiddenFunctions = [
+    "accept_channel_invite_link(text,boolean)", "create_channel_guest(text,text)",
+    "invite_channel_user_by_friend_id(uuid,text)", "invite_channel_user_by_email(uuid,uuid,text)",
+    "login_channel_identity(text,text,text)", "set_channel_auto_share(uuid,boolean)",
+    "transfer_channel_ownership(uuid,text,uuid)",
+  ];
+  const legacyFunctions = await sql<{ signature: string; exists: boolean }[]>`
+    select signature, to_regprocedure('public.' || signature) is not null as exists
+    from unnest(${forbiddenFunctions}::text[]) as signature
   `;
-  if (!invitationMethods.friend_id_enabled || !invitationMethods.generic_disabled) {
-    throw new Error("Registered-user invitations are not restricted to Friend ID/email.");
+  const remainingFunctions = legacyFunctions.filter((row) => row.exists).map((row) => row.signature);
+  if (remainingFunctions.length) {
+    throw new Error(`Legacy account/group functions still exist: ${remainingFunctions.join(", ")}`);
   }
 
-  const [sharingSchema] = await sql<{ shares: string | null; auto_share: boolean; function_count: number }[]>`
-    select
-      to_regclass('public.channel_mark_shares')::text as shares,
-      exists (
-        select 1 from information_schema.columns
-        where table_schema = 'public'
-          and table_name = 'channel_members'
-          and column_name = 'auto_share_new_marks'
-      ) as auto_share,
-      (
-        select count(*)::integer from pg_proc
-        where oid in (
-          'public.create_watch_mark_with_defaults(date,text)'::regprocedure,
-          'public.set_watch_mark_channels(uuid,uuid[])'::regprocedure,
-          'public.set_channel_auto_share(uuid,boolean)'::regprocedure,
-          'public.list_channel_shared_marks(uuid)'::regprocedure
-        )
-      ) as function_count
-  `;
-  if (sharingSchema.shares !== "channel_mark_shares" || !sharingSchema.auto_share || sharingSchema.function_count !== 4) {
-    throw new Error("Channel watch-mark sharing schema is incomplete.");
-  }
-
-  const [notificationSchema] = await sql<{ reads: string | null; rls: boolean; function_count: number; policy_count: number }[]>`
-    select
-      to_regclass('public.channel_notification_reads')::text as reads,
-      coalesce((
-        select relrowsecurity from pg_class
-        where oid = to_regclass('public.channel_notification_reads')
-      ), false) as rls,
-      (
-        select count(*)::integer from pg_proc
-        where oid in (
-          'public.list_my_channel_notifications()'::regprocedure,
-          'public.mark_my_channel_notifications_read()'::regprocedure
-        )
-      ) as function_count,
-      (
-        select count(*)::integer from pg_policies
-        where schemaname = 'public'
-          and tablename = 'channel_notification_reads'
-          and policyname in (
-            'channel_notification_reads_select_own',
-            'channel_notification_reads_insert_own',
-            'channel_notification_reads_update_own'
-          )
-      ) as policy_count
-  `;
-  if (
-    notificationSchema.reads !== "channel_notification_reads" ||
-    !notificationSchema.rls ||
-    notificationSchema.function_count !== 2 ||
-    notificationSchema.policy_count !== 3
-  ) {
-    throw new Error("Channel notification schema is incomplete.");
-  }
-
-  console.log("Verified accounts, watch marks, channel invitations, reminders, defaults, and RLS policies.");
+  console.log("Verified unified accounts, private marks, link-only groups, reminders, and RLS boundaries.");
 } finally {
   await sql.end();
 }

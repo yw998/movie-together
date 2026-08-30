@@ -6,20 +6,18 @@ import { formatDisplayTime, hasShowingStarted, minutesSinceMidnight } from "../l
 import { useWatchMarks, WATCH_MARKS_CHANGED_EVENT } from "../watch-marks/useWatchMarks";
 import { avatarColor } from "./avatar";
 import { useTransientMessage } from "../lib/useTransientMessage";
-import { useChannelIdentity } from "./ChannelIdentityContext";
 import { useI18n } from "../i18n/I18nContext";
 import { formatCalendarDate } from "../lib/date-display";
 import { detailShowingUrl, independentTicketUrl } from "../lib/showing-presentation";
 
 type SharedMark = { showing_id: string; user_id: string; username: string };
-type Member = { user_id: string; role: "owner" | "member"; username: string; kind?: "account" | "channel_only" };
-type ParticipantRow = { participant_id: string; display_name: string; role: string; kind: string };
+type Member = { user_id: string; role: "owner" | "member"; username: string };
+type ParticipantRow = { participant_id: string; display_name: string; role: string };
 
 export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs: number }) {
   const client = supabase;
   const { locale, t } = useI18n();
   const { user } = useAuth();
-  const channelIdentity = useChannelIdentity();
   const watchMarks = useWatchMarks(scheduleData.showings);
   const [name, setName] = useState(t("fam.defaultName"));
   const [members, setMembers] = useState<Member[]>([]);
@@ -28,22 +26,6 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
   const [removePrompt, setRemovePrompt] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    if (channelIdentity.identity?.channelId === channelId) {
-      setName(channelIdentity.identity.channelName);
-      setMembers(channelIdentity.members.map((member) => ({
-        user_id: member.id,
-        role: member.role,
-        username: member.displayName,
-        kind: member.kind,
-      })));
-      setSharedMarks(channelIdentity.marks.map((mark) => ({
-        showing_id: mark.showingId,
-        user_id: mark.id,
-        username: mark.displayName,
-      })));
-      setError(null);
-      return;
-    }
     if (!client) return;
     const [channelResult, memberResult, marksResult] = await Promise.all([
       client.from("channels").select("name").eq("id", channelId).single(),
@@ -59,11 +41,10 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
       user_id: row.participant_id,
       role: row.role as "owner" | "member",
       username: row.display_name,
-      kind: row.kind as "account" | "channel_only",
     })));
     setSharedMarks((marksResult.data ?? []) as SharedMark[]);
     setError(null);
-  }, [channelId, channelIdentity.identity, channelIdentity.marks, channelIdentity.members, client, t]);
+  }, [channelId, client, setError, t]);
 
   useEffect(() => {
     void load();
@@ -103,8 +84,8 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
       <span className="eyebrow">PRIVATE WATCH GROUP</span>
       <h1>{name}</h1>
       <p>{t("fam.stats", { members: members.length, showings: sharedShowingCount })}</p>
-      <div className="channel-main-members" aria-label={members.map((member) => member.kind === "channel_only" ? `${member.username}${t("fam.profileSuffix")}` : `@${member.username}`).join(", ")}>
-        {members.map((member) => <span key={member.user_id} style={{ background: avatarColor(member.username) }} title={`${member.kind === "channel_only" ? member.username : `@${member.username}`}${member.kind === "channel_only" ? t("fam.profileSuffix") : ""}${member.role === "owner" ? t("fam.organizerSuffix") : ""}`}>{member.username[0]?.toUpperCase()}</span>)}
+      <div className="channel-main-members" aria-label={members.map((member) => `@${member.username}`).join(", ")}>
+        {members.map((member) => <span key={member.user_id} style={{ background: avatarColor(member.username) }} title={`@${member.username}${member.role === "owner" ? t("fam.organizerSuffix") : ""}`}>{member.username[0]?.toUpperCase()}</span>)}
       </div>
     </header>
     <div className="channel-main-content">
@@ -114,8 +95,7 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
         <div className="channel-date-rail"><span>{group.label}</span><i /></div>
         <div className="channel-shared-grid">
           {group.rows.map((activity) => {
-            const identityMarkOwner = channelIdentity.identity ? `identity:${channelIdentity.identity.id}` : null;
-            const currentUserShared = activity.marks.some((mark) => mark.user_id === (identityMarkOwner ?? user?.id));
+            const currentUserShared = activity.marks.some((mark) => mark.user_id === user?.id);
             const ticketUrl = activity.showing ? independentTicketUrl(activity.showing) : null;
             return <article className="channel-shared-card" key={activity.showingId}>
               <div className="channel-shared-meta">
@@ -139,14 +119,12 @@ export function ChannelMainView({ channelId, nowMs }: { channelId: string; nowMs
                       aria-pressed={currentUserShared}
                       className={`watch-mark${currentUserShared ? " marked" : ""}`}
                       disabled={watchMarks.isBusy(activity.showingId)}
-                      onClick={() => channelIdentity.identity
-                        ? void channelIdentity.toggleMark(activity.showingId, activity.showing!.storageWindowStart)
-                        : currentUserShared
-                          ? setRemovePrompt((current) => current === activity.showingId ? null : activity.showingId)
-                          : void watchMarks.addToChannel(activity.showingId, channelId)}
+                      onClick={() => currentUserShared
+                        ? setRemovePrompt((current) => current === activity.showingId ? null : activity.showingId)
+                        : void watchMarks.addToChannel(activity.showingId, channelId)}
                       type="button"
                     >{watchMarks.isBusy(activity.showingId) ? t("showing.saving") : currentUserShared ? t("fam.wanted") : t("showing.want")}</button>
-                    {!channelIdentity.identity && currentUserShared && removePrompt === activity.showingId && <div className="channel-remove-menu" role="dialog" aria-label={t("fam.cancelLabel")}>
+                    {currentUserShared && removePrompt === activity.showingId && <div className="channel-remove-menu" role="dialog" aria-label={t("fam.cancelLabel")}>
                       <b>{t("fam.cancelQuestion")}</b>
                       <button onClick={() => { setRemovePrompt(null); void watchMarks.removeFromChannel(activity.showingId, channelId); }} type="button">{t("fam.removeHere")}</button>
                       <button className="remove-personal-mark" onClick={() => { setRemovePrompt(null); void watchMarks.toggle(activity.showingId); }} type="button">{t("fam.removePersonal")}<small>{t("fam.removeEverywhere")}</small></button>

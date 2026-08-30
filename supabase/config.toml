@@ -1,2 +1,5 @@
 [functions.channel-invitations]
 verify_jwt = false
+
+[functions.account-auth]
+verify_jwt = false

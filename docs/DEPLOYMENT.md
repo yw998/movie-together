@@ -69,37 +69,22 @@ Production Branch: main
 Every validated weekly JSON commit to `main` will trigger a production build.
 Pull requests receive Vercel preview deployments.
 
-### Production account email
+### Production username accounts
 
-Supabase Auth remains responsible for confirmation and recovery tokens. Before
-public registration, configure a verified custom SMTP provider in Supabase and
-publish SPF, DKIM, and DMARC for its sending domain. Do not put SMTP credentials
-in Git or any `VITE_*` variable.
+Accounts use username, password, and a one-time-displayed recovery code. No SMTP
+or email template configuration is used. The trusted `account-auth` Edge
+Function resolves usernames to random internal non-deliverable Supabase Auth
+identifiers; the identifiers are not derived from public usernames.
 
 Set the Vercel variables:
 
 ```text
-VITE_PUBLIC_SITE_URL=https://movie-together-nu.vercel.app
 VITE_TURNSTILE_SITE_KEY=YOUR_BROWSER_SAFE_SITE_KEY
 ```
 
-Put the Turnstile secret only in **Supabase Dashboard → Authentication → Bot
-and Abuse Protection**, then enable CAPTCHA. Set the Auth Site URL to the same
-production origin and allow only intentional production/development redirects.
-Upload the reviewed subjects and HTML from `supabase/email-templates` in the
-Auth Email Templates screen.
-
-With a current local Supabase Management API token, run the read-only audit:
-
-```text
-npm run auth:audit-email
-npm run auth:audit-email -- --strict
-```
-
-The strict form fails while custom SMTP, confirmation, canonical redirects, or
-CAPTCHA are missing. It never prints SMTP credentials. Finally test one new
-confirmation, one resend, and one recovery message in real inboxes and inspect
-SPF/DKIM/DMARC results before inviting users.
+Put `TURNSTILE_SECRET_KEY` only in the Supabase Edge Function environment. The
+browser-safe site key remains in Vercel. Test normal login first, then trigger
+three failed attempts and verify the adaptive challenge appears.
 
 On Vercel Hobby, automated commits use the GitHub workflow actor as the commit
 author so the deployment remains associated with the repository owner.
@@ -210,13 +195,13 @@ After pushing the repository:
 4. Confirm a clean run updates Supabase and creates a Vercel deployment.
 5. Test the Vercel URL on desktop and mobile before attaching a custom domain.
 
-## 6. Channel invitation Edge Function
+## 6. Account and invitation Edge Functions
 
-Guest access and private-email lookup run in the `channel-invitations` Supabase
-Edge Function. Supabase supplies its publishable and secret keys to the hosted
-function; the secret key must never be copied to Vercel or a `VITE_*` variable.
-The browser can call the function, but only its server-only database functions
-can create guests, validate guest codes, or resolve Auth email addresses.
+`account-auth` owns username signup, login, password changes, recovery,
+recovery-code rotation, and account deletion. `channel-invitations` exposes invitation preview only;
+authenticated acceptance uses the database RPC. Supabase supplies publishable
+and secret keys to the hosted functions. Secret keys must never be copied to
+Vercel or a `VITE_*` variable.
 
 For a local deployment, create a Supabase personal access token at
 `https://supabase.com/dashboard/account/tokens`, then add these to the ignored
@@ -231,13 +216,42 @@ Deploy without printing or passing the token on the command line:
 
 ```text
 npm run functions:deploy
+npm run functions:deploy:account
 ```
 
-The function has JWT gateway verification disabled because invitation preview
-and guest access are intentionally unauthenticated. It validates the bearer JWT
-inside the function for private-email invitations, and the database grants all
-four trusted functions only to `service_role`. Guest code and join attempts are
-rate-limited in server-only tables.
+Both functions have gateway JWT verification disabled: invitation preview and
+username login are intentionally available before authentication. Each function
+exposes only its narrow server-side RPCs. Account attempts are rate-limited by
+hashed IP fingerprint and username, and the service stores no plaintext recovery
+code.
+
+## 7. Unified-account production cutover
+
+Do not run this sequence while account or Film Fam writes remain enabled.
+
+1. Announce and enforce a short write pause.
+2. Create a restorable database snapshot. Generate a random 32-byte hexadecimal
+   `ACCOUNT_MIGRATION_BACKUP_KEY` and keep it outside the repository and
+   deployment providers.
+3. Apply migration `023_unified_username_accounts.sql` with `npm run db:migrate`.
+4. Run `npm run db:migrate:account-identifiers`. This replaces Auth identifiers
+   and revokes every existing refresh session. Record the encrypted backup path
+   and its `deleteBy` deadline.
+5. Deploy `channel-invitations`, `account-auth`, and the frontend from the same
+   release commit.
+6. Run `npm run db:verify-user-schema`, `npm run db:test-channel-rls`, `npm test`,
+   and `npm run build`. Manually verify existing login, new signup/recovery-code
+   receipt, recovery, private marking, explicit sharing, link join, and deletion.
+7. Keep writes paused until every check passes and the project's maximum access
+   token lifetime has elapsed since step 4. Revoked refresh sessions cannot mint
+   new tokens, but already-issued JWTs remain valid until their own expiry.
+8. Resume writes.
+
+If verification fails before writes resume, redeploy the previous frontend and
+functions, roll back migration 023 using the database snapshot, then restore
+Auth emails with `npm run db:rollback:account-identifiers -- BACKUP_PATH`. The
+same external encryption key is required. Destroy the encrypted backup and key
+no later than 30 days after a successful cutover and record that destruction.
 
 ## Future account rendering
 

@@ -2,6 +2,7 @@ node_modules/
 dist/
 data/runs/
 data/backups/
+artifacts/private/
 *.tsbuildinfo
 *.log
 .env

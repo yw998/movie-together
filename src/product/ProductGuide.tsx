@@ -26,19 +26,13 @@ export function ProductGuide({ open, onClose, onCreateGroup }: ProductGuideProps
       <ol className="product-steps">
         {steps.map((step) => <li key={step.title}><b>{t(step.title)}</b><span>{t(step.copy)}</span></li>)}
       </ol>
-      <div className="identity-comparison">
+      <div className="account-guide">
         <article>
           <h3>{t("guide.account")}</h3>
           <p>{t("guide.accountCopy")}</p>
           <ul><li>{t("guide.accountItem1")}</li><li>{t("guide.accountItem2")}</li><li>{t("guide.accountItem3")}</li></ul>
         </article>
-        <article>
-          <h3>{t("guide.profile")} <small>{t("guide.noEmail")}</small></h3>
-          <p>{t("guide.profileCopy")}</p>
-          <ul><li>{t("guide.profileItem1")}</li><li>{t("guide.profileItem2")}</li><li>{t("guide.profileItem3")}</li></ul>
-        </article>
       </div>
-      <p className="product-guide-note">{t("guide.note")}</p>
       <button className="product-guide-cta" onClick={() => { onClose(); onCreateGroup(); }} type="button">{t("hero.createFam")}</button>
     </section>
   </div>;

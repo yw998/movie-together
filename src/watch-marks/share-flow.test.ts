@@ -7,16 +7,16 @@ const dialogPath = new URL("./ShareMarkDialog.tsx", import.meta.url);
 const channelViewPath = new URL("../channels/ChannelMainView.tsx", import.meta.url);
 
 describe("personal mark and channel share flow", () => {
-  it("creates the personal mark before opening the share dialog", async () => {
+  it("creates a private personal mark without opening a share prompt", async () => {
     const hook = await readFile(hookPath, "utf8");
     const app = await readFile(appPath, "utf8");
 
     expect(hook).toContain('"create_watch_mark_with_defaults"');
     expect(hook).toContain("watchMarkRpcIdentity({ id: showingId, storageWindowStart: windowStart })");
     expect(hook).toContain('action: "created", markId');
-    expect(app).toContain('result?.action === "created"');
-    expect(app).toContain("setSharePrompt");
-    expect(app).toContain("sharePopoverAnchor(button)");
+    expect(app).toContain("void watchMarks.toggle(showing.id)");
+    expect(app).not.toContain('result?.action === "created"');
+    expect(app).toContain("onEditShare");
   });
 
   it("keeps dismissal separate from deletion and saves explicit channels", async () => {
@@ -46,7 +46,7 @@ describe("personal mark and channel share flow", () => {
     expect(hook).toContain('rpc("add_watch_mark_to_channel"');
     expect(hook).toContain("target_channel_id: channelId");
     expect(channelView).toContain("watchMarks.addToChannel(activity.showingId, channelId)");
-    expect(channelView).toContain("identityMarkOwner ?? user?.id");
+    expect(channelView).toContain("mark.user_id === user?.id");
   });
 
   it("dismisses watch-mark errors after three seconds", async () => {

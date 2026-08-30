@@ -1,5 +1,27 @@
 # PostgreSQL data workflow
 
+## Current unified account model (2026-08-30)
+
+[`ACCOUNT_MODEL.md`](./ACCOUNT_MODEL.md) supersedes the older planned-account
+sections later in this document. The active schema uses `profiles`,
+`watch_marks`, `channels`, `channel_members`, `channel_invite_links`,
+`channel_mark_shares`, and `channel_notification_reads`, plus server-only
+`account_recovery_credentials`, `deleted_usernames`, and
+`account_auth_attempts`. There are no email-facing flows, Friend IDs, direct
+invitations, guests, Channel-only identities, or auto-share defaults.
+
+The browser calls the `account-auth` Edge Function for username login, signup,
+recovery, recovery-code rotation, and deletion. Supabase Auth internally requires
+an identifier, so each account receives a random non-deliverable
+`@accounts.nyc-movie-together.invalid` address. It is not derived from the
+username, is never user data, and is not shown in the interface. Recovery codes
+are stored only as bcrypt hashes.
+
+Migration `023_unified_username_accounts.sql` removes legacy identity data and
+objects. Run `npm run db:verify-user-schema` and `npm run db:test-channel-rls`
+after applying it. Production cutover and rollback are documented in
+[`DEPLOYMENT.md`](./DEPLOYMENT.md).
+
 ## Architecture
 
 Supabase PostgreSQL is the durable system of record. The browser never connects
