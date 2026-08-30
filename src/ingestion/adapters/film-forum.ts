@@ -3,7 +3,7 @@ import type { AdapterResult, SourceSnapshot } from "../types";
 
 export const FILM_FORUM_API_URL =
   "https://my.filmforum.org/api/products/productionseasons";
-export const FILM_FORUM_PARSER_VERSION = "film-forum-api-v2";
+export const FILM_FORUM_PARSER_VERSION = "film-forum-api-v3";
 
 type FilmForumPerformance = {
   id: number;
@@ -38,6 +38,25 @@ function slugify(value: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
+}
+
+function officialDetailUrl(value: unknown): string | null {
+  if (typeof value !== "string") return null;
+  try {
+    const url = new URL(value);
+    const pathSegments = url.pathname.split("/").filter(Boolean);
+    const slug = pathSegments.length === 1 ? pathSegments[0] : "";
+    if (
+      url.protocol !== "https:" ||
+      url.hostname !== "my.filmforum.org" ||
+      !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)
+    ) {
+      return null;
+    }
+    return `https://filmforum.org/film/${slug}`;
+  } catch {
+    return null;
+  }
 }
 
 function normalizeOfficialIso(value: string): string | null {
@@ -139,6 +158,11 @@ export function parseFilmForumPayload(
       warnings.push(`productions[${productionIndex}] has an empty title.`);
       return;
     }
+    const detailUrl = officialDetailUrl(production.productionSeasonActionUrl);
+    if (!detailUrl) {
+      warnings.push(`productions[${productionIndex}] has no trustworthy official detail URL.`);
+      return;
+    }
     if (!filmsById.has(filmId)) {
       filmsById.set(filmId, {
         id: filmId,
@@ -197,11 +221,7 @@ export function parseFilmForumPayload(
         format: null,
         eventType: event.eventType,
         eventNote: event.eventNote,
-        detailUrl:
-          typeof production.productionSeasonActionUrl === "string" &&
-          production.productionSeasonActionUrl.startsWith("https://my.filmforum.org/")
-            ? production.productionSeasonActionUrl
-            : performance.actionUrl,
+        detailUrl,
         ticketUrl: performance.actionUrl,
         availability: soldOut
           ? "sold_out"
