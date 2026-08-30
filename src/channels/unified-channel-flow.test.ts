@@ -38,4 +38,15 @@ describe("account-only Film Fams", () => {
       expect(panel).toContain(`rpc("${rpc}"`);
     }
   });
+
+  it("keeps the established circular Film Fam rail structure", async () => {
+    const panel = await readFile(panelPath, "utf8");
+    expect(panel).toContain('className="channel-rail-nav"');
+    expect(panel).toContain("channel-rail-home");
+    expect(panel).toContain('className="channel-rail-divider"');
+    expect(panel).toContain('className="channel-rail-list"');
+    expect(panel).toContain('className="channel-rail-create"');
+    expect(panel).toContain('activeChannelId || mobileOpen ? " context-open"');
+    expect(panel).not.toContain('className="channel-rail"');
+  });
 });

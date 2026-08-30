@@ -242,11 +242,45 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate, o
   }
 
   return <>
-    <aside className={`channel-panel${mobileOpen ? " mobile-open" : ""}`}>
-      <nav className="channel-rail" aria-label={copy("观影小组导航", "Film Fam navigation")}>
-        <button className={!activeChannelId && !notificationsOpen ? "active" : ""} onClick={() => { onNavigate(null); setMobileOpen(false); }} title={copy("我的排片", "My schedule")} type="button"><span>我</span></button>
-        {channels.map((channel) => <button className={activeChannelId === channel.id ? "active" : ""} key={channel.id} onClick={() => { onNavigate(channel.id); setMobileOpen(false); }} title={channel.name} type="button"><span style={{ background: avatarColor(channel.name) }}>{channel.name[0]?.toUpperCase()}</span></button>)}
-        {user && <button onClick={() => createDialogRef.current?.showModal()} title={copy("新建观影小组", "Create a Film Fam")} type="button">＋</button>}
+    <button
+      aria-expanded={mobileOpen}
+      className="channel-mobile-toggle"
+      onClick={() => setMobileOpen(true)}
+      type="button"
+    >{copy("☰ 观影小组", "☰ Film Fam")}</button>
+    <button
+      aria-label={copy("关闭观影小组", "Close Film Fam")}
+      className={`channel-backdrop${mobileOpen ? " open" : ""}`}
+      onClick={() => setMobileOpen(false)}
+      type="button"
+    />
+    <aside className={`channel-panel${mobileOpen ? " open" : ""}${activeChannelId || mobileOpen ? " context-open" : ""}`}>
+      <nav className="channel-rail-nav" aria-label={copy("观影小组导航", "Film Fam navigation")}>
+        <button
+          aria-label={copy("返回排片", "Back to schedule")}
+          className={`channel-rail-home${!activeChannelId && !notificationsOpen ? " active" : ""}`}
+          onClick={() => { onNavigate(null); setMobileOpen(false); }}
+          title={copy("返回排片", "Back to schedule")}
+          type="button"
+        >{copy("我", "Me")}</button>
+        <span className="channel-rail-divider" />
+        <div className="channel-rail-list">
+          {channels.map((channel) => <button
+            aria-label={channel.name}
+            className={activeChannelId === channel.id ? "active" : ""}
+            key={channel.id}
+            onClick={() => { onNavigate(channel.id); setMobileOpen(false); }}
+            title={channel.name}
+            type="button"
+          >{channel.name.trim().slice(0, 2)}</button>)}
+          {user && <button
+            aria-label={copy("新建观影小组", "Create a Film Fam")}
+            className="channel-rail-create"
+            onClick={() => { setCreateMessage(null); setMobileOpen(false); createDialogRef.current?.showModal(); }}
+            title={copy("新建观影小组", "Create a Film Fam")}
+            type="button"
+          >＋</button>}
+        </div>
       </nav>
       <section className="channel-context">
         <div className="channel-heading"><h2>{copy("观影小组", "Film Fams")}</h2>{mobileOpen && <button className="channel-mobile-close" onClick={() => setMobileOpen(false)} type="button">×</button>}</div>
