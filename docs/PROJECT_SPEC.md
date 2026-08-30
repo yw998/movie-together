@@ -587,6 +587,14 @@ may now participate in the normal candidate, review, and publication workflow.
 That one-time source approval does not approve any future schedule candidate;
 the normal publication safety rules continue to apply to every run.
 
+## 8.5 Film Forum
+
+The Film Forum adapter uses `my.filmforum.org` only for schedule and ticketing
+data. A public showing's `detailUrl` uses the corresponding official
+`https://filmforum.org/film/{slug}` page, while its performance-specific
+`ticketUrl` remains on `my.filmforum.org`. An invalid or missing official detail
+path produces a parser warning rather than falling back to a ticket page.
+
 ---
 
 # 9. Manual overrides

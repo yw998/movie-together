@@ -35,7 +35,7 @@ describe("Film Forum official API adapter", () => {
 
     expect(result.snapshot).toMatchObject({
       result: "success",
-      parserVersion: "film-forum-api-v2",
+      parserVersion: "film-forum-api-v3",
       contentHash: "abc123",
     });
     expect(result.showings).toEqual([
@@ -44,6 +44,7 @@ describe("Film Forum official API adapter", () => {
         startsAt: "2026-08-12T12:15:00.000-04:00",
         localDate: "2026-08-12",
         localTime: "12:15",
+        detailUrl: "https://filmforum.org/film/late-fame",
         ticketUrl: "https://my.filmforum.org/late-fame/51727",
         eventType: "standard",
         eventNote: null,
@@ -145,5 +146,29 @@ describe("Film Forum official API adapter", () => {
       error: "Response has no productions array.",
     });
     expect(result.showings).toEqual([]);
+  });
+
+  it("does not publish when the official detail path is untrustworthy", () => {
+    const result = parseFilmForumPayload({
+      productions: [{
+        productionTitle: "ONE FILM",
+        productionSeasonActionUrl: "https://example.com/one-film",
+        performances: [{
+          id: 10,
+          iso8601DateString: "2026-08-12T17:00:00.0000000-04:00",
+          performanceTitle: "ONE FILM",
+          actionUrl: "https://my.filmforum.org/one-film/10",
+          isPerformanceVisible: true,
+          isOnSale: true,
+          performanceStatusMessage: "",
+        }],
+      }],
+    }, options);
+
+    expect(result.snapshot.result).toBe("partial");
+    expect(result.showings).toEqual([]);
+    expect(result.warnings).toContain(
+      "productions[0] has no trustworthy official detail URL.",
+    );
   });
 });
