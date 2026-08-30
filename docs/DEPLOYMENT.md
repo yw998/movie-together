@@ -233,7 +233,12 @@ Do not run this sequence while account or Film Fam writes remain enabled.
 2. Create a restorable database snapshot. Generate a random 32-byte hexadecimal
    `ACCOUNT_MIGRATION_BACKUP_KEY` and keep it outside the repository and
    deployment providers.
-3. Apply migration `023_unified_username_accounts.sql` with `npm run db:migrate`.
+3. Run `npm run db:inspect:account-cutover` and require a valid management token
+   plus at least one completed managed backup or PITR. Apply the explicitly manual
+   migration `023_unified_username_accounts.sql` with
+   `npm run db:migrate:account-schema`. The normal `npm run db:migrate` command
+   intentionally stops before this migration so schedule automation cannot perform
+   a partial account cutover.
 4. Run `npm run db:migrate:account-identifiers`. This replaces Auth identifiers
    and revokes every existing refresh session. Record the encrypted backup path
    and its `deleteBy` deadline.

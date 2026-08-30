@@ -9,6 +9,8 @@
     "dev:staging": "node --env-file=.env.staging.local scripts/run-vite-staging.mjs",
     "env:verify:staging": "node --env-file=.env.staging.local scripts/verify-staging-env.mjs",
     "db:migrate": "node --env-file-if-exists=.env.local --import tsx scripts/db/migrate.ts",
+    "db:migrate:account-schema": "node --env-file-if-exists=.env.local --import tsx scripts/db/migrate.ts --include-manual",
+    "db:inspect:account-cutover": "node --env-file-if-exists=.env.local scripts/db/inspect-account-cutover.mjs",
     "db:migrate:account-identifiers": "node --env-file-if-exists=.env.local scripts/db/migrate-unified-account-emails.mjs",
     "db:rollback:account-identifiers": "node --env-file-if-exists=.env.local scripts/db/restore-unified-account-emails.mjs",
     "predb:migrate:staging": "npm run env:verify:staging",
