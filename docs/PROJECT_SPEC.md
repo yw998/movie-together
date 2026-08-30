@@ -10,6 +10,13 @@ Implementation progress belongs in `docs/STATUS.md`.
 
 Historical or superseded product decisions belong in `docs/DECISIONS.md`.
 
+The account, authentication, Film Fam identity, invitation, and sharing rules in
+[`ACCOUNT_MODEL.md`](./ACCOUNT_MODEL.md) are the canonical specification as of
+2026-08-30. They supersede the older email, Friend ID, guest, Channel-only
+identity, expiring-link, and auto-share language that remains in Sections 13-17
+pending editorial removal. Implementations and reviews must follow the canonical
+account-model document when those passages conflict.
+
 When implementation and this specification disagree:
 
 1. Do not silently rewrite working behavior.

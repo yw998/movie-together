@@ -4,15 +4,7 @@ import { supabase } from "../auth/supabase";
 export type Channel = {
   id: string;
   name: string;
-  owner_user_id: string | null;
-};
-
-export type ChannelInvitation = {
-  invitation_id: string;
-  channel_id: string;
-  channel_name: string;
-  inviter_username: string;
-  expires_at: string;
+  owner_user_id: string;
 };
 
 export type ChannelNotification = {
@@ -29,7 +21,7 @@ export type ChannelNotification = {
 export type InvitePreview = {
   channelId: string;
   channelName: string;
-  expiresAt: string;
+  memberCount: number;
 };
 
 export const CHANNELS_CHANGED_EVENT = "movie-together:channels-changed";
@@ -58,14 +50,10 @@ export function invitationUrl(token: string): string {
 export async function callInvitationFunction<T>(
   client: SupabaseClient | null,
   body: Record<string, unknown>,
-  accessToken?: string,
 ): Promise<T> {
   const activeClient = client ?? supabase;
   if (!activeClient) throw new Error("Supabase is unavailable.");
-  const { data, error } = await activeClient.functions.invoke("channel-invitations", {
-    body,
-    ...(accessToken ? { headers: { Authorization: `Bearer ${accessToken}` } } : {}),
-  });
+  const { data, error } = await activeClient.functions.invoke("channel-invitations", { body });
   if (error) throw error;
   return data as T;
 }

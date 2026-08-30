@@ -4,7 +4,7 @@ import { useAuth } from "../auth/AuthContext";
 import { useTransientMessage } from "../lib/useTransientMessage";
 import { useI18n } from "../i18n/I18nContext";
 
-type ShareChannel = { id: string; name: string; autoShare: boolean };
+type ShareChannel = { id: string; name: string };
 
 export function ShareMarkPopover({
   markId,
@@ -35,7 +35,7 @@ export function ShareMarkPopover({
     }
     let active = true;
     void Promise.all([
-      client.from("channel_members").select("channel_id,auto_share_new_marks").eq("user_id", user.id),
+      client.from("channel_members").select("channel_id").eq("user_id", user.id),
       client.from("channel_mark_shares").select("channel_id").eq("mark_id", markId),
     ]).then(async ([memberResult, shareResult]) => {
       if (!active) return;
@@ -50,11 +50,7 @@ export function ShareMarkPopover({
         : { data: [], error: null };
       if (!active) return;
       if (error) setMessage(t("share.loadError"));
-      const defaults = new Map(memberships.map((row) => [row.channel_id, row.auto_share_new_marks]));
-      setChannels((channelRows ?? []).map((channel) => ({
-        ...channel,
-        autoShare: defaults.get(channel.id) ?? false,
-      })));
+      setChannels((channelRows ?? []) as ShareChannel[]);
       setSelected(new Set((shareResult.data ?? []).map((share) => share.channel_id)));
       setBusy(false);
     });
@@ -96,7 +92,7 @@ export function ShareMarkPopover({
           })}
           type="checkbox"
         />
-        <span>#{channel.name}{channel.autoShare && <small>{t("share.default")}</small>}</span>
+        <span>#{channel.name}</span>
       </label>)}
       {message && <p className="auth-message">{message}</p>}
       <button className="auth-submit" disabled={busy} type="submit">{busy ? t("showing.saving") : t("share.save")}</button>
