@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { clearInviteToken, invitationUrl, readInviteToken } from "./channel-api";
+import { clearInviteToken, invitationMessage, invitationUrl, readInviteToken } from "./channel-api";
 
 describe("channel invitation fragments", () => {
   afterEach(() => vi.unstubAllGlobals());
@@ -24,5 +24,25 @@ describe("channel invitation fragments", () => {
 
     clearInviteToken();
     expect(replaceState).toHaveBeenCalledWith(null, "", "/");
+  });
+});
+
+describe("channel invitation copy", () => {
+  it("creates a two-line Chinese invitation with the inviter and Film Fam name", () => {
+    expect(invitationMessage({
+      channelName: "周末电影搭子",
+      inviterUsername: "movie_fan",
+      locale: "zh-CN",
+      url: "https://example.com/#invite=token",
+    })).toBe("@movie_fan 邀请你加入「周末电影搭子」观影小组\nhttps://example.com/#invite=token");
+  });
+
+  it("creates the matching English invitation", () => {
+    expect(invitationMessage({
+      channelName: "Weekend Crew",
+      inviterUsername: "movie_fan",
+      locale: "en-US",
+      url: "https://example.com/#invite=token",
+    })).toBe("@movie_fan invited you to join the “Weekend Crew” Film Fam\nhttps://example.com/#invite=token");
   });
 });
