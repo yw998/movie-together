@@ -383,3 +383,146 @@ footer a { color: #e5e0d5; text-decoration: none; }
 @media (max-width: 720px) {
   .language-switch { right: 18px; top: 52px; }
 }
+
+/* Mouse-only interaction feedback. Keeping this behind pointer capability avoids
+   sticky hover states and unintended motion on touch devices. */
+@media (hover: hover) and (pointer: fine) {
+  button, a, .share-channel-form > label {
+    transition: color .16s ease, background-color .16s ease, border-color .16s ease, box-shadow .16s ease, opacity .16s ease, transform .16s ease;
+  }
+
+  button:not(:disabled):active, .body a:active, .channel-shared-footer a:active {
+    transform: translateY(0);
+  }
+
+  .account-control > button:not(:disabled):hover {
+    color: #171813;
+    background: #f4f0e6;
+    border-color: #f4f0e6;
+    box-shadow: 0 5px 16px #0004;
+    transform: translateY(-1px);
+  }
+  .account-control.on-light > button:not(:disabled):hover {
+    color: #fff;
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .hero-actions button:not(:disabled):hover {
+    background: #fff;
+    border-color: #fff;
+    box-shadow: 0 7px 20px #0005;
+    transform: translateY(-2px);
+  }
+  .hero-actions button.secondary:not(:disabled):hover {
+    color: #171813;
+    background: #f4f0e6;
+    border-color: #f4f0e6;
+  }
+
+  .auth-submit:not(:disabled):hover,
+  .product-guide-cta:hover,
+  .channel-create-modal-form > button:not(:disabled):hover,
+  .notifications-header > button:not(:disabled):hover,
+  .notifications-signed-out > button:not(:disabled):hover,
+  .notification-row > button:not(:disabled):hover,
+  .invitation-actions > button:not(:disabled):hover {
+    background: #34362f;
+    box-shadow: 0 6px 16px #17181335;
+    transform: translateY(-1px);
+  }
+  .auth-link:not(:disabled):hover, .auth-tabs button:not(:disabled):hover {
+    color: var(--ink);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  .dialog-close button:hover, .product-guide-close:hover, .share-dialog-close:hover {
+    color: var(--ink);
+    background: #17181310;
+    border-radius: 50%;
+  }
+
+  .dates button:not(.active):hover {
+    color: var(--ink);
+    background: #ebe6da;
+    border-color: #9d9a91;
+  }
+  .cinemas button:hover {
+    color: var(--ink);
+    background: #fff;
+    border-color: #8e8b82;
+    box-shadow: 0 4px 12px #26201512;
+    transform: translateY(-1px);
+  }
+  .view-switch button:not(.active):hover {
+    color: var(--ink);
+    background: #fff;
+  }
+
+  .body a:not(.ticket-link):hover,
+  .channel-shared-footer a:not(.ticket-link):hover,
+  footer a:hover {
+    color: #4f6642;
+    border-color: #4f6642;
+  }
+  .body a.ticket-link:hover, .channel-shared-footer a.ticket-link:hover {
+    background: #34362f;
+    border-color: #34362f;
+    box-shadow: 0 4px 12px #1718132e;
+    transform: translateY(-1px);
+  }
+  .watch-mark:not(:disabled):hover {
+    color: var(--ink);
+    background: #fff;
+    border-color: #858177;
+    box-shadow: 0 4px 12px #26201514;
+    transform: translateY(-1px);
+  }
+  .watch-mark.marked:not(:disabled):hover {
+    color: #fff;
+    background: #34362f;
+    border-color: #34362f;
+  }
+  .body button.share-count:hover {
+    box-shadow: inset 0 0 0 1px #c9c3b6;
+    transform: translateY(-1px);
+  }
+
+  .channel-heading button:not(:disabled):hover,
+  .channel-create button:not(:disabled):hover,
+  .channel-notice button:not(:disabled):hover,
+  .channel-invite button:not(:disabled):hover,
+  .copy-invite:not(:disabled):hover,
+  .channel-overview-create:not(:disabled):hover {
+    background: #fff;
+    box-shadow: 0 5px 14px #0004;
+    transform: translateY(-1px);
+  }
+  .channel-workspace nav button:not(.active):hover {
+    color: #fff;
+    background: #30322b;
+  }
+  .channel-member-row > button:not(:disabled):hover,
+  .channel-invite-link button:not(:disabled):hover {
+    color: #fff;
+    background: #743f36;
+    border-radius: 3px;
+  }
+  .notification-channel-link:hover {
+    color: #2f4925;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  .channel-remove-menu > button.remove-personal-mark:hover {
+    color: #fff;
+    background: #8a3024;
+    border-color: #8a3024;
+  }
+  .share-channel-form > label:hover {
+    background: #fffdf7;
+    border-color: #8e8b82;
+    box-shadow: 0 3px 10px #26201512;
+  }
+  .language-switch button:not([aria-pressed="true"]):hover {
+    opacity: 1;
+  }
+}
