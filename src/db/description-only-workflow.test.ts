@@ -16,13 +16,16 @@ describe("description-only publication", () => {
 
   it("commits only the public JSON from the backfill workflow", () => {
     const workflow = readFileSync(".github/workflows/description-backfill.yml", "utf8");
+    expect(workflow).toContain("schedule:");
+    expect(workflow).toContain('cron: "30 6 * * 1"');
+    expect(workflow).toContain('timezone: "America/New_York"');
     expect(workflow).toContain("workflow_dispatch:");
     expect(workflow).toContain("default: false");
+    expect(workflow).toContain("github.event_name == 'schedule'");
+    expect(workflow).toContain("inputs.publish == true");
     expect(workflow).toContain("env.PUBLISH == 'true'");
     expect(workflow).toContain('REQUIRE_DESCRIPTION_GENERATION_SUCCESS: "true"');
     expect(workflow).toContain("git add src/data/published-schedule.json");
-    expect(workflow).not.toContain("schedule:");
-
     const enrichment = readFileSync("scripts/enrich-descriptions.ts", "utf8");
     expect(enrichment).toContain("generateBilingualDescriptionsInBatches");
     expect(enrichment).toContain("technicalFailureFilms === generationSummary.attemptedFilms");

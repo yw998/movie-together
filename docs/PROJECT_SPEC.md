@@ -76,7 +76,11 @@ Bilingual description backfill is operationally independent from schedule
 publication. It may update only `films.description_zh`, `films.description_en`,
 `films.description_source`, and the matching description fields in the public
 JSON. It must not create, remove, or alter cinema or showing facts. The backfill
-is manual so unresolved films do not consume AI requests every day. Manual runs
+runs every Monday at 06:30 `America/New_York`, after the normal daily schedule
+run, and automatically publishes only localized descriptions that pass the
+evidence and copy validators. Review-needed or failed descriptions remain empty
+and appear in the private run artifact; they do not block other accepted
+descriptions or daily schedule publication. Manual runs remain available and
 default to review-only artifact generation; database and public JSON writes
 require the explicit `publish=true` input.
 
@@ -348,8 +352,8 @@ Manual AI generation uses bounded film batches with exact requested identifiers.
 A malformed batch is retried one film at a time so one bad response cannot discard
 unrelated valid descriptions. The review artifact reports attempted, accepted,
 review-needed, retried, and technical-failure counts. A total technical generation
-failure stops the manual backfill before import; daily schedule publication remains
-cache-only and is never blocked by description generation.
+failure stops the scheduled or manual backfill before import; daily schedule
+publication remains cache-only and is never blocked by description generation.
 
 Approved descriptions should be cached and reused rather than regenerated every schedule refresh.
 
