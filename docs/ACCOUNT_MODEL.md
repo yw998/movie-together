@@ -45,6 +45,9 @@ for authentication, user identity, Film Fams, invitations, and mark sharing.
   The token is stored as a hash, remains valid until revoked or replaced, and is
   never used as an identity credential. Preview shows the group name and current
   member count. Login/registration is followed by an explicit join confirmation.
+- Copying an invitation places a localized two-line message on the clipboard:
+  `@username` invites the recipient to join the named Film Fam, followed by the
+  invitation URL on its own line.
 - Direct email invitations, Friend IDs, public group IDs, guest accounts, and
   Channel-only identities do not exist.
 

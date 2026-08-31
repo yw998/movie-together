@@ -10,7 +10,9 @@ describe("account-only Film Fams", () => {
     const [panel, migration] = await Promise.all([readFile(panelPath, "utf8"), readFile(migrationPath, "utf8")]);
     expect(panel).toContain('rpc("create_channel_invite_link"');
     expect(panel).toContain('rpc("revoke_channel_invite_link"');
-    expect(panel).toContain("It remains valid until you revoke or replace it.");
+    expect(panel).toContain("The link remains valid until you revoke or replace it.");
+    expect(panel).toContain('copy("复制邀请", "Copy invitation")');
+    expect(panel).toContain("invitationMessage({");
     expect(panel).not.toContain("Friend ID");
     expect(panel).not.toContain('name="email"');
     expect(migration).toContain("drop column if exists expires_at cascade");

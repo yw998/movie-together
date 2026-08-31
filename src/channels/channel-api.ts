@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { supabase } from "../auth/supabase";
+import type { Locale } from "../i18n/locales";
 
 export type Channel = {
   id: string;
@@ -45,6 +46,23 @@ export function clearInviteToken() {
 
 export function invitationUrl(token: string): string {
   return `${window.location.origin}${window.location.pathname}#invite=${token}`;
+}
+
+export function invitationMessage({
+  channelName,
+  inviterUsername,
+  locale,
+  url,
+}: {
+  channelName: string;
+  inviterUsername: string;
+  locale: Locale;
+  url: string;
+}): string {
+  const invitation = locale === "zh-CN"
+    ? `@${inviterUsername} 邀请你加入「${channelName}」观影小组`
+    : `@${inviterUsername} invited you to join the “${channelName}” Film Fam`;
+  return `${invitation}\n${url}`;
 }
 
 export async function callInvitationFunction<T>(
