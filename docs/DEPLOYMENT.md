@@ -232,7 +232,11 @@ Do not run this sequence while account or Film Fam writes remain enabled.
 1. Announce and enforce a short write pause.
 2. Create a restorable database snapshot. Generate a random 32-byte hexadecimal
    `ACCOUNT_MIGRATION_BACKUP_KEY` and keep it outside the repository and
-   deployment providers.
+   deployment providers. If no managed backup or PITR restore point exists,
+   create a PostgreSQL custom-format dump, encrypt it with
+   `scripts/db/cutover-backup-crypto.mjs`, decrypt a temporary copy, and require
+   both a matching SHA-256 hash and a successful full `pg_restore` read before
+   deleting the plaintext copies.
 3. Run `npm run db:inspect:account-cutover` and require a valid management token
    plus at least one completed managed backup or PITR. Apply the explicitly manual
    migration `023_unified_username_accounts.sql` with

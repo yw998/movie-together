@@ -199,6 +199,9 @@ grant execute on function public.revoke_all_account_sessions(uuid) to service_ro
 
 -- Remove every test-only Channel identity and every Channel owned by one.
 delete from public.channels where owner_identity_id is not null;
+-- The legacy owner foreign key is initially deferred. Flush its queued events
+-- before dropping identity-dependent tables in this same atomic transaction.
+set constraints all immediate;
 alter table public.channel_invite_links drop constraint if exists channel_invite_links_one_creator_check;
 alter table public.channel_invite_links drop column if exists created_by_identity;
 alter table public.channel_invite_links alter column created_by set not null;
