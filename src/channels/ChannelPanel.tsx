@@ -6,6 +6,7 @@ import {
   callInvitationFunction,
   CHANNELS_CHANGED_EVENT,
   clearInviteToken,
+  invitationMessage,
   invitationUrl,
   notifyChannelsChanged,
   readInviteToken,
@@ -30,7 +31,7 @@ type ChannelPanelProps = {
 export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate, onPanelOpenChange }: ChannelPanelProps) {
   const client = supabase;
   const { user, username } = useAuth();
-  const { copy } = useI18n();
+  const { copy, locale } = useI18n();
   const inviteDialogRef = useRef<HTMLDialogElement>(null);
   const createDialogRef = useRef<HTMLDialogElement>(null);
   const creatingRef = useRef(false);
@@ -201,14 +202,29 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate, o
 
   async function createLink() {
     if (!selectedChannel || !owner || busy) return;
+    if (!username) return setMessage(copy("无法读取你的用户名，请稍后重试。", "Could not read your username. Please try again."));
     setBusy(true);
     const { data, error } = await activeClient.rpc("create_channel_invite_link", { target_channel_id: selectedChannel.id });
-    setBusy(false);
     const row = data?.[0] as { invite_link_id?: string; invite_token?: string } | undefined;
-    if (error || !row?.invite_token) return setMessage(copy("无法创建邀请链接。", "Could not create an invitation link."));
-    await navigator.clipboard.writeText(invitationUrl(row.invite_token));
-    setInviteNotice(copy("邀请链接已复制；它会一直有效，直到你撤销或生成新链接。", "Invitation link copied. It remains valid until you revoke or replace it."));
+    if (error || !row?.invite_token) {
+      setBusy(false);
+      return setMessage(copy("无法创建邀请链接。", "Could not create an invitation link."));
+    }
     setInviteLinks([{ id: row.invite_link_id!, revoked_at: null }]);
+    const url = invitationUrl(row.invite_token);
+    try {
+      await navigator.clipboard.writeText(invitationMessage({
+        channelName: selectedChannel.name,
+        inviterUsername: username,
+        locale,
+        url,
+      }));
+    } catch {
+      setBusy(false);
+      return setMessage(copy("无法复制邀请，请检查浏览器的剪贴板权限。", "Could not copy the invitation. Check your browser's clipboard permission."));
+    }
+    setBusy(false);
+    setInviteNotice(copy("邀请已复制；链接会一直有效，直到你撤销或生成新链接。", "Invitation copied. The link remains valid until you revoke or replace it."));
     if (inviteCopyTimerRef.current !== null) window.clearTimeout(inviteCopyTimerRef.current);
     inviteCopyTimerRef.current = window.setTimeout(() => setInviteNotice(null), 4000);
   }
@@ -301,7 +317,7 @@ export function ChannelPanel({ activeChannelId, notificationsOpen, onNavigate, o
           </div>}
           {message && <p className="channel-message" role="status">{message}</p>}
         </div>
-        {user && owner && selectedChannel && <div className="channel-invite-footer"><b>{copy("邀请成员", "Invite members")}</b><button className="copy-invite" disabled={busy} onClick={() => void createLink()} type="button">{copy("复制邀请链接", "Copy invitation link")}</button>{inviteLinks.filter((link) => !link.revoked_at).map((link) => <div className="channel-invite-link" key={link.id}><small>{copy("撤销前一直有效", "Valid until revoked")}</small><button disabled={busy} onClick={() => void revokeLink(link.id)} type="button">{copy("撤销", "Revoke")}</button></div>)}{inviteNotice && <p className="invite-copy-notice" role="status">{inviteNotice}</p>}</div>}
+        {user && owner && selectedChannel && <div className="channel-invite-footer"><b>{copy("邀请成员", "Invite members")}</b><button className="copy-invite" disabled={busy} onClick={() => void createLink()} type="button">{copy("复制邀请", "Copy invitation")}</button>{inviteLinks.filter((link) => !link.revoked_at).map((link) => <div className="channel-invite-link" key={link.id}><small>{copy("撤销前一直有效", "Valid until revoked")}</small><button disabled={busy} onClick={() => void revokeLink(link.id)} type="button">{copy("撤销", "Revoke")}</button></div>)}{inviteNotice && <p className="invite-copy-notice" role="status">{inviteNotice}</p>}</div>}
         {user && <div className="channel-user-footer"><strong>@{username ?? "user"}</strong></div>}
       </section>
     </aside>
