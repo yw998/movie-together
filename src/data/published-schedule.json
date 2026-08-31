@@ -91,9 +91,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "从本届圣丹斯影展遴选出的短片合集，呈现多样题材与导演视角。",
+      "descriptionEn": "A curated program of short films drawn from this year’s Sundance Film Festival, gathering diverse voices and genres into a single showcase that highlights contemporary short filmmaking and emerging directors.",
+      "descriptionSource": "https://www.ifccenter.com/films/2026-sundance-film-festival-short-film-tour/"
     },
     {
       "id": "2046",
@@ -103,7 +103,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "上世纪六十年代的小说家周在写作与情感之间游走，借虚构与现实交织出丰腴的忧郁。",
-      "descriptionEn": null,
+      "descriptionEn": "A sort-of sequel revisiting Chow as a suave science-fiction writer in 1960s settings, intercutting his affairs with scenes from his novel set in the year 2046 to craft a film of voluptuous melancholy and memory.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004396"
     },
     {
@@ -113,9 +113,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "杨氏青春记忆中六〇年代台湾的黑帮、政治压抑与美国流行文化的交织图景。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999002246"
     },
     {
       "id": "a-day-in-the-country-people-on-sunday",
@@ -135,9 +135,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一场由alterotics策划的跨性别/酷儿影像与表演之夜，包含多部短片与讨论。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/a-night-with-alterotics/"
     },
     {
       "id": "after-hours",
@@ -147,7 +147,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "孤獨白領保羅在深夜紐約展開一連串荒誕又危險的夜間遭遇。",
-      "descriptionEn": null,
+      "descriptionEn": "A Midtown computer jockey ventures into the pre-gentrification downtown night with no money or way home, encountering an escalating parade of eccentric characters in a black comedy of paranoia, class tension, and surreal misadventure.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000970"
     },
     {
@@ -168,9 +168,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一部扑克脸式的伪纪录片，跟随技艺有限的年轻人辗转于电话推销、洗碗、工厂等低薪工作。",
+      "descriptionEn": "A deadpan microbudget mockumentary that follows Randy Scott as he drifts through a series of menial minimum-wage jobs—telemarketer, dishwasher, factory hand, motel attendant—offering a bleakly comic portrait of American working life.",
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004981"
     },
     {
       "id": "apocalypse-now-final-cut",
@@ -234,9 +234,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "由巴巴拉·哈默档案与访谈拼贴而成，呈现她的创作与晚年。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://filmforum.org/film/barbara-forever"
     },
     {
       "id": "barbara-hammer-love-is-where",
@@ -267,9 +267,9 @@
       "year": 1989,
       "director": "Tim Burton",
       "runtimeMinutes": 126,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "黑暗骑士在哥谭市用武艺与智慧守护正义，同时护守布鲁斯·韦恩的秘密身份。",
+      "descriptionEn": "As Gotham’s Dark Knight, Batman walks the shadowy line between right and wrong, defending the innocent with martial skill and a keen mind while keeping his true identity as Bruce Wayne a closely guarded secret.",
+      "descriptionSource": "https://www.paristheaternyc.com/film/batman-paris"
     },
     {
       "id": "billy-liar",
@@ -300,9 +300,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "两位郊区女友在爱情与友谊间试探，情感试验与选择交织。",
+      "descriptionEn": "Rohmer follows two girlfriends in the Paris suburbs as their romantic entanglements tempt them toward each other’s suitors, testing the proverb “the friends of my friends are my friends” and the limits of friendship and desire.",
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999002871"
     },
     {
       "id": "bram-stoker-s-dracula",
@@ -322,9 +322,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "日常将人碾为尘土，梦境成了逃生与疯狂的庇护所。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000356"
     },
     {
       "id": "castration-movie-chapter-iii-junior-ghosts-premorphic-drift-a-fragmentary-passage-q-a-musclefest",
@@ -333,9 +333,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "第三章中，伊兹努力阻止伴侣变性，情感与控制交锋。",
+      "descriptionEn": "Chapter III follows Izzy as she does everything in her power to stop her partner from transitioning, a fragmentary, postmodern episode that confronts intimacy, identity, and coercion within a larger multi‑part epic.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/castration-movie-iii-qa/"
     },
     {
       "id": "center-stage",
@@ -355,9 +355,9 @@
       "year": 2026,
       "director": "Kevin Walker, Jack Auen",
       "runtimeMinutes": 100,
-      "descriptionZh": null,
+      "descriptionZh": "教授在古老档案中追踪疑似被梵蒂冈掩盖的时间观看装置，走入文字与阴谋的迷宫。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.filmlinc.org/films/chronovisor/"
     },
     {
       "id": "chungking-express",
@@ -388,9 +388,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "珀尔修斯与众神怪物交锋，奇幻與英雄史詩並行。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004983"
     },
     {
       "id": "classical-period",
@@ -443,9 +443,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "三位大学好友在返校首夏的二十四小时里沉溺药物与酒精，现实渐行渐远。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/crocodile-dose-qa-2-2/"
     },
     {
       "id": "curse-of-the-demon",
@@ -465,9 +465,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "侯孝贤以当代台北为中心，讲述一位年轻女子如何努力稳住濒临崩裂的家庭。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003057"
     },
     {
       "id": "delicatessen",
@@ -476,9 +476,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "末世城市中，一位失业小丑发现肉铺背后隐秘又黑暗的真相。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001727"
     },
     {
       "id": "dementia-13-director-s-cut",
@@ -499,7 +499,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一个迷恋流行歌手的少女在遭到轻视后走向极端，成为令人不安的心理慢燃惊悚。",
-      "descriptionEn": null,
+      "descriptionEn": "Teen runaway Simone’s obsessive love for pop singer “R” turns dark when their real‑life meeting exposes her idol’s callousness, setting off a slow‑burn psychological thriller of parasocial obsession that culminates in a chilling final act.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004975"
     },
     {
@@ -509,9 +509,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "三位室友各自想攻略上司，偷窥邻居带来混乱与笑料。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/dildo-heaven-qa/"
     },
     {
       "id": "dog-movie-puppygirl-q-a-musclefest",
@@ -520,9 +520,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "两部短片并陈：被宠物扰乱的小家庭喜剧与一位跨性别者的性释放纪录片。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/dog-movie-puppygirl-qa/"
     },
     {
       "id": "drinking-and-driving-q-a-musclefest",
@@ -531,9 +531,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "两位青年在小镇夏季里饮酒驾车与人际错综纠缠的迷失故事。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/drinking-and-driving-qa/"
     },
     {
       "id": "e-t-the-extra-terrestrial",
@@ -543,7 +543,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一名男孩與迷失外星人在家庭與冒險中建立深厚友誼，發出想回家的呼喚。",
-      "descriptionEn": null,
+      "descriptionEn": "An abandoned alien longing to \"phone home\" befriends a human boy, creating a tender, often sublime fable about childhood’s fears, joys, and the need for companionship.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000571"
     },
     {
@@ -576,7 +576,7 @@
       "director": "David Fincher",
       "runtimeMinutes": 139,
       "descriptionZh": "失眠男子與肥皂推銷員創立地下鬥毆社，演變成失控的暴力與反叛運動。",
-      "descriptionEn": null,
+      "descriptionEn": "An insomniac and a charismatic soap salesman channel primal male aggression into underground \"fight clubs\" that spread like a contagion—until an eccentric intervenes and the movement spins into an out‑of‑control spiral toward oblivion.",
       "descriptionSource": "https://www.paristheaternyc.com/film/fight-club-paris"
     },
     {
@@ -586,9 +586,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "17岁的Isabel在豪华高尔夫度假村当“发球女孩”，暗藏等级与暴力的阴影逐渐浮现。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://filmforum.org/film/filipinana"
     },
     {
       "id": "franz",
@@ -631,7 +631,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "四位三十多歲的老友因離婚消息重整人生，展開長時間的自我與友情檢視。",
-      "descriptionEn": null,
+      "descriptionEn": "Four longtime friends in their late thirties in Kobe face turmoil when one announces an impending divorce, prompting prolonged self-examination rendered through austere, emotionally complex performances and durational storytelling.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001933"
     },
     {
@@ -685,9 +685,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "讽刺又辛辣的校园黑色喜剧，毒舌与暗黑笑料交织。",
+      "descriptionEn": "A cynical, surreal dark high‑school comedy that masks sharper themes beneath gleefully nasty putdowns and iconic performances; its bitter humor and memorable lines have made it one of the most influential teen films in modern times.",
+      "descriptionSource": "https://www.ifccenter.com/films/heathers/"
     },
     {
       "id": "her-private-hell",
@@ -718,9 +718,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一名醉酒卖苹果酒的商人在十九世纪的严冬中与数百只恶狸展开心酸又滑稽的生存之战。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.ifccenter.com/films/hundreds-of-beavers/"
     },
     {
       "id": "i-want-your-sex",
@@ -751,9 +751,9 @@
       "year": 2014,
       "director": "Paul Thomas Anderson",
       "runtimeMinutes": 149,
-      "descriptionZh": null,
+      "descriptionZh": "私家侦探德克在六十年代末洛杉矶卷入错综的爱情、绑架与阴谋，追寻失落与疯狂边缘的真相。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.paristheaternyc.com/film/inherent-vice-paris"
     },
     {
       "id": "irreversible",
@@ -795,9 +795,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "英雄杰森远航觅金羊毛，途中对抗巨人、蛇形九头兽与骷髅兵等怪物。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999002021"
     },
     {
       "id": "jennifer-s-body",
@@ -807,7 +807,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "两个高中闺蜜的关系因其中一人变成吞食男孩肉体的魅魔而破裂，校园惊悚与戏谑并存。",
-      "descriptionEn": null,
+      "descriptionEn": "High‑school best friends Anita and Jennifer navigate a fraught dynamic when Jennifer transforms into a succubus with a taste for the flesh of their male classmates, blending camp, kink, and practical gore with sharp screwball momentum.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004974"
     },
     {
@@ -927,9 +927,9 @@
       "year": 1967,
       "director": "František Vláčil",
       "runtimeMinutes": 165,
-      "descriptionZh": null,
+      "descriptionZh": "残酷的科西里克家族掳走主教候选人，玛尔凯塔被夺走，十三世纪波希米亚的信仰冲突与暴力交织成史诗。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.filmlinc.org/films/marketa-lazarova/"
     },
     {
       "id": "megalopolis",
@@ -1015,9 +1015,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一群大学生深入林中寻墓，惊醒吸血法利修士，生死惊魂。",
+      "descriptionEn": "Roxy, an anthropology student and college DJ, leads her punk‑band friends into the woods to locate a legendary hidden cemetery; when blood is spilled on its ground, undead Friars rise and the group must face their blood‑lust.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/night-of-the-vamp-friars-35mm/"
     },
     {
       "id": "old-joy",
@@ -1059,9 +1059,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "夜惊与失落的过去交织，梦中恶影可能已经入侵现实。",
+      "descriptionEn": "Riley, plagued by violent night terrors and an unresolved tragedy, becomes convinced a demonic figure from her sleep has crossed into the waking world when her best friend disappears, blurring the line between nightmare and reality.",
+      "descriptionSource": "https://www.ifccenter.com/films/parasomnia/"
     },
     {
       "id": "syndicated-ST00002630",
@@ -1070,9 +1070,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 101,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "摄影师沉迷捕捉死亡瞬间，暴露艺术与病态的危险。",
+      "descriptionEn": "A sensitive studio focus puller moonlights as a photographer who obsessively films the dying expressions of his victims, mounting his own chilling “documentary” and exposing the artful terrors and moral collapse that surround him.",
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     },
     {
       "id": "peggy-sue-got-married",
@@ -1092,9 +1092,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "以1913年脆弱的民国为背景，三位倔强女性在戏曲、权力与情爱间交织冒险。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004982"
     },
     {
       "id": "phantom-of-the-paradise",
@@ -1103,9 +1103,9 @@
       "year": 1974,
       "director": "Brian De Palma",
       "runtimeMinutes": 92,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "歌手温斯洛为被窃的音乐与失去的爱人展开复仇，直指操控一切的制作人斯旺。",
+      "descriptionEn": "Singer-songwriter Winslow Leach pursues revenge after the nefarious music producer Swan steals his songs and his favorite singer, setting the stage for a battle over art, love, and a new rock palace called the Paradise.",
+      "descriptionSource": "https://www.paristheaternyc.com/film/phantom-of-the-paradise-paris"
     },
     {
       "id": "playtime",
@@ -1114,9 +1114,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "胡洛先生在现代化的巴黎迷失于玻璃方盒與奇巧装置构成的都市风景。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001700"
     },
     {
       "id": "possession-35mm",
@@ -1126,7 +1126,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一段婚姻在西柏林走向疯狂與恐怖的崩解。",
-      "descriptionEn": null,
+      "descriptionEn": "A husband returns to find his wife’s frenzied behavior escalating into something far more sinister, as their marriage unravels into a visceral, nightmarish delirium marked by pulsating score and haunting performances.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004056"
     },
     {
@@ -1137,7 +1137,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "年輕新婦嫁入莊園後，始終被亡妻麗貝卡的幽影與家中祕密所困。",
-      "descriptionEn": null,
+      "descriptionEn": "A newly arrived bride becomes consumed by the haunting presence of her husband’s late wife after marrying the brooding aristocrat Maxim de Winter and moving to his Cornish estate, where the house itself seems dominated by that phantom.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000678"
     },
     {
@@ -1147,9 +1147,9 @@
       "year": 1990,
       "director": "Barbet Schroeder",
       "runtimeMinutes": 111,
-      "descriptionZh": null,
+      "descriptionZh": "植物人继承人受控于病床之谜，丈夫是否用胰岛素谋杀成疑，律师与学生们翻检证据。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.filmlinc.org/films/reversal-of-fortune/"
     },
     {
       "id": "rumble-fish",
@@ -1180,9 +1180,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一次Matchbox Cine少见九十年代独立片的4K修复抢先放映。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/secret-screening-musclefest/"
     },
     {
       "id": "shanghai-blues",
@@ -1191,9 +1191,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "以戰火為背景的絢麗諧趣愛情歌舞，兩人在炸彈轟炸下約定十年重逢，命運巧合又荒誕。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001446"
     },
     {
       "id": "syndicated-ST00002624",
@@ -1202,9 +1202,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 84,
-      "descriptionZh": null,
+      "descriptionZh": "一名害羞少女在夏令营接连发生恐怖事故，旧日秘密逐渐显现。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     },
     {
       "id": "sorcerer",
@@ -1235,9 +1235,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 60,
-      "descriptionZh": null,
+      "descriptionZh": "从档案影像到珍贵未公开片段，呈现迪伦不同时期的舞台与录音画面。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.paristheaternyc.com/film/films-from-the-bob-dylan-center-big-and-loud-2026"
     },
     {
       "id": "tampopo",
@@ -1279,9 +1279,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一个为上司当情人住所的纽约小职员，在孤独与苦乐之间搅拌出酸涩喜剧。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000609"
     },
     {
       "id": "the-bone-collector",
@@ -1312,9 +1312,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "圣诞夜的邪恶圣诞老人入侵，带来迷离雾都中被掳儿童夢境被掠奪的奇幻冒險。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001728"
     },
     {
       "id": "the-conversation",
@@ -1422,9 +1422,9 @@
       "year": 2021,
       "director": "Peter Jackson",
       "runtimeMinutes": 178,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "霍比特人弗罗多继承一枚神秘之戒，踏上拯救中土世界的艰巨旅程。",
+      "descriptionEn": "Frodo Baggins, a shy young hobbit, inherits a seemingly simple gold ring that holds terrible power; accompanied by a wizard, an elf, a dwarf, two men and three loyal hobbits, he must become a hero to save the land and people he loves.",
+      "descriptionSource": "https://www.paristheaternyc.com/film/the-lord-of-the-rings-fellowship-of-the-ring-paris"
     },
     {
       "id": "the-lord-of-the-rings-the-two-towers",
@@ -1433,9 +1433,9 @@
       "year": 2022,
       "director": "Peter Jackson",
       "runtimeMinutes": 179,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "护戒队成员分道扬镳，各自朝两座巨塔的命运迈进，对抗萨鲁曼与索伦的黑暗势力。",
+      "descriptionEn": "In the second part of the trilogy, members of the Fellowship separate and follow different paths toward two ominous towers—Orthanc in Isengard and Sauron’s Barad-dûr—as their intertwined destinies draw them deeper into war and darkness.",
+      "descriptionSource": "https://www.paristheaternyc.com/film/the-lord-of-the-rings-the-two-towers-paris"
     },
     {
       "id": "the-master",
@@ -1444,9 +1444,9 @@
       "year": 2012,
       "director": "Paul Thomas Anderson",
       "runtimeMinutes": 137,
-      "descriptionZh": null,
+      "descriptionZh": "退伍兵弗雷迪在二战后误入兰卡斯特·多德创立的新“宗教”船上，寻找归属与纷乱的人际牵绊。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.paristheaternyc.com/film/the-master-paris"
     },
     {
       "id": "three-by-david-gatten",
@@ -1455,9 +1455,9 @@
       "year": null,
       "director": "David Gatten",
       "runtimeMinutes": 79,
-      "descriptionZh": null,
+      "descriptionZh": "三部短片以阅读与档案为线，拼贴出失落与渴知的幽影。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.filmlinc.org/films/three-by-david-gatten/"
     },
     {
       "id": "the-name-of-the-rose",
@@ -1489,7 +1489,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "雾锁庄园中的哥特鬼故事，靠空间与沉默制造寒意。",
-      "descriptionEn": null,
+      "descriptionEn": "A dolorous Old Dark House chiller set just after World War II about a devout Englishwoman living in a remote Channel Island home with two photosensitive children, where strange occurrences begin after she hires three new servants.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004961"
     },
     {
@@ -1521,9 +1521,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一名初入行的律师起诉巨型保险公司，揭示法律與道德的拉扯與複雜。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://filmforum.org/film/the-rainmaker-coppola"
     },
     {
       "id": "the-razor-s-edge",
@@ -1543,9 +1543,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 162,
-      "descriptionZh": null,
+      "descriptionZh": "城内受困的武士在背叛与谋杀中寻找真相。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     },
     {
       "id": "the-samurai-and-the-prisoner",
@@ -1588,7 +1588,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "老太太与忠犬追寻被绑架的孙子，意外与三位老牌姊妹结伴冒险。",
-      "descriptionEn": null,
+      "descriptionEn": "An elderly Frenchwoman, Madame Souza, sets off with her faithful dog Bruno to rescue her kidnapped grandson Champion, a professional cyclist, and along the way joins forces with three eccentric vaudeville sisters to outwit his captors.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999002876"
     },
     {
@@ -1631,9 +1631,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一场后核世界的荒诞航程，科学与疯狂交织成寓言。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001726"
     },
     {
       "id": "troy",
@@ -1642,9 +1642,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "帕里斯劫走海伦，引发万舰奔袭与英雄对决。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004984"
     },
     {
       "id": "true-romance",
@@ -1654,7 +1654,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一對新戀人帶著走私毒品落跑，暴力與浪漫在逃亡旅程中互相交織。",
-      "descriptionEn": null,
+      "descriptionEn": "Clarence Worley, a comic-shop clerk and Elvis aficionado, goes on the run after a whirlwind romance with Alabama and a violent clash that leaves him holding a cache of contraband cocaine, propelling him into a bloody, pulp‑poetic odyssey.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003371"
     },
     {
@@ -1730,9 +1730,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 95,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一只逃出的猫头鹰在曼哈顿展开自由与自我发现之旅。",
+      "descriptionEn": "An escaped Eurasian Eagle-Owl named Flaco leaves captivity behind and travels across Manhattan, learning to survive and answering a deeper call as he discovers that his wildness was inside him all along.",
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     },
     {
       "id": "wild-inside",
@@ -1752,9 +1752,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "镜头深入曼哈顿时尚业，展现走秀、摄影师与卖梦工厂的商业与空虚交织。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004978"
     },
     {
       "id": "women-on-the-verge-of-a-nervous-breakdown",
