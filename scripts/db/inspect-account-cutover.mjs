@@ -46,8 +46,21 @@ try {
       : await tableCount("public.channels", " where owner_identity_id is not null"),
     accountOwnedGroups: await tableCount("public.channels", " where owner_user_id is not null"),
     authUsers: await tableCount("auth.users"),
+    internalAuthIdentifiers: await tableCount(
+      "auth.users",
+      " where email like '%@accounts.nyc-movie-together.invalid'",
+    ),
+    externalAuthIdentifiers: await tableCount(
+      "auth.users",
+      " where email is null or email not like '%@accounts.nyc-movie-together.invalid'",
+    ),
+    identityEmailMismatches: await tableCount(
+      "auth.identities",
+      " where coalesce(identity_data ->> 'email', '') not like '%@accounts.nyc-movie-together.invalid'",
+    ),
     profiles: await tableCount("public.profiles"),
     activeRefreshSessions: await tableCount("auth.sessions"),
+    recoveryCredentials: await tableCount("public.account_recovery_credentials"),
     management: await managementReadiness(),
   };
   console.log(JSON.stringify(result, null, 2));

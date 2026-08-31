@@ -30,6 +30,7 @@ describe("unified account migration", () => {
     expect(migration).toContain("drop function if exists public.login_channel_identity(text, text, text)");
     expect(migration).toContain("alter table public.profiles drop column if exists friend_id");
     expect(migration).toContain("alter table public.channel_members drop column if exists auto_share_new_marks cascade");
+    expect(migration).toContain("set constraints all immediate");
   });
 
   it("creates an encrypted, paginated backup with a matching rollback utility", async () => {
