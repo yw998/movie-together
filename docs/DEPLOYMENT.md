@@ -38,7 +38,7 @@ OPENAI_API_KEY
 Use the Supabase Session Pooler URI. Do not add Supabase service-role or database
 credentials to Vercel; the deployed static frontend does not need them.
 `OPENAI_API_KEY` is read only by GitHub Actions. It is used only when a film has
-no approved Chinese description in PostgreSQL or the curated catalog. You may
+a missing approved Chinese or English description in PostgreSQL or the curated catalog. You may
 optionally add an Actions variable named `OPENAI_DESCRIPTION_MODEL`; otherwise
 the workflow uses `gpt-5-mini`.
 
@@ -106,8 +106,8 @@ The job:
    rolling seven-day window from all seven implemented cinemas. A clean cinema
    uses the current response. An unclean cinema is replaced atomically with its
    same-week previously approved facts; partial current facts are never mixed in.
-4. Reuses cached Chinese descriptions and generates copy only for genuinely new
-   films whose official detail pages contain sufficient evidence.
+4. Reuses cached Chinese and English descriptions. The daily schedule job is
+   cache-only and does not request new AI copy.
 5. Compiles, validates, deduplicates, and reviews changes.
 6. Stops when an unclean feed has no same-week approved fallback, when fallback
    facts are stale, or on an unresolved warning from a current feed,
@@ -134,6 +134,22 @@ must explicitly turn off `dry_run` before it can follow the normal publication
 path; scheduled daily runs continue to use the normal publication safety gates.
 10. Runs tests and builds the site.
 11. Commits the validated JSON; Vercel deploys that commit.
+
+### Weekly bilingual description backfill
+
+`.github/workflows/description-backfill.yml` runs every Monday at 06:30 in
+`America/New_York`, after the daily schedule workflow. It finds missing Chinese
+or English descriptions in the latest approved candidate, fetches official-page
+evidence, generates only the missing languages, and validates each language
+independently. Passing descriptions are written only to the film description
+columns and synchronized into `src/data/published-schedule.json`; no cinema or
+showing facts are changed. Review-needed and failed items remain unpublished and
+are included in the private 30-day artifact. A total technical generation
+failure stops the backfill before any import.
+
+Manual runs remain available. Their `publish` input defaults to `false`, so a
+manual run produces review artifacts without database, public JSON, commit, or
+deployment changes unless publication is explicitly enabled.
 
 Every run uploads its candidate and review files as a private GitHub Actions
 artifact for 30 days. A failed run opens a GitHub Issue and leaves the previous

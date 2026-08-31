@@ -1,6 +1,9 @@
 name: Bilingual description backfill
 
 on:
+  schedule:
+    - cron: "30 6 * * 1"
+      timezone: "America/New_York"
   workflow_dispatch:
     inputs:
       publish:
@@ -24,7 +27,7 @@ jobs:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_DESCRIPTION_MODEL: ${{ vars.OPENAI_DESCRIPTION_MODEL }}
-      PUBLISH: ${{ inputs.publish }}
+      PUBLISH: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.publish == true) }}
       REQUIRE_DESCRIPTION_GENERATION_SUCCESS: "true"
 
     steps:
