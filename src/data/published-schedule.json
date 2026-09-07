@@ -91,9 +91,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "本单元从本年电影节遴选六部短片，包括若干评审奖得主，呈现多样国际短片样貌。",
+      "descriptionEn": "A curated selection of six standout short films from the festival program, including Jury Award winners, offering a cross‑section of nonfiction and narrative work from around the world compiled into a single tour program.",
+      "descriptionSource": "https://www.ifccenter.com/films/2026-sundance-festival-short-film-tour-open-captioning/"
     },
     {
       "id": "2026-sundance-film-festival-short-film-tour",
@@ -146,9 +146,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一名卧底警察因涉入危险新藥而逐漸失去自我。",
+      "descriptionEn": "An undercover cop in a near-future world becomes entangled with a dangerous new drug and, as a result of his involvement, begins to lose his own identity.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/a-scanner-darkly-35mm/"
     },
     {
       "id": "after-hours",
@@ -257,7 +257,7 @@
       "director": "Ridley Scott",
       "runtimeMinutes": 117,
       "descriptionZh": "複雜未來城中，獵人德卡德受命追緝幾名逃回地球的複製人。",
-      "descriptionEn": null,
+      "descriptionEn": "In a near future where engineered humans serve as laborers, a retired Blade Runner is tasked with hunting four replicants who have returned to Earth and begun killing; a dark, atmospheric hunt that questions what it means to be human.",
       "descriptionSource": "https://www.paristheaternyc.com/film/blade-runner-the-final-cut-paris"
     },
     {
@@ -289,9 +289,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "改编自佛罗里达青少年真实案件，讲述一群学生合谋杀害施暴同学的经过与动机。",
+      "descriptionEn": "The true story of a group of Florida teenagers who conspired to kill an abusive classmate, exploring how prolonged psychological, physical, and sexual violence from that classmate led them to plot a lethal response.",
+      "descriptionSource": "https://www.ifccenter.com/films/bully/"
     },
     {
       "id": "chronovisor",
@@ -367,7 +367,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "末世城市中，一位失业小丑发现肉铺背后隐秘又黑暗的真相。",
-      "descriptionEn": null,
+      "descriptionEn": "In a post-apocalyptic cityscape, an unemployed circus clown discovers unsettling secrets at a butcher’s shop that has turned to cannibalism, a darkly comic, stylized debut rendered in burnished gold hues.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001727"
     },
     {
@@ -421,9 +421,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "三名炸弹少年卷入黑帮与暴力，怒火般的反叛宣泄全片。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004986"
     },
     {
       "id": "drinking-and-driving-q-a-musclefest",
@@ -487,9 +487,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "回溯一起早期饒舌網絡风波，探讨点名文化、性别与同意的影响。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.ifccenter.com/films/free-lyric/"
     },
     {
       "id": "gandahar",
@@ -685,9 +685,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "91岁前演员拒卖老屋，儿孙逼她搬家，陌生男子打破晚餐平静。",
+      "descriptionEn": "A fiercely independent 91-year-old former actress faces pressure from her son and granddaughter to sell the family home, and must prove she can still handle herself when a strange young man crashes their dinner.",
+      "descriptionSource": "https://www.ifccenter.com/films/lightning-bug/"
     },
     {
       "id": "maddie-s-secret",
@@ -707,9 +707,9 @@
       "year": 2006,
       "director": "Sofia Coppola",
       "runtimeMinutes": 123,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "细腻重述玛丽·安托瓦内特的动荡人生。",
+      "descriptionEn": "An intimate, stylized retelling of the turbulent life of Marie Antoinette, tracing her marriage into the indifferent French court and the private dramas that have shaped her reputation across history.",
+      "descriptionSource": "https://www.paristheaternyc.com/film/marie-antoinette-paris"
     },
     {
       "id": "marketa-lazarova",
@@ -751,9 +751,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "台北夜生活的霓虹與科技配乐中，一名酒吧女侍徘徊于情感与空虚之间。",
+      "descriptionEn": "A hypnotic plunge into Taipei’s neon nightlife: an aimless bar hostess drifts away from her boastful boyfriend toward a suave gangster, the film unfolding as a trance-like flashback drenched in club lights and a persistent sense of ennui.",
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001804"
     },
     {
       "id": "mulholland-drive-35mm",
@@ -806,9 +806,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一名职场小白领因催眠事件“放任自流”，意外被提拔并反讽企业文化。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003559"
     },
     {
       "id": "old-joy",
@@ -828,9 +828,9 @@
       "year": 2019,
       "director": "Quentin Tarantino",
       "runtimeMinutes": 161,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "电影回到1969洛杉矶，老演员与特技替身在变动中寻路，致敬好莱坞末代光辉。",
+      "descriptionEn": "Set in 1969 Los Angeles, an aging TV star and his longtime stunt double navigate an industry in flux as multiple storylines unfurl around them; a sprawling ensemble tribute to the waning days of Hollywood’s golden age.",
+      "descriptionSource": "https://www.paristheaternyc.com/film/once-upon-a-time-in-hollywood-paris"
     },
     {
       "id": "one-from-the-heart-reprise",
@@ -850,9 +850,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一個破碎家庭與放纵青年文化的暴烈悲剧。",
+      "descriptionEn": "A hurricane-force domestic tragedy that follows a delinquent father returning from prison into a violently dysfunctional household, centering on a self-destructive, punk-obsessed daughter and the destructive forces of youth subculture.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/out-of-the-blue/"
     },
     {
       "id": "pastorale",
@@ -895,7 +895,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "以1913年脆弱的民国为背景，三位倔强女性在戏曲、权力与情爱间交织冒险。",
-      "descriptionEn": null,
+      "descriptionEn": "Set in fragile Republican-era China, three irrepressible women—a would-be Peking Opera star, a warlord’s daughter, and a jewel-thief courtesan—collide in a fizzing mashup of espionage, screwball romance, slapstick, and costume spectacle.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004982"
     },
     {
@@ -928,7 +928,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "素食少女在獸醫學校被迫食生臟器後，開始覺醒出難以抑制的食肉慾望。",
-      "descriptionEn": null,
+      "descriptionEn": "A lifelong vegetarian at veterinary school is forced to eat a raw kidney during hazing and suddenly experiences violent carnivorous cravings, a gruesome drama of sexual awakening and campus cannibalism.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999003304"
     },
     {
@@ -950,7 +950,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一次Matchbox Cine少见九十年代独立片的4K修复抢先放映。",
-      "descriptionEn": null,
+      "descriptionEn": "A special sneak preview of a new 4K restoration of a little-seen late-'90s indie film by Matchbox Cine.",
       "descriptionSource": "https://www.roxycinemanewyork.com/screenings/secret-screening-musclefest/"
     },
     {
@@ -960,9 +960,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 107,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一位刚出院的羞怯女子在律师办公室里与雇主发展出虐恋关系。",
+      "descriptionEn": "A timid young woman recently released from a mental hospital takes a job as a secretary to a demanding lawyer; their employer‑employee dynamic evolves into a complex sexual, sadomasochistic relationship that reshapes both of their lives.",
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     },
     {
       "id": "serpent-s-path",
@@ -971,9 +971,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "巴黎，丧女父亲与神秘精神科医展开追凶复仇之路，正义与执念模糊。",
+      "descriptionEn": "A grieving father and a mysterious psychiatrist embark on a ruthless quest for vengeance after his daughter is murdered, abducting and interrogating suspects across Paris as the line between justice and obsession begins to blur.",
+      "descriptionSource": "https://www.ifccenter.com/films/serpents-path/"
     },
     {
       "id": "shanghai-blues",
@@ -993,9 +993,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一位年轻漂泊者来到拉斯维加斯，誓要成为顶尖舞者。",
+      "descriptionEn": "Nomi, a young drifter who arrives in Las Vegas to become a dancer, claws and pushes her way through the city’s showgirl ranks in pursuit of the top spot.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/showgirls-2/"
     },
     {
       "id": "syndicated-ST00002624",
@@ -1037,9 +1037,9 @@
       "year": null,
       "director": "Robert Wise, Nicholas Meyer",
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "星际舰队面对强大不明来袭，柯克重返企业号迎战，随后克汗卷土重来复仇。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.paristheaternyc.com/film/star-trek-double-feature-paris"
     },
     {
       "id": "stop-making-sense",
@@ -1048,9 +1048,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "Talking Heads现场影像，三夜同场录制，影史经典演唱会电影。",
+      "descriptionEn": "A landmark concert film capturing Talking Heads over three nights at Hollywood’s Pantages Theatre, featuring David Byrne and the band in a dynamic live performance.",
+      "descriptionSource": "https://www.ifccenter.com/films/stop-making-sense/"
     },
     {
       "id": "syndicated-ST00002632",
@@ -1059,9 +1059,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 110,
-      "descriptionZh": null,
+      "descriptionZh": "年迈的无声影后与年轻编剧在腐朽豪宅中纠缠，命运走向悲剧。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     },
     {
       "id": "syndicated-ST00002590",
@@ -1081,9 +1081,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "重启中的虐杀片与两位女性陷入血腥欲望世界。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/teenage-sex-and-death-at-camp-miasma-35mm/"
     },
     {
       "id": "tetro",
@@ -1104,7 +1104,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一个为上司当情人住所的纽约小职员，在孤独与苦乐之间搅拌出酸涩喜剧。",
-      "descriptionEn": null,
+      "descriptionEn": "An anxious insurance employee lets his boss use his small Manhattan apartment as a rendezvous spot while he courts an elevator operator, a bittersweet comedy-drama set against boozy office parties and caustic holiday cheer.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999000609"
     },
     {
@@ -1115,7 +1115,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "圣诞夜的邪恶圣诞老人入侵，带来迷离雾都中被掳儿童夢境被掠奪的奇幻冒險。",
-      "descriptionEn": null,
+      "descriptionEn": "After a Christmas Eve invasion by sinister Santas, a boy wanders a fog-shrouded harbor city of freaks and carnies as a desiccant cult leader harvests kidnapped children’s dreams, an eerie, atmospheric fairy tale.",
       "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001728"
     },
     {
@@ -1158,9 +1158,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一名卧底与警局内的内应互相试图揭露对方。",
+      "descriptionEn": "An undercover cop and a mole within the police force each attempt to identify the other while both infiltrate an Irish gang operating in South Boston.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-departed-35mm/"
     },
     {
       "id": "the-godfather",
@@ -1202,9 +1202,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "偏远苏格兰岛上，兄妹捕猎海鸟并讲述祖辈故事。",
+      "descriptionEn": "On a remote Scottish isle, siblings Isla and Sandy spend their days hunting seabirds and retelling the stories of their ancestors, living a rugged, insular life shaped by family lore.",
+      "descriptionSource": "https://www.ifccenter.com/films/the-incomer/"
     },
     {
       "id": "the-lake-house-35mm-2006-movies",
@@ -1235,9 +1235,9 @@
       "year": 2003,
       "director": "Peter Jackson",
       "runtimeMinutes": 201,
-      "descriptionZh": null,
+      "descriptionZh": "霍比特人弗罗多与山姆深入魔多心脏摧毁戒指，决定人类命运。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.paristheaternyc.com/film/the-lord-of-the-rings-the-return-of-the-king-paris"
     },
     {
       "id": "the-lord-of-the-rings-the-two-towers",
@@ -1345,9 +1345,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一名工程師失蹤後，後核烏lysses展開尋找新能量物質的荒誕航程。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999001726"
     },
     {
       "id": "the-wind-that-shakes-the-barley-35mm-2006-movies",
@@ -1367,9 +1367,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 99,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "两位错误归属的黑帮女友因身份被认错而引发混乱。",
+      "descriptionEn": "Two codependent best friends, scraping by and passing the time bong to bong, are swept into chaos after a case of mistaken identity upends their lives, fueling a rambunctious stoner comedy about friendship and mayhem.",
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     },
     {
       "id": "there-once-was-a-singing-blackbird",
@@ -1411,9 +1411,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一位纽约钻石商沉迷赌局，命悬一线。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999002255"
     },
     {
       "id": "union-county",
@@ -1455,9 +1455,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一位乡镇教师赴城途中误入酒馆，堕入荒诞与堕落之中。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004939"
     },
     {
       "id": "west-side-story-1961",
@@ -1521,9 +1521,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "三位旧同学在团聚后逃离家庭日常，重返奥斯陆街头与桑拿，畅谈欲望与遗憾。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/?vista_film_id=9999004985"
     },
     {
       "id": "women-on-the-verge-of-a-nervous-breakdown",
