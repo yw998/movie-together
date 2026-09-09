@@ -4,7 +4,7 @@ import type { AdapterResult, SourceSnapshot } from "../types";
 
 export const ROXY_SOURCE_URL =
   "https://www.roxycinemanewyork.com/now-showing/";
-export const ROXY_PARSER_VERSION = "roxy-cinema-html-v1";
+export const ROXY_PARSER_VERSION = "roxy-cinema-html-v2";
 
 type ParseOptions = {
   fetchedAt: string;
@@ -56,6 +56,13 @@ function getTicketId(ticketUrl: string): string | null {
   } catch {
     return null;
   }
+}
+
+function showingId(ticketId: string, startsAt: string): string {
+  // Roxy can reuse one Veezi purchase ID on multiple official screening cards.
+  // The offset timestamp keeps those distinct showings stable without inventing
+  // a replacement ticketing identifier.
+  return `roxy-cinema-${ticketId}-${slugify(startsAt)}`;
 }
 
 function extractEventNote(
@@ -174,7 +181,7 @@ export function parseRoxyCinemaHtml(
       localDate,
     );
     showings.push({
-      id: `roxy-cinema-${ticketId}`,
+      id: showingId(ticketId, startsAt),
       cinemaId: "roxy-cinema",
       filmId,
       startsAt,

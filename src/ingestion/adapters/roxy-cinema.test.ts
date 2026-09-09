@@ -28,11 +28,11 @@ describe("Roxy Cinema official HTML adapter", () => {
     const result = parseRoxyCinemaHtml(card(), options);
     expect(result.snapshot).toMatchObject({
       result: "success",
-      parserVersion: "roxy-cinema-html-v1",
+      parserVersion: "roxy-cinema-html-v2",
     });
     expect(result.showings).toEqual([
       expect.objectContaining({
-        id: "roxy-cinema-7646",
+        id: "roxy-cinema-7646-2026-08-11t19-00-00-000-04-00",
         startsAt: "2026-08-11T19:00:00.000-04:00",
         eventType: "qa",
         eventNote:
@@ -67,6 +67,32 @@ describe("Roxy Cinema official HTML adapter", () => {
       eventType: "standard",
       eventNote: null,
     });
+  });
+
+  it("keeps distinct showtimes when Roxy reuses a Veezi purchase ID", () => {
+    const early = card({
+      datetime: "2026-08-11T17:00:00.000-0400",
+      ticket: "7740",
+      title: "Out of the Blue",
+      detail: "out-of-the-blue-2",
+    });
+    const late = card({
+      datetime: "2026-08-11T21:30:00.000-0400",
+      ticket: "7740",
+      title: "Out of the Blue",
+      detail: "out-of-the-blue-2-2",
+    });
+
+    const result = parseRoxyCinemaHtml(`${early}${late}`, options);
+
+    expect(result.snapshot.result).toBe("success");
+    expect(result.showings).toHaveLength(2);
+    expect(result.showings.map((showing) => showing.id)).toEqual([
+      "roxy-cinema-7740-2026-08-11t17-00-00-000-04-00",
+      "roxy-cinema-7740-2026-08-11t21-30-00-000-04-00",
+    ]);
+    expect(new Set(result.showings.map((showing) => showing.id))).toHaveLength(2);
+    expect(result.showings.every((showing) => showing.ticketUrl?.includes("/purchase/7740"))).toBe(true);
   });
 
   it("fails visibly when the screening structure disappears", () => {
