@@ -102,9 +102,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一名黑帮执行者因心软而陷入生死追逐，行动与情感紧绷交织。",
+      "descriptionEn": "A tightly wound neo-noir about a mob enforcer whose decision to spare his boss’s mistress propels him into a desperate fight for survival, blending emotional stakes with stylized, dangerous action and a distinctive musical palette.",
+      "descriptionSource": "https://metrograph.com/film/9999005015-a-bittersweet-life/"
     },
     {
       "id": "a-brighter-summer-day",
@@ -146,9 +146,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一位隐居大师与弟子之间的音乐与记忆交织，成就深沉的艺术冥想。",
+      "descriptionEn": "A reclusive master and his ambitious pupil become entwined in a haunting portrait of artistic devotion, memory, and longing, set against a landmark viola da gamba score and inspired by a novelist’s meditation on music and creativity.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/all-the-mornings-of-the-world-instruments-of-desire/"
     },
     {
       "id": "altered-states",
@@ -157,9 +157,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "科学家以隔离与迷幻药探索意识边界与现实本质。",
+      "descriptionEn": "A research scientist experiments with sensory deprivation and hallucinogenic mixtures drawn from Native American shamanic practice to push the boundaries of human consciousness, uncovering shifts in memory, time, and reality itself.",
+      "descriptionSource": "https://www.ifccenter.com/films/altered-states/"
     },
     {
       "id": "an-autumn-s-tale",
@@ -168,9 +168,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "八十年代的纽约与唐人街中，两个意外结伴的人物展开温馨而略带喜感的情感故事。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999005025-an-autumns-tale/"
     },
     {
       "id": "andre-leon-talley-style-is-forever",
@@ -179,9 +179,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "纪实讲述塔利的时尚影响力、包容与真实追求。",
+      "descriptionEn": "A documentary portrait of André Leon Talley that traces his decades-long influence on fashion, highlighting his commitment to inclusivity, elegance, and an uncompromising pursuit of authenticity through interviews and rare footage.",
+      "descriptionSource": "https://www.ifccenter.com/films/andre-leon-talley-style-is-forever/"
     },
     {
       "id": "antigone",
@@ -190,9 +190,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "布莱希特改编的古希腊悲剧，抗争与定罪并置。",
+      "descriptionEn": "Brecht’s adaptation of Sophocles’ Antigone staged amid ancient ruins, portraying the title character’s rebellion against King Creon’s death sentence and presenting the tragedy in its entirety within an antiquarian setting.",
+      "descriptionSource": "https://metrograph.com/film/9999005030-antigone/"
     },
     {
       "id": "arsenal",
@@ -201,9 +201,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "基辅兵工厂工人起义及其残酷镇压，交织革命与乡土情感的诗性影像。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999005033-arsenal/"
     },
     {
       "id": "begotten",
@@ -223,9 +223,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "偏远村落老人推着货车取面包，这一周例行仪式既顽强又寓含制度隐喻。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999005026-bread-day-preceded-by-the-train-stop/"
     },
     {
       "id": "brief-encounter",
@@ -234,9 +234,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一场车站偶遇引发的短暂离别与深切哀愁。",
+      "descriptionEn": "A simple, tender drama of a furtive affair between two married people whose chance meetings at a railway station grow into mutual love and mounting agony across seven meetings, propelled by evocative dialogue and a haunting musical theme.",
+      "descriptionSource": "https://metrograph.com/film/9999002242-brief-encounter/"
     },
     {
       "id": "syndicated-ST00002648",
@@ -245,9 +245,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 144,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "英国特工詹姆斯·邦德为查明资助恐怖组织的对手而赴高额扑克局对决。",
+      "descriptionEn": "After receiving a license to kill, James Bond tracks a link from Madagascar to Le Chiffre and is sent to a high-stakes poker game where MI6 gambles that their newest \"00\" operative can topple the financier of terrorism.",
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     },
     {
       "id": "chronovisor",
@@ -278,9 +278,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "德黑兰的音乐家爱琴折断后失去生意志，沉眠于记忆與夢境中追溯往昔與戀情。",
+      "descriptionEn": "In Tehran, after his beloved violin is broken, renowned musician Nasser Ali Khan loses his will to live and, confined to bed, drifts through memories and dreams of his youth, family, and a great lost love that inspired his music.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/cinema-tehran-presents-chicken-with-plums/"
     },
     {
       "id": "crimes-of-passion",
@@ -289,9 +289,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "时尚设计师白天体面，夜晚化身妓女China Blue，引来侦探与疯狂牧师的危险纠葛。",
+      "descriptionEn": "Fashion designer Joanna Crane leads a double life as the prostitute China Blue, drawing the attention of a sexually frustrated private detective and becoming entangled with a psychopathic priest who possesses a murderous sex toy.",
+      "descriptionSource": "https://www.ifccenter.com/films/crimes-of-passion/"
     },
     {
       "id": "dust-in-the-wind",
@@ -300,9 +300,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "矿镇少男少女进城打拼，征召与分离考验他们的爱情。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999003943-dust-in-the-wind/"
     },
     {
       "id": "earth",
@@ -311,9 +311,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "乌克兰乡村与机械化的冲突，田园与土地的颂歌。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999004546-earth/"
     },
     {
       "id": "fjord",
@@ -377,9 +377,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "拜伦与珀西、玛丽·雪莱及克莱尔在日内瓦湖畔借迷幻药编织恐怖故事，幻觉与现实交错。",
+      "descriptionEn": "Set on an estate by Lake Geneva, Lord Byron hosts Percy and Mary Shelley and Claire Clairmont; aided by hallucinogens they invent a night of ghoulish tales that escalate until it’s impossible to tell apparition from reality.",
+      "descriptionSource": "https://www.ifccenter.com/films/gothic/"
     },
     {
       "id": "happy-together",
@@ -399,9 +399,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "格雷厄姆一家在祖谱秘密中逐步陷入恐怖与崩溃。",
+      "descriptionEn": "After the death of the family matriarch Ellen, the Graham household unravels as cryptic and increasingly terrifying secrets about their ancestry emerge, driving the family toward paranoia and dread.",
+      "descriptionSource": "https://www.ifccenter.com/films/hereditary-x-monstrous-bitch/"
     },
     {
       "id": "high-and-low",
@@ -421,9 +421,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 160,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "偏远村庄遭神秘怪物肆虐，猎人与警察陷入错综悲剧。",
+      "descriptionEn": "In a remote South Korean village, police and a group of hunters pursue a mysterious creature that wreaks havoc; as perceptions mislead and human conflicts escalate, ignorance seeds disaster and tragedy swells to cosmic proportions.",
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     },
     {
       "id": "imitation-of-life-1959",
@@ -465,9 +465,9 @@
       "year": 2017,
       "director": "William Oldroyd",
       "runtimeMinutes": 89,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "维多利亚时期乡间妇女因禁锢婚姻觉醒，因欲望展开激烈反抗。",
+      "descriptionEn": "Set in rural England, a young woman suffocated by a loveless marriage begins a passionate affair with a worker on her husband’s estate, unleashing a force within her that drives her to stop at nothing to get what she wants.",
+      "descriptionSource": "https://www.paristheaternyc.com/film/lady-macbeth-paris"
     },
     {
       "id": "lakeview-terrace-35mm-q-a",
@@ -476,9 +476,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一名偏执且种族偏见严重的洛杉矶警官不择手段驱赶邻居的跨种族夫妻。",
+      "descriptionEn": "A troubled, bigoted LAPD officer becomes obsessed with forcing out an interracial couple who move in next door, using escalating and relentless tactics to drive them away.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/lakeview-terrace-35mm-qa/"
     },
     {
       "id": "lisztomania",
@@ -487,9 +487,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "李斯特试图戒除放纵，却屡被瓦格纳诱回。",
+      "descriptionEn": "In a stylized take on the 19th century, composer-pianist Franz Liszt struggles to end his hedonistic ways but repeatedly finds himself drawn back by the seductive influence of fellow composer Richard Wagner.",
+      "descriptionSource": "https://www.ifccenter.com/films/lisztomania/"
     },
     {
       "id": "medea-1969",
@@ -509,9 +509,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "1963年，一位离经的单亲母亲带着女儿迁居小镇，冲突与救赎并行。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999001463-mermaids/"
     },
     {
       "id": "morvern-callar",
@@ -543,7 +543,7 @@
       "director": "Alfred Hitchcock",
       "runtimeMinutes": 102,
       "descriptionZh": "女儿被招募为间谍赴潜伏纳粹之人身边，而她与招募者之间也逐渐情愫暗生，风险骤增。",
-      "descriptionEn": null,
+      "descriptionEn": "Recruited to help bring Nazis to justice, Alicia Huberman becomes an undercover operative who must seduce a Nazi in hiding; as she and her handler grow closer, her deepening cover creates ever higher stakes and danger.",
       "descriptionSource": "https://www.paristheaternyc.com/film/notorious-paris"
     },
     {
@@ -564,9 +564,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一位朱利亚德中提琴手在纽约与往事纠缠，被一场意外机会和旧爱逼入抉择。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/on-a-string-qa/"
     },
     {
       "id": "once-upon-a-time-in-china",
@@ -575,9 +575,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "以黄飞鸿为中心的充满速度感的武侠史诗。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999004431-once-upon-a-time-in-china/"
     },
     {
       "id": "once-upon-a-time-in-china-ii",
@@ -586,9 +586,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "黄飞鸿再战，城中动荡與革命冲突并起。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999005031-once-upon-a-time-in-china-ii/"
     },
     {
       "id": "once-upon-a-time-in-china-iii",
@@ -597,9 +597,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "黄飞鸿再赴京城，狮舞竞赛与暗杀阴谋交织。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999005032-once-upon-a-time-in-china-iii/"
     },
     {
       "id": "paprika",
@@ -630,9 +630,9 @@
       "year": 1949,
       "director": "Elia Kazan",
       "runtimeMinutes": 102,
-      "descriptionZh": null,
+      "descriptionZh": "一位肤色极浅的黑人女子隐瞒身世后面临跨种族婚姻与家庭的抉择。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.paristheaternyc.com/film/pinky-paris"
     },
     {
       "id": "pushing-hands",
@@ -685,9 +685,9 @@
       "year": 2007,
       "director": "Lee Chang-dong",
       "runtimeMinutes": 142,
-      "descriptionZh": null,
+      "descriptionZh": "丧夫母亲迁居故乡后遭遇惨痛失子，信仰与绝望交锋。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.paristheaternyc.com/film/secret-sunshine-paris"
     },
     {
       "id": "shchors",
@@ -696,9 +696,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "围绕乌克兰红军指挥官什乔尔斯的传记片，糅合英雄颂与诗意画面。",
+      "descriptionEn": "A biopic of the Bolshevik commander Mykola Shchors that combines vigorous, propagandistic hagiography with moments of ineffable poetry, reflecting Ukrainian cultural tradition amid the pressures of politically commissioned filmmaking.",
+      "descriptionSource": "https://metrograph.com/film/9999005034-shchors/"
     },
     {
       "id": "socrates",
@@ -707,9 +707,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "在衰落的雅典，哲人挑衅与被沉默的命运交织。",
+      "descriptionEn": "Rossellini’s portrait places Socrates in an Athens humbled by Sparta, where the philosopher’s probing provocations unsettle the city and ultimately lead to forces determined to silence him, rendered with austere, experimental filmmaking.",
+      "descriptionSource": "https://metrograph.com/film/9999005024-socrates/"
     },
     {
       "id": "stella-dallas",
@@ -762,9 +762,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "围绕上流社会礼俗与禁忌的爱情与抉择，在晚清十九世纪纽约的社交圈中展开。",
+      "descriptionEn": "An adaptation of Edith Wharton’s story that traces the strict social mores and hidden taboos of New York’s wealthy classes, following a lawyer torn between duty and a forbidden longing amid rigid expectations.",
+      "descriptionSource": "https://metrograph.com/film/9999000057-the-age-of-innocence/"
     },
     {
       "id": "the-boy-friend",
@@ -773,9 +773,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "基层音乐剧的替角被迫上场，承担起演出重任。",
+      "descriptionEn": "When the leading lady of a small musical revue injures herself, the assistant stage manager must step in to understudy and perform, finding herself thrust into the world and pressures of the show.",
+      "descriptionSource": "https://www.ifccenter.com/films/the-boy-friend/"
     },
     {
       "id": "the-deer-hunter",
@@ -795,9 +795,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "在心脏病预警下，他以影像追寻家族秘密與存在的意义。",
+      "descriptionEn": "Facing a heart diagnosis, actor-director Nick Sandow embarks on a hybrid documentary-narrative quest to investigate family secrets, confront mortality, and search for identity and the memory of his late father.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-downtown-fest-the-mayflower-qa/"
     },
     {
       "id": "the-downtown-festival-art-new-york-3-downtown-artists-q-a",
@@ -806,9 +806,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "三位下城艺术家在影像与访谈中被追述，展现影响城市文化的创作与生活。",
+      "descriptionEn": "Rare archival portraits, interviews, and exhibition footage trace the work and lives of three downtown artists—Mapplethorpe, Basquiat, and Goldin—documenting pivotal moments that shaped New York’s visual culture and alternative scenes.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-downtown-festival-art-new-york-3-downtown-artists-robert-mapplethorpe-jean-michel-basquiat-and-nan-goldin-qa/"
     },
     {
       "id": "the-downtown-festival-beyond-the-threshold-selection-of-short-films",
@@ -817,9 +817,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "九部新作短片联展，呈现多样前卫的当代电影切片与声音。",
+      "descriptionEn": "A program of nine newly premiered short films ranging from live performance pieces to narrative and experimental works, presenting a cutting-edge cross-section of contemporary short-form cinema by diverse filmmakers.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-downtown-fest-beyond-the-threshold/"
     },
     {
       "id": "the-downtown-festival-dwarf-neon-mayfield-q-a",
@@ -828,9 +828,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "镜头随风暴扫过肯塔基乡间，记录残存生活与崩解的亲密图景。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-downtown-festival-dwarf-neon-mayfield-qa/"
     },
     {
       "id": "the-downtown-festival-l-i-e-25th-anniversary-screening-q-a",
@@ -839,9 +839,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一名少年在失去与被遗弃后滑入边缘世界，与一位危险的前海军建立复杂关系。",
+      "descriptionEn": "After his mother’s death and his father’s abandonment, a grieving fifteen-year-old descends into suburban delinquency and forms an unlikely, dangerous friendship with an older ex-Marine, exploring grief, vulnerability, and predation.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-downtown-festival-l-i-e-25th-anniversary-screening-qa/"
     },
     {
       "id": "the-downtown-festival-sitting-ducks-q-a",
@@ -850,9 +850,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "两位小偷结成荒诞搭档，带着赃款踏上追梦与逃亡的疯狂旅程。",
+      "descriptionEn": "Two small-time thieves form a bizarre comic duo who, with a limousine full of mob cash, flee toward Miami and a hoped-for refuge in Costa Rica; their misadventures mix caper energy with dreamlike pursuit of escape.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-downtown-festival-sitting-ducks-qa/"
     },
     {
       "id": "the-downtown-festival-slauson-rec-q-a",
@@ -861,9 +861,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "纪录一处实验戏剧工坊中，师徒关系如何在创作中滑向操控。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-downtown-festival-slauson-rec-qa/"
     },
     {
       "id": "the-downtown-festival-the-basics-of-philosophy-q-a",
@@ -872,9 +872,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一位哲学教授被往事与良知逼问，生活与责任的边界逐渐崩裂。",
+      "descriptionEn": "John Jorissen, a philosophy professor writing on Spinoza at a small Midwestern college, faces a resurfacing figure from his past after his father’s death, forcing him to confront guilt, obligation, and the fragile life he has constructed.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-downtown-festival-the-basics-of-philosophy-qa/"
     },
     {
       "id": "the-downtown-festival-the-joyless-economy-q-a",
@@ -883,9 +883,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "她以电影藏品为线索，借第二人称催眠式旁白吐露出婚外情与自白。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-downtown-festival-the-joyless-economy-qa/"
     },
     {
       "id": "the-downtown-festival-two-neighbors-q-a",
@@ -894,9 +894,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "两个性格迥异的女子在豪宅派对后交织出嫉妒、欲望與意想不到的魔力影响。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-downtown-festival-two-neighbors-qa/"
     },
     {
       "id": "the-enchanted-desna",
@@ -905,9 +905,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "基于童年回忆的魔幻现实史诗，河畔岁月交错。",
+      "descriptionEn": "A magic-realist epic drawn from memories of childhood on the Desna River that moves between pre-revolutionary idylls, World War II horrors, and contemporary scenes, weaving intimate recollection into ravishing, poetic spectacle.",
+      "descriptionSource": "https://metrograph.com/film/9999005029-the-enchanted-desna/"
     },
     {
       "id": "the-favourite",
@@ -916,9 +916,9 @@
       "year": 2018,
       "director": "Yorgos Lanthimos",
       "runtimeMinutes": 120,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "王权与私情交织，暗潮涌动中权力与野心博弈上演。",
+      "descriptionEn": "In early 18th-century England, a frail Queen relies on her friend Lady Sarah to govern; when Abigail arrives as a servant, she climbs into the queen’s favor and exploits political distractions to pursue her own ambitious return to status.",
+      "descriptionSource": "https://www.paristheaternyc.com/film/the-favourite-paris"
     },
     {
       "id": "the-foul-king",
@@ -927,9 +927,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "温顺职员化身舞台反派，靠耍诈角力找回自我。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999005016-the-foul-king/"
     },
     {
       "id": "the-handmaiden",
@@ -938,9 +938,9 @@
       "year": 2016,
       "director": "Park Chan-wook",
       "runtimeMinutes": 145,
-      "descriptionZh": null,
+      "descriptionZh": "在偏僻庄园，两位女性与一桩诈骗阴谋之间展开欲望与欺骗的角力。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.paristheaternyc.com/film/the-handmaiden-paris"
     },
     {
       "id": "syndicated-ST00002634",
@@ -971,9 +971,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "以普罗米修斯为蓝本的先锋影像，交织神话与创作激情。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999005028-the-illiac-passion/"
     },
     {
       "id": "the-immigrant",
@@ -982,9 +982,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一位波兰女移民在充满诱惑与陷阱的纽约拼命自救与互助。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999000795-the-immigrant/"
     },
     {
       "id": "the-incomer",
@@ -1004,9 +1004,9 @@
       "year": 1941,
       "director": "Preston Sturges",
       "runtimeMinutes": 94,
-      "descriptionZh": null,
+      "descriptionZh": "一位女牌手在大西洋客轮上欺骗并意外坠入爱河，随后设法挽回真情。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.paristheaternyc.com/film/the-lady-eve-paris"
     },
     {
       "id": "the-lair-of-the-white-worm",
@@ -1015,9 +1015,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "考古学家发现奇怪头骨后，邻镇居民接连失踪，怪事频仍。",
+      "descriptionEn": "After an archaeologist uncovers a strange skull in a distant land, residents of a nearby town begin to vanish and a series of inexplicable occurrences follows, plunging the community into mounting dread.",
+      "descriptionSource": "https://www.ifccenter.com/films/the-lair-of-the-white-worm/"
     },
     {
       "id": "the-last-first-winter-k2",
@@ -1048,9 +1048,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "柴可夫斯基为压抑同性倾向而结婚，却娶了放荡的妮娜，婚姻难以圆满。",
+      "descriptionEn": "Composer and conductor Peter Ilych Tchaikovsky struggles with his homosexual tendencies and attempts to suppress them by marrying Nina, a volatile nymphomaniac whose desires he cannot satisfy.",
+      "descriptionSource": "https://www.ifccenter.com/films/the-music-lovers/"
     },
     {
       "id": "the-ninth-gate",
@@ -1081,9 +1081,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 118,
-      "descriptionZh": null,
+      "descriptionZh": "联邦新探克拉丽斯为捉拿连环杀手向囚犯汉尼拔求解。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     },
     {
       "id": "the-sun-never-sets",
@@ -1114,9 +1114,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "在肮脏的洛杉矶，机械杀手追踪一位未来救主的母亲。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999000719-the-terminator/"
     },
     {
       "id": "the-treasure-of-bitch-islands",
@@ -1136,9 +1136,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 107,
-      "descriptionZh": null,
+      "descriptionZh": "男子为失踪女友展开三年执着追寻，终与绑匪正面交锋。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     },
     {
       "id": "the-virgin-suicides",
@@ -1148,7 +1148,7 @@
       "director": "Sofia Coppola",
       "runtimeMinutes": 97,
       "descriptionZh": "五位丽兹本姐妹在郊区中如幻影般漂浮，她们与男孩们的欲望引发改变人生的连锁事件。",
-      "descriptionEn": null,
+      "descriptionEn": "In a sleepy Michigan suburb, five Lisbon sisters become objects of neighborhood boys’ longing; their isolation and delicate beauty lead to a chain of events—sparked by a prom—that reshapes the boys’ lives forever.",
       "descriptionSource": "https://www.paristheaternyc.com/film/the-virgin-suicides-paris"
     },
     {
@@ -1202,9 +1202,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "童年创伤让男孩成了聋哑盲的弹球天才与教派偶像。",
+      "descriptionEn": "After traumatic events in his childhood leave him psychosomatically deaf, dumb, and blind, a boy rises to become a master pinball player and ultimately the focus of a fervent religious cult.",
+      "descriptionSource": "https://www.ifccenter.com/films/tommy/"
     },
     {
       "id": "trains-children-dreams-a-shorts-program",
@@ -1213,9 +1213,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一组短片以火车为线索，勾连儿童与梦境中的影像记忆。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://metrograph.com/film/9999005027-trains-children-dreams-a-shorts-program/"
     },
     {
       "id": "ulysses-gaze",
@@ -1246,9 +1246,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "由多位导演组成的恐怖选集，夹杂原创音乐短片与木偶段落。",
+      "descriptionEn": "An anthology of new horror segments and original music-video interludes assembled from directors including Ernest Dickerson, RZA, David Moreau, and Renee Zhan, the latter featuring original puppets by Jim Henson’s Creature Shop.",
+      "descriptionSource": "https://www.ifccenter.com/films/v-h-s-mixtape/"
     },
     {
       "id": "valie-export-shorts-program",
@@ -1268,9 +1268,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "伪纪实手法剖析一名妓女的艰难人生。",
+      "descriptionEn": "This searing melodrama uses a pseudo-documentary style to investigate the daily hardships and personal consequences faced by a woman working as a prostitute.",
+      "descriptionSource": "https://www.ifccenter.com/films/whore/"
     },
     {
       "id": "wings-of-desire",
@@ -1279,9 +1279,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一位天使在柏林厌倦旁观人世，因爱上凡人而渴望体验肉身生活。",
+      "descriptionEn": "In Berlin, an angel weary of an ethereal existence observes humanity until he falls for a mortal trapeze artist and begins to long for the tangible joys and pains of human life, prompting a desire to become fully alive.",
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/wings-of-desire-2/"
     },
     {
       "id": "women-in-love",
@@ -1290,9 +1290,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "两位姐妹在二十年代英矿镇中探索欲望与爱情。",
+      "descriptionEn": "Set in a sheltered 1920s English coal-mining community, two free-spirited sisters explore erotic love with a wealthy playboy and a thoughtful educator, with passionate consequences that reshape all their lives.",
+      "descriptionSource": "https://www.ifccenter.com/films/women-in-love/"
     },
     {
       "id": "women-on-the-verge-of-a-nervous-breakdown",
@@ -1323,9 +1323,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": 157,
-      "descriptionZh": null,
+      "descriptionZh": "旧金山市民被连环杀手“黄道带”恐吓，追凶成痴。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://ticketing.useast.veezi.com/sessions/?siteToken=dxdq5wzbef6bz2sjqt83ytzn1c"
     }
   ],
   "showings": [
