@@ -97,9 +97,9 @@
       "year": 2026,
       "director": "Ryûsuke Hamaguchi",
       "runtimeMinutes": 196,
-      "descriptionZh": null,
+      "descriptionZh": "养老院新任主任推行以尊重和同情为核心的关护计划，与一位京都戏剧导演结下深厚友谊。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.filmlinc.org/films/all-of-a-sudden/"
     },
     {
       "id": "all-the-long-nights",
@@ -109,7 +109,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "兩名共事者因各自看不見的病症建立起相互扶持的脆弱聯繫。",
-      "descriptionEn": null,
+      "descriptionEn": "Two co-workers who both suffer from little-understood, disabling conditions—panic attacks and severe PMS mood swings—form a tentative, humane bond built on mutual respect as they navigate everyday hurdles together.",
       "descriptionSource": "https://metrograph.com/film/9999005085-all-the-long-nights/"
     },
     {
@@ -142,7 +142,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一位修女的神祕異象與禁忌情感在修道院內引發衝突與調查。",
-      "descriptionEn": null,
+      "descriptionEn": "Inspired by a Tuscan nun whose claimed visions drew ecclesiastical scrutiny, the film immerses viewers in Counter-Reformation squalor as investigations reveal a forbidden sexual relationship and its severe consequences.",
       "descriptionSource": "https://metrograph.com/film/9999004248-benedetta/"
     },
     {
@@ -185,9 +185,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一部用「发现影像」手法记录的谜样怪兽电影。",
+      "descriptionEn": "A cryptic found-footage creature feature that showcases the original film’s ingenuity under Matt Reeves, unfolding as a tightly wound, mystery-box approach to a city-level monster threat.",
+      "descriptionSource": "https://www.ifccenter.com/films/cloverfield/"
     },
     {
       "id": "crystal-voyager",
@@ -218,9 +218,9 @@
       "year": null,
       "director": "Sidney Lumet",
       "runtimeMinutes": 130,
-      "descriptionZh": null,
+      "descriptionZh": "1972年炎热布鲁克林，抢劫演变成媒体焦点，绝望与荒诞交织。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.paristheaternyc.com/film/dog-day-afternoon-paris"
     },
     {
       "id": "domestics",
@@ -230,7 +230,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一部以愛、衝突與日常場景串接的實驗性劇作。",
-      "descriptionEn": null,
+      "descriptionEn": "An intimate, experimental drama about volatile relationships and blurred boundaries between desire and conflict, following fractured moments of love, jealousy, and emotional collision across a series of episodic vignettes.",
       "descriptionSource": "https://www.roxycinemanewyork.com/screenings/domestics/"
     },
     {
@@ -262,9 +262,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "当代音乐影像汇集，展映后并有问答环节。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/full-screen-a-contemporary-music-video-showcase-qa/"
     },
     {
       "id": "gorilla-gorilla-q-a",
@@ -284,9 +284,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "三次感恩节间的爱情、背叛与家庭纠葛。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/hannah-and-her-sisters-35mm/"
     },
     {
       "id": "harakiri-i-miss-you-q-a",
@@ -328,9 +328,9 @@
       "year": 1967,
       "director": "Richard Brooks",
       "runtimeMinutes": 134,
-      "descriptionZh": null,
+      "descriptionZh": "两名亡命者入室抢劫却杀害整个克拉特一家，逃亡中面对罪行与无常。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.paristheaternyc.com/film/in-cold-blood-paris"
     },
     {
       "id": "ink",
@@ -339,9 +339,9 @@
       "year": 2026,
       "director": "Danny Boyle",
       "runtimeMinutes": 116,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一群异想天开的新闻人联手打造一种全新的新闻理念，试图改变世界。",
+      "descriptionEn": "A fast-paced tale about a band of visionaries and misfits who devise a new kind of news meant to give people what they want and to change the face of the world.",
+      "descriptionSource": "https://www.paristheaternyc.com/film/INK-paris"
     },
     {
       "id": "je-t-aime-je-t-aime",
@@ -537,9 +537,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "从北极熊的视角提供紧张而沉浸的影像体验。",
+      "descriptionEn": "Placing viewers inside the world of a polar bear, the film delivers an immersive, pressure-cooker documentary experience that has been praised on the festival circuit and by notable filmmakers.",
+      "descriptionSource": "https://www.ifccenter.com/films/nuisance-bear/"
     },
     {
       "id": "oldboy",
@@ -659,7 +659,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "在一座險峻海島精神病院，一宗逃犯事件揭露戰後心靈創傷。",
-      "descriptionEn": null,
+      "descriptionEn": "U.S. marshals arrive on a storm-battered island asylum to investigate an infamous triple filicide, confronting a postwar world of psychic trauma and unsettling modernist soundscapes as they pursue a fugitive.",
       "descriptionSource": "https://metrograph.com/film/9999005083-shutter-island/"
     },
     {
@@ -670,7 +670,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "小偷展開一連串追贓與混亂冒險，捲入搶劫與麻煩之中。",
-      "descriptionEn": null,
+      "descriptionEn": "A newly freed car thief is immediately embroiled in a messy hunt for stolen loot, entangled with a reckless woman, a hapless bandleader, and an Airstream-trailing string of escalating troubles.",
       "descriptionSource": "https://metrograph.com/film/9999005086-slither/"
     },
     {
@@ -681,7 +681,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一名失憶退伍軍人在洛杉磯的夜生活中追尋身份與失落的祕密。",
-      "descriptionEn": null,
+      "descriptionEn": "An amnesiac ex-Marine returns to Los Angeles to search nightclubs, sanitariums, and docks for clues to his identity and a mysterious man named Larry Cravat, drawing him into the criminal underworld and a hunt for Nazi-plundered treasure.",
       "descriptionSource": "https://metrograph.com/film/9999005091-somewhere-in-the-night/"
     },
     {
@@ -702,9 +702,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一位指挥家在事业巅峰时，名誉与私生活同时崩解。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/tar-2/"
     },
     {
       "id": "tenebrae",
@@ -735,9 +735,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "讲述萨姆·班克曼-弗里德与卡罗琳·艾利森如何改造金融体系并卷入八十亿美元丑闻。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.paristheaternyc.com/film/the-altruists-paris"
     },
     {
       "id": "the-angel-levine-35mm-the-ravishing-cinema-of-bill-gunn",
@@ -746,9 +746,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
+      "descriptionZh": "一个贫困裁缝与前来自称天使的陌生人之间，质疑与信念交织的故事。",
       "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-angel-levine-35mm-bill-gunn-at-roxy/"
     },
     {
       "id": "the-brood",
@@ -834,9 +834,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "一部充满亵渎图像与存在主义象征的寓言式奇观。",
+      "descriptionEn": "Alejandro Jodorowsky plays the allegorical “Alchemist” who assembles a motley group from different walks of life in a scandalously vivid film overflowing with sacrilegious imagery, existential symbolism, and outrageous violence.",
+      "descriptionSource": "https://www.ifccenter.com/films/the-holy-mountain/"
     },
     {
       "id": "the-insider",
@@ -868,7 +868,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一位富家青年買下布魯克林公寓，卻與住戶生活糾結成諷刺喜劇。",
-      "descriptionEn": null,
+      "descriptionEn": "A coming-of-age social satire about wealthy white Elger Winthrop Enders, who buys a Park Slope brownstone intending to evict its predominantly Black tenants but instead becomes entangled in their lives, with sharp comic and human tensions.",
       "descriptionSource": "https://www.roxycinemanewyork.com/screenings/the-landlord-35mm-bill-gunn-at-roxy/"
     },
     {
@@ -878,9 +878,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "五十年代小镇上，孩子们因恐惧与玩笑编织出可怕想象。",
+      "descriptionEn": "Set in 1950s small-town Idaho, eight-year-old Seth and his friends prank the town recluse, Dolphin Blue, and after hearing vampire stories from his father, Seth becomes convinced she is a vampire stealing the souls of neighborhood children.",
+      "descriptionSource": "https://www.ifccenter.com/films/the-reflecting-skin/"
     },
     {
       "id": "the-souvenir",
@@ -911,9 +911,9 @@
       "year": null,
       "director": null,
       "runtimeMinutes": null,
-      "descriptionZh": null,
-      "descriptionEn": null,
-      "descriptionSource": null
+      "descriptionZh": "年迈亡命徒在消逝的西部寻求最后一次大劫。",
+      "descriptionEn": "An aging gang of outlaws attempts one last big score as the traditional American West disintegrates around them, forcing confrontations with changing times and loyalties.",
+      "descriptionSource": "https://www.ifccenter.com/films/the-wild-bunch-2/"
     },
     {
       "id": "the-woman-on-the-beach",
@@ -923,7 +923,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "一位海岸家的守望者為一名盲畫家之妻所迷戀，陷入毀滅性的激情。",
-      "descriptionEn": null,
+      "descriptionEn": "A Coast Guard officer haunted by a maritime tragedy becomes bewitched by the wife of a blind painter he meets at the seaside, spiraling into a consuming, destructive erotic obsession underscored by a roiling, elemental score.",
       "descriptionSource": "https://metrograph.com/film/9999005088-the-woman-on-the-beach/"
     },
     {
@@ -945,7 +945,7 @@
       "director": null,
       "runtimeMinutes": null,
       "descriptionZh": "三部黏土動畫短片講述發明家Wallace與智犬Gromit的幽默冒險與機智救援。",
-      "descriptionEn": null,
+      "descriptionEn": "A trio of stop-motion shorts follows cheese-loving inventor Wallace and his clever dog Gromit through a homemade moon voyage, a penguin-led heist using novelty trousers, and a woolly adventure to foil sheep rustlers.",
       "descriptionSource": "https://metrograph.com/film/9999005087-wallace-gromit-the-classic-shorts/"
     },
     {
